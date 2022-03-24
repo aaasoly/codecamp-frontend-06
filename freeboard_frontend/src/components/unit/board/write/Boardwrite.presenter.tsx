@@ -1,3 +1,4 @@
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react'
 import { 
   Container, 
   MainTitle, 
@@ -25,19 +26,45 @@ import {
   Error
 } from './Boardwrite.styles'
 
+interface IPropsBoardWriteUI {
+  onChangeName: (event: ChangeEvent<HTMLInputElement>) => void, // return 값이 일정하지 않을 경우에 많이 사용
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void,
+  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void,
+  onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void,
+  onChangeAddress: (event: ChangeEvent<HTMLInputElement>) => void,
 
-export default function BoardWriteUI(props) {
+  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void,
+  onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void,
+
+  nameError: any
+  passwordError: any
+  titleError: any
+  contentsError: any
+  addressError: any
+
+  isActive: Dispatch<SetStateAction<boolean>>,
+  isEdit: boolean,
+  data?: any
+}
+
+
+export default function BoardWriteUI(props: IPropsBoardWriteUI) {
 
 
   return (
 
     <Container>
-      <MainTitle>게시물 등록</MainTitle>
+      <MainTitle>게시물 {props.isEdit ? "수정" : "등록"}</MainTitle>
 
       <User>
         <UserInfo>
           <Item>작성자</Item>
-          <Blank type="text" placeholder='이름을 적어주세요.' onChange={props.onChangeName} />
+          <Blank 
+            type="text" 
+            placeholder='이름을 적어주세요.' 
+            onChange={props.onChangeName} 
+            defaultValue={props.data?.fetchBoard.writer}
+          />
           <Error>{props.nameError}</Error>
         </UserInfo>
         <UserInfo>
@@ -49,13 +76,23 @@ export default function BoardWriteUI(props) {
 
       <Title>
         <Item>제목</Item>
-        <Blank type="text" placeholder='제목을 작성해주세요.' onChange={props.onChangeTitle} />
+        <Blank 
+          type="text" 
+          placeholder='제목을 작성해주세요.' 
+          onChange={props.onChangeTitle} 
+          defaultValue={props.data?.fetchBoard.title}
+        />
         <Error>{props.titleError}</Error>
       </Title>
 
       <Contents>
         <Item>내용</Item>
-        <MainContents type="text" placeholder='내용을 작성해주세요.' onChange={props.onChangeContents} />
+        <MainContents 
+          type="text" 
+          placeholder='내용을 작성해주세요.' 
+          onChange={props.onChangeContents}
+          defaultValue={props.data?.fetchBoard.contnets}
+        />
         <Error>{props.contentsError}</Error>
       </Contents>
 
@@ -92,7 +129,10 @@ export default function BoardWriteUI(props) {
         </Select>
       </Setting>
 
-      <BtnSubmit onClick={props.onClickSubmit} isActive={props.isActive}>등록하기</BtnSubmit>
+      <BtnSubmit  onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+                  isActive={props.isActive}>
+        {props.isEdit ? "수정" : "등록"}하기
+      </BtnSubmit>
 
 
     </Container>

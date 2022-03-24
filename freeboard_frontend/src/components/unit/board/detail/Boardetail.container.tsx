@@ -5,32 +5,39 @@ import BoardDetailUI from './Boardetail.presenter'
 
 
 export default function BoardDetail() {
+  
+  // FETCH_BOARD
   const router = useRouter()
-
-  const [ deleteBoard ] = useMutation(DELETE_BOARD)
   const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: String(router.query.boardId) }
+    variables: { boardId: router.query.boardId }
   }) // 백엔드에 데이터를 요청해서 받아온 것을 data 변수에 저장, 받아오기 전까지 data=undefined
 
-  async function onClickDelete() {
+  // DELETE_BOARD
+  const [ deleteBoard ] = useMutation(DELETE_BOARD)
+
+  const onClickDelete = async () => {
     try {
       await deleteBoard({
       variables: { boardId: router.query.boardId },
     })
-    // alert("게시물이 삭제되었습니다!")
+    alert("게시물이 삭제되었습니다!")
     router.push("/boards/list")
-  } catch (error) {
-    alert(error.message)
+    } catch (error) {
+      alert(error.message)
+    }
   }
-    
+  const onClickMoveUpdate = () => {
+    router.push(`/boards/${router.query.boardId}/edit`)
   }
+
 
   return (
 
     <BoardDetailUI 
     data={data}
-    onClickDelete={onClickDelete} />
-
+    onClickDelete={onClickDelete}
+    onClickMoveUpdate={onClickMoveUpdate} />
 
   )
+  
 }

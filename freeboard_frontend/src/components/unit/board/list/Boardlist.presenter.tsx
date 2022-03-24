@@ -1,7 +1,11 @@
+import { getDate } from '../../../../commons/libraries/utils'
 import * as my from './Boardlist.styles'
 
+interface IPropsBoardListPageUI {
+  data?: any
+}
 
-export default function BoardListPagUI(props){
+export default function BoardListPageUI(props: IPropsBoardListPageUI){
 
 
   return (
@@ -12,13 +16,14 @@ export default function BoardListPagUI(props){
         <my.ColumnCenterHead>내용</my.ColumnCenterHead>
         <my.ColumnRightHead>작성일</my.ColumnRightHead>
       </my.Row>
-      <div>
+      <div>       {/*map(처리할 요소, 처리할 요소의 인덱스, 현재 배열)*/}
         {props.data?.fetchBoards.map((el, index) => (
           <my.Row key={el._id}>
-            <my.ColumnNumber>{index+1}</my.ColumnNumber>
+            <my.ColumnNumber>{10-index}</my.ColumnNumber>
             <my.ColumnLeft>{el.title}</my.ColumnLeft>
             <my.ColumnCenter>{el.writer}</my.ColumnCenter>
-            <my.ColumnRight>{el.createdAt.slice(0,10)}</my.ColumnRight>
+            <my.ColumnRight>{getDate(el.createdAt)}</my.ColumnRight>
+            {/* <my.ColumnRight>{el.createdAt}</my.ColumnRight> */}
           </my.Row>
         ))}
       </div>

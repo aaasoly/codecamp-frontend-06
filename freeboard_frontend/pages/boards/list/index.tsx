@@ -3,4 +3,5 @@ import BoardListPage from "../../../src/components/unit/board/list/Boardlist.con
 export default function BoardList() {
   
   return <BoardListPage/>
+  
 }

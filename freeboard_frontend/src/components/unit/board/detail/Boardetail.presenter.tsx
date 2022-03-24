@@ -2,21 +2,31 @@ import { PostUserIcon, PostInfo,Btn, BtnGroup, CommentBox, CommentChange, Commen
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser, faEdit, faLink, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
+import { MouseEvent } from 'react'
 
-export default function BoardDetailUI(props) {
+interface IMyPropsBoardDetailUI {
+  data?: any
+  onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void
+  onClickMoveUpdate: (event: MouseEvent<HTMLButtonElement>) => void
+}
+
+
+export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
 
   return (
 
     <Wrapper>
       <PostWrapper>
         <PostHeader>
+
           <HeaderLeft>
             <PostUserIcon><FontAwesomeIcon icon={faCircleUser} size="3x"/></PostUserIcon>
             <PostInfo>
-              <PostUser>{props.data?.fetchBoard.writer}</PostUser>
+              <PostUser>{props.data?.fetchBoard?.writer}</PostUser>
               <PostDate>Date : 2022. 03. 22</PostDate>
             </PostInfo>
           </HeaderLeft>
+
           <HeaderRigt>
             <LocaDetail>
               <Address>
@@ -25,6 +35,7 @@ export default function BoardDetailUI(props) {
               </Address>
               <Triangle></Triangle>
             </LocaDetail>
+
             <HeaderIcon>
               <LinkIcon><FontAwesomeIcon icon={faLink} size="2x"/></LinkIcon>
               <LocaIcon><FontAwesomeIcon icon={faLocationDot} size="2x"/></LocaIcon>
@@ -33,9 +44,9 @@ export default function BoardDetailUI(props) {
         </PostHeader>
 
         <PostBody>
-          <PostTitle>{props.data?.fetchBoard.title}</PostTitle>
+          <PostTitle>{props.data?.fetchBoard?.title}</PostTitle>
           <PostPictuer src="/image.png"></PostPictuer>
-          <PostText>{props.data?.fetchBoard.contents}</PostText>
+          <PostText>{props.data?.fetchBoard?.contents}</PostText>
           <PostVideo></PostVideo>
 
           <LDbtns>
@@ -49,11 +60,13 @@ export default function BoardDetailUI(props) {
             </Dislikebtn>
           </LDbtns>
         </PostBody>
+
       </PostWrapper>
 
       <BtnGroup>
           <Btn>목록으로</Btn>
-          <Btn>수정하기</Btn>
+          <Btn
+            onClick={props.onClickMoveUpdate}>수정하기</Btn>
           <Btn
             onClick={props.onClickDelete}>삭제하기</Btn>
         </BtnGroup>

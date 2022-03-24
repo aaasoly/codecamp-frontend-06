@@ -1,10 +1,36 @@
-import { useState } from 'react'
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { CREATE_BOARD } from './Boardwrite.queries'
+import { CREATE_BOARD, UPDATE_BOARD } from './Boardwrite.queries'
 import BoardWriteUI from './Boardwrite.presenter'
 
-export default function BoardWrite() {
+interface IPropsBoardWrite {
+  isEdit: boolean,
+  data?: any,
+  isActive: Dispatch<SetStateAction<boolean>>
+}
+
+interface IMyCreateBoardInput {
+  
+}
+
+interface IMyUpdateBoardInput {
+  title?: string,
+  contents?: string
+}
+
+interface IMyVariables {
+  updateBoardInput: object,
+  boardId?: any,
+  number?: number,
+  writer?: string,
+  password?: string,
+  title?: string,
+  contents?: string
+}
+
+
+export default function BoardWrite(props: IPropsBoardWrite) {
   const router = useRouter()
 
   const [ name, setName ] = useState("")
@@ -22,8 +48,9 @@ export default function BoardWrite() {
   const [ isActive, setIsActive ] = useState(false)
 
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  function onChangeName(event) {
+  function onChangeName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value)
 
     if(event.target.value !== "" && password !== "" && title !== "" && contents !== "" && address !== ""){
@@ -32,7 +59,7 @@ export default function BoardWrite() {
       setIsActive(false)
     }
   }
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value)
 
     if(name !== "" && event.target.value !== "" && title !== "" && contents !== "" && address !== ""){
@@ -41,7 +68,7 @@ export default function BoardWrite() {
       setIsActive(false)
     }
   }
-  function onChangeTitle(event) {
+  function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value)
 
     if(name !== "" && password !== "" && event.target.value !== "" && contents !== "" && address !== ""){
@@ -50,7 +77,7 @@ export default function BoardWrite() {
       setIsActive(false)
     }
   }
-  function onChangeContents(event) {
+  function onChangeContents(event: ChangeEvent<HTMLInputElement>) {
     setContents(event.target.value)
 
     if(name !== "" && password !== "" && title !== "" && event.target.value !== "" && address !== ""){
@@ -59,7 +86,7 @@ export default function BoardWrite() {
       setIsActive(false)
     }
   }
-  function onChangeAddress(event) {
+  function onChangeAddress(event: ChangeEvent<HTMLInputElement>) {
     setAddress(event.target.value)
 
     if(name !== "" && password !== "" && title !== "" && contents !== "" && event.target.value !== ""){
@@ -69,7 +96,11 @@ export default function BoardWrite() {
     }
   }
 
-  const onClickSubmit = async () => {
+
+  // 게시글 등록 버튼
+
+  const onClickSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
+
     if( name === "") {
       setNameError("이름을 적어주세요")
     } else {
@@ -107,13 +138,34 @@ export default function BoardWrite() {
             },
           },
         });
-      alert("게시물 등록에 성공하였습니다!");
-      router.push(`/boards/${result.data.createBoard._id}`);
+        console.log(result)
+        alert("게시물 등록에 성공하였습니다!");
+        router.push(`/boards/${result.data.createBoard._id}`);
     } catch(error) {
-        console.log(error.message)
+        alert(error.message)
       }
     }
   }
+
+  // 게시글 수정 버튼
+  const onClickUpdate = async (event: MouseEvent<HTMLButtonElement>) => {
+    const myUpdateBoardInput: IMyUpdateBoardInput = {}
+
+    const myVariables: IMyVariables = { 
+      updateBoardInput: myUpdateBoardInput,
+      boardId: router.query.boardId }
+    if (name !== "") myVariables.writer = name
+    if (password !== "") myVariables.password = password
+    if (title !== "") myVariables.title = title
+    if (contents !== "") myVariables.contents = contents
+
+        await updateBoard({
+          variables: myVariables
+        });
+        alert("게시물 수정에 성공하였습니다!");
+        router.push(`/boards/${router.query.boardId}`);
+    }
+
 
   return (
 
@@ -123,7 +175,9 @@ export default function BoardWrite() {
     onChangeTitle={onChangeTitle}
     onChangeContents={onChangeContents}
     onChangeAddress={onChangeAddress}
+
     onClickSubmit={onClickSubmit}
+    onClickUpdate={onClickUpdate}
 
     nameError={nameError}
     passwordError={passwordError}
@@ -132,8 +186,11 @@ export default function BoardWrite() {
     addressError={addressError}
 
     isActive={isActive}
+    isEdit={props.isEdit}
+    data={props.data}
     />
 
   )
 
 }
+
