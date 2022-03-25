@@ -1,32 +1,36 @@
-import { getDate } from '../../../../commons/libraries/utils'
-import * as my from './Boardlist.styles'
+import { getDate } from "../../../../commons/libraries/utils";
+import * as S from "./Boardlist.styles";
+import { IPropsBoardListPageUI } from "./Boardlist.types";
 
-interface IPropsBoardListPageUI {
-  data?: any
-}
-
-export default function BoardListPageUI(props: IPropsBoardListPageUI){
-
-
+export default function BoardListPageUI(props: IPropsBoardListPageUI) {
   return (
-    <div>
-      <my.Row>
-        <my.ColumnNumberHead>번호</my.ColumnNumberHead>
-        <my.ColumnLeftHead>제목</my.ColumnLeftHead>
-        <my.ColumnCenterHead>내용</my.ColumnCenterHead>
-        <my.ColumnRightHead>작성일</my.ColumnRightHead>
-      </my.Row>
-      <div>       {/*map(처리할 요소, 처리할 요소의 인덱스, 현재 배열)*/}
-        {props.data?.fetchBoards.map((el, index) => (
-          <my.Row key={el._id}>
-            <my.ColumnNumber>{10-index}</my.ColumnNumber>
-            <my.ColumnLeft>{el.title}</my.ColumnLeft>
-            <my.ColumnCenter>{el.writer}</my.ColumnCenter>
-            <my.ColumnRight>{getDate(el.createdAt)}</my.ColumnRight>
-            {/* <my.ColumnRight>{el.createdAt}</my.ColumnRight> */}
-          </my.Row>
-        ))}
-      </div>
-    </div>
-  )
+    <S.Wrapper>
+      <S.Row>
+        <S.ColumnNumberHead>번호</S.ColumnNumberHead>
+        <S.ColumnTitleHead>제목</S.ColumnTitleHead>
+        <S.ColumnContentsHead>작성자</S.ColumnContentsHead>
+        <S.ColumnDateHead>작성일</S.ColumnDateHead>
+      </S.Row>
+      {/*map(처리할 요소, 처리할 요소의 인덱스, 현재 배열)*/}
+      {props.data?.fetchBoards.map((el: any, index: number) => (
+        <S.Row key={el._id}>
+          <S.ColumnNumber>
+            {props.data?.fetchBoards.length - index}
+          </S.ColumnNumber>
+          <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+            {el.title}
+          </S.ColumnTitle>
+          <S.ColumnWriter>{el.writer}</S.ColumnWriter>
+          <S.ColumnDate>{getDate(el.createdAt)}</S.ColumnDate>
+          {/* <S.ColumnRight>{el.createdAt}</S.ColumnRight> */}
+        </S.Row>
+      ))}
+
+      <S.Footer>
+        <S.Button onClick={props.onClickMoveToBoardNew}>
+          게시물 등록하기
+        </S.Button>
+      </S.Footer>
+    </S.Wrapper>
+  );
 }

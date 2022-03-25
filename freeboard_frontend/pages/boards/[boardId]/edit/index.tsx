@@ -3,6 +3,7 @@ import BoardWrite from "../../../../src/components/unit/board/write/Boardwrite.c
 import { useQuery, gql } from "@apollo/client"
 import { useRouter } from "next/router"
 
+// 내가 변경한 스테이트만 수정하기 위해 불러옴
 export const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!){
     fetchBoard(boardId: $boardId){

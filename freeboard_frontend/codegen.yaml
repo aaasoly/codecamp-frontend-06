@@ -1,0 +1,9 @@
+schema: http://backend06.codebootcamp.co.kr/graphql
+# 주소에 접속해서 쿼리와 뮤테이션에 설정된 타입들을 타입스크립트 형태로 만들어줌
+generates:
+  ./src/commons/types/generated/types.ts: # ts 변환 내용을 이곳에 저장
+    plugins:
+      - typescript
+    config:
+      typesPrefix: I # 타입스크립트 앞에 I를 붙여주세요
+# 인터넷이 항상 연결 되어 있을 것, 백엔드 서버가 연결되어 잇을것

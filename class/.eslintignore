@@ -1,0 +1,4 @@
+# eslint를 무시할 파일 지정 (gitignore 와 같은 원리)
+
+# 플레이그라운드 types.ts
+/src/commons/types/generated/types.ts

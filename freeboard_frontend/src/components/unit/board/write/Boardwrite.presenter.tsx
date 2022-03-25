@@ -1,143 +1,108 @@
-import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react'
-import { 
-  Container, 
-  MainTitle, 
-  User, 
-  UserInfo, 
-  Title,
-  Contents,
-  Item, 
-  Blank, 
-  MainContents, 
-  Post, 
-  PostBlank, 
-  PostSearch, 
-  Address,
-  AddressBlank,
-  Youtube,
-  Picture, 
-  Upload,
-  PicAttach, 
-  Select, 
-  Setting,
-  Radio, 
-  RadioLabel,
-  BtnSubmit,
-  Error
-} from './Boardwrite.styles'
-
-interface IPropsBoardWriteUI {
-  onChangeName: (event: ChangeEvent<HTMLInputElement>) => void, // return 값이 일정하지 않을 경우에 많이 사용
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void,
-  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void,
-  onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void,
-  onChangeAddress: (event: ChangeEvent<HTMLInputElement>) => void,
-
-  onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void,
-  onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void,
-
-  nameError: any
-  passwordError: any
-  titleError: any
-  contentsError: any
-  addressError: any
-
-  isActive: Dispatch<SetStateAction<boolean>>,
-  isEdit: boolean,
-  data?: any
-}
-
+import * as S from "./Boardwrite.styles";
+import { IPropsBoardWriteUI } from "./Boardwrite.types";
 
 export default function BoardWriteUI(props: IPropsBoardWriteUI) {
-
-
   return (
+    <S.Wrapper>
+      <S.MainTitle>게시물 {props.isEdit ? "수정" : "등록"}</S.MainTitle>
 
-    <Container>
-      <MainTitle>게시물 {props.isEdit ? "수정" : "등록"}</MainTitle>
-
-      <User>
-        <UserInfo>
-          <Item>작성자</Item>
-          <Blank 
-            type="text" 
-            placeholder='이름을 적어주세요.' 
-            onChange={props.onChangeName} 
+      <S.User>
+        <S.UserInfo>
+          <S.Item>작성자</S.Item>
+          <S.Blank
+            type="text"
+            placeholder="이름을 적어주세요."
+            onChange={props.onChangeName}
             defaultValue={props.data?.fetchBoard.writer}
+            // readOnly={true} // 변경 불가능한 요소
+            // disabled={true} 도 가능하지만 색이 회색으로 변함
+            readOnly={props.data?.fetchBoard.writer} // 있으면 true 이기 때문에 연산자 쓸 필요 없음
           />
-          <Error>{props.nameError}</Error>
-        </UserInfo>
-        <UserInfo>
-          <Item>비밀번호</Item>
-          <Blank type="password" placeholder='비밀번호를 입력하세요.' onChange={props.onChangePassword} />
-          <Error>{props.passwordError}</Error>
-        </UserInfo>
-      </User>
+          <S.Error>{props.nameError}</S.Error>
+        </S.UserInfo>
+        <S.UserInfo>
+          <S.Item>비밀번호</S.Item>
+          <S.Blank
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            onChange={props.onChangePassword}
+          />
+          {/* fetch 에서 불러올 데이터 없음, 디폴트 밸류 없음! */}
+          <S.Error>{props.passwordError}</S.Error>
+        </S.UserInfo>
+      </S.User>
 
-      <Title>
-        <Item>제목</Item>
-        <Blank 
-          type="text" 
-          placeholder='제목을 작성해주세요.' 
-          onChange={props.onChangeTitle} 
+      <S.Title>
+        <S.Item>제목</S.Item>
+        <S.Blank
+          type="text"
+          placeholder="제목을 작성해주세요."
+          onChange={props.onChangeTitle}
           defaultValue={props.data?.fetchBoard.title}
         />
-        <Error>{props.titleError}</Error>
-      </Title>
+        <S.Error>{props.titleError}</S.Error>
+      </S.Title>
 
-      <Contents>
-        <Item>내용</Item>
-        <MainContents 
-          type="text" 
-          placeholder='내용을 작성해주세요.' 
+      <S.Contents>
+        <S.Item>내용</S.Item>
+        <S.MainContents
+          type="text"
+          placeholder="내용을 작성해주세요."
           onChange={props.onChangeContents}
           defaultValue={props.data?.fetchBoard.contnets}
         />
-        <Error>{props.contentsError}</Error>
-      </Contents>
+        <S.Error>{props.contentsError}</S.Error>
+      </S.Contents>
 
-      <Address>
-        <Item>주소</Item>
-        <Post>
-          <PostBlank type="text" placeholder='07250' />
-          <PostSearch>우편번호 검색</PostSearch>
-        </Post>
-            <AddressBlank type="text" onChange={props.onChangeAddress} />
-            <AddressBlank type="text" onChange={props.onChangeAddress} />
-        <Error>{props.addressError}</Error>
-      </Address>
+      <S.Address>
+        <S.Item>주소</S.Item>
+        <S.Post>
+          <S.PostBlank type="text" placeholder="07250" />
+          <S.PostSearch>우편번호 검색</S.PostSearch>
+        </S.Post>
+        <S.AddressBlank type="text" />
+        <S.AddressBlank type="text" />
+      </S.Address>
 
-      <Youtube>
-        <Item>유튜브</Item>
-        <Blank type="text" placeholder='링크를 복사해주세요.'/>
-      </Youtube>
+      <S.Youtube>
+        <S.Item>유튜브</S.Item>
+        <S.Blank type="text" placeholder="링크를 복사해주세요." />
+      </S.Youtube>
 
-      <Picture>
-        <Item>사진첨부</Item>
-        <Upload>
-          <PicAttach>+<br/>Upload</PicAttach>
-          <PicAttach>+<br/>Upload</PicAttach>
-          <PicAttach>+<br/>Upload</PicAttach>
-        </Upload>
-      </Picture>
+      <S.Picture>
+        <S.Item>사진첨부</S.Item>
+        <S.Upload>
+          <S.PicAttach>
+            +<br />
+            Upload
+          </S.PicAttach>
+          <S.PicAttach>
+            +<br />
+            Upload
+          </S.PicAttach>
+          <S.PicAttach>
+            +<br />
+            Upload
+          </S.PicAttach>
+        </S.Upload>
+      </S.Picture>
 
-      <Setting>
-        <Item>메인 설정</Item>
-        <Select>
-          <Radio type="radio" name="setting" /><RadioLabel>유튜브</RadioLabel>
-          <Radio type="radio" name="setting" /><RadioLabel>사진</RadioLabel>
-        </Select>
-      </Setting>
+      <S.Setting>
+        <S.Item>메인 설정</S.Item>
+        <S.Select>
+          <S.Radio type="radio" name="setting" />
+          <S.RadioLabel>유튜브</S.RadioLabel>
+          <S.Radio type="radio" name="setting" />
+          <S.RadioLabel>사진</S.RadioLabel>
+        </S.Select>
+      </S.Setting>
 
-      <BtnSubmit  onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-                  isActive={props.isActive}>
+      <S.BtnSubmit
+        onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+        isActive={props.isActive}
+      >
         {props.isEdit ? "수정" : "등록"}하기
-      </BtnSubmit>
-
-
-    </Container>
-
-
-  )
-
+      </S.BtnSubmit>
+    </S.Wrapper>
+  );
 }
