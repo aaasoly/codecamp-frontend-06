@@ -70,7 +70,7 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
         <S.Btn onClick={props.onClickDelete}>삭제하기</S.Btn>
       </S.BtnGroup>
 
-      <S.CommentWrapper>
+      {/* <S.CommentWrapper>
         <S.CommentHeader>댓글</S.CommentHeader>
         <S.CreateComment>
           <S.CommentUser>
@@ -118,7 +118,7 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
             <S.CommentDate>2021.02.22</S.CommentDate>
           </S.CommentUnit>
         </S.CommentBox>
-      </S.CommentWrapper>
+      </S.CommentWrapper> */}
     </S.Wrapper>
   );
 }
