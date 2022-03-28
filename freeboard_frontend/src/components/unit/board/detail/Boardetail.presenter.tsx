@@ -2,13 +2,14 @@ import * as S from "./Boardetail.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleUser,
-  faEdit,
   faLink,
   faLocationDot,
-  faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+// import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import { IMyPropsBoardDetailUI } from "./Boardetail.types";
+import { getDate } from "../../../../commons/libraries/utils";
+import { DislikeOutlined, LikeOutlined } from "@ant-design/icons";
+import ReactPlayer from "react-player";
 
 export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
   return (
@@ -21,7 +22,9 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
             </S.PostUserIcon>
             <S.PostInfo>
               <S.PostUser>{props.data?.fetchBoard?.writer}</S.PostUser>
-              <S.PostDate>Date : 2022. 03. 22</S.PostDate>
+              <S.PostDate>
+                Date : {getDate(props.data?.fetchBoard?.createdAt)}
+              </S.PostDate>
             </S.PostInfo>
           </S.HeaderLeft>
 
@@ -49,16 +52,18 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
           <S.PostTitle>{props.data?.fetchBoard?.title}</S.PostTitle>
           <S.PostPictuer src="/image.png"></S.PostPictuer>
           <S.PostText>{props.data?.fetchBoard?.contents}</S.PostText>
-          <S.PostVideo></S.PostVideo>
+          <S.PostVideo>
+            <ReactPlayer url={props.data?.fetchBaord?.YoutubeUrl} />
+          </S.PostVideo>
 
           <S.LDbtns>
             <S.Likebtn>
-              <FontAwesomeIcon icon={faThumbsUp} size="2x" />
-              <S.LikeNum>1920</S.LikeNum>
+              {/* <FontAwesomeIcon icon={faThumbsUp} size="2x" /> */}
+              <LikeOutlined />
             </S.Likebtn>
             <S.Dislikebtn>
-              <FontAwesomeIcon icon={faThumbsDown} size="2x" />
-              <S.DisLikeNum>1920</S.DisLikeNum>
+              {/* <FontAwesomeIcon icon={faThumbsDown} size="2x" /> */}
+              <DislikeOutlined />
             </S.Dislikebtn>
           </S.LDbtns>
         </S.PostBody>

@@ -17,6 +17,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [title, setTitle] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [titleError, setTitleError] = useState("");
   const [contents, setContents] = useState("");
@@ -102,6 +103,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
               password: password,
               title: title,
               contents: contents,
+              youtube: youtubeUrl,
             },
           },
         });

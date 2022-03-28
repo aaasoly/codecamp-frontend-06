@@ -24,6 +24,10 @@ export default function BoardDetail() {
     }
   };
 
+  // const onClickLike = () => {
+
+  // }
+
   const onClickMoveToBoardList = () => {
     router.push("/boards/list");
   };

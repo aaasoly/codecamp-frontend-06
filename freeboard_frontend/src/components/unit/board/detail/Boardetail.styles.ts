@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { DislikeOutlined, LikeOutlined } from "@ant-design/icons";
 
 //  게시글 상세 전체
 export const Wrapper = styled.div`
@@ -163,9 +164,8 @@ export const LDbtns = styled.div`
   margin: 0 auto 60px;
   box-sizing: border-box;
 `;
-export const Likebtn = styled.div`
-  width: 40px;
-  height: 51px;
+export const Likebtn = styled(LikeOutlined)`
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -178,9 +178,8 @@ export const LikeNum = styled.div`
   font-size: 18px;
   padding-top: 5px;
 `;
-export const Dislikebtn = styled.div`
-  width: 40px;
-  height: 51px;
+export const Dislikebtn = styled(DislikeOutlined)`
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

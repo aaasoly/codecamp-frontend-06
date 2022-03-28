@@ -1,20 +1,20 @@
-import '../styles/globals.css'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
-import { AppProps } from 'next/app' // Component, pageProps
+import "antd/dist/antd.css";
+import "../styles/globals.css";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { AppProps } from "next/app"; // Component, pageProps
 
-              // next.js 에서 지원하는 prpos
+// next.js 에서 지원하는 prpos
 function MyApp({ Component, pageProps }: AppProps) {
-
-  const client = new ApolloClient ({
+  const client = new ApolloClient({
     uri: "http://backend06.codebootcamp.co.kr/graphql",
-    cache: new InMemoryCache()
-  })
+    cache: new InMemoryCache(),
+  });
 
   return (
     <ApolloProvider client={client}>
       <Component {...pageProps} />
     </ApolloProvider>
-  )
+  );
 }
 
-export default MyApp // function 앞에 export default 쓰고 이부분은 지워도 됨. 똑같은 것
+export default MyApp; // function 앞에 export default 쓰고 이부분은 지워도 됨. 똑같은 것
