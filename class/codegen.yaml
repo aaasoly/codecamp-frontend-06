@@ -1,4 +1,4 @@
-schema: http://example.codebootcamp.co.kr/graphql 
+schema: http://backend06.codebootcamp.co.kr/graphql
 # 주소에 접속해서 쿼리와 뮤테이션에 설정된 타입들을 타입스크립트 형태로 만들어줌
 generates:
   ./src/commons/types/generated/types.ts: # ts 변환 내용을 이곳에 저장

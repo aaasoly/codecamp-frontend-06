@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { ISubmitButtonProps } from "./Boardwrite.types";
+import DaumPostcode from "react-daum-postcode";
 
 export const Wrapper = styled.div`
   width: 1200px;

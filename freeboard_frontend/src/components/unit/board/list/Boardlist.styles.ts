@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: auto;
-  padding: 152px 360px 405px;
+  padding: 152px 360px 10px;
 `;
 
 export const Row = styled.div`
@@ -49,6 +48,9 @@ export const ColumnNumber = styled.div`
   height: 52px;
   padding: 14px 0;
   text-align: center;
+  &:hover {
+    color: thistle;
+  }
 `;
 
 export const ColumnTitle = styled.div`
@@ -57,6 +59,12 @@ export const ColumnTitle = styled.div`
   padding: 14px 0;
   text-align: center;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover {
+    color: thistle;
+  }
 `;
 
 export const ColumnWriter = styled.div`
@@ -64,6 +72,9 @@ export const ColumnWriter = styled.div`
   height: 52px;
   padding: 14px 0;
   text-align: center;
+  &:hover {
+    color: thistle;
+  }
 `;
 
 export const ColumnDate = styled.div`
@@ -74,7 +85,7 @@ export const ColumnDate = styled.div`
 `;
 
 export const Footer = styled.div`
-  width: 1200px;
+  /* width: 1200px; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -82,7 +93,7 @@ export const Footer = styled.div`
 export const Button = styled.button`
   width: 171px;
   height: 52px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #bdbdbd;
   border-radius: 10px;
   margin-top: 40px;
   background-color: #fff;

@@ -1,5 +1,7 @@
 import * as S from "./Boardwrite.styles";
 import { IPropsBoardWriteUI } from "./Boardwrite.types";
+import DaumPostcode from "react-daum-postcode";
+import { Modal, Button } from "antd";
 
 export default function BoardWriteUI(props: IPropsBoardWriteUI) {
   return (
@@ -49,7 +51,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           type="text"
           placeholder="내용을 작성해주세요."
           onChange={props.onChangeContents}
-          defaultValue={props.data?.fetchBoard.contnets}
+          defaultValue={props.data?.fetchBoard.contents}
         />
         <S.Error>{props.contentsError}</S.Error>
       </S.Contents>
@@ -57,16 +59,54 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
       <S.Address>
         <S.Item>주소</S.Item>
         <S.Post>
-          <S.PostBlank type="text" placeholder="07250" />
-          <S.PostSearch>우편번호 검색</S.PostSearch>
+          <S.PostBlank
+            type="text"
+            placeholder="07520"
+            readOnly
+            value={
+              props.address ||
+              props.data?.fetchBoard.boardAddress?.zipcode ||
+              ""
+            }
+          />
+          <S.PostSearch onClick={props.showModal}>우편번호 검색</S.PostSearch>
+
+          {props.isOpen && ( // isOpen이 true 면 Modal 보여줌
+            <Modal
+              title="Basic Modal"
+              visible={true}
+              onOk={props.handleOk}
+              onCancel={props.handleCancel}
+            >
+              <DaumPostcode onComplete={props.handleComplete} />
+            </Modal>
+          )}
         </S.Post>
-        <S.AddressBlank type="text" />
-        <S.AddressBlank type="text" />
+        <S.AddressBlank
+          type="text"
+          readOnly
+          value={
+            props.address || props.data?.fetchBoard?.boardAddress?.address || ""
+          }
+          // || 뒤는 수정하기에 필요한 defaultValue
+        />
+        <S.AddressBlank
+          type="text"
+          onChange={props.onChangeAddressDetail}
+          defaultValue={
+            props.data?.fetchBoard.boardAddress?.addressDetail || ""
+          }
+        />
       </S.Address>
 
       <S.Youtube>
         <S.Item>유튜브</S.Item>
-        <S.Blank type="text" placeholder="링크를 복사해주세요." />
+        <S.Blank
+          type="text"
+          placeholder="링크를 복사해주세요."
+          onChange={props.onChangeYoutube}
+          defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
+        />
       </S.Youtube>
 
       <S.Picture>

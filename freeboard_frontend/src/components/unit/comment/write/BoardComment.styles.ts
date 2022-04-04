@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
+import { CommentOutlined } from "@ant-design/icons";
+import { Rate } from "antd";
 
 export const CommentWrapper = styled.div`
   width: 1200px;
+  /* height: 161px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,8 +12,15 @@ export const CommentWrapper = styled.div`
   margin: auto;
 `;
 
-export const CommentHeader = styled.div``;
+export const CommentHeader = styled.div`
+  font-size: 18px;
+`;
 
+export const CommentIcon = styled(CommentOutlined)`
+  font-size: 20px;
+  color: #ffd600;
+  margin-right: 14px;
+`;
 export const CreateComment = styled.div`
   width: 1200px;
   height: 300px;
@@ -45,7 +55,7 @@ export const CommentPassword = styled.input`
   font-size: 16px;
 `;
 
-export const CommentStars = styled.div`
+export const CommentStars = styled(Rate)`
   height: 20px;
   display: flex;
   flex-direction: row;
@@ -54,8 +64,7 @@ export const CommentStars = styled.div`
 `;
 
 export const CommentWriteBox = styled.div`
-  width: 1200px;
-  height: 161px;
+  /* width: 1200px; */
   border: 1px solid #bdbdbd;
 `;
 
@@ -74,23 +83,24 @@ export const CommentInputBottom = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const CommentCharNum = styled.div`
   width: 1198px;
-  height: 52px;
+  height: 55px;
   border-top: 1px solid #f2f2f2;
   padding: 14px 20px;
   color: #bdbdbd;
 `;
 export const CommentCreateButton = styled.button`
   width: 91px;
-  height: 52px;
+  height: 100%;
   background-color: #000;
   color: #fff;
   border: none;
   padding: 14px 16px;
   font-size: 14px;
   cursor: pointer;
+  box-sizing: border-box;
 `;

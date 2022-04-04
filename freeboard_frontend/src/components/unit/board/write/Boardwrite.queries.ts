@@ -7,6 +7,12 @@ export const CREATE_BOARD = gql`
       writer
       title
       contents
+      youtubeUrl
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
@@ -22,10 +28,15 @@ export const UPDATE_BOARD = gql`
       password: $password
       boardId: $boardId
     ) {
+      _id
       title
       contents
       youtubeUrl
-      images
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;

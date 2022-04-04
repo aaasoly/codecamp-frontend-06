@@ -9,6 +9,7 @@ export interface IPropsBoardWrite {
 export interface IMyUpdateBoardInput {
   title?: string;
   contents?: string;
+  youtubeUrl?: string;
 }
 
 export interface IMyVariables {
@@ -32,7 +33,7 @@ export interface IPropsBoardWriteUI {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
-
+  onChangeYoutube: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
 
@@ -45,4 +46,13 @@ export interface IPropsBoardWriteUI {
   isActive: boolean;
   isEdit: boolean;
   data?: any;
+
+  showModal: () => void;
+  handleOk: () => void;
+  handleCancel: () => void;
+  handleComplete: (address: any) => void;
+  isOpen: boolean;
+
+  address: any;
+  postcode: any;
 }

@@ -1,22 +1,23 @@
 import styled from "@emotion/styled";
 import { DislikeOutlined, LikeOutlined } from "@ant-design/icons";
+import ReactPlayer from "react-player";
 
 //  게시글 상세 전체
 export const Wrapper = styled.div`
-  width: 1200px;
-  background-color: #ffffff;
+  width: 100%;
+  /* background-color: #ffffff; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 40px;
   margin-bottom: 40px;
 `;
 
 export const PostWrapper = styled.div`
   width: 1200px;
-  height: 1602px;
-  background-color: #ffffff;
+  /* height: 1602px; */
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
@@ -67,7 +68,7 @@ export const PostDate = styled.div`
 `;
 
 // 주소
-export const HeaderRigt = styled.div`
+export const HeaderRight = styled.div`
   width: 376px;
   height: 103.34px;
   display: flex;
@@ -91,18 +92,19 @@ export const LocaDetail = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-right: 16px;
+  margin-right: 10px;
   margin-bottom: 4px;
-  box-sizing: border-box;
 `;
 export const Address = styled.div`
-  width: 376px;
+  /* width: 376px; */
   height: 64px;
   color: #fff;
   background-color: #c4c4c4;
   text-align: right;
   padding: 10px 16px;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const Triangle = styled.div`
   width: 0px;
@@ -111,19 +113,19 @@ export const Triangle = styled.div`
   border-left: 0px solid transparent;
   border-right: 12px solid transparent;
   transform: rotate(180deg);
-  box-sizing: border-box;
 `;
 
 export const LinkIcon = styled.div`
-  color: #ffd600;
+  color: thistle;
 `;
 export const LocaIcon = styled.div`
-  color: #ffd600;
+  color: thistle;
 `;
 
+// 본문
 export const PostBody = styled.div`
   width: 996px;
-  height: 1441px;
+  /* height: 1441px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -132,63 +134,68 @@ export const PostBody = styled.div`
 `;
 
 export const PostTitle = styled.div`
-  width: 285px;
+  /* width: 285px; */
   height: 54px;
-  font-size: 36px;
+  font-size: 26px;
   margin-bottom: 40px;
 `;
 
-export const PostPictuer = styled.img`
-  width: 996px;
-  height: 480px;
+export const PostPicture = styled.img`
+  width: 100%;
+  /* height: 480px; */
   margin-bottom: 40px;
 `;
 export const PostText = styled.div`
-  width: 996px;
-  height: 96px;
+  width: 100%;
+  font-size: 16px;
   margin-bottom: 120px;
 `;
-export const PostVideo = styled.iframe`
-  width: 486px;
-  height: 240px;
-  margin: 0 auto 163px;
+export const Youtube = styled(ReactPlayer)`
+  margin: auto;
 `;
 
-export const LDbtns = styled.div`
+export const LikeIcons = styled.div`
   width: 120px;
-  height: 48px;
+  /* height: 48px; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto 60px;
-  box-sizing: border-box;
+  margin: 50px auto 60px;
 `;
-export const Likebtn = styled(LikeOutlined)`
-  font-size: 20px;
+
+export const Like = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #ffd600;
+`;
+export const Likebutton = styled(LikeOutlined)`
+  font-size: 20px;
+  color: thistle;
+  cursor: pointer;
+`;
+export const LikeNum = styled.div`
+  color: thistle;
+  font-size: 18px;
+  padding-top: 10px;
 `;
 
-export const LikeNum = styled.div`
-  color: #ffd600;
-  font-size: 18px;
-  padding-top: 5px;
-`;
-export const Dislikebtn = styled(DislikeOutlined)`
-  font-size: 20px;
+export const DisLike = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+`;
+export const Dislikebutton = styled(DislikeOutlined)`
+  font-size: 20px;
   color: #828282;
+  cursor: pointer;
 `;
 export const DisLikeNum = styled.div`
   color: #828282;
   font-size: 18px;
+  padding-top: 10px;
 `;
 
 export const BtnGroup = styled.div`
@@ -205,162 +212,10 @@ export const Btn = styled.button`
   height: 45px;
   border: 1px solid #bdbdbd;
   background-color: #fff;
-  padding: 14px 60px;
+  padding: 11px 60px;
   cursor: pointer;
+  &:hover {
+    background-color: thistle;
+    color: #fff;
+  }
 `;
-
-// 댓글
-// export const CommentWrapper = styled.div`
-//   width: 1200px;
-//   height: 752px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: flex-start;
-// `;
-
-// export const CommentHeader = styled.div``;
-
-// export const CreateComment = styled.div`
-//   width: 1200px;
-//   height: 300px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: flex-start;
-// `;
-
-// export const CommentUser = styled.div`
-//   width: 506px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin-bottom: 20px;
-// `;
-
-// export const CommentWriter = styled.input`
-//   width: 180px;
-//   height: 52px;
-//   border: 1px solid #bdbdbd;
-//   padding: 14px 101px 14px 20px;
-//   font-size: 16px;
-// `;
-
-// export const CommentPassword = styled.input`
-//   width: 180px;
-//   height: 52px;
-//   border: 1px solid #bdbdbd;
-//   padding: 14px 0 14px 20px;
-//   font-size: 16px;
-// `;
-
-// export const CommentStars = styled.div`
-//   width: 116px;
-//   height: 20px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-// `;
-
-// export const CommentWriteBox = styled.div`
-//   width: 1200px;
-//   height: 161px;
-//   border: 1px solid #bdbdbd;
-// `;
-
-// export const CommentInput = styled.input`
-//   width: 1200px;
-//   height: 108px;
-//   border: none;
-//   padding: 20px 0 64px 20px;
-//   color: #bdbdbd;
-//   font-size: 16px;
-// `;
-
-// export const CommentInputBottom = styled.div`
-//   width: 1200px;
-//   height: 52px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: end;
-//   align-items: center;
-// `;
-
-// export const CommentCharNum = styled.div`
-//   width: 1198px;
-//   height: 52px;
-//   border-top: 1px solid #f2f2f2;
-//   padding: 14px 20px;
-//   color: #bdbdbd;
-// `;
-// export const CommentCreateButton = styled.button`
-//   width: 91px;
-//   height: 52px;
-//   background-color: #000;
-//   color: #fff;
-//   border: none;
-//   padding: 14px 16px;
-//   font-size: 14px;
-//   cursor: pointer;
-// `;
-
-// export const CommentBox = styled.div`
-//   width: 1200px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   padding-top: 20px;
-//   padding-bottom: 20px;
-// `;
-
-// export const CommentUserIcon = styled.div`
-//   width: 40px;
-//   height: 40px;
-// `;
-
-// export const CommentSetting = styled.div`
-//   width: 48px;
-//   height: 18px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-// `;
-
-// export const CommentChange = styled.div`
-//   width: 18px;
-//   height: 18px;
-//   color: #bdbdbd;
-// `;
-
-// export const CommentDelete = styled.div`
-//   width: 14px;
-//   height: 14px;
-//   color: #bdbdbd;
-// `;
-
-// export const CommentUnit = styled.div`
-//   width: 1200px;
-//   height: 111px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: flex-start;
-// `;
-
-// export const UserName = styled.div`
-//   font-size: 16px;
-//   font-weight: 500;
-// `;
-// export const UserStar = styled.div``;
-// export const CommentContents = styled.div`
-//   font-size: 16px;
-//   color: #4f4f4f;
-// `;
-// export const CommentDate = styled.div`
-//   font-size: 12px;
-//   color: #bdbdbd;
-// `;

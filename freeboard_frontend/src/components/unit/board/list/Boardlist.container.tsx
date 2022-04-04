@@ -1,11 +1,8 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { FETCH_BOARDS } from "./Boardlist.queries";
 import BoardListPageUI from "./Boardlist.presenter";
 
-export default function BoardListPage() {
+export default function BoardListPage(props) {
   const router = useRouter();
-  const { data } = useQuery(FETCH_BOARDS);
 
   const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
@@ -19,10 +16,13 @@ export default function BoardListPage() {
   };
 
   return (
-    <BoardListPageUI
-      onClickMoveToBoardNew={onClickMoveToBoardNew}
-      onClickMoveToBoardDetail={onClickMoveToBoardDetail}
-      data={data}
-    />
+    <>
+      <BoardListPageUI
+        onClickMoveToBoardNew={onClickMoveToBoardNew}
+        onClickMoveToBoardDetail={onClickMoveToBoardDetail}
+        data={props.data}
+      />
+      {/* <Pagination refetch={refetch} lastPage={lastPage} /> */}
+    </>
   );
 }
