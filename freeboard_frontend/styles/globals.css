@@ -14,3 +14,18 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "Abril Fatface";
+  src: url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+}
+
+@font-face {
+  font-family: "DM Serif Display", serif;
+  src: url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+}
+
+@font-face {
+  font-family: "Fugaz One";
+  src: url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
+}

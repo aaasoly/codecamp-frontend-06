@@ -90,7 +90,7 @@ export default function BoardCommentWrite(props) {
       if (!props.el?._id) return; // _id가 없으면 실행하지 않음
 
       const updateBoardCommentInput = {};
-      if (star !== props.el?.rating) updateBoardCommentInput.rating = star; // 바뀌어야 수정
+      if (!star) updateBoardCommentInput.rating = star; // 바뀌어야 수정
       if (contents !== "") updateBoardCommentInput.contents = contents;
 
       await updateBoardComment({

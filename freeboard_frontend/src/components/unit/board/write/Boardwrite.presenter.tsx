@@ -13,24 +13,26 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           <S.Item>작성자</S.Item>
           <S.Blank
             type="text"
+            id="writer"
             placeholder="이름을 적어주세요."
-            onChange={props.onChangeName}
+            onChange={props.onChangeInput}
             defaultValue={props.data?.fetchBoard.writer}
             // readOnly={true} // 변경 불가능한 요소
             // disabled={true} 도 가능하지만 색이 회색으로 변함
             readOnly={props.data?.fetchBoard.writer} // 있으면 true 이기 때문에 연산자 쓸 필요 없음
           />
-          <S.Error>{props.nameError}</S.Error>
+          <S.Error>{props.errors.writerError}</S.Error>
         </S.UserInfo>
         <S.UserInfo>
           <S.Item>비밀번호</S.Item>
           <S.Blank
             type="password"
+            id="password"
             placeholder="비밀번호를 입력하세요."
-            onChange={props.onChangePassword}
+            onChange={props.onChangeInput}
           />
           {/* fetch 에서 불러올 데이터 없음, 디폴트 밸류 없음! */}
-          <S.Error>{props.passwordError}</S.Error>
+          <S.Error>{props.errors.passwordError}</S.Error>
         </S.UserInfo>
       </S.User>
 
@@ -38,22 +40,24 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
         <S.Item>제목</S.Item>
         <S.Blank
           type="text"
+          id="title"
           placeholder="제목을 작성해주세요."
-          onChange={props.onChangeTitle}
+          onChange={props.onChangeInput}
           defaultValue={props.data?.fetchBoard.title}
         />
-        <S.Error>{props.titleError}</S.Error>
+        <S.Error>{props.errors.titleError}</S.Error>
       </S.Title>
 
       <S.Contents>
         <S.Item>내용</S.Item>
         <S.MainContents
+          id="contents"
           type="text"
           placeholder="내용을 작성해주세요."
-          onChange={props.onChangeContents}
+          onChange={props.onChangeInput}
           defaultValue={props.data?.fetchBoard.contents}
         />
-        <S.Error>{props.contentsError}</S.Error>
+        <S.Error>{props.errors.contentsError}</S.Error>
       </S.Contents>
 
       <S.Address>
@@ -64,7 +68,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
             placeholder="07520"
             readOnly
             value={
-              props.address ||
+              props.address.zipcode ||
               props.data?.fetchBoard.boardAddress?.zipcode ||
               ""
             }
@@ -86,7 +90,9 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           type="text"
           readOnly
           value={
-            props.address || props.data?.fetchBoard?.boardAddress?.address || ""
+            props.address.address ||
+            props.data?.fetchBoard?.boardAddress?.address ||
+            ""
           }
           // || 뒤는 수정하기에 필요한 defaultValue
         />

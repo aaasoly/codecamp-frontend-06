@@ -45,7 +45,7 @@ function solution(a, b) {
                     .fill(1)
                     .reduce((acc, cur, i) => {
                         const num = min +i
-                  ₩     return acc + num
+                        return acc + num
                     }, 0)
   // 예외처리 따로 안해줌
   

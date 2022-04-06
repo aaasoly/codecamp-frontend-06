@@ -13,19 +13,40 @@ import { Modal } from "antd";
 export default function BoardWrite(props: IPropsBoardWrite) {
   const router = useRouter();
 
-  const [name, setName] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [title, setTitle] = useState("");
-  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [inputs, setInputs] = useState({
+    writer: "",
+    title: "",
+    password: "",
+    contents: "",
+  });
 
-  const [titleError, setTitleError] = useState("");
-  const [contents, setContents] = useState("");
-  const [contentsError, setContentsError] = useState("");
-  const [address, setAddress] = useState("");
-  const [postcode, setPostcode] = useState();
-  const [addressDetail, setAddressDetail] = useState("");
+  const [address, setAddress] = useState({
+    address: "",
+    zipcode: "",
+    addressDetail: "",
+  });
+
+  const [errors, setErrors] = useState({
+    writerError: "",
+    passwordError: "",
+    titleError: "",
+    contentsError: "",
+  });
+
+  // const [name, setName] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [title, setTitle] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
+  // const [contents, setContents] = useState("");
+
+  // const [address, setAddress] = useState("");
+  // const [postcode, setPostcode] = useState();
+  // const [addressDetail, setAddressDetail] = useState("");
+
+  // const [nameError, setNameError] = useState("");
+  // const [passwordError, setPasswordError] = useState("");
+  // const [titleError, setTitleError] = useState("");
+  // const [contentsError, setContentsError] = useState("");
 
   const [isActive, setIsActive] = useState(false);
 
@@ -47,63 +68,82 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 주소
   const handleComplete = (address: any) => {
-    setPostcode(address.zonecode);
-    setAddress(address.address);
+    setAddress({
+      address: address.address,
+      zipcode: address.zonecode,
+    });
+    // setPostcode(address.zonecode);
+    // setAddress(address.address);
     setIsOpen(false);
   };
 
-  const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-    if (event.target.value !== "") {
-      setNameError("");
-    }
-
-    // if ( event.target.value !== "" && password !== "" && title !== "" && contents !== "" && address !== "")
-    if (event.target.value && password && title && contents) {
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputs({
+      ...inputs,
+      [event.target.id]: event.target.value,
+    });
+    if (event.target.value) {
+      setErrors({
+        ...errors,
+      });
       setIsActive(true);
     } else {
       setIsActive(false);
     }
   };
 
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    if (event.target.value !== "") {
-      setPasswordError("");
-    }
+  // const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setName(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setNameError("");
+  //   }
 
-    if (name && event.target.value && title && contents) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
+  // if ( event.target.value !== "" && password !== "" && title !== "" && contents !== "" && address !== "")
+  //   if (event.target.value && password && title && contents) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
 
-  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
-    if (event.target.value !== "") {
-      setTitleError("");
-    }
+  // const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setPasswordError("");
+  //   }
 
-    if (name && password && event.target.value && contents) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
+  //   if (name && event.target.value && title && contents) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
 
-  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
-    setContents(event.target.value);
-    if (event.target.value !== "") {
-      setContentsError("");
-    }
+  // const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setTitle(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setTitleError("");
+  //   }
 
-    if (name && password && title && event.target.value) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
+  //   if (name && password && event.target.value && contents) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
+
+  // const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setContents(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setContentsError("");
+  //   }
+
+  //   if (name && password && title && event.target.value) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
 
   const onChangeYoutube = (event: ChangeEvent<HTMLInputElement>) => {
     setYoutubeUrl(event.target.value);
@@ -116,28 +156,27 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   // 게시글 등록 버튼
 
   const onClickSubmit = async () => {
-    if (name === "") setNameError("이름을 적어주세요");
+    if (inputs.writer === "") errors.writerError;
 
-    if (password === "") setPasswordError("비밀번호를 적어주세요");
+    if (inputs.password === "") errors.passwordError;
 
-    if (title === "") setTitleError("비밀번호를 적어주세요");
+    if (inputs.title === "") errors.titleError;
 
-    if (contents === "") setContentsError("내용을 적어주세요");
+    if (inputs.contents === "") errors.contentsError;
 
-    if (name !== "" && password !== "" && title !== "" && contents !== "") {
+    if (
+      inputs.writer !== "" &&
+      inputs.password !== "" &&
+      inputs.title !== "" &&
+      inputs.contents !== ""
+    ) {
       try {
         const result = await createBoard({
           variables: {
             createBoardInput: {
-              writer: name,
-              password: password,
-              title: title,
-              contents: contents,
-              youtubeUrl: youtubeUrl,
+              ...inputs,
               boardAddress: {
-                zipcode: postcode,
-                address: address,
-                addressDetail: addressDetail,
+                ...address,
               },
             },
           },
@@ -158,13 +197,13 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     // 조건문은 있을 때 튕기는 것이 아니라 없을 때 튕기게 작성해야 한다
     // early exit pattern
 
-    if (!title && !contents && !youtubeUrl) {
+    if (!inputs.title && !inputs.contents && !inputs.youtubeUrl) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     } else {
       setIsActive(true);
     }
-    if (!password) {
+    if (!inputs.password) {
       Modal.error({ content: "비밀번호를 입력하세요." });
       return;
     } else {
@@ -210,17 +249,20 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   return (
     <BoardWriteUI
-      onChangeName={onChangeName}
-      onChangePassword={onChangePassword}
-      onChangeTitle={onChangeTitle}
-      onChangeContents={onChangeContents}
+      onChangeInput={onChangeInput}
+      errors={errors}
+      address={address}
+      // onChangeName={onChangeName}
+      // onChangePassword={onChangePassword}
+      // onChangeTitle={onChangeTitle}
+      // onChangeContents={onChangeContents}
       onChangeYoutube={onChangeYoutube}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
-      nameError={nameError}
-      passwordError={passwordError}
-      titleError={titleError}
-      contentsError={contentsError}
+      // nameError={nameError}
+      // passwordError={passwordError}
+      // titleError={titleError}
+      // contentsError={contentsError}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
@@ -229,8 +271,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       handleOk={handleOk}
       handleCancel={handleCancel}
       handleComplete={handleComplete}
-      address={address}
-      postcode={postcode}
+      // address={address}
+      // postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
     />
   );
