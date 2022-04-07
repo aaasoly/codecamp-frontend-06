@@ -1,14 +1,19 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { CREATE_BOARD, UPDATE_BOARD } from "./Boardwrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./Boardwrite.queries";
 import BoardWriteUI from "./Boardwrite.presenter";
 import {
   IMyUpdateBoardInput,
   IMyVariables,
   IPropsBoardWrite,
 } from "./Boardwrite.types";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { Modal } from "antd";
+import {
+  IMutation,
+  IMutationUploadFileArgs,
+} from "../../../../commons/types/generated/types";
+import { CheckFileValidation } from "../../../../commons/libraries/validation";
 
 export default function BoardWrite(props: IPropsBoardWrite) {
   const router = useRouter();
@@ -32,6 +37,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     titleError: "",
     contentsError: "",
   });
+
+  const [imageUrl, setImageUrl] = useState<string | undefined>("");
 
   // const [name, setName] = useState("");
   // const [password, setPassword] = useState("");
@@ -175,6 +182,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
           variables: {
             createBoardInput: {
               ...inputs,
+              images: [imageUrl],
+              youtubeUrl,
               boardAddress: {
                 ...address,
               },
@@ -228,7 +237,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       if (addressDetail)
         myUpdateBoardInput.boardAddress.addressDetail = addressDetail;
 
-      if (name !== "") myVariables.writer = name;
+      if (writer !== "") myVariables.writer = name;
       if (password !== "") myVariables.password = password;
       if (title !== "") myVariables.title = title;
       if (contents !== "") myVariables.contents = contents;
@@ -245,6 +254,36 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     } catch (error) {
       Modal.error({ content: error.message });
     }
+  };
+
+  // 이미지 등록
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const [uploadFile] = useMutation<
+    Pick<IMutation, "uploadFile">,
+    IMutationUploadFileArgs
+  >(UPLOAD_FILE);
+
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+
+    const isVaild = CheckFileValidation(file);
+    if (!isVaild) return;
+
+    try {
+      const result = await uploadFile({
+        variables: { file: file },
+      });
+      console.log(result.data?.uploadFile.url);
+      setImageUrl(result.data?.uploadFile.url);
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
+  };
+
+  const onClickImage = () => {
+    fileRef.current?.click();
   };
 
   return (
@@ -274,6 +313,10 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       // address={address}
       // postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
+      onChangeFile={onChangeFile}
+      onClickImage={onClickImage}
+      fileRef={fileRef}
+      imageUrl={imageUrl}
     />
   );
 }

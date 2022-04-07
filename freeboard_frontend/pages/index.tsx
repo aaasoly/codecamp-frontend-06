@@ -4,9 +4,9 @@ import styled from "@emotion/styled";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -18,6 +18,14 @@ const Wrapper = styled.div`
   background-image: url("/img/landing.jpg");
   background-size: cover;
   font-family: "DM Serif Display", serif;
+`;
+
+const BackSlider = styled(Slider)`
+  width: 1600px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Wrapper__Header = styled.div`
@@ -94,13 +102,15 @@ const Subtext = styled.div`
 `;
 
 export default function Home() {
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  // };
+  const settings = {
+    //dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 8000,
+    pauseOnHover: true,
+  };
 
   const router = useRouter();
 
@@ -146,20 +156,36 @@ export default function Home() {
           </Header__Right>
         </Wrapper__Header>
 
-        <Wrapper__Body>
-          <Body__img></Body__img>
-          <Body__Left>
-            <TextBox>
-              <Title>HELLO!</Title>
-              <Subtext>
-                Some day you will find me. Caught beneath the landslide. In a
-                champagne supernova in the sky. Some day you will find me.
-                Caught beneath the landslide. In a champagne supernova, a
-                champagne supernova in the sky.
-              </Subtext>
-            </TextBox>
-          </Body__Left>
-        </Wrapper__Body>
+        <BackSlider {...settings}>
+          <Wrapper__Body>
+            <Body__img></Body__img>
+            <Body__Left>
+              <TextBox>
+                <Title>HELLO!</Title>
+                <Subtext>
+                  Some day you will find me. Caught beneath the landslide. In a
+                  champagne supernova in the sky. Some day you will find me.
+                  Caught beneath the landslide. In a champagne supernova, a
+                  champagne supernova in the sky.
+                </Subtext>
+              </TextBox>
+            </Body__Left>
+          </Wrapper__Body>
+          <Wrapper__Body>
+            <Body__img></Body__img>
+            <Body__Left>
+              <TextBox>
+                <Title>HELLO!</Title>
+                <Subtext>
+                  Some day you will find me. Caught beneath the landslide. In a
+                  champagne supernova in the sky. Some day you will find me.
+                  Caught beneath the landslide. In a champagne supernova, a
+                  champagne supernova in the sky.
+                </Subtext>
+              </TextBox>
+            </Body__Left>
+          </Wrapper__Body>
+        </BackSlider>
       </Wrapper>
     </>
   );

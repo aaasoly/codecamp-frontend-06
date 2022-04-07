@@ -1,10 +1,16 @@
 import "antd/dist/antd.css";
 // import "../styles/globals.css";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  InMemoryCache,
+} from "@apollo/client";
 import { AppProps } from "next/app";
 import Layout from "../src/components/commons/layout";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
+import { createUploadLink } from "apollo-upload-client";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -25,8 +31,13 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const uploadLink = createUploadLink({
+    uri: "http://backend06.codebootcamp.co.kr/graphql",
+  }); // uploadLink 변수를 선언해서 apolloclient에 연결
+
   const client = new ApolloClient({
-    uri: "http://backend06.codebootcamp.co.kr/graphql", // Day14부터
+    link: ApolloLink.from([uploadLink]),
+    // uri: "http://backend06.codebootcamp.co.kr/graphql", // Day14부터
     // "http://example.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
   });

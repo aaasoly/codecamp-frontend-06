@@ -50,7 +50,9 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
 
         <S.PostBody>
           <S.PostTitle>{props.data?.fetchBoard?.title}</S.PostTitle>
-          <S.PostPicture src="/image.png"></S.PostPicture>
+          <S.PostPicture
+            src={`https://storage.googleapis.com/${props.data?.fetchBoard.images}`}
+          />
           <S.PostText>{props.data?.fetchBoard?.contents}</S.PostText>
           {props.data?.fetchBoard.youtubeUrl && (
             <S.Youtube url={String(props.data?.fetchBoard?.youtubeUrl)} />

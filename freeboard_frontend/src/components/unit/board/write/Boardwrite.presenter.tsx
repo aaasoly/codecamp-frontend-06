@@ -118,15 +118,21 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
       <S.Picture>
         <S.Item>사진첨부</S.Item>
         <S.Upload>
-          <S.PicAttach>
+          <S.PicAttach onClick={props.onClickImage}>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              onChange={props.onChangeFile}
+              ref={props.fileRef}
+            />
             +<br />
             Upload
           </S.PicAttach>
-          <S.PicAttach>
+          <S.PicAttach onClick={props.onClickImage}>
             +<br />
             Upload
           </S.PicAttach>
-          <S.PicAttach>
+          <S.PicAttach onClick={props.onClickImage}>
             +<br />
             Upload
           </S.PicAttach>
