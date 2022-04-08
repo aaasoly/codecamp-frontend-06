@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ISubmitButtonProps } from "./Boardwrite.types";
 import DaumPostcode from "react-daum-postcode";
-
+import { PictureOutlined } from "@ant-design/icons";
 export const Wrapper = styled.div`
   width: 1200px;
   display: flex;
@@ -143,16 +143,18 @@ export const Upload = styled.div`
 `;
 
 export const PicAttach = styled.div`
-  width: 78px;
-  height: 78px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #bdbdbd;
+  /* background-color: #bdbdbd; */
   color: #4f4f4f;
   margin-right: 24px;
+  cursor: pointer;
 `;
 
 export const Setting = styled.div`

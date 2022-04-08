@@ -1,7 +1,14 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import BoardListPageUI from "./Boardlist.presenter";
+import _ from "lodash";
+import { useQuery } from "@apollo/client";
+import { FETCH_BOARDS } from "./Boardlist.queries";
 
 export default function BoardListPage(props) {
+  const [keyword, setKeyword] = useState("");
+  //const { data, refetch } = useQuery(FETCH_BOARDS);
+
   const router = useRouter();
 
   const onClickMoveToBoardNew = () => {
@@ -15,12 +22,24 @@ export default function BoardListPage(props) {
       router.push(`/boards/${event.target.id}`);
   };
 
+  const getDebounce = _.debounce((data) => {
+    props.refetch({ search: data, page: 1 });
+    setKeyword(data);
+  }, 2000);
+
+  const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    getDebounce(event.target.value);
+  };
+
   return (
     <>
       <BoardListPageUI
         onClickMoveToBoardNew={onClickMoveToBoardNew}
         onClickMoveToBoardDetail={onClickMoveToBoardDetail}
         data={props.data}
+        refetch={props.refech}
+        keyword={keyword}
+        onChangeSearch={onChangeSearch}
       />
       {/* <Pagination refetch={refetch} lastPage={lastPage} /> */}
     </>

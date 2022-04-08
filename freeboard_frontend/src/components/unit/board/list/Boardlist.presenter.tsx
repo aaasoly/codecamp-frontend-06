@@ -1,15 +1,21 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./Boardlist.styles";
 import { IPropsBoardListPageUI } from "./Boardlist.types";
+import { FileTextOutlined } from "@ant-design/icons";
+import { v4 as uuid4 } from "uuid";
 
 export default function BoardListPageUI(props: IPropsBoardListPageUI) {
   return (
     <S.Wrapper>
+      <S.Wrapper__Header>
+        <S.SearchInput placeholder="Search" onChange={props.onChangeSearch} />
+      </S.Wrapper__Header>
+
       <S.Row>
-        <S.ColumnNumberHead>번호</S.ColumnNumberHead>
-        <S.ColumnTitleHead>제목</S.ColumnTitleHead>
-        <S.ColumnContentsHead>작성자</S.ColumnContentsHead>
-        <S.ColumnDateHead>작성일</S.ColumnDateHead>
+        <S.ColumnNumberHead>No.</S.ColumnNumberHead>
+        <S.ColumnTitleHead>Title</S.ColumnTitleHead>
+        <S.ColumnContentsHead>Writer</S.ColumnContentsHead>
+        <S.ColumnDateHead>Date</S.ColumnDateHead>
       </S.Row>
       {/*map(처리할 요소, 처리할 요소의 인덱스, 현재 배열)*/}
       {props.data?.fetchBoards.map((el: any, index: number) => (
@@ -18,7 +24,14 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
             {props.data?.fetchBoards.length - index}
           </S.ColumnNumber>
           <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}
+            {el.title
+              .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
+              .split("#$%")
+              .map((word) => (
+                <S.Token key={uuid4()} isMatched={props.keyword === word}>
+                  {word}
+                </S.Token>
+              ))}
           </S.ColumnTitle>
           <S.ColumnWriter>{el.writer}</S.ColumnWriter>
           <S.ColumnDate>{getDate(el.createdAt)}</S.ColumnDate>
@@ -27,9 +40,9 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
       ))}
 
       <S.Footer>
-        <S.Button onClick={props.onClickMoveToBoardNew}>
-          게시물 등록하기
-        </S.Button>
+        <S.WriteIcon onClick={props.onClickMoveToBoardNew}>
+          <FileTextOutlined />
+        </S.WriteIcon>
       </S.Footer>
     </S.Wrapper>
   );

@@ -18,18 +18,18 @@ const Box = styled.div`
 
 const Logo = styled.div`
   width: 100px;
-  font-size: 22px;
+  font-size: 20px;
 `;
 
 const Menu = styled.div`
-  width: 200px;
+  width: 30%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
 
 const MenuItem = styled.div`
-  font-size: 16px;
+  font-size: 12px;
   transition-duration: 0.3s;
   &:hover {
     color: violet;
@@ -39,21 +39,31 @@ const MenuItem = styled.div`
 export default function LayoutHeader() {
   const router = useRouter();
 
-  const onClickBoard = () => {
+  const onClickLanding = () => {
     router.push("/");
+  };
+
+  const onClickBoard = () => {
+    router.push("/boards");
   };
 
   const onClickAPI = () => {
     router.push("/boards/api");
   };
 
+  const onClickFirebase = () => {
+    router.push("/boards/firebase");
+  };
+
   return (
     <Wrapper>
       <Box>
-        <Logo onClick={onClickBoard}>Logo</Logo>
+        <Logo onClick={onClickLanding}>Logo</Logo>
         <Menu>
+          <MenuItem onClick={onClickBoard}>Board</MenuItem>
           <MenuItem>Market</MenuItem>
           <MenuItem onClick={onClickAPI}>API</MenuItem>
+          <MenuItem onClick={onClickFirebase}>Guest</MenuItem>
           <MenuItem>My page</MenuItem>
         </Menu>
       </Box>

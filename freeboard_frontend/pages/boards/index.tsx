@@ -13,7 +13,7 @@ export default function BoardList() {
 
   return (
     <>
-      <BoardListPage data={data} />
+      <BoardListPage data={data} refetch={refetch} />
       <Pagination refetch={refetch} lastPage={lastPage} />
     </>
   );

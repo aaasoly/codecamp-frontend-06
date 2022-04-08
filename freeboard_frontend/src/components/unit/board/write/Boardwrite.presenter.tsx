@@ -2,6 +2,7 @@ import * as S from "./Boardwrite.styles";
 import { IPropsBoardWriteUI } from "./Boardwrite.types";
 import DaumPostcode from "react-daum-postcode";
 import { Modal, Button } from "antd";
+import { PictureOutlined } from "@ant-design/icons";
 
 export default function BoardWriteUI(props: IPropsBoardWriteUI) {
   return (
@@ -68,8 +69,8 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
             placeholder="07520"
             readOnly
             value={
-              props.address.zipcode ||
-              props.data?.fetchBoard.boardAddress?.zipcode ||
+              props.postcode ||
+              props.data?.fetchBoard.boardAddress?.postcode ||
               ""
             }
           />
@@ -90,9 +91,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           type="text"
           readOnly
           value={
-            props.address.address ||
-            props.data?.fetchBoard?.boardAddress?.address ||
-            ""
+            props.address || props.data?.fetchBoard?.boardAddress?.address || ""
           }
           // || 뒤는 수정하기에 필요한 defaultValue
         />
@@ -100,7 +99,9 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           type="text"
           onChange={props.onChangeAddressDetail}
           defaultValue={
-            props.data?.fetchBoard.boardAddress?.addressDetail || ""
+            props.addressDetail ||
+            props.data?.fetchBoard.boardAddress?.addressDetail ||
+            ""
           }
         />
       </S.Address>
@@ -118,23 +119,17 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
       <S.Picture>
         <S.Item>사진첨부</S.Item>
         <S.Upload>
-          <S.PicAttach onClick={props.onClickImage}>
+          <S.PicAttach
+            onClick={props.onClickImage}
+            src={`https://storage.googleapis.com/${props.ImageUrl}`}
+          >
             <input
               style={{ display: "none" }}
               type="file"
               onChange={props.onChangeFile}
               ref={props.fileRef}
             />
-            +<br />
-            Upload
-          </S.PicAttach>
-          <S.PicAttach onClick={props.onClickImage}>
-            +<br />
-            Upload
-          </S.PicAttach>
-          <S.PicAttach onClick={props.onClickImage}>
-            +<br />
-            Upload
+            <PictureOutlined />
           </S.PicAttach>
         </S.Upload>
       </S.Picture>

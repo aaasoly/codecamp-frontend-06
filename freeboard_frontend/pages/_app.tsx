@@ -9,6 +9,20 @@ import {
 import { AppProps } from "next/app"; // Component, pageProps
 import Layout from "../src/components/commons/layout";
 import { createUploadLink } from "apollo-upload-client";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAgFfwVeLPliwNYZZ-1xDtQza5vyrPTPYQ",
+  authDomain: "mypage0406.firebaseapp.com",
+  projectId: "mypage0406",
+  storageBucket: "mypage0406.appspot.com",
+  messagingSenderId: "578245303199",
+  appId: "1:578245303199:web:ec831e72bf4e3b40a7fbaa",
+};
+
+// Initialize Firebase
+export const firebaseApp = initializeApp(firebaseConfig);
+
 // next.js 에서 지원하는 prpos
 function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({

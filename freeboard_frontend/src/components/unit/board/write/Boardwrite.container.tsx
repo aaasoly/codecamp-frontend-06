@@ -25,11 +25,11 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     contents: "",
   });
 
-  const [address, setAddress] = useState({
-    address: "",
-    zipcode: "",
-    addressDetail: "",
-  });
+  // const [address, setAddress] = useState({
+  //   address: "",
+  //   zipcode: "",
+  //   addressDetail: "",
+  // });
 
   const [errors, setErrors] = useState({
     writerError: "",
@@ -46,9 +46,9 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   // const [contents, setContents] = useState("");
 
-  // const [address, setAddress] = useState("");
-  // const [postcode, setPostcode] = useState();
-  // const [addressDetail, setAddressDetail] = useState("");
+  const [address, setAddress] = useState("");
+  const [postcode, setPostcode] = useState();
+  const [addressDetail, setAddressDetail] = useState("");
 
   // const [nameError, setNameError] = useState("");
   // const [passwordError, setPasswordError] = useState("");
@@ -75,12 +75,12 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 주소
   const handleComplete = (address: any) => {
-    setAddress({
-      address: address.address,
-      zipcode: address.zonecode,
-    });
-    // setPostcode(address.zonecode);
-    // setAddress(address.address);
+    // setAddress({
+    //   address: address.address,
+    //   zipcode: address.zonecode,
+    // });
+    setPostcode(address.zonecode);
+    setAddress(address.address);
     setIsOpen(false);
   };
 
@@ -158,6 +158,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressDetail(event.target.value);
+    // addressDetail: address.addressDetail;
   };
 
   // 게시글 등록 버튼
@@ -185,7 +186,10 @@ export default function BoardWrite(props: IPropsBoardWrite) {
               images: [imageUrl],
               youtubeUrl,
               boardAddress: {
-                ...address,
+                // ...address,
+                address,
+                zipcode: postcode,
+                addressDetail,
               },
             },
           },
@@ -257,6 +261,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   };
 
   // 이미지 등록
+  // const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [uploadFile] = useMutation<

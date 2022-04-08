@@ -6,15 +6,15 @@ import "slick-carousel/slick/slick-theme.css";
 const Wrapper = styled.div`
   width: 100%;
   height: 500px;
-  background-color: thistle;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const StyledSlider = styled(Slider)`
-  width: 70%;
+  width: 1600px;
   height: 100%;
+  overflow: hidden;
 `;
 
 const ImgBox = styled.div`
@@ -22,37 +22,40 @@ const ImgBox = styled.div`
 `;
 
 const BannerImg = styled.img`
-  width: 500px;
-  margin: 0 auto;
+  width: 100%;
+  margin-top: -450px;
+  /* margin: 0 auto; */
 `;
 
 export default function LayoutBanner() {
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
   };
 
   return (
     <Wrapper>
       <StyledSlider {...settings}>
         <ImgBox>
-          <BannerImg src="/img/1.jpeg" />
+          <BannerImg src="/img/1.jpg" />
         </ImgBox>
         <ImgBox>
-          <BannerImg src="/img/2.jpeg" />
+          <BannerImg src="/img/2.jpg" />
         </ImgBox>
         <ImgBox>
-          <BannerImg src="/img/3.jpeg" />
+          <BannerImg src="/img/3.jpg" />
         </ImgBox>
-        <ImgBox>
+        {/* <ImgBox>
           <BannerImg src="/img/4.jpeg" />
         </ImgBox>
         <ImgBox>
           <BannerImg src="/img/5.jpeg" />
-        </ImgBox>
+        </ImgBox> */}
       </StyledSlider>
     </Wrapper>
   );

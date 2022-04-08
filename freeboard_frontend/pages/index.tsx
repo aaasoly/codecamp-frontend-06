@@ -18,10 +18,11 @@ const Wrapper = styled.div`
   background-image: url("/img/landing.jpg");
   background-size: cover;
   font-family: "DM Serif Display", serif;
+  overflow: hidden;
 `;
 
 const BackSlider = styled(Slider)`
-  width: 1600px;
+  width: 80%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -29,7 +30,7 @@ const BackSlider = styled(Slider)`
 `;
 
 const Wrapper__Header = styled.div`
-  width: 1600px;
+  width: 80%;
   height: 100px;
   display: flex;
   justify-content: flex-end;
@@ -77,17 +78,18 @@ const Body__img = styled.div``;
 // `;
 
 const Body__Left = styled.div`
-  width: 800px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-end;
 `;
 
 const TextBox = styled.div`
-  width: 70%;
+  /* width: 70%; */
   height: 500px;
-  background-color: rgba(255, 255, 255, 0.5);
+  /* background-color: rgba(255, 255, 255, 0.5); */
   text-align: right;
   padding: 100px 50px;
 `;
@@ -97,8 +99,8 @@ const Title = styled.div`
 `;
 
 const Subtext = styled.div`
-  font-size: 22px;
-  color: #333;
+  font-size: 25rem;
+  color: #fff;
 `;
 
 export default function Home() {
@@ -156,8 +158,17 @@ export default function Home() {
           </Header__Right>
         </Wrapper__Header>
 
-        <BackSlider {...settings}>
-          <Wrapper__Body>
+        {/* <BackSlider {...settings}> */}
+        <Wrapper__Body>
+          <Body__img></Body__img>
+          <Body__Left>
+            <TextBox>
+              {/* <Title>HELLO!</Title> */}
+              <Subtext>Bon</Subtext>
+            </TextBox>
+          </Body__Left>
+        </Wrapper__Body>
+        {/* <Wrapper__Body>
             <Body__img></Body__img>
             <Body__Left>
               <TextBox>
@@ -170,22 +181,8 @@ export default function Home() {
                 </Subtext>
               </TextBox>
             </Body__Left>
-          </Wrapper__Body>
-          <Wrapper__Body>
-            <Body__img></Body__img>
-            <Body__Left>
-              <TextBox>
-                <Title>HELLO!</Title>
-                <Subtext>
-                  Some day you will find me. Caught beneath the landslide. In a
-                  champagne supernova in the sky. Some day you will find me.
-                  Caught beneath the landslide. In a champagne supernova, a
-                  champagne supernova in the sky.
-                </Subtext>
-              </TextBox>
-            </Body__Left>
-          </Wrapper__Body>
-        </BackSlider>
+          </Wrapper__Body> */}
+        {/* </BackSlider> */}
       </Wrapper>
     </>
   );
