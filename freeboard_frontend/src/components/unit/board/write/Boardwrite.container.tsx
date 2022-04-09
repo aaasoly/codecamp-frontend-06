@@ -7,13 +7,8 @@ import {
   IMyVariables,
   IPropsBoardWrite,
 } from "./Boardwrite.types";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Modal } from "antd";
-import {
-  IMutation,
-  IMutationUploadFileArgs,
-} from "../../../../commons/types/generated/types";
-import { CheckFileValidation } from "../../../../commons/libraries/validation";
 
 export default function BoardWrite(props: IPropsBoardWrite) {
   const router = useRouter();
@@ -38,7 +33,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     contentsError: "",
   });
 
-  const [imageUrl, setImageUrl] = useState<string | undefined>("");
+  const [imgUrls, setImgUrls] = useState(["", "", ""]);
 
   // const [name, setName] = useState("");
   // const [password, setPassword] = useState("");
@@ -161,8 +156,13 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     // addressDetail: address.addressDetail;
   };
 
-  // 게시글 등록 버튼
+  const onChangeImgUrls = (ImgUrl: string, index: number) => {
+    const newImgUrls = [...imgUrls];
+    newImgUrls[index] = ImgUrl;
+    setImgUrls(newImgUrls);
+  };
 
+  // 게시글 등록 버튼
   const onClickSubmit = async () => {
     if (inputs.writer === "") errors.writerError;
 
@@ -207,10 +207,19 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 게시글 수정 버튼
   const onClickUpdate = async () => {
+    const currentFiles = JSON.stringify(imgUrls);
+    const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    const isChagnedFiles = currentFiles !== defaultFiles;
+
     // 조건문은 있을 때 튕기는 것이 아니라 없을 때 튕기게 작성해야 한다
     // early exit pattern
 
-    if (!inputs.title && !inputs.contents && !inputs.youtubeUrl) {
+    if (
+      !inputs.title &&
+      !inputs.contents &&
+      !inputs.youtubeUrl &&
+      !isChagnedFiles
+    ) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     } else {
@@ -235,7 +244,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     if (youtubeUrl) myUpdateBoardInput.youtubeUrl = youtubeUrl;
     if (postcode || address || addressDetail) {
       myUpdateBoardInput.boardAddress = {};
-
       if (postcode) myUpdateBoardInput.boardAddress.zipcode = postcode;
       if (address) myUpdateBoardInput.boardAddress.address = address;
       if (addressDetail)
@@ -246,6 +254,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       if (title !== "") myVariables.title = title;
       if (contents !== "") myVariables.contents = contents;
     }
+    if (isChagnedFiles) myUpdateBoardInput.images = imgUrls;
 
     try {
       await updateBoard({
@@ -260,36 +269,11 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     }
   };
 
-  // 이미지 등록
-  // const [fileUrls, setFileUrls] = useState(["", "", ""]);
-  const fileRef = useRef<HTMLInputElement>(null);
-
-  const [uploadFile] = useMutation<
-    Pick<IMutation, "uploadFile">,
-    IMutationUploadFileArgs
-  >(UPLOAD_FILE);
-
-  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    console.log(file);
-
-    const isVaild = CheckFileValidation(file);
-    if (!isVaild) return;
-
-    try {
-      const result = await uploadFile({
-        variables: { file: file },
-      });
-      console.log(result.data?.uploadFile.url);
-      setImageUrl(result.data?.uploadFile.url);
-    } catch (error) {
-      Modal.error({ content: error.message });
+  useEffect(() => {
+    if (props.data?.fetchBoard.image?.length) {
+      setImgUrls([...props.data?.fetchBoard.images]);
     }
-  };
-
-  const onClickImage = () => {
-    fileRef.current?.click();
-  };
+  }, [props.data]);
 
   return (
     <BoardWriteUI
@@ -318,9 +302,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       // address={address}
       // postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
-      onChangeFile={onChangeFile}
-      onClickImage={onClickImage}
-      fileRef={fileRef}
+      // onChangeFile={onChangeFile}
+      // onClickImage={onClickImage}
       imageUrl={imageUrl}
     />
   );

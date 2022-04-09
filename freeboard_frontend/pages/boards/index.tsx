@@ -1,5 +1,5 @@
 import BoardListPage from "../../src/components/unit/board/list/Boardlist.container";
-import Pagination from "../../src/components/unit/board/pagination/Pagination";
+import Pagination from "../../src/components/commons/pagination/Pagination";
 import {
   FETCH_BOARDS,
   FETCH_BOARDS_COUNT,
