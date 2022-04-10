@@ -3,6 +3,7 @@ import * as S from "./Boardlist.styles";
 import { IPropsBoardListPageUI } from "./Boardlist.types";
 import { FileTextOutlined } from "@ant-design/icons";
 import { v4 as uuid4 } from "uuid";
+import Pagination from "../../../commons/pagination/Pagination";
 
 export default function BoardListPageUI(props: IPropsBoardListPageUI) {
   return (
@@ -27,7 +28,7 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
             {el.title
               .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
               .split("#$%")
-              .map((word) => (
+              .map((word: any) => (
                 <S.Token key={uuid4()} isMatched={props.keyword === word}>
                   {word}
                 </S.Token>
@@ -40,6 +41,7 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
       ))}
 
       <S.Footer>
+        <Pagination refetch={props.refetch} count={props.count} />
         <S.WriteIcon onClick={props.onClickMoveToBoardNew}>
           <FileTextOutlined />
         </S.WriteIcon>

@@ -1,13 +1,13 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./Boardwrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD } from "./Boardwrite.queries";
 import BoardWriteUI from "./Boardwrite.presenter";
 import {
   IMyUpdateBoardInput,
   IMyVariables,
   IPropsBoardWrite,
 } from "./Boardwrite.types";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Modal } from "antd";
 
 export default function BoardWrite(props: IPropsBoardWrite) {
@@ -156,11 +156,13 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     // addressDetail: address.addressDetail;
   };
 
-  const onChangeImgUrls = (ImgUrl: string, index: number) => {
+  const onChangeImgUrls = (imgUrl: string, index: number) => {
     const newImgUrls = [...imgUrls];
-    newImgUrls[index] = ImgUrl;
+    newImgUrls[index] = imgUrl;
     setImgUrls(newImgUrls);
   };
+
+  console.log(onChangeImgUrls);
 
   // 게시글 등록 버튼
   const onClickSubmit = async () => {
@@ -183,7 +185,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
           variables: {
             createBoardInput: {
               ...inputs,
-              images: [imageUrl],
               youtubeUrl,
               boardAddress: {
                 // ...address,
@@ -191,6 +192,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
                 zipcode: postcode,
                 addressDetail,
               },
+              images: imgUrls,
             },
           },
         });
@@ -302,9 +304,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       // address={address}
       // postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
-      // onChangeFile={onChangeFile}
-      // onClickImage={onClickImage}
-      imageUrl={imageUrl}
+      imgUrls={imgUrls}
+      onChangeImgUrls={onChangeImgUrls}
     />
   );
 }

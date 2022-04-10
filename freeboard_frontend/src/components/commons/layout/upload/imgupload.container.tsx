@@ -1,11 +1,15 @@
+import { useMutation } from "@apollo/client";
 import { useRef } from "react";
 import { CheckFileValidation } from "../../../../commons/libraries/validation";
-import { IMutation, IMutationUploadFileArgs } from "../../../../commons/types/generated/types";
+import {
+  IMutation,
+  IMutationUploadFileArgs,
+} from "../../../../commons/types/generated/types";
+import ImgUploadUI from "./imgupload.presenter";
 import { UPLOAD_FILE } from "./imgupload.queries";
+import { Modal } from "antd";
 
-export default function ImgUpload() {
-
-
+export default function ImgUpload(props) {
   // 이미지 등록
   // const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -14,6 +18,10 @@ export default function ImgUpload() {
     Pick<IMutation, "uploadFile">,
     IMutationUploadFileArgs
   >(UPLOAD_FILE);
+
+  const onClickUpload = () => {
+    fileRef.current?.click();
+  };
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -26,19 +34,23 @@ export default function ImgUpload() {
       const result = await uploadFile({
         variables: { file: file },
       });
+      props.onChangeImgUrls(result.data?.uploadFile.url, props.index);
       console.log(result.data?.uploadFile.url);
-      setImageUrl(result.data?.uploadFile.url);
+
+      // setImageUrl(result.data?.uploadFile.url);
     } catch (error) {
       Modal.error({ content: error.message });
+      console.log(props.onChangeImgUrls());
     }
   };
 
-  const onClickImage = () => {
-    fileRef.current?.click();
-  };
-
   return (
-
-  )
+    <ImgUploadUI
+      fileRef={fileRef}
+      imgUrl={props.imgUrl}
+      //  defaultFileUrl={props.defaultFileUrl}
+      onClickUpload={onClickUpload}
+      onChangeFile={onChangeFile}
+    />
+  );
 }
-

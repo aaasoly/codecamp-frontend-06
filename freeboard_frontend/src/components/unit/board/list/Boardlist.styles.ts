@@ -107,8 +107,9 @@ export const ColumnDate = styled.div`
 export const Footer = styled.div`
   /* width: 1200px; */
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 480px;
 `;
 export const WriteIcon = styled.button`
   width: 60px;

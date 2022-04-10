@@ -2,7 +2,8 @@ import * as S from "./Boardwrite.styles";
 import { IPropsBoardWriteUI } from "./Boardwrite.types";
 import DaumPostcode from "react-daum-postcode";
 import { Modal, Button } from "antd";
-import { PictureOutlined } from "@ant-design/icons";
+import ImgUpload from "../../../commons/layout/upload/imgupload.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IPropsBoardWriteUI) {
   return (
@@ -118,20 +119,17 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
 
       <S.Picture>
         <S.Item>사진첨부</S.Item>
-        <S.Upload>
-          <S.PicAttach
-            onClick={props.onClickImage}
-            src={`https://storage.googleapis.com/${props.ImageUrl}`}
-          >
-            <input
-              style={{ display: "none" }}
-              type="file"
-              onChange={props.onChangeFile}
-              ref={props.fileRef}
+        <S.ImgIcon>
+          {props.imgUrls.map((el, index) => (
+            <ImgUpload
+              key={uuidv4()}
+              index={index}
+              imgUrl={el}
+              onChangeImgUrls={props.onChangeImgUrls}
             />
-            <PictureOutlined />
-          </S.PicAttach>
-        </S.Upload>
+          ))}
+        </S.ImgIcon>
+        <S.Upload></S.Upload>
       </S.Picture>
 
       <S.Setting>
