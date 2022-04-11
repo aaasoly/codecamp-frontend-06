@@ -24,12 +24,12 @@ export const SearchInput = styled.input`
 export const Row = styled.div`
   display: flex;
   align-items: center;
-  /* width: 1200px; */
+  width: 1200px;
   border-bottom: 1px solid #bdbdbd;
 `;
 
 export const ColumnNumberHead = styled.div`
-  width: 200px;
+  width: 15%;
   height: 52px;
   padding: 11px 0;
   font-weight: 700;
@@ -37,7 +37,7 @@ export const ColumnNumberHead = styled.div`
 `;
 
 export const ColumnTitleHead = styled.div`
-  width: 600px;
+  width: 55%;
   height: 52px;
   padding: 11px 0;
   font-weight: 700;
@@ -45,7 +45,7 @@ export const ColumnTitleHead = styled.div`
 `;
 
 export const ColumnContentsHead = styled.div`
-  width: 200px;
+  width: 15%;
   height: 52px;
   padding: 11px 0;
   font-weight: 700;
@@ -53,7 +53,7 @@ export const ColumnContentsHead = styled.div`
 `;
 
 export const ColumnDateHead = styled.div`
-  width: 200px;
+  width: 15%;
   height: 52px;
   padding: 11px 0;
   font-weight: 700;
@@ -61,7 +61,7 @@ export const ColumnDateHead = styled.div`
 `;
 
 export const ColumnNumber = styled.div`
-  width: 200px;
+  width: 15%;
   height: 52px;
   padding: 14px 0;
   text-align: center;
@@ -72,7 +72,7 @@ export const ColumnNumber = styled.div`
 `;
 
 export const ColumnTitle = styled.div`
-  width: 600px;
+  width: 55%;
   height: 52px;
   padding: 14px 0;
   text-align: center;
@@ -87,7 +87,7 @@ export const ColumnTitle = styled.div`
 `;
 
 export const ColumnWriter = styled.div`
-  width: 200px;
+  width: 15%;
   height: 52px;
   padding: 14px 0;
   text-align: center;
@@ -98,7 +98,7 @@ export const ColumnWriter = styled.div`
 `;
 
 export const ColumnDate = styled.div`
-  width: 200px;
+  width: 15%;
   height: 52px;
   padding: 14px 0;
   text-align: center;
@@ -107,9 +107,9 @@ export const ColumnDate = styled.div`
 export const Footer = styled.div`
   /* width: 1200px; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding-left: 480px;
+  /* padding-left: 480px; */
 `;
 export const WriteIcon = styled.button`
   width: 60px;
@@ -124,5 +124,5 @@ export const WriteIcon = styled.button`
 `;
 
 export const Token = styled.span`
-  color: ${(props) => (props.isMatched ? "skyblue" : "#b2b2b2")};
+  color: ${(props) => (props.isMatched ? "skyblue" : "")};
 `;

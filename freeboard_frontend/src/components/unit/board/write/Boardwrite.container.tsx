@@ -2,11 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./Boardwrite.queries";
 import BoardWriteUI from "./Boardwrite.presenter";
-import {
-  IMyUpdateBoardInput,
-  IMyVariables,
-  IPropsBoardWrite,
-} from "./Boardwrite.types";
+import { IMyUpdateBoardInput, IPropsBoardWrite } from "./Boardwrite.types";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Modal } from "antd";
 
@@ -34,12 +30,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   });
 
   const [imgUrls, setImgUrls] = useState(["", "", ""]);
-
-  // const [name, setName] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [title, setTitle] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
-  // const [contents, setContents] = useState("");
 
   const [address, setAddress] = useState("");
   const [postcode, setPostcode] = useState();
@@ -216,12 +207,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     // 조건문은 있을 때 튕기는 것이 아니라 없을 때 튕기게 작성해야 한다
     // early exit pattern
 
-    if (
-      !inputs.title &&
-      !inputs.contents &&
-      !inputs.youtubeUrl &&
-      !isChagnedFiles
-    ) {
+    if (!inputs.title && !inputs.contents && !youtubeUrl && !isChagnedFiles) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     } else {
@@ -234,33 +220,37 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       setIsActive(true);
     }
 
-    const myVariables: IMyVariables = {
-      updateBoardInput: myUpdateBoardInput, // graphql의 key
-      boardId: String(router.query.boardId),
-      password,
-    };
+    // const myVariables: IMyVariables = {
+    //   updateBoardInput: myUpdateBoardInput, // graphql의 key
+    //   boardId: String(router.query.boardId),
+    //   password,
+    // };
 
-    const myUpdateBoardInput: IMyUpdateBoardInput = {};
-    if (title) myUpdateBoardInput.title = title;
-    if (contents) myUpdateBoardInput.contents = contents;
-    if (youtubeUrl) myUpdateBoardInput.youtubeUrl = youtubeUrl;
+    const updateBoardInput: IMyUpdateBoardInput = {};
+    if (title) updateBoardInput.title = title;
+    if (contents) updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
     if (postcode || address || addressDetail) {
-      myUpdateBoardInput.boardAddress = {};
-      if (postcode) myUpdateBoardInput.boardAddress.zipcode = postcode;
-      if (address) myUpdateBoardInput.boardAddress.address = address;
+      updateBoardInput.boardAddress = {};
+      if (postcode) updateBoardInput.boardAddress.zipcode = postcode;
+      if (address) updateBoardInput.boardAddress.address = address;
       if (addressDetail)
-        myUpdateBoardInput.boardAddress.addressDetail = addressDetail;
+        updateBoardInput.boardAddress.addressDetail = addressDetail;
 
-      if (writer !== "") myVariables.writer = name;
-      if (password !== "") myVariables.password = password;
-      if (title !== "") myVariables.title = title;
-      if (contents !== "") myVariables.contents = contents;
+      // if (writer !== "") myVariables.writer = name;
+      // if (password !== "") myVariables.password = password;
+      // if (title !== "") myVariables.title = title;
+      // if (contents !== "") myVariables.contents = contents;
     }
-    if (isChagnedFiles) myUpdateBoardInput.images = imgUrls;
+    if (isChagnedFiles) updateBoardInput.images = imgUrls;
 
     try {
       await updateBoard({
-        variables: myVariables,
+        variables: {
+          boardId: router.query.boardId,
+          password,
+          updateBoardInput,
+        },
       });
       Modal.success({
         content: "수정 되었습니다!",
@@ -271,6 +261,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     }
   };
 
+  // 사진
   useEffect(() => {
     if (props.data?.fetchBoard.image?.length) {
       setImgUrls([...props.data?.fetchBoard.images]);

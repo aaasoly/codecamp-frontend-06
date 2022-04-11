@@ -11,6 +11,9 @@ const NextButton = styled(RightOutlined)`
 `;
 
 const PageNum = styled.span`
+  font-size: 14px;
+  margin: 0 5px;
+  cursor: pointer;
   color: ${(props) => (props.current === props.id ? "black" : "lightgray")};
 `;
 
