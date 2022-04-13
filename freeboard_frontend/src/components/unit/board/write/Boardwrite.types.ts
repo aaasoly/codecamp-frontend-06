@@ -6,7 +6,7 @@ export interface IPropsBoardWrite {
   data?: any;
 }
 
-export interface IMyUpdateBoardInput {
+export interface IUpdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
@@ -34,10 +34,11 @@ export interface IPropsBoardWriteUI {
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeYoutube: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
 
-  nameError: string;
+  writerError: string;
   passwordError: string;
   titleError: string;
   contentsError: string;

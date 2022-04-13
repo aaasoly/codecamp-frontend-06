@@ -23,7 +23,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
             // disabled={true} 도 가능하지만 색이 회색으로 변함
             readOnly={props.data?.fetchBoard.writer} // 있으면 true 이기 때문에 연산자 쓸 필요 없음
           />
-          <S.Error>{props.errors.writerError}</S.Error>
+          <S.Error>{props.writerError}</S.Error>
         </S.UserInfo>
         <S.UserInfo>
           <S.Item>비밀번호</S.Item>
@@ -34,7 +34,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
             onChange={props.onChangeInput}
           />
           {/* fetch 에서 불러올 데이터 없음, 디폴트 밸류 없음! */}
-          <S.Error>{props.errors.passwordError}</S.Error>
+          <S.Error>{props.passwordError}</S.Error>
         </S.UserInfo>
       </S.User>
 
@@ -47,7 +47,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           onChange={props.onChangeInput}
           defaultValue={props.data?.fetchBoard.title}
         />
-        <S.Error>{props.errors.titleError}</S.Error>
+        <S.Error>{props.titleError}</S.Error>
       </S.Title>
 
       <S.Contents>
@@ -59,7 +59,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           onChange={props.onChangeInput}
           defaultValue={props.data?.fetchBoard.contents}
         />
-        <S.Error>{props.errors.contentsError}</S.Error>
+        <S.Error>{props.contentsError}</S.Error>
       </S.Contents>
 
       <S.Address>

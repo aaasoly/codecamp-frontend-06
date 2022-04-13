@@ -12,33 +12,51 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
         <S.SearchInput placeholder="Search" onChange={props.onChangeSearch} />
       </S.Wrapper__Header>
 
-      <S.Row>
+      {/* <S.Row>
         <S.ColumnNumberHead>No.</S.ColumnNumberHead>
         <S.ColumnTitleHead>Title</S.ColumnTitleHead>
         <S.ColumnContentsHead>Writer</S.ColumnContentsHead>
         <S.ColumnDateHead>Date</S.ColumnDateHead>
-      </S.Row>
+      </S.Row> */}
       {/*map(처리할 요소, 처리할 요소의 인덱스, 현재 배열)*/}
-      {props.data?.fetchBoards.map((el: any, index: number) => (
-        <S.Row key={el._id}>
-          <S.ColumnNumber>
-            {props.data?.fetchBoards.length - index}
-          </S.ColumnNumber>
-          <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title
-              .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
-              .split("#$%")
-              .map((word: any) => (
-                <S.Token key={uuid4()} isMatched={props.keyword === word}>
-                  {word}
-                </S.Token>
-              ))}
-          </S.ColumnTitle>
-          <S.ColumnWriter>{el.writer}</S.ColumnWriter>
-          <S.ColumnDate>{getDate(el.createdAt)}</S.ColumnDate>
-          {/* <S.ColumnRight>{el.createdAt}</S.ColumnRight> */}
-        </S.Row>
-      ))}
+      <S.Wrapper__Body>
+        {props.data?.fetchBoards.map((el: any, index: number) => (
+          <S.BoradReview key={el._id} onClick={props.onClickMoveToBoardDetail}>
+            {/* <div>{props.data?.fetchBoards.length - index}</div> */}
+            <S.Thum__Header>
+              <S.Thum__img
+                src={
+                  el.images[0]
+                    ? `https://storage.googleapis.com/${el.images?.[0]}`
+                    : `/img/1.jpg`
+                }
+              />
+            </S.Thum__Header>
+            <S.Thum__Body>
+              <S.Title id={el._id}>
+                {el.title
+                  .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
+                  .split("#$%")
+                  .map((word: any) => (
+                    <S.Token key={uuid4()} isMatched={props.keyword === word}>
+                      {word}
+                    </S.Token>
+                  ))}
+              </S.Title>
+              <S.Contents>{el.contents}</S.Contents>
+            </S.Thum__Body>
+            <S.Thum__Bottom>
+              <S.Writer>{el.writer}</S.Writer>
+              {/* <div>{getDate(el.createdAt)}</div> */}
+              <S.Like>
+                <S.LikeIcon />
+                {el.likeCount}
+              </S.Like>
+            </S.Thum__Bottom>
+            {/* <S.ColumnRight>{el.createdAt}</S.ColumnRight> */}
+          </S.BoradReview>
+        ))}
+      </S.Wrapper__Body>
 
       <S.Footer>
         <Pagination refetch={props.refetch} count={props.count} />

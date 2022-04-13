@@ -2,9 +2,10 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./Boardwrite.queries";
 import BoardWriteUI from "./Boardwrite.presenter";
-import { IMyUpdateBoardInput, IPropsBoardWrite } from "./Boardwrite.types";
+import { IPropsBoardWrite } from "./Boardwrite.types";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Modal } from "antd";
+import { IUpdateBoardInput } from "../../../../commons/types/generated/types";
 
 export default function BoardWrite(props: IPropsBoardWrite) {
   const router = useRouter();
@@ -16,19 +17,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     contents: "",
   });
 
-  // const [address, setAddress] = useState({
-  //   address: "",
-  //   zipcode: "",
-  //   addressDetail: "",
-  // });
-
-  const [errors, setErrors] = useState({
-    writerError: "",
-    passwordError: "",
-    titleError: "",
-    contentsError: "",
-  });
-
   const [imgUrls, setImgUrls] = useState(["", "", ""]);
   const [youtubeUrl, setYoutubeUrl] = useState("");
 
@@ -36,10 +24,10 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   const [postcode, setPostcode] = useState();
   const [addressDetail, setAddressDetail] = useState("");
 
-  // const [nameError, setNameError] = useState("");
-  // const [passwordError, setPasswordError] = useState("");
-  // const [titleError, setTitleError] = useState("");
-  // const [contentsError, setContentsError] = useState("");
+  const [writerError, setWriterError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [contentsError, setContentsError] = useState("");
 
   const [isActive, setIsActive] = useState(false);
 
@@ -76,67 +64,11 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       [event.target.id]: event.target.value,
     });
     if (event.target.value) {
-      setErrors({
-        ...errors,
-      });
       setIsActive(true);
     } else {
       setIsActive(false);
     }
   };
-
-  // const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setName(event.target.value);
-  //   if (event.target.value !== "") {
-  //     setNameError("");
-  //   }
-
-  // if ( event.target.value !== "" && password !== "" && title !== "" && contents !== "" && address !== "")
-  //   if (event.target.value && password && title && contents) {
-  //     setIsActive(true);
-  //   } else {
-  //     setIsActive(false);
-  //   }
-  // };
-
-  // const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setPassword(event.target.value);
-  //   if (event.target.value !== "") {
-  //     setPasswordError("");
-  //   }
-
-  //   if (name && event.target.value && title && contents) {
-  //     setIsActive(true);
-  //   } else {
-  //     setIsActive(false);
-  //   }
-  // };
-
-  // const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setTitle(event.target.value);
-  //   if (event.target.value !== "") {
-  //     setTitleError("");
-  //   }
-
-  //   if (name && password && event.target.value && contents) {
-  //     setIsActive(true);
-  //   } else {
-  //     setIsActive(false);
-  //   }
-  // };
-
-  // const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setContents(event.target.value);
-  //   if (event.target.value !== "") {
-  //     setContentsError("");
-  //   }
-
-  //   if (name && password && title && event.target.value) {
-  //     setIsActive(true);
-  //   } else {
-  //     setIsActive(false);
-  //   }
-  // };
 
   const onChangeYoutube = (event: ChangeEvent<HTMLInputElement>) => {
     setYoutubeUrl(event.target.value);
@@ -157,13 +89,10 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 게시글 등록 버튼
   const onClickSubmit = async () => {
-    if (inputs.writer === "") errors.writerError;
-
-    if (inputs.password === "") errors.passwordError;
-
-    if (inputs.title === "") errors.titleError;
-
-    if (inputs.contents === "") errors.contentsError;
+    if (inputs.writer === "") setWriterError("작성자를 입력해주세요");
+    if (inputs.password === "") setPasswordError("비밀번호를 입력해주세요");
+    if (inputs.title === "") setTitleError("제목을 입력해주세요");
+    if (inputs.contents === "") setContentsError("내용을 입력해주세요");
 
     if (
       inputs.writer !== "" &&
@@ -220,13 +149,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       setIsActive(true);
     }
 
-    // const myVariables: IMyVariables = {
-    //   updateBoardInput: myUpdateBoardInput, // graphql의 key
-    //   boardId: String(router.query.boardId),
-    //   password,
-    // };
-
-    const updateBoardInput: IMyUpdateBoardInput = {};
+    const updateBoardInput: IUpdateBoardInput = {};
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
@@ -236,11 +159,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       if (address) updateBoardInput.boardAddress.address = address;
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
-
-      // if (writer !== "") myVariables.writer = name;
-      // if (password !== "") myVariables.password = password;
-      // if (title !== "") myVariables.title = title;
-      // if (contents !== "") myVariables.contents = contents;
     }
     if (isChagnedFiles) updateBoardInput.images = imgUrls;
 
@@ -271,19 +189,14 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   return (
     <BoardWriteUI
       onChangeInput={onChangeInput}
-      errors={errors}
       address={address}
-      // onChangeName={onChangeName}
-      // onChangePassword={onChangePassword}
-      // onChangeTitle={onChangeTitle}
-      // onChangeContents={onChangeContents}
       onChangeYoutube={onChangeYoutube}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
-      // nameError={nameError}
-      // passwordError={passwordError}
-      // titleError={titleError}
-      // contentsError={contentsError}
+      writerError={writerError}
+      passwordError={passwordError}
+      titleError={titleError}
+      contentsError={contentsError}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}

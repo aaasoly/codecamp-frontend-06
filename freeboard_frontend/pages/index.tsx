@@ -116,6 +116,10 @@ export default function Home() {
 
   const router = useRouter();
 
+  const onClickLogin = () => {
+    router.push("/login");
+  };
+
   const onClickBoard = () => {
     router.push("/boards");
   };
@@ -154,7 +158,7 @@ export default function Home() {
                 </a>
               </Dropdown>
             </MenuIcon>
-            <Login>Login</Login>
+            <Login onClick={onClickLogin}>Login</Login>
           </Header__Right>
         </Wrapper__Header>
 
