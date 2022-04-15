@@ -33,6 +33,7 @@ export const UPDATE_BOARD = gql`
       title
       contents
       youtubeUrl
+      images
       boardAddress {
         zipcode
         address

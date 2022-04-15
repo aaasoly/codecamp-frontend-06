@@ -10,7 +10,9 @@ export default function ImgUploadUI(props) {
           src={`https://storage.googleapis.com/${props.imgUrl}`}
         />
       ) : (
-        <PictureOutlined onClick={props.onClickUpload} />
+        <S.ImgIcon onClick={props.onClickUpload}>
+          <PictureOutlined />
+        </S.ImgIcon>
       )}
       <input
         style={{ display: "none" }}

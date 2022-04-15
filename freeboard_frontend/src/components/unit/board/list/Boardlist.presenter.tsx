@@ -21,7 +21,7 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
       {/*map(처리할 요소, 처리할 요소의 인덱스, 현재 배열)*/}
       <S.Wrapper__Body>
         {props.data?.fetchBoards.map((el: any, index: number) => (
-          <S.BoradReview key={el._id} onClick={props.onClickMoveToBoardDetail}>
+          <S.BoradReview key={el._id}>
             {/* <div>{props.data?.fetchBoards.length - index}</div> */}
             <S.Thum__Header>
               <S.Thum__img
@@ -33,7 +33,7 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
               />
             </S.Thum__Header>
             <S.Thum__Body>
-              <S.Title id={el._id}>
+              <S.Title id={el._id} onClick={props.onClickMoveToBoardDetail}>
                 {el.title
                   .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
                   .split("#$%")

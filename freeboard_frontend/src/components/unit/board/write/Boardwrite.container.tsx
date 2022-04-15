@@ -21,7 +21,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [address, setAddress] = useState("");
-  const [postcode, setPostcode] = useState();
+  const [postcode, setPostcode] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
 
   const [writerError, setWriterError] = useState("");
@@ -63,11 +63,14 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       ...inputs,
       [event.target.id]: event.target.value,
     });
-    if (event.target.value) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
+
+    const isActive = Object.values(setInputs).every((el) => el);
+    setIsActive(isActive);
+    // if (event.target.value) {
+    //   setIsActive(true);
+    // } else {
+    //   setIsActive(false);
+    // }
   };
 
   const onChangeYoutube = (event: ChangeEvent<HTMLInputElement>) => {
@@ -122,7 +125,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
         });
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        Modal.error({ content: error.message });
+        if (error instanceof Error) Modal.error({ content: error.message });
       }
     }
   };
@@ -131,12 +134,12 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   const onClickUpdate = async () => {
     const currentFiles = JSON.stringify(imgUrls);
     const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
-    const isChagnedFiles = currentFiles !== defaultFiles;
+    const isChangedFiles = currentFiles !== defaultFiles;
 
     // 조건문은 있을 때 튕기는 것이 아니라 없을 때 튕기게 작성해야 한다
     // early exit pattern
 
-    if (!inputs.title && !inputs.contents && !youtubeUrl && !isChagnedFiles) {
+    if (!inputs.title && !inputs.contents && !youtubeUrl && !isChangedFiles) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     } else {
@@ -160,13 +163,14 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
-    if (isChagnedFiles) updateBoardInput.images = imgUrls;
+    if (isChangedFiles) updateBoardInput.images = imgUrls;
 
     try {
       await updateBoard({
         variables: {
-          boardId: router.query.boardId,
+          boardId: String(router.query.boardId),
           password,
+          images: imgUrls,
           updateBoardInput,
         },
       });
@@ -175,7 +179,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       });
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      Modal.error({ content: error.message });
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 
@@ -189,7 +193,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   return (
     <BoardWriteUI
       onChangeInput={onChangeInput}
-      address={address}
       onChangeYoutube={onChangeYoutube}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
@@ -205,8 +208,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       handleOk={handleOk}
       handleCancel={handleCancel}
       handleComplete={handleComplete}
-      // address={address}
-      // postcode={postcode}
+      address={address}
+      postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
       imgUrls={imgUrls}
       onChangeImgUrls={onChangeImgUrls}

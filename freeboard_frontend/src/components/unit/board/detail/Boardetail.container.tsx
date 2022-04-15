@@ -33,9 +33,12 @@ export default function BoardDetail() {
 
   const onClickLike = () => {
     const result = likeBoard({
-      variables: { boardId: router.query.boardId },
+      variables: { boardId: String(router.query.boardId) },
       refetchQueries: [
-        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: String(router.query.boardId) },
+        },
       ],
     });
     console.log(result);
@@ -51,7 +54,10 @@ export default function BoardDetail() {
     dislikeBoard({
       variables: { boardId: String(router.query.boardId) },
       refetchQueries: [
-        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: String(router.query.boardId) },
+        },
       ],
     });
   };
@@ -61,12 +67,12 @@ export default function BoardDetail() {
   const onClickDelete = async () => {
     try {
       await deleteBoard({
-        variables: { boardId: router.query.boardId },
+        variables: { boardId: String(router.query.boardId) },
       });
       Modal.success({
         content: "게시물 등록에 성공하였습니다!",
       });
-      router.push("/boards/list");
+      router.push("/boards");
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }

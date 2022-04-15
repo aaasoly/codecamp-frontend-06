@@ -13,6 +13,7 @@ export const FETCH_BOARD = gql`
       contents
       createdAt
       youtubeUrl
+      images
       boardAddress {
         zipcode
         address
@@ -25,7 +26,7 @@ export const FETCH_BOARD = gql`
 export default function BoardUpdatePage() {
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query.boardId },
+    variables: { boardId: String(router.query.boardId) },
   }); // 백엔드에 데이터를 요청해서 받아온 것을 data 변수에 저장, 받아오기 전까지 data=undefined
 
   // 컨테이너컴포넌트에 전달

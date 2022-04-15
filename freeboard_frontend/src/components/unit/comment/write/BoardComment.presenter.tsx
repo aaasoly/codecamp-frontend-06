@@ -23,10 +23,11 @@ export default function BoardCommentWriteUI(props) {
             type="password"
             placeholder="비밀번호"
             onChange={props.onChangePassword}
+            value={props.password || props.el?.password || ""}
           ></S.CommentPassword>
           <S.CommentStars
             onChange={props.onChangeStar}
-            defaultValue={props.el?.rating || 0}
+            value={props.rating || props.el?.rating}
           ></S.CommentStars>
         </S.CommentUser>
         <S.CommentWriteBox>

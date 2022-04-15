@@ -19,7 +19,7 @@ export default function BoardCommentWrite(props) {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
-  const [star, setStar] = useState(0);
+  const [rating, setRating] = useState(0);
 
   const [createBoardComment] = useMutation<
     Pick<IMutation, "createBoardComment">,
@@ -36,7 +36,7 @@ export default function BoardCommentWrite(props) {
     setContents(event.target.value);
   };
   const onChangeStar = (value: number) => {
-    setStar(value);
+    setRating(value);
   };
   // const onChangeRating = (event: ChangeEvent<HTMLInputElement>) => {
   //   setValue(event.target.value);
@@ -50,7 +50,7 @@ export default function BoardCommentWrite(props) {
             writer,
             password,
             contents,
-            rating: star,
+            rating,
           },
           boardId: String(router.query.boardId),
           // 게시글에 달린 댓글이기 때문에 boardId
@@ -67,6 +67,7 @@ export default function BoardCommentWrite(props) {
       setWriter("");
       setPassword("");
       setContents("");
+      setRating(0);
       // state 이용해서 입력버튼 클릭 후 input 창 비워주기(state가 input창에 바인딩 된 상태)
     } catch (error) {
       Modal.error({ content: error.message });
@@ -87,10 +88,10 @@ export default function BoardCommentWrite(props) {
     }
 
     try {
-      if (!props.el?._id) return; // _id가 없으면 실행하지 않음
+      if (!props.el?._id) return; // _id가 없으면 실행하지 않음, 여기 el 은 무한스크롤에서 왔음
 
       const updateBoardCommentInput = {};
-      if (!star) updateBoardCommentInput.rating = star; // 바뀌어야 수정
+      if (rating) updateBoardCommentInput.rating = rating; // 바뀌어야 수정
       if (contents !== "") updateBoardCommentInput.contents = contents;
 
       await updateBoardComment({
@@ -128,6 +129,7 @@ export default function BoardCommentWrite(props) {
         onClickUpdate={onClickUpdate}
         el={props.el}
         isEdit={props.isEdit}
+        rating={rating}
       />
     </div>
   );

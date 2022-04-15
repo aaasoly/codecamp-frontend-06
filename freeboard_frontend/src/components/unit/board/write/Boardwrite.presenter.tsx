@@ -71,7 +71,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
             readOnly
             value={
               props.postcode ||
-              props.data?.fetchBoard.boardAddress?.postcode ||
+              props.data?.fetchBoard.boardAddress?.zipcode ||
               ""
             }
           />

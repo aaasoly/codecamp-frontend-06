@@ -30,6 +30,8 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
           <S.HeaderRight>
             <S.LocaDetail>
               <S.Address>
+                {props.data?.fetchBoard?.boardAddress?.zipcode}
+                <br />
                 {props.data?.fetchBoard?.boardAddress?.address}
                 <br />
                 {props.data?.fetchBoard?.boardAddress?.addressDetail}
