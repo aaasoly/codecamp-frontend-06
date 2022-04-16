@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import BoardListPageUI from "./Boardlist.presenter";
 import _ from "lodash";
 import { useQuery } from "@apollo/client";
@@ -20,7 +20,15 @@ export default function BoardListPage() {
   const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
     // document.getElementById("bbb").value
     // event.target 이 element 의 자식 요소이면 이동 시켜줘
-    if (event.target instanceof Element)
+    // router.push(
+    //   {
+    //     pathname: `/boards/?${event.currentTarget.id}`,
+    //     // query: { ...values, page: 1 }
+    //   },
+    //   undefined,
+    //   { shallow: true }
+    // );
+    if (event.currentTarget instanceof Element)
       router.push(`/boards/${event.currentTarget.id}`);
   };
 

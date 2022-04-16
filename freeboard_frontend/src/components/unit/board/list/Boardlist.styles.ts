@@ -89,8 +89,13 @@ export const Title = styled.div`
 `;
 
 export const Contents = styled.div`
-  width: 100%;
+  width: 300px;
+  height: 120px;
   padding: 8px;
+  overflow: hidden;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
 `;
 
 export const Writer = styled.div`

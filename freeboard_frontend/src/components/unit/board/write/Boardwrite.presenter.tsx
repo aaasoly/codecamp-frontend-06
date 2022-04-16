@@ -1,7 +1,7 @@
 import * as S from "./Boardwrite.styles";
 import { IPropsBoardWriteUI } from "./Boardwrite.types";
 import DaumPostcode from "react-daum-postcode";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 import ImgUpload from "../../../commons/layout/upload/imgupload.container";
 import { v4 as uuidv4 } from "uuid";
 
