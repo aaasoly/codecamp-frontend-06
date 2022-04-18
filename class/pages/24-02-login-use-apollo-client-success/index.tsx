@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
-import { withAuth } from "../../src/commons/hocs/withAuth";
+import { withAuth } from "../../src/components/commons/hocs/withAuth";
 import { UserInfoState } from "../../src/commons/store";
 // import { useRouter } from "next/router";
 // import { useEffect } from "react";

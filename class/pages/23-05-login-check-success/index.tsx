@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { withAuth } from "../../src/commons/hocs/withAuth";
+import { withAuth } from "../../src/components/commons/hocs/withAuth";
 // import { useRouter } from "next/router";
 // import { useEffect } from "react";
 

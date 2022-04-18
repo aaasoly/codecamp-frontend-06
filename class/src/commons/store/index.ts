@@ -18,3 +18,8 @@ export const UserInfoState = atom({
     name: "",
   },
 });
+
+export const visitedPageState = atom({
+  key: "visitedPageState",
+  default: "/",
+});
