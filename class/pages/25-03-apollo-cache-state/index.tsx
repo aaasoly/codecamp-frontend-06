@@ -52,7 +52,7 @@ export default function ApolloCacheStatePage() {
               const filteredPrev = prev.filter(
                 (el) => readField("_id", el) !== deletedId
               );
-              return filteredPrev;
+              return [...filteredPrev];
             },
           }, // global state 를 수정했기 때문에 사용하는 모든 컴포넌트에서 업데이트 된다
         });
@@ -94,7 +94,7 @@ export default function ApolloCacheStatePage() {
           <span>{el.writer}</span>
           <span>{el.title}</span>
           <span>{el.contents}</span>
-          <button onClick={onClickDelete(el._id)}>삭제하기</button>
+          <button onClick={onClickDelete}>삭제하기</button>
         </div>
       ))}
       <button onClick={onClickSubmit}>등록하기</button>

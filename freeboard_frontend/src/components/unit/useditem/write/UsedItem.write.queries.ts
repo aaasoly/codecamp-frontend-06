@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-const CREATE_USED_ITEM = gql`
-  mutation createUseditem($createUseditemInput: CreateUseditemInput!) {
+export const CREATE_USED_ITEM = gql`
+  mutation createUsedItem($createUsedItemInput: CreateUsedItemInput!) {
     _id
     name
     contents

@@ -23,16 +23,24 @@ export default function LoginPage() {
   };
 
   const onClickLogin = async () => {
-    const result = await logInUser({
-      variables: {
-        email,
-        password,
-      },
-    });
-    const accessToken = result.data.loginUser.accessToken;
-    setAccessToken(accessToken);
-    localStorage.getItem("accessToken", accessToken);
-    router.push("/boards");
+    try {
+      const result = await logInUser({
+        variables: {
+          email,
+          password,
+        },
+      });
+      const accessToken = result.data.loginUser.accessToken;
+      setAccessToken(accessToken);
+      localStorage.getItem("accessToken", accessToken);
+      router.push("/boards");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const onClickMoveToSignup = () => {
+    router.push("/login/signup");
   };
 
   return (
@@ -40,6 +48,7 @@ export default function LoginPage() {
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}
       onClickLogin={onClickLogin}
+      onClickMoveToSignup={onClickMoveToSignup}
     />
   );
 }

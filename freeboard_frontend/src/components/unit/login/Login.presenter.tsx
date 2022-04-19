@@ -5,10 +5,12 @@ export default function LoginPageUI(props) {
     <S.Wrapper>
       <S.Wrapper__Header>Welcome!</S.Wrapper__Header>
       <S.LoginInput
+        type="text"
         placeholder="이메일을 입력하세요"
         onChange={props.onChangeEmail}
       />
       <S.LoginInput
+        type="password"
         placeholder="비밀번호를 입력하세요"
         onChange={props.onChangePassword}
       />
@@ -22,7 +24,9 @@ export default function LoginPageUI(props) {
         <S.VerticalLine></S.VerticalLine>
         <S.FooterMenu>비밀번호 찾기</S.FooterMenu>
         <S.VerticalLine></S.VerticalLine>
-        <S.FooterMenu onClick={props.onClickSignup}>회원가입</S.FooterMenu>
+        <S.FooterMenu onClick={props.onClickMoveToSignup}>
+          회원가입
+        </S.FooterMenu>
       </S.Wrapper__Footer>
     </S.Wrapper>
   );

@@ -6,7 +6,11 @@ export default function SignupPageUI(props) {
       <S.Wrapper__Header></S.Wrapper__Header>
 
       <S.SignupLabel>이름</S.SignupLabel>
-      <S.SignupInput type="text" placeholder="이름을 입력하세요" />
+      <S.SignupInput
+        type="text"
+        placeholder="이름을 입력하세요"
+        onChange={props.onChangeName}
+      />
       <S.SignupLabel>이메일</S.SignupLabel>
       <S.SignupInput
         type="text"
