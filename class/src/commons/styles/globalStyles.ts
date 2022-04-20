@@ -5,11 +5,11 @@ export const globalStyles = css`
     margin: 0;
     box-sizing: border-box;
     font-size: 16px;
-    font-family: "myfont";
+    /* font-family: "myfont"; */
   }
 
-  @font-face {
+  /* @font-face {
     font-family: "myfont";
     src: url(/fonts/scifibit.ttf); // public 폴더는 / 로 표기
-  }
+  } */
 `;

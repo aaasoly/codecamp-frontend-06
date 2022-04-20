@@ -1,35 +1,32 @@
-import styled from "@emotion/styled";
-
-const Wrapper = styled.div`
-  width: 1200px;
-  height: 800px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Row = styled.div`
-  display: flex;
-`;
-
-const Column = styled.div`
-  width: 200px;
-  height: 100px;
-`;
+import * as S from "./UsedItem.list.styles";
 
 export default function UsedItemListUI(props) {
   console.log("ui", props.data?.fetchUseditems);
   return (
-    <Wrapper>
+    <S.Wrapper>
       {props.data?.fetchUseditems.map((el) => (
-        <Row key={el._id}>
-          <Column onClick={props.onClickMoveToDetail}>{el.title}</Column>
-          <Column>한줄 : {el.remarks}</Column>
-          <Column>상품명 : {el.name}</Column>
-          <Column>테그 : {el.tags}</Column>
-          <Column>가격 : {el.price}</Column>
-        </Row>
+        <S.Row key={el._id}>
+          <S.Colunm__Left>
+            <S.Img></S.Img>
+          </S.Colunm__Left>
+
+          <S.Column__Center>
+            <S.Name onClick={props.onClickMoveToDetail}>{el.name}</S.Name>
+            <S.Remarks>{el.remarks}</S.Remarks>
+            <S.Tags>{el.tags}</S.Tags>
+
+            <S.Column__Bottom>
+              <S.Seller>{el.seller}</S.Seller>
+              <S.Picked>{el.pickedCount}</S.Picked>
+            </S.Column__Bottom>
+          </S.Column__Center>
+
+          <S.Column__Right>
+            <S.Price>가격 : {el.price}</S.Price>
+          </S.Column__Right>
+        </S.Row>
       ))}
       {props.data?.fetchUseditems.contents}
-    </Wrapper>
+    </S.Wrapper>
   );
 }

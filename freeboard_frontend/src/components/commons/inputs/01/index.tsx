@@ -7,6 +7,7 @@ interface Iprops {
 }
 
 const Input = styled.input``;
+
 export default function Input01(props: Iprops) {
   return <Input type={props.type} {...props.register} />;
 }
