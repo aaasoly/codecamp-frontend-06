@@ -47,6 +47,10 @@ export default function LayoutHeader() {
     router.push("/boards");
   };
 
+  const onClickMarket = () => {
+    router.push("/market");
+  };
+
   const onClickAPI = () => {
     router.push("/boards/api");
   };
@@ -61,7 +65,7 @@ export default function LayoutHeader() {
         <Logo onClick={onClickLanding}>Logo</Logo>
         <Menu>
           <MenuItem onClick={onClickBoard}>Board</MenuItem>
-          <MenuItem>Market</MenuItem>
+          <MenuItem onClick={onClickMarket}>Market</MenuItem>
           <MenuItem onClick={onClickAPI}>API</MenuItem>
           <MenuItem onClick={onClickFirebase}>Guest</MenuItem>
           <MenuItem>My page</MenuItem>

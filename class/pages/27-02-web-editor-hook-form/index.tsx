@@ -20,7 +20,7 @@ export default function WebEditorPage() {
     // value === "<p><br></p>" ? """ : value
     // 아무것도 입력하지 않았을 때 빈값이어야 하므로 3상연산자로 만들어주나디
 
-    // coonChange 됐다고 react-hook-form에 알려주는 기능
+    // onChange 됐다고 react-hook-form에 알려주는 기능
     trigger("contents");
   };
 

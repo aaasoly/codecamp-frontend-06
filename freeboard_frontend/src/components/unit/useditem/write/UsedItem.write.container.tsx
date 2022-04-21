@@ -8,31 +8,22 @@ import { CREATE_USED_ITEM } from "./UsedItem.write.queries";
 export default function CreateUsedItem() {
   const router = useRouter();
 
-  // const [name, setName] = useState("");
-  // const [remark, setRemark] = useState("");
-  // const [detail, setDetail] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [tag, setTag] = useState("");
-
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
 
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState, setValue, trigger } = useForm();
 
-  // const onChangeName = (event) => {
-  //   setName(event.target.value);
-  // };
-  // const onChangeRemark = (event) => {
-  //   setRemark(event.target.value);
-  // };
-  // const onChangeDetail = (event) => {
-  //   setDetail(event.target.value);
-  // };
-  // const onChangePrice = (event) => {
-  //   setPrice(event.target.value);
-  // };
-  // const onChangeTag = (event) => {
-  //   setTag(event.target.value);
-  // };
+  const onChangeContents = (value: string) => {
+    console.log(value);
+    setValue("contents", value === "<p><br></p>" ? "" : value);
+    trigger("contents");
+  };
+
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
 
   const onClickSubmit = async (data) => {
     try {
@@ -41,10 +32,12 @@ export default function CreateUsedItem() {
           createUseditemInput: {
             name: data.name,
             remarks: data.remarks,
-            detail: data.name,
-            price: data.price,
+            contents: data.contents,
+            detail: data.detail,
+            price: Number(data.price),
             tags: data.tags,
           },
+          images: fileUrls,
         },
       });
       console.log(result);
@@ -57,15 +50,12 @@ export default function CreateUsedItem() {
 
   return (
     <CreateUsedItemUI
-      // onChangeName={onChangeName}
-      // onChangeRemark={onChangeRemark}
-      // onChangeDetail={onChangeDetail}
-      // onChangePrice={onChangePrice}
-      // onChangeTag={onChangeTag}
       onClickSubmit={onClickSubmit}
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
+      onChangeContents={onChangeContents}
+      fileUrls={fileUrls}
     />
   );
 }
