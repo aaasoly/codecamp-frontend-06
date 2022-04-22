@@ -4,10 +4,10 @@ import { PictureOutlined } from "@ant-design/icons";
 export default function ImgUploadUI(props) {
   return (
     <>
-      {props.imgUrl ? (
+      {props.fileUrl ? (
         <S.PicAttach
           onClick={props.onClickUpload}
-          src={`https://storage.googleapis.com/${props.imgUrl}`}
+          src={`https://storage.googleapis.com/${props.fileUrl}`}
         />
       ) : (
         <S.ImgIcon onClick={props.onClickUpload}>

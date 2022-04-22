@@ -84,6 +84,7 @@ export const Location = styled.div`
   display: flex;
   height: 292px;
   justify-content: space-between;
+  margin-bottom: 24px;
 `;
 
 export const Location__Left = styled.div`
@@ -140,6 +141,19 @@ export const Adress1 = styled.input`
   margin-bottom: 16px;
   border: 1px solid #bdbdbd;
   color: #bdbdbd;
+`;
+
+export const Images = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  width: 100%;
+`;
+
+export const ImageBox = styled.div`
+  display: flex;
+  width: 180px;
+  height: 180px;
 `;
 
 export const Button = styled.button``;

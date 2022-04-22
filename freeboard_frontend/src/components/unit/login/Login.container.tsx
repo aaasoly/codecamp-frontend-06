@@ -33,7 +33,7 @@ export default function LoginPage() {
           password,
         },
       });
-      const accessToken = result.data.loginUser.accessToken;
+      const accessToken = result.data?.loginUser.accessToken;
       setAccessToken(accessToken);
 
       const resultUserInfo = await client.query({
@@ -47,7 +47,6 @@ export default function LoginPage() {
       const userInfo = resultUserInfo.data.fetchUserLoggedIn;
       console.log(userInfo);
 
-      setAccessToken(accessToken);
       setUserInfo(userInfo);
       localStorage.setItem("accessToken", accessToken);
       // localStorage.setItem("userInfo", userInfo); // [Object Object] > 객체 저장이 안됨

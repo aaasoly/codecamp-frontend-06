@@ -1,4 +1,7 @@
 import styled from "@emotion/styled";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -31,6 +34,7 @@ export const Body__Top = styled.div`
   justify-content: space-between;
   width: 254px;
   height: 67px;
+  margin-bottom: 124px;
 `;
 
 export const ProductInfo = styled.div`
@@ -61,6 +65,7 @@ export const CreatedAt = styled.div`
 export const Body__Center = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-bottom: 1px solid #bdbdbd;
   padding: 20px 0 40px;
 `;
@@ -69,15 +74,28 @@ export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 504px;
-  height: 482px;
-  margin-bottom: 80px;
+  //margin-bottom: 80px;
 `;
 
-export const Images = styled.img`
-  width: 504px;
-  height: 482px;
-  margin-bottom: 80px;
+export const StyledSlider = styled(Slider)`
+  width: 600px;
+  //height: 384px;
+  //overflow: hidden;
+  margin: 0 auto 50px;
+  .slick-dots {
+    margin-top: 30px;
+    .slick-active {
+      button::before {
+        color: #c1c1c1;
+      }
+    }
+    button::before {
+      color: #e9e9e9;
+    }
+  }
 `;
+
+export const Images = styled.img``;
 
 export const Contents = styled.div`
   width: 792px;

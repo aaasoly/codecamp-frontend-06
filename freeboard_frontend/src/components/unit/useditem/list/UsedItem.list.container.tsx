@@ -9,7 +9,11 @@ export default function UsedItemList() {
   const router = useRouter();
 
   const onClickMoveToDetail = (event) => {
-    router.push(`/market/${event.target.id}`);
+    router.push(`/market/${event.currentTarget.id}`);
+  };
+
+  const onClickMoveToWrite = (event) => {
+    router.push("/market/new");
   };
 
   const onLoadMore = () => {
@@ -35,6 +39,7 @@ export default function UsedItemList() {
       data={data}
       onClickMoveToDetail={onClickMoveToDetail}
       onLoadMore={onLoadMore}
+      onClickMoveToWrite={onClickMoveToWrite}
     />
   );
 }

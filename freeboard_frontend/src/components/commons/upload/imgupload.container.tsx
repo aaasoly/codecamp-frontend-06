@@ -1,15 +1,15 @@
 import { useMutation } from "@apollo/client";
 import { useRef } from "react";
-import { CheckFileValidation } from "../../../../commons/libraries/validation";
+import { CheckFileValidation } from "../../../commons/libraries/validation";
 import {
   IMutation,
   IMutationUploadFileArgs,
-} from "../../../../commons/types/generated/types";
+} from "../../../commons/types/generated/types";
 import ImgUploadUI from "./imgupload.presenter";
 import { UPLOAD_FILE } from "./imgupload.queries";
 import { Modal } from "antd";
 
-export default function ImgUpload(props) {
+export default function xImgUpload(props) {
   // 이미지 등록
   // const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -34,20 +34,20 @@ export default function ImgUpload(props) {
       const result = await uploadFile({
         variables: { file: file },
       });
-      props.onChangeImgUrls(result.data?.uploadFile.url, props.index);
+      props.onChangeFileUrls(result.data?.uploadFile.url, props.index);
       console.log(result.data?.uploadFile.url);
 
       // setImageUrl(result.data?.uploadFile.url);
     } catch (error) {
       Modal.error({ content: error.message });
-      console.log(props.onChangeImgUrls());
+      console.log(props.onChangeFileUrls());
     }
   };
 
   return (
     <ImgUploadUI
       fileRef={fileRef}
-      imgUrl={props.imgUrl}
+      fileUrl={props.fileUrl}
       //  defaultFileUrl={props.defaultFileUrl}
       onClickUpload={onClickUpload}
       onChangeFile={onChangeFile}

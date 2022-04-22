@@ -3,6 +3,14 @@ import * as S from "./UsedItem.detail.styles";
 import Dompurify from "dompurify";
 
 export default function UsedItemDetailUI(props) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <S.Wrapper>
       <S.Wrapper__Header>
@@ -23,7 +31,7 @@ export default function UsedItemDetailUI(props) {
         </S.Body__Top>
 
         <S.Body__Center>
-          <S.ImageWrapper>
+          <S.StyledSlider {...settings}>
             {props.data?.fetchUseditem.images
               ?.filter((el: string) => el)
               .map((el: string) => (
@@ -32,7 +40,7 @@ export default function UsedItemDetailUI(props) {
                   src={`https://storage.googleapis.com/${el}`}
                 />
               ))}
-          </S.ImageWrapper>
+          </S.StyledSlider>
           {typeof window !== "undefined" ? (
             <S.Contents
               dangerouslySetInnerHTML={{

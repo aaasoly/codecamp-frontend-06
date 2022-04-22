@@ -2,10 +2,13 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
+  position: fixed;
   width: 100vw;
   height: 100px;
   display: flex;
   justify-content: center;
+  z-index: 9999;
+  background-color: #fff;
 `;
 
 const Box = styled.div`

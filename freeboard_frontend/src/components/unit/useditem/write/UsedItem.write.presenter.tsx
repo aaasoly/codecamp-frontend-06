@@ -1,7 +1,9 @@
 import Button01 from "../../../commons/buttons/01";
 import Input01 from "../../../commons/inputs/01";
+import ImgUpload from "../../../commons/upload/imgupload.container";
 // import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "./UsedItem.write.style";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreateUsedItemUI(props: any) {
   return (
@@ -59,8 +61,8 @@ export default function CreateUsedItemUI(props: any) {
             <S.GPS>
               <S.SubTitle>GPS</S.SubTitle>
               <S.GPS__Input>
-                <S.LAT />
-                <S.LNG />
+                <S.LAT placeholder="위도(LAT)" />
+                <S.LNG placeholder="경도(LNG)" />
               </S.GPS__Input>
             </S.GPS>
 
@@ -71,6 +73,20 @@ export default function CreateUsedItemUI(props: any) {
             </S.Adress>
           </S.Location__Right>
         </S.Location>
+
+        <S.Images>
+          <S.SubTitle>사진 첨부</S.SubTitle>
+          <S.ImageBox>
+            {props.fileUrls.map((el, index) => (
+              <ImgUpload
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </S.ImageBox>
+        </S.Images>
 
         <S.Button>등록하기</S.Button>
       </form>

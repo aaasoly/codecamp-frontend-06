@@ -2,7 +2,7 @@ import * as S from "./Boardwrite.styles";
 import { IPropsBoardWriteUI } from "./Boardwrite.types";
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
-import ImgUpload from "../../../commons/layout/upload/imgupload.container";
+import ImgUpload from "../../../commons/upload/imgupload.container";
 import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IPropsBoardWriteUI) {
@@ -120,12 +120,12 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
       <S.Picture>
         <S.Item>사진첨부</S.Item>
         <S.ImgIcon>
-          {props.imgUrls.map((el, index) => (
+          {props.fileUrls.map((el, index) => (
             <ImgUpload
               key={uuidv4()}
               index={index}
               imgUrl={el}
-              onChangeImgUrls={props.onChangeImgUrls}
+              onChangeFileUrls={props.onChangeFileUrls}
             />
           ))}
         </S.ImgIcon>

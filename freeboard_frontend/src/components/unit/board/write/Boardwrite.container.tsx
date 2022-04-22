@@ -17,7 +17,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     contents: "",
   });
 
-  const [imgUrls, setImgUrls] = useState(["", "", ""]);
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [address, setAddress] = useState("");
@@ -82,13 +82,11 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     // addressDetail: address.addressDetail;
   };
 
-  const onChangeImgUrls = (imgUrl: string, index: number) => {
-    const newImgUrls = [...imgUrls];
-    newImgUrls[index] = imgUrl;
-    setImgUrls(newImgUrls);
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
   };
-
-  console.log(onChangeImgUrls);
 
   // 게시글 등록 버튼
   const onClickSubmit = async () => {
@@ -115,7 +113,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
                 zipcode: postcode,
                 addressDetail,
               },
-              images: imgUrls,
+              images: fileUrls,
             },
           },
         });
@@ -132,7 +130,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 게시글 수정 버튼
   const onClickUpdate = async () => {
-    const currentFiles = JSON.stringify(imgUrls);
+    const currentFiles = JSON.stringify(fileUrls);
     const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
     const isChangedFiles = currentFiles !== defaultFiles;
 
@@ -163,14 +161,14 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
-    if (isChangedFiles) updateBoardInput.images = imgUrls;
+    if (isChangedFiles) updateBoardInput.images = fileUrls;
 
     try {
       await updateBoard({
         variables: {
           boardId: String(router.query.boardId),
           password,
-          images: imgUrls,
+          images: fileUrls,
           updateBoardInput,
         },
       });
@@ -186,7 +184,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
   // 사진
   useEffect(() => {
     if (props.data?.fetchBoard.image?.length) {
-      setImgUrls([...props.data?.fetchBoard.images]);
+      setFileUrls([...props.data?.fetchBoard.images]);
     }
   }, [props.data]);
 
@@ -211,8 +209,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       address={address}
       postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
-      imgUrls={imgUrls}
-      onChangeImgUrls={onChangeImgUrls}
+      fileUrls={fileUrls}
+      onChangeFileUrls={onChangeFileUrls}
     />
   );
 }

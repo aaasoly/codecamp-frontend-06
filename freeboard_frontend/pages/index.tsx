@@ -125,7 +125,7 @@ export default function Home() {
   };
 
   const onClickMarket = () => {
-    router.push("/boards");
+    router.push("/market");
   };
 
   const onClickMypage = () => {

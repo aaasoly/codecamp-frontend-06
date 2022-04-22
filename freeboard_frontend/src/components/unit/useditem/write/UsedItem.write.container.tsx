@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
-// import { useState } from "react";
 import CreateUsedItemUI from "./UsedItem.write.presenter";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { CREATE_USED_ITEM } from "./UsedItem.write.queries";
+import { useEffect, useState } from "react";
+import useAuth from "../../../../commons/hooks/useAuth";
 
-export default function CreateUsedItem() {
+export default function CreateUsedItem(props) {
+  //useAuth();
   const router = useRouter();
 
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
@@ -36,17 +38,23 @@ export default function CreateUsedItem() {
             detail: data.detail,
             price: Number(data.price),
             tags: data.tags,
+            images: fileUrls,
           },
-          images: fileUrls,
         },
       });
       console.log(result);
       alert("게시물 등록에 성공했습니다");
-      router.push("/markets");
+      router.push(`/market/${result.data.createUseditem._id}`);
     } catch (error) {
       alert(error.message);
     }
   };
+
+  // useEffect(() => {
+  //   if (props.data?.fetchUseditem.images?.length) {
+  //     setFileUrls([...props.data?.fetchUseditem.images]);
+  //   }
+  // }, [props.data]);
 
   return (
     <CreateUsedItemUI
@@ -56,6 +64,7 @@ export default function CreateUsedItem() {
       formState={formState}
       onChangeContents={onChangeContents}
       fileUrls={fileUrls}
+      onChangeFileUrls={onChangeFileUrls}
     />
   );
 }
