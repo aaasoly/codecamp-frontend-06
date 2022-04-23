@@ -50,6 +50,7 @@ export const BoradReview = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 `;
 
 export const Thum__Header = styled.div`
@@ -63,7 +64,9 @@ export const Thum__Header = styled.div`
 
 export const Thum__img = styled.img`
   width: 100%;
-  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const Thum__Body = styled.div`
@@ -186,11 +189,12 @@ export const LikeIcon = styled(HeartFilled)`
 // `;
 
 export const Footer = styled.div`
-  /* width: 1200px; */
+  width: 1600px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding-left: 480px; */
+  position: relative;
+  padding-top: 20px;
 `;
 export const WriteIcon = styled.button`
   width: 60px;
@@ -199,6 +203,8 @@ export const WriteIcon = styled.button`
   border-radius: 10px;
   margin-top: 30px;
   background-color: #fff;
+  position: absolute;
+  right: 0;
   cursor: pointer;
   &:hover {
   }

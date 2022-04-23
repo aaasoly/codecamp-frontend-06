@@ -2,7 +2,7 @@ import { useApolloClient, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState, UserInfoState } from "../../../commons/store";
+import { accessTokenState, UserInfoState } from "../store";
 import LoginPageUI from "./Login.presenter";
 import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "./Login.queries";
 

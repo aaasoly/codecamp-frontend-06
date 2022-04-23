@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LoginPage from "../src/commons/login/Login.container";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -166,10 +167,10 @@ export default function Home() {
         <Wrapper__Body>
           <Body__img></Body__img>
           <Body__Left>
-            <TextBox>
-              {/* <Title>HELLO!</Title> */}
+            {/* <TextBox>
               <Subtext>Bon</Subtext>
-            </TextBox>
+            </TextBox> */}
+            <LoginPage />
           </Body__Left>
         </Wrapper__Body>
         {/* <Wrapper__Body>
