@@ -5,7 +5,13 @@ export default function UsedItemListUIItem(props) {
     <S.Wrapper>
       <S.Row>
         <S.Colunm__Left>
-          <S.Img></S.Img>
+          <S.Img
+            src={
+              props.el.images[0]
+              // ? `https://storage.googleapis.com/${props.el.images?.[0]}`
+              // : `/img/1.jpg`
+            }
+          ></S.Img>
         </S.Colunm__Left>
 
         <S.Column__Center>
@@ -17,7 +23,10 @@ export default function UsedItemListUIItem(props) {
 
           <S.Column__Bottom>
             <S.Seller> {props.el.seller.name}</S.Seller>
-            <S.Picked> {props.el.pickedCount}</S.Picked>
+            <S.Picked>
+              <S.PickedIcon />
+              {props.el.pickedCount}
+            </S.Picked>
           </S.Column__Bottom>
         </S.Column__Center>
 

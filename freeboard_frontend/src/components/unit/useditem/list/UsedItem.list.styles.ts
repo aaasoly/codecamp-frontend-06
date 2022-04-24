@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
+import { HeartFilled } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1350px;
+  display: flex;
 `;
 
 export const Row = styled.div`
@@ -16,6 +18,7 @@ export const Row = styled.div`
 export const Colunm__Left = styled.div`
   width: 160px;
   height: 100%;
+  margin-right: 40px;
 `;
 
 export const Column__Center = styled.div`
@@ -35,17 +38,18 @@ export const Column__Right = styled.div`
   justify-content: center; */
 `;
 
-export const Img = styled.div`
-  background-image: url();
+export const Img = styled.img`
+  width: 160px;
+  height: 160px;
 `;
 
 export const Name = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 4px;
 `;
 
 export const Remarks = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 8px;
 `;
 
@@ -55,9 +59,16 @@ export const Tags = styled.div`
   /* margin-bottom: 24px; */
 `;
 
-export const Seller = styled.div``;
+export const Seller = styled.div`
+  margin-right: 15px;
+`;
 
 export const Picked = styled.div``;
+
+export const PickedIcon = styled(HeartFilled)`
+  margin-right: 5px;
+  color: coral;
+`;
 
 export const Price = styled.div`
   font-size: 22px;

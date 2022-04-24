@@ -4,6 +4,7 @@ import ImgUpload from "../../../commons/upload/imgupload.container";
 // import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "./UsedItem.write.style";
 import { v4 as uuidv4 } from "uuid";
+import Map from "../../../commons/map/map";
 
 export default function CreateUsedItemUI(props: any) {
   return (
@@ -54,7 +55,9 @@ export default function CreateUsedItemUI(props: any) {
         <S.Location>
           <S.Location__Left>
             <S.SubTitle>거래 위치</S.SubTitle>
-            <S.Map></S.Map>
+            <S.Map>
+              <Map />
+            </S.Map>
           </S.Location__Left>
 
           <S.Location__Right>
