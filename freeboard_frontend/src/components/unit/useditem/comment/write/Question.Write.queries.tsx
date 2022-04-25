@@ -2,25 +2,26 @@ import { gql } from "@apollo/client";
 
 export const CREATE_USED_ITEM_QUESTION = gql`
   mutation createUseditemQuestion(
-    $createUseditemQuestion: CreateUseditemQuestionInput!
+    $createUseditemQuestionInput: CreateUseditemQuestionInput!
     $useditemId: ID!
   ) {
     createUseditemQuestion(
-      createUseditemQuestion: $createUseditemQuestion
+      createUseditemQuestionInput: $createUseditemQuestionInput
       useditemId: $useditemId
     ) {
       _id
       contents
-      user
+      user {
+        _id
+        name
+      }
       createdAt
     }
   }
 `;
 
 export const DELETE_USED_ITEM_QUESTION = gql`
-  qeury deleteUseditemQuestion(
-    $useditemQuestionId: ID!
-  ) {
+  query deleteUseditemQuestion($useditemQuestionId: ID!) {
     deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
   }
 `;

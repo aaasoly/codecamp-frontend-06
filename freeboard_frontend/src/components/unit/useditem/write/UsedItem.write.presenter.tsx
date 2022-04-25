@@ -5,8 +5,13 @@ import ImgUpload from "../../../commons/upload/imgupload.container";
 import * as S from "./UsedItem.write.style";
 import { v4 as uuidv4 } from "uuid";
 import Map from "../../../commons/map/map";
+import { useRecoilState } from "recoil";
+import { getLatState, getLngState } from "../../../../commons/store";
 
 export default function CreateUsedItemUI(props: any) {
+  const [getLat, setGetLat] = useRecoilState(getLatState);
+  const [getLng, setGetLng] = useRecoilState(getLngState);
+
   return (
     <S.Wrapper>
       <S.MainTitle>상품 등록하기</S.MainTitle>
@@ -64,15 +69,15 @@ export default function CreateUsedItemUI(props: any) {
             <S.GPS>
               <S.SubTitle>GPS</S.SubTitle>
               <S.GPS__Input>
-                <S.LAT placeholder="위도(LAT)" />
-                <S.LNG placeholder="경도(LNG)" />
+                <S.LAT placeholder="위도(LAT)" value={getLat} />
+                <S.LNG placeholder="경도(LNG)" value={getLng} />
               </S.GPS__Input>
             </S.GPS>
 
             <S.Adress>
               <S.SubTitle>주소</S.SubTitle>
-              <S.Adress1 />
-              <S.Adress1 />
+              <S.Adress1 onChange={props.onChangeAddress} />
+              <S.Adress1 onChange={props.onChangeAddress} />
             </S.Adress>
           </S.Location__Right>
         </S.Location>

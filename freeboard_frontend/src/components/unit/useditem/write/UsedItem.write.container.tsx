@@ -5,15 +5,24 @@ import { useMutation } from "@apollo/client";
 import { CREATE_USED_ITEM } from "./UsedItem.write.queries";
 import { useEffect, useState } from "react";
 import useAuth from "../../../../commons/hooks/useAuth";
+import { useRecoilState } from "recoil";
+import { useditemAddressState } from "../../../../commons/store";
+import _ from "lodash";
 
 export default function CreateUsedItem(props) {
   //useAuth();
   const router = useRouter();
 
+  const [useditemAddress, setUseditemAddress] =
+    useRecoilState(useditemAddressState);
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
 
   const { register, handleSubmit, formState, setValue, trigger } = useForm();
+
+  const onChangeAddress = (event) => {
+    setUseditemAddress(event.target.value);
+  };
 
   const onChangeContents = (value: string) => {
     console.log(value);
@@ -40,6 +49,9 @@ export default function CreateUsedItem(props) {
             tags: data.tags,
             images: fileUrls,
           },
+          useditemAddress: {
+            address: useditemAddress,
+          },
         },
       });
       console.log(result);
@@ -65,6 +77,7 @@ export default function CreateUsedItem(props) {
       onChangeContents={onChangeContents}
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}
+      onChangeAddress={onChangeAddress}
     />
   );
 }

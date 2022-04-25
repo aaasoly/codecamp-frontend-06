@@ -12,3 +12,18 @@ export const UserInfoState = atom({
     name: "",
   },
 });
+
+export const useditemAddressState = atom({
+  key: "useditemAddressState",
+  default: "서울시 강남구",
+});
+
+export const getLatState = atom({
+  key: "getLatState",
+  default: "",
+});
+
+export const getLngState = atom({
+  key: "getLngState",
+  default: "",
+});
