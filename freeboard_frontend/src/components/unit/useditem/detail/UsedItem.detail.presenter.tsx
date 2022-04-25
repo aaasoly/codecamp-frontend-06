@@ -1,6 +1,7 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./UsedItem.detail.styles";
 import Dompurify from "dompurify";
+import Map from "../../../commons/map/map";
 
 export default function UsedItemDetailUI(props) {
   const settings = {
@@ -53,7 +54,9 @@ export default function UsedItemDetailUI(props) {
           <S.Tags>{props.data?.fetchUseditem.tags}</S.Tags>
         </S.Body__Center>
 
-        <S.Map></S.Map>
+        <S.Map>
+          <Map />
+        </S.Map>
       </S.Wrapper__Body>
 
       <S.Wrapper__Footer>

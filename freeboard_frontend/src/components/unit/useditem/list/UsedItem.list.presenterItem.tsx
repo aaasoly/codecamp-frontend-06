@@ -8,9 +8,10 @@ export default function UsedItemListUIItem(props) {
           <S.Img
             src={
               props.el.images[0]
-              // ? `https://storage.googleapis.com/${props.el.images?.[0]}`
-              // : `/img/1.jpg`
+                ? `https://storage.googleapis.com/${props.el.images?.[0]}`
+                : `/img/1.jpg`
             }
+            onClick={props.onClickMoveToDetail}
           ></S.Img>
         </S.Colunm__Left>
 
