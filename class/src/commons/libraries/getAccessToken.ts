@@ -20,7 +20,7 @@ export async function getAccessToken() {
     );
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken.accessToken;
-    return newAccessToken;
+    return newAccessToken; // apollo/index 의 useEffect .then() 에 들어감
   } catch (error) {
     console.log(error.message);
   }

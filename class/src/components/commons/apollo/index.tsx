@@ -13,7 +13,7 @@ import { accessTokenState, UserInfoState } from "../../../commons/store";
 
 export default function ApolloSetting(props) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
+  // const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
 
   // 더이상 지원되지 않음
   // if(process.browser){
