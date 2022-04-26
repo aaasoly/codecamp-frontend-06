@@ -16,6 +16,28 @@ export const CREATE_USED_ITEM = gql`
         name
       }
       createdAt
+      usdeitemAddress {
+        address
+        addressDetail
+      }
+    }
+  }
+`;
+
+export const UPDATE_USED_ITEM = gql`
+  mutation updateUseditem($updateUseditemInput: UpdateUseditemInput!, $useditemId: ID!){
+    updateUseditemInput(updateUseditemInput: $updateUseditemInput, useditemId: $$useditemId){
+      _id
+      name
+      remarks
+      contents
+      price
+      tags
+      images
+      usdeitemAddress{
+        address
+        addressDetail
+      }
     }
   }
 `;

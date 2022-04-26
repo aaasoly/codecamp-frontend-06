@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import CreateUsedItemUI from "./UsedItem.write.presenter";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import { CREATE_USED_ITEM } from "./UsedItem.write.queries";
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./UsedItem.write.queries";
 import { useEffect, useState } from "react";
 import useAuth from "../../../../commons/hooks/useAuth";
 import { useRecoilState } from "recoil";
@@ -61,6 +61,8 @@ export default function CreateUsedItem(props) {
       alert(error.message);
     }
   };
+
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 
   // useEffect(() => {
   //   if (props.data?.fetchUseditem.images?.length) {

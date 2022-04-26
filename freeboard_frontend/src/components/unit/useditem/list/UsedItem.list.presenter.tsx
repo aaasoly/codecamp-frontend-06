@@ -30,9 +30,18 @@ const TodayView = styled.div`
   height: 505px;
   border: 1px solid #bdbdbd;
   position: static;
+  padding: 5px;
 `;
 
-const Today = styled.div``;
+const Today = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TodayItem = styled.div`
+  width: 160px;
+  height: 160px;
+`;
 
 const CreateButton = styled.button`
   width: 124px;
@@ -71,7 +80,12 @@ export default function UsedItemListUI(props) {
 
         <Wrapper__Right>
           <TodayView>
-            <Today>오늘 본 상품</Today>
+            오늘 본 상품
+            <Today>
+              {/* {props.today.map((el) => {
+                <TodayItem>{props.el.seller}</TodayItem>;
+              })} */}
+            </Today>
           </TodayView>
         </Wrapper__Right>
       </Wrapper__Body>
