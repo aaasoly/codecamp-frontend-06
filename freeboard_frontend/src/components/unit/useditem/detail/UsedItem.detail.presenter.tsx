@@ -63,7 +63,7 @@ export default function UsedItemDetailUI(props) {
         <S.List__Button onClick={props.onClickMoveToList}>
           목록으로
         </S.List__Button>
-        <S.Edit__Button>구매하기</S.Edit__Button>
+        <S.Edit__Button>{props.isLogin ? "수정" : "구매"} 하기</S.Edit__Button>
       </S.Wrapper__Footer>
     </S.Wrapper>
   );

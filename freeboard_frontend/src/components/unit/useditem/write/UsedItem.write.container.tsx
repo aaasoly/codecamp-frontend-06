@@ -16,7 +16,9 @@ export default function CreateUsedItem(props) {
   const [useditemAddress, setUseditemAddress] =
     useRecoilState(useditemAddressState);
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
+
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 
   const { register, handleSubmit, formState, setValue, trigger } = useForm();
 
@@ -62,7 +64,46 @@ export default function CreateUsedItem(props) {
     }
   };
 
-  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
+  const onClickUpdate = async (data) => {
+    // if (
+    //   !data.name &&
+    //   !data.remarks &&
+    //   !data.contents &&
+    //   !data.detail &&
+    //   !data.price &&
+    //   !data.tag
+    // ) {
+    //   alert("수정한 내용이 없습니다");
+    //   return;
+    // } else {
+
+    // }
+
+    const updateUseditemInput = {};
+    if (data.name) updateUseditemInput.name = data.name;
+    if (data.contents) updateUseditemInput.contents = data.contents;
+    if (data.price) updateUseditemInput.price = data.price;
+    if (data.remarks) updateUseditemInput.remarks = data.remarks;
+
+    try {
+      await updateUseditem({
+        variables: {
+          useditemId: String(router.query.useditemId),
+          // name: data.name,
+          // remarks: data.remarks,
+          // contents: data.contents,
+          // detail: data.detail,
+          // price: Number(data.price),
+          // tags: data.tags,
+          updateUseditemInput,
+        },
+      });
+      alert("수정 되었습니다.");
+      router.push(`market/${router.query.useditemId}`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   // useEffect(() => {
   //   if (props.data?.fetchUseditem.images?.length) {
@@ -80,6 +121,9 @@ export default function CreateUsedItem(props) {
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}
       onChangeAddress={onChangeAddress}
+      onClickUpdate={onClickUpdate}
+      isEdit={props.isEdit}
+      data={props.data}
     />
   );
 }

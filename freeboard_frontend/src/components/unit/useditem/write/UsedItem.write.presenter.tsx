@@ -14,8 +14,14 @@ export default function CreateUsedItemUI(props: any) {
 
   return (
     <S.Wrapper>
-      <S.MainTitle>상품 등록하기</S.MainTitle>
-      <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
+      <S.MainTitle>상품 {props.isEdit ? "수정" : "등록"} 하기</S.MainTitle>
+      <form
+        onSubmit={
+          props.isEdit
+            ? props.handleSubmit(props.onClickUpdate)
+            : props.handleSubmit(props.onClickSubmit)
+        }
+      >
         <S.Name>
           <S.SubTitle>상품명</S.SubTitle>
           <S.NameInput
@@ -96,7 +102,7 @@ export default function CreateUsedItemUI(props: any) {
           </S.ImageBox>
         </S.Images>
 
-        <S.Button>등록하기</S.Button>
+        <S.Button>{props.isEdit ? "수정" : "등록"} 하기</S.Button>
       </form>
     </S.Wrapper>
   );

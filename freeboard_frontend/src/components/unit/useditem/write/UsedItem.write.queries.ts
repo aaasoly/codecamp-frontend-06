@@ -16,7 +16,7 @@ export const CREATE_USED_ITEM = gql`
         name
       }
       createdAt
-      usdeitemAddress {
+      useditemAddress {
         address
         addressDetail
       }
@@ -25,8 +25,14 @@ export const CREATE_USED_ITEM = gql`
 `;
 
 export const UPDATE_USED_ITEM = gql`
-  mutation updateUseditem($updateUseditemInput: UpdateUseditemInput!, $useditemId: ID!){
-    updateUseditemInput(updateUseditemInput: $updateUseditemInput, useditemId: $$useditemId){
+  mutation updateUseditem(
+    $updateUseditemInput: UpdateUseditemInput!
+    $useditemId: ID!
+  ) {
+    updateUseditem(
+      updateUseditemInput: $updateUseditemInput
+      useditemId: $useditemId
+    ) {
       _id
       name
       remarks
@@ -34,7 +40,7 @@ export const UPDATE_USED_ITEM = gql`
       price
       tags
       images
-      usdeitemAddress{
+      useditemAddress {
         address
         addressDetail
       }
