@@ -1,7 +1,15 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./UsedItem.detail.styles";
 import Dompurify from "dompurify";
-import Map from "../../../commons/map/map";
+import Map from "../../../commons/map/Writemap";
+import FetchMap from "../../../commons/map/Fetchmap";
+import MapPage from "../../../commons/map/map";
+import { useRecoilState } from "recoil";
+import {
+  getLatState,
+  getLngState,
+  useditemAddressState,
+} from "../../../../commons/store";
 
 export default function UsedItemDetailUI(props) {
   const settings = {
@@ -11,6 +19,12 @@ export default function UsedItemDetailUI(props) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+  const [useditemAddress, setUseditemAddress] =
+    useRecoilState(useditemAddressState);
+
+  const [getLat, setGetLat] = useRecoilState(getLatState);
+  const [getLng, setGetLng] = useRecoilState(getLngState);
 
   return (
     <S.Wrapper>
@@ -55,7 +69,12 @@ export default function UsedItemDetailUI(props) {
         </S.Body__Center>
 
         <S.Map>
-          <Map />
+          {/* <MapPage {...props.data?.fetchUseditem.useditemAddress} /> */}
+          <FetchMap
+            useditemAddress={useditemAddress}
+            getLat={getLat}
+            getLng={getLng}
+          />
         </S.Map>
       </S.Wrapper__Body>
 
@@ -63,7 +82,15 @@ export default function UsedItemDetailUI(props) {
         <S.List__Button onClick={props.onClickMoveToList}>
           목록으로
         </S.List__Button>
-        <S.Edit__Button>{props.isLogin ? "수정" : "구매"} 하기</S.Edit__Button>
+        <S.Edit__Button
+          onClick={
+            props.sellerId === props.myId
+              ? props.onClickMoveToUpdate
+              : props.onClickMoveToBuy
+          }
+        >
+          {props.sellerId === props.myId ? "수정" : "구매"} 하기
+        </S.Edit__Button>
       </S.Wrapper__Footer>
     </S.Wrapper>
   );

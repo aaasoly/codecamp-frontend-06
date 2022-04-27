@@ -4,13 +4,19 @@ import ImgUpload from "../../../commons/upload/imgupload.container";
 // import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "./UsedItem.write.style";
 import { v4 as uuidv4 } from "uuid";
-import Map from "../../../commons/map/map";
 import { useRecoilState } from "recoil";
-import { getLatState, getLngState } from "../../../../commons/store";
+import {
+  getLatLngState,
+  getLatState,
+  getLngState,
+} from "../../../../commons/store";
+import WriteMap from "../../../commons/map/Writemap";
 
 export default function CreateUsedItemUI(props: any) {
   const [getLat, setGetLat] = useRecoilState(getLatState);
   const [getLng, setGetLng] = useRecoilState(getLngState);
+
+  // const [getLatLng, setGetLatLng] = useRecoilState(getLatLngState);
 
   return (
     <S.Wrapper>
@@ -28,6 +34,7 @@ export default function CreateUsedItemUI(props: any) {
             type="text"
             {...props.register("name")}
             placeholder="상품명을 작성해주세요."
+            defaultValue={props.data?.fetchUseditem.name}
           />
         </S.Name>
 
@@ -37,6 +44,7 @@ export default function CreateUsedItemUI(props: any) {
             type="text"
             {...props.register("remarks")}
             placeholder="상품명을 작성해주세요."
+            defaultValue={props.data?.fetchUseditem.remarks}
           />
         </S.Remarks>
 
@@ -51,6 +59,7 @@ export default function CreateUsedItemUI(props: any) {
             type="text"
             {...props.register("price")}
             placeholder="판매 가격을 입력해주세요."
+            defaultValue={props.data?.fetchUseditem.price}
           />
         </S.Price>
 
@@ -58,8 +67,10 @@ export default function CreateUsedItemUI(props: any) {
           <S.SubTitle>태그입력</S.SubTitle>
           <S.TagsInput
             type="text"
+            onKeyUp={props.onKeyUpHash}
             {...props.register("tags")}
             placeholder="#태그 #태그 #태그"
+            defaultValue={props.data?.fetchUseditem.tags}
           />
         </S.Tags>
 
@@ -67,7 +78,7 @@ export default function CreateUsedItemUI(props: any) {
           <S.Location__Left>
             <S.SubTitle>거래 위치</S.SubTitle>
             <S.Map>
-              <Map />
+              <WriteMap useditemAddress={props.useditemAddress} />
             </S.Map>
           </S.Location__Left>
 
@@ -82,7 +93,10 @@ export default function CreateUsedItemUI(props: any) {
 
             <S.Adress>
               <S.SubTitle>주소</S.SubTitle>
-              <S.Adress1 onChange={props.onChangeAddress} />
+              <S.Adress1
+                onChange={props.onChangeAddress}
+                defaultValue={props.data?.fetchUseditem.useditemAddress.address}
+              />
               <S.Adress1 onChange={props.onChangeAddress} />
             </S.Adress>
           </S.Location__Right>
@@ -102,7 +116,11 @@ export default function CreateUsedItemUI(props: any) {
           </S.ImageBox>
         </S.Images>
 
-        <S.Button>{props.isEdit ? "수정" : "등록"} 하기</S.Button>
+        <S.Button
+          onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+        >
+          {props.isEdit ? "수정" : "등록"} 하기
+        </S.Button>
       </form>
     </S.Wrapper>
   );

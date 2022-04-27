@@ -5,7 +5,7 @@ import UsedItemDetail from "../../../src/components/unit/useditem/detail/UsedIte
 export default function UsedItemDetailPage() {
   return (
     <div>
-      <UsedItemDetail />,
+      <UsedItemDetail />
       <UseditemQuestionWrite />
       <UseditemQuestionList />
     </div>

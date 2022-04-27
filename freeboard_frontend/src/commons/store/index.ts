@@ -27,3 +27,11 @@ export const getLngState = atom({
   key: "getLngState",
   default: "",
 });
+
+// export const getLatLngState = atom({
+//   key: "getLatLngState",
+//   default: {
+//     La: "",
+//     Ma: "",
+//   },
+// });

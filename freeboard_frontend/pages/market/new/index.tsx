@@ -2,5 +2,5 @@ import CreateUsedItem from "../../../src/components/unit/useditem/write/UsedItem
 import CreateUsedItemUI from "../../../src/components/unit/useditem/write/UsedItem.write.presenter";
 
 export default function CreateUsedItmePage() {
-  return <CreateUsedItem />;
+  return <CreateUsedItem isEdit={false} />;
 }

@@ -6,7 +6,11 @@ import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./UsedItem.write.queries";
 import { useEffect, useState } from "react";
 import useAuth from "../../../../commons/hooks/useAuth";
 import { useRecoilState } from "recoil";
-import { useditemAddressState } from "../../../../commons/store";
+import {
+  getLatState,
+  getLngState,
+  useditemAddressState,
+} from "../../../../commons/store";
 import _ from "lodash";
 
 export default function CreateUsedItem(props) {
@@ -15,10 +19,26 @@ export default function CreateUsedItem(props) {
 
   const [useditemAddress, setUseditemAddress] =
     useRecoilState(useditemAddressState);
+  const [getLat, setGetLat] = useRecoilState(getLatState);
+  const [getLng, setGetLng] = useRecoilState(getLngState);
+
+  // const [useditemAddress, setUseditemAddress] = useState("");
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
+
+  const [hashtag, setHashtag] = useState("");
+  const [hashArr, setHashArr] = useState([]);
+
+  const onKeyUpHash = (event) => {
+    if (event.keyCode === 32 && event.target.value !== " ") {
+      // setHashArr((prev) => [...prev, hashtag]);
+      // setHashtag("");
+      setHashArr([...hashArr, "#" + event.target.value]);
+      event.target.value = hashArr.map((el) => el);
+    }
+  };
 
   const { register, handleSubmit, formState, setValue, trigger } = useForm();
 
@@ -50,9 +70,11 @@ export default function CreateUsedItem(props) {
             price: Number(data.price),
             tags: data.tags,
             images: fileUrls,
-          },
-          useditemAddress: {
-            address: useditemAddress,
+            useditemAddress: {
+              address: useditemAddress,
+              lat: getLat,
+              lng: getLng,
+            },
           },
         },
       });
@@ -99,7 +121,7 @@ export default function CreateUsedItem(props) {
         },
       });
       alert("수정 되었습니다.");
-      router.push(`market/${router.query.useditemId}`);
+      router.push(`/market/${router.query.useditemId}`);
     } catch (error) {
       console.log(error.message);
     }
@@ -124,6 +146,9 @@ export default function CreateUsedItem(props) {
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
       data={props.data}
+      useditemAddress={useditemAddress}
+      onKeyUpHash={onKeyUpHash}
+      hashArr={hashArr}
     />
   );
 }

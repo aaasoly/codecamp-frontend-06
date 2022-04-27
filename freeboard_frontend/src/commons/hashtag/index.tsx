@@ -4,7 +4,7 @@ const HashTagPage = () => {
 
   const onKeyUpHash = (event) => {
     // 키보드 이벤트에는 keyCode 라는 값이 있다
-    // 키값으로 32(스페이스바) 이거나 밸류가 빈값이 아닌 경우 실행
+    // 키값으로 32(스페이스바) 이고 밸류가 빈값이 아닌 경우 실행
     if (event.keyCode === 32 && event.target.value !== " ") {
       // [기존에 있던 hashArr, 새로 입력한 value]
       setHashArr([...hashArr, "#" + event.target.value]);
