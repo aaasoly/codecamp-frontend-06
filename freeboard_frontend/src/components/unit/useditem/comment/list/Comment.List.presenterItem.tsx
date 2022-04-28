@@ -1,9 +1,33 @@
+import { useQuery } from "@apollo/client";
 import { getDate } from "../../../../../commons/libraries/utils";
 import * as S from "./Comment.List.styles";
+// import {
+//   DELETE_USED_ITEM_QUESTION,
+//   FETCH_USED_ITEM_QUESTIONS,
+// } from "./Comment.List.queries";
 
 export default function UseditemQuestionListItem(props) {
   const login = props.logindata?.fetchUserLoggedIn.email;
   const question = props.el.user.email;
+
+  // const { data } = useQuery(FETCH_USED_ITEM_QUESTIONS);
+  // const { deleteUseditemQuestion } = useQuery(DELETE_USED_ITEM_QUESTION);
+
+  // const onClickDelete = () => {
+  //   deleteUseditemQuestion({
+  //     variables: { useditemQuestionId: data._id },
+
+  //     update(cache, {data}){
+  //       cache.modify({
+  //         fields: {
+  //           fetchUseditemsQuestions: (prev, {readField}) => {
+  //             const filteredPrev = prev.filter((el) => readField("_id", el) !== )
+  //           }
+  //         }
+  //       })
+  //     }
+  //   });
+  // };
 
   return (
     <S.Question__Wrapper>

@@ -31,6 +31,8 @@ export default function UsedItemDetailUI(props) {
         <S.Body__Top>
           <S.ProductInfo>
             <S.Remarks>{props.data?.fetchUseditem.remarks}</S.Remarks>
+            <button onClick={props.onClickPick}>픽하기</button>
+            {props.data?.fetchUseditem.pickedCount}
             <S.Name>{props.data?.fetchUseditem.name}</S.Name>
             <S.Price>{props.data?.fetchUseditem.price}</S.Price>
             <S.CreatedAt>
@@ -80,6 +82,11 @@ export default function UsedItemDetailUI(props) {
         >
           {props.sellerId === props.myId ? "수정" : "구매"} 하기
         </S.Edit__Button>
+        {props.sellerId === props.myId ? (
+          <button onClick={props.onClickDelete}>삭제하기</button>
+        ) : (
+          ""
+        )}
       </S.Wrapper__Footer>
     </S.Wrapper>
   );

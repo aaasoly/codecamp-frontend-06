@@ -14,7 +14,6 @@ import {
 import _ from "lodash";
 
 export default function CreateUsedItem(props) {
-  //useAuth();
   const router = useRouter();
 
   const [useditemAddress, setUseditemAddress] =
@@ -22,7 +21,6 @@ export default function CreateUsedItem(props) {
   const [getLat, setGetLat] = useRecoilState(getLatState);
   const [getLng, setGetLng] = useRecoilState(getLngState);
 
-  // const [useditemAddress, setUseditemAddress] = useState("");
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
@@ -40,14 +38,24 @@ export default function CreateUsedItem(props) {
     }
   };
 
-  const { register, handleSubmit, formState, setValue, trigger } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState,
+    setValue,
+    trigger,
+    reset,
+    getValues,
+  } = useForm({
+    mode: "onChange",
+  });
 
   const onChangeAddress = (event) => {
     setUseditemAddress(event.target.value);
   };
 
   const onChangeContents = (value: string) => {
-    console.log(value);
+    // console.log(value);
     setValue("contents", value === "<p><br></p>" ? "" : value);
     trigger("contents");
   };
@@ -58,6 +66,8 @@ export default function CreateUsedItem(props) {
     setFileUrls(newFileUrls);
   };
 
+  console.log("밑에가 result");
+
   const onClickSubmit = async (data) => {
     try {
       const result = await createUseditem({
@@ -66,7 +76,6 @@ export default function CreateUsedItem(props) {
             name: data.name,
             remarks: data.remarks,
             contents: data.contents,
-            detail: data.detail,
             price: Number(data.price),
             tags: data.tags,
             images: fileUrls,
@@ -127,6 +136,10 @@ export default function CreateUsedItem(props) {
     }
   };
 
+  useEffect(() => {
+    reset({ contents: props.data?.fetchUseditem.contents });
+  }, [props.data]);
+
   // useEffect(() => {
   //   if (props.data?.fetchUseditem.images?.length) {
   //     setFileUrls([...props.data?.fetchUseditem.images]);
@@ -149,6 +162,7 @@ export default function CreateUsedItem(props) {
       useditemAddress={useditemAddress}
       onKeyUpHash={onKeyUpHash}
       hashArr={hashArr}
+      getValues={getValues}
     />
   );
 }

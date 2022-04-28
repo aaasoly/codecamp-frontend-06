@@ -46,8 +46,8 @@ export default function FetchMap(props) {
               result[0].y,
               result[0].x
             );
-            console.log(result);
-            console.log(coords);
+            // console.log(result);
+            // console.log(coords);
 
             // 결과값으로 받은 위치를 마커로 표시합니다
             const marker = new window.kakao.maps.Marker({
@@ -58,7 +58,7 @@ export default function FetchMap(props) {
               // coords.Ma: addr.lng
             });
 
-            console.log(marker);
+            // console.log(marker);
             // console.log(Marker);
 
             // 인포윈도우로 장소에 대한 설명을 표시합니다

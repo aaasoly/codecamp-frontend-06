@@ -1,5 +1,7 @@
+import { useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -41,6 +43,7 @@ const MenuItem = styled.div`
 
 export default function LayoutHeader() {
   const router = useRouter();
+  const { data } = useQuery(FETCH_USER_LOGGED_IN);
 
   const onClickLanding = () => {
     router.push("/");
@@ -62,6 +65,10 @@ export default function LayoutHeader() {
     router.push("/boards/firebase");
   };
 
+  const onClickMyPage = () => {
+    router.push("/mypage");
+  };
+
   return (
     <Wrapper>
       <Box>
@@ -71,7 +78,8 @@ export default function LayoutHeader() {
           <MenuItem onClick={onClickMarket}>Market</MenuItem>
           <MenuItem onClick={onClickAPI}>API</MenuItem>
           <MenuItem onClick={onClickFirebase}>Guest</MenuItem>
-          <MenuItem>My page</MenuItem>
+          <MenuItem onClick={onClickMyPage}>My page</MenuItem>
+          <div>{data?.fetchUserLoggedIn.name}</div>
         </Menu>
       </Box>
     </Wrapper>

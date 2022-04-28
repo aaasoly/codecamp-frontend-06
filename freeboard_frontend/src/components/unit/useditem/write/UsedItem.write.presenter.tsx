@@ -50,13 +50,16 @@ export default function CreateUsedItemUI(props: any) {
 
         <S.Contents>
           <S.SubTitle>상품설명</S.SubTitle>
-          <S.ReactQuillInput onChange={props.onChangeContents} />
+          <S.ReactQuillInput
+            onChange={props.onChangeContents}
+            value={props.getValues("contents") || ""}
+          />
         </S.Contents>
 
         <S.Price>
           <S.SubTitle>판매가격</S.SubTitle>
           <S.PriceInput
-            type="text"
+            type="number"
             {...props.register("price")}
             placeholder="판매 가격을 입력해주세요."
             defaultValue={props.data?.fetchUseditem.price}

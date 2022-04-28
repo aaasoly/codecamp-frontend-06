@@ -1,12 +1,17 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { userInfo } from "os";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import { string } from "yup";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 import { UserInfoState } from "../../../../commons/store";
 import UsedItemDetailUI from "./UsedItem.detail.presenter";
-import { FETCH_USED_ITEM } from "./UsedItem.detail.queries";
+import {
+  DELETE_USED_ITEM,
+  FETCH_USED_ITEM,
+  TOGGLE_USED_ITEM_PICK,
+} from "./UsedItem.detail.queries";
 
 export default function UsedItemDetail() {
   const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
@@ -16,9 +21,10 @@ export default function UsedItemDetail() {
     variables: { useditemId: String(router.query.useditemId) },
   });
   const { data: logindata } = useQuery(FETCH_USER_LOGGED_IN);
+  const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
-  const [isLogin, setIsLogin] = useState(false);
-
+  // const [isLogin, setIsLogin] = useState(false);
   // console.log(
   //   data?.fetchUseditem.seller._id === logindata?.fetchUserLoggedIn._id
   // );
@@ -51,6 +57,46 @@ export default function UsedItemDetail() {
     console.log("구매하기로 이동");
   };
 
+  const onClickDelete = async () => {
+    try {
+      await deleteUseditem({
+        variables: { useditemId: String(router.query.useditemId) },
+      });
+      alert("상품이 삭제되었습니다.");
+      router.push("/market");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const onClickPick = () => {
+    toggleUseditemPick({
+      variables: { useditemId: String(router.query.useditemId) },
+      refetchQueries: [
+        {
+          query: FETCH_USED_ITEM,
+          variables: { useditemId: String(router.query.useditemId) },
+        },
+      ],
+      // optimisticResponse: {
+      //   toggleUseditemPick: (data?.fetchUseditem.pickedCount || 0) + 1,
+      // },
+      // update(cache, { data }) {
+      //   cache.writeQuery({
+      //     query: FETCH_USED_ITEM,
+      //     variables: { useditemId: String(router.query.useditemId) },
+      //     data: {
+      //       fetchUseditem: {
+      //         _id: String(router.query.useditemId),
+      //         __typename: "Useditem",
+      //         pickedCount: data.fetchUseditem,
+      //       },
+      //     },
+      //   });
+      // },
+    });
+  };
+
   return (
     <UsedItemDetailUI
       data={data}
@@ -60,6 +106,8 @@ export default function UsedItemDetail() {
       myId={myId}
       onClickMoveToUpdate={onClickMoveToUpdate}
       onClickMoveToBuy={onClickMoveToBuy}
+      onClickDelete={onClickDelete}
+      onClickPick={onClickPick}
     />
   );
 }
