@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Question__Wrapper = styled.div`
-  width: 1350px;
+  width: 1200px;
   height: 130px;
   display: flex;
 `;
@@ -11,7 +11,7 @@ export const Wrapper__Left = styled.div`
 `;
 
 export const Wrapper__Body = styled.div`
-  width: 1246px;
+  width: 1146px;
   height: 130px;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,16 @@ export const CreatedAt = styled.span`
 
 export const Wrapper__Right = styled.div`
   width: 64px;
+  display: flex;
+  justify-content: space-around;
 `;
+
+export const MyQuestion = styled.div`
+  width: 64px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const EditButton = styled.span``;
+
+export const DeleteButton = styled.span``;

@@ -13,15 +13,9 @@ export const CREATE_USED_ITEM_QUESTION = gql`
       contents
       user {
         _id
-        name
+        email
       }
       createdAt
     }
-  }
-`;
-
-export const DELETE_USED_ITEM_QUESTION = gql`
-  query deleteUseditemQuestion($useditemQuestionId: ID!) {
-    deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
   }
 `;

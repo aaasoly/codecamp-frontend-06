@@ -20,12 +20,6 @@ export default function UsedItemDetailUI(props) {
     slidesToScroll: 1,
   };
 
-  const [useditemAddress, setUseditemAddress] =
-    useRecoilState(useditemAddressState);
-
-  const [getLat, setGetLat] = useRecoilState(getLatState);
-  const [getLng, setGetLng] = useRecoilState(getLngState);
-
   return (
     <S.Wrapper>
       <S.Wrapper__Header>
@@ -69,12 +63,7 @@ export default function UsedItemDetailUI(props) {
         </S.Body__Center>
 
         <S.Map>
-          {/* <MapPage {...props.data?.fetchUseditem.useditemAddress} /> */}
-          <FetchMap
-            useditemAddress={useditemAddress}
-            getLat={getLat}
-            getLng={getLng}
-          />
+          <FetchMap data={props.data} />
         </S.Map>
       </S.Wrapper__Body>
 

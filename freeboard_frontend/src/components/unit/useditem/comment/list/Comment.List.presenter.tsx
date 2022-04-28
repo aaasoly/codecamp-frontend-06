@@ -6,7 +6,11 @@ export default function UseditemQuestionListUI(props) {
     <>
       <InfiniteScroll pageStart={0} loadMore={props.onLoadMore} hasMore={true}>
         {props.data?.fetchUseditemQuestions.map((el) => (
-          <UseditemQuestionListItem key={el._id} el={el} />
+          <UseditemQuestionListItem
+            key={el._id}
+            el={el}
+            logindata={props.logindata}
+          />
         ))}
       </InfiniteScroll>
     </>

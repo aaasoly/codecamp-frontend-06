@@ -45,16 +45,19 @@ export const ProductInfo = styled.div`
 `;
 
 export const Remarks = styled.div`
+  height: 27px;
   font-size: 18px;
   color: #bdbdbd;
 `;
 
 export const Name = styled.div`
+  height: 36px;
   font-size: 24px;
   color: #4f4f4f;
 `;
 
 export const Price = styled.div`
+  height: 53px;
   font-size: 36px;
 `;
 
@@ -64,16 +67,19 @@ export const CreatedAt = styled.div`
 
 export const Body__Center = styled.div`
   display: flex;
+  height: 730px;
   flex-direction: column;
   justify-content: center;
   border-bottom: 1px solid #bdbdbd;
   padding: 20px 0 40px;
+  margin-bottom: 80px;
 `;
 
 export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 504px;
+  height: 384px;
   //margin-bottom: 80px;
 `;
 
@@ -99,6 +105,7 @@ export const Images = styled.img``;
 
 export const Contents = styled.div`
   width: 792px;
+  height: 20%;
   margin-bottom: 40px;
   color: #4f4f4f;
   font-size: 18px;
@@ -112,6 +119,7 @@ export const Tags = styled.div`
 export const Map = styled.div`
   width: 792px;
   height: 360px;
+  margin-bottom: 160px;
 `;
 
 export const Wrapper__Footer = styled.div`
@@ -120,6 +128,7 @@ export const Wrapper__Footer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 382px;
+  margin-bottom: 80px;
 `;
 
 export const List__Button = styled.div`

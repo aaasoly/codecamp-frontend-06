@@ -23,8 +23,6 @@ export default function UsedItemDetail() {
   //   data?.fetchUseditem.seller._id === logindata?.fetchUserLoggedIn._id
   // );
 
-  console.log(logindata);
-
   console.log(data);
 
   // console.log(data?.fetchUseditem.seller._id);
@@ -32,7 +30,6 @@ export default function UsedItemDetail() {
 
   const sellerId = data?.fetchUseditem.seller._id;
   const myId = logindata?.fetchUserLoggedIn._id;
-  console.log(sellerId === myId);
 
   // useEffect(() => {
   //   if (sellerId !== myId) {

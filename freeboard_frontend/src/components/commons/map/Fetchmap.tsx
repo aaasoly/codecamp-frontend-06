@@ -14,7 +14,7 @@ declare const window: typeof globalThis & {
 export default function FetchMap(props) {
   // const [useditemAddress, setUseditemAddress] =
   //   useRecoilState(useditemAddressState);
-  // const address = props.data?.fetchUseditem.useditemAddress.address;
+  const addr = props.data?.fetchUseditem.useditemAddress?.address;
 
   useEffect(() => {
     const script = document.createElement("script"); // <script></script> 생성
@@ -37,38 +37,40 @@ export default function FetchMap(props) {
         const geocoder = new window.kakao.maps.services.Geocoder();
 
         // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(
-          props.data?.useditemAddress.address,
-          function (result, status) {
-            // 정상적으로 검색이 완료됐으면
-            if (status === window.kakao.maps.services.Status.OK) {
-              const coords = new window.kakao.maps.LatLng(
-                result[0].y,
-                result[0].x
-              );
+        geocoder.addressSearch(addr, function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === window.kakao.maps.services.Status.OK) {
+            const coords = new window.kakao.maps.LatLng(
+              // addr.lat,
+              // addr.lng
+              result[0].y,
+              result[0].x
+            );
+            console.log(result);
+            console.log(coords);
 
-              console.log(coords);
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            const marker = new window.kakao.maps.Marker({
+              map: map,
+              position: coords,
+              // position:
+              // coords.La: addr.lat,
+              // coords.Ma: addr.lng
+            });
 
-              // 결과값으로 받은 위치를 마커로 표시합니다
-              const marker = new window.kakao.maps.Marker({
-                map: map,
-                position: coords,
-                // position:
-                // coords.La: props.data?.useditemAddress.lat,
-                // coords.Ma: props.data?.useditemAddress.lng
-              });
+            console.log(marker);
+            // console.log(Marker);
 
-              // 인포윈도우로 장소에 대한 설명을 표시합니다
-              const infowindow = new window.kakao.maps.InfoWindow({
-                content: `<div style="width:150px;height:50px;text-align:center;padding:6px 0;">${props.useditemAddress}</div>`,
-              });
-              infowindow.open(map, marker);
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            const infowindow = new window.kakao.maps.InfoWindow({
+              content: `<div style="width:150px;height:50px;text-align:center;padding:6px 0;">${addr}</div>`,
+            });
+            infowindow.open(map, marker);
 
-              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-              map.setCenter(coords);
-            }
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
           }
-        );
+        });
       });
     };
   }, [props.data]);

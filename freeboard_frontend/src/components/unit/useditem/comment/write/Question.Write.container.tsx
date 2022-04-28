@@ -25,7 +25,7 @@ export default function UseditemQuestionWrite() {
         refetchQueries: [
           {
             query: FETCH_USED_ITEM_QUESTIONS,
-            variables: { useditemId: String(router.query.usdeitemId) },
+            variables: { useditemId: String(router.query.useditemId) },
           },
         ],
       });
