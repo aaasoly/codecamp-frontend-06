@@ -9,7 +9,7 @@ import ImgUploadUI from "./imgupload.presenter";
 import { UPLOAD_FILE } from "./imgupload.queries";
 import { Modal } from "antd";
 
-export default function xImgUpload(props) {
+export default function ImgUpload(props) {
   // 이미지 등록
   // const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const fileRef = useRef<HTMLInputElement>(null);

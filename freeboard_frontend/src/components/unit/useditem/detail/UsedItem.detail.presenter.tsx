@@ -77,7 +77,7 @@ export default function UsedItemDetailUI(props) {
           onClick={
             props.sellerId === props.myId
               ? props.onClickMoveToUpdate
-              : props.onClickMoveToBuy
+              : props.onClickBuying
           }
         >
           {props.sellerId === props.myId ? "수정" : "구매"} 하기

@@ -13,8 +13,8 @@ import {
 import WriteMap from "../../../commons/map/Writemap";
 
 export default function CreateUsedItemUI(props: any) {
-  const [getLat, setGetLat] = useRecoilState(getLatState);
-  const [getLng, setGetLng] = useRecoilState(getLngState);
+  const [getLat] = useRecoilState(getLatState);
+  const [getLng] = useRecoilState(getLngState);
 
   // const [getLatLng, setGetLatLng] = useRecoilState(getLatLngState);
 
@@ -89,8 +89,22 @@ export default function CreateUsedItemUI(props: any) {
             <S.GPS>
               <S.SubTitle>GPS</S.SubTitle>
               <S.GPS__Input>
-                <S.LAT placeholder="위도(LAT)" value={getLat} />
-                <S.LNG placeholder="경도(LNG)" value={getLng} />
+                <S.LAT
+                  placeholder="위도(LAT)"
+                  value={
+                    getLat ||
+                    props.data?.fetchUseditem.useditemAddress.lat ||
+                    ""
+                  }
+                />
+                <S.LNG
+                  placeholder="경도(LNG)"
+                  value={
+                    getLng ||
+                    props.data?.fetchUseditem.useditemAddress.lng ||
+                    ""
+                  }
+                />
               </S.GPS__Input>
             </S.GPS>
 
@@ -98,9 +112,11 @@ export default function CreateUsedItemUI(props: any) {
               <S.SubTitle>주소</S.SubTitle>
               <S.Adress1
                 onChange={props.onChangeAddress}
-                defaultValue={props.data?.fetchUseditem.useditemAddress.address}
+                defaultValue={
+                  props.data?.fetchUseditem.useditemAddress.address || ""
+                }
               />
-              <S.Adress1 onChange={props.onChangeAddress} />
+              <S.Adress1 />
             </S.Adress>
           </S.Location__Right>
         </S.Location>
@@ -119,11 +135,7 @@ export default function CreateUsedItemUI(props: any) {
           </S.ImageBox>
         </S.Images>
 
-        <S.Button
-          onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-        >
-          {props.isEdit ? "수정" : "등록"} 하기
-        </S.Button>
+        <S.Button>{props.isEdit ? "수정" : "등록"} 하기</S.Button>
       </form>
     </S.Wrapper>
   );

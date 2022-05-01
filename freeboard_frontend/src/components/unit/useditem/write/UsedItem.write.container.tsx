@@ -89,6 +89,9 @@ export default function CreateUsedItem(props) {
       });
       console.log(result);
       alert("게시물 등록에 성공했습니다");
+      // setUseditemAddress("");
+      // setGetLat("");
+      // setGetLng("");
       router.push(`/market/${result.data.createUseditem._id}`);
     } catch (error) {
       alert(error.message);
@@ -96,13 +99,17 @@ export default function CreateUsedItem(props) {
   };
 
   const onClickUpdate = async (data) => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data.fetchUseditem.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
     // if (
     //   !data.name &&
     //   !data.remarks &&
     //   !data.contents &&
     //   !data.detail &&
     //   !data.price &&
-    //   !data.tag
+    //   !data.tag &&
+    //    !isChangedFiles
     // ) {
     //   alert("수정한 내용이 없습니다");
     //   return;
@@ -113,8 +120,16 @@ export default function CreateUsedItem(props) {
     const updateUseditemInput = {};
     if (data.name) updateUseditemInput.name = data.name;
     if (data.contents) updateUseditemInput.contents = data.contents;
-    if (data.price) updateUseditemInput.price = data.price;
+    if (data.price) updateUseditemInput.price = Number(data.price);
     if (data.remarks) updateUseditemInput.remarks = data.remarks;
+    if (isChangedFiles) updateUseditemInput.images = fileUrls;
+    if (useditemAddress || getLng || getLat) {
+      updateUseditemInput.useditemAddress = {};
+      if (useditemAddress)
+        updateUseditemInput.useditemAddress.address = useditemAddress;
+      if (getLng) updateUseditemInput.useditemAddress.lng = getLng;
+      if (getLat) updateUseditemInput.useditemAddress.lat = getLat;
+    }
 
     try {
       await updateUseditem({
@@ -131,6 +146,9 @@ export default function CreateUsedItem(props) {
       });
       alert("수정 되었습니다.");
       router.push(`/market/${router.query.useditemId}`);
+      setUseditemAddress("");
+      setGetLat("");
+      setGetLng("");
     } catch (error) {
       console.log(error.message);
     }
@@ -140,11 +158,11 @@ export default function CreateUsedItem(props) {
     reset({ contents: props.data?.fetchUseditem.contents });
   }, [props.data]);
 
-  // useEffect(() => {
-  //   if (props.data?.fetchUseditem.images?.length) {
-  //     setFileUrls([...props.data?.fetchUseditem.images]);
-  //   }
-  // }, [props.data]);
+  useEffect(() => {
+    if (props.data?.fetchUseditem.images?.length) {
+      setFileUrls([...props.data?.fetchUseditem.images]);
+    }
+  }, [props.data]);
 
   return (
     <CreateUsedItemUI

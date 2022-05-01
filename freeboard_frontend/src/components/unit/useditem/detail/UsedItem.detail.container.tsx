@@ -8,6 +8,7 @@ import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 import { UserInfoState } from "../../../../commons/store";
 import UsedItemDetailUI from "./UsedItem.detail.presenter";
 import {
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
   DELETE_USED_ITEM,
   FETCH_USED_ITEM,
   TOGGLE_USED_ITEM_PICK,
@@ -23,6 +24,9 @@ export default function UsedItemDetail() {
   const { data: logindata } = useQuery(FETCH_USER_LOGGED_IN);
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
 
   // const [isLogin, setIsLogin] = useState(false);
   // console.log(
@@ -51,10 +55,6 @@ export default function UsedItemDetail() {
 
   const onClickMoveToUpdate = () => {
     router.push(`/market/${router.query.useditemId}/edit`);
-  };
-
-  const onClickMoveToBuy = () => {
-    console.log("구매하기로 이동");
   };
 
   const onClickDelete = async () => {
@@ -97,6 +97,18 @@ export default function UsedItemDetail() {
     });
   };
 
+  const onClickBuying = async () => {
+    try {
+      await createPointTransactionOfBuyingAndSelling({
+        variables: { useritemId: String(router.query.useditemId) },
+      });
+      alert("구매에 성공했습니다");
+      router.push("/market");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <UsedItemDetailUI
       data={data}
@@ -105,9 +117,9 @@ export default function UsedItemDetail() {
       sellerId={sellerId}
       myId={myId}
       onClickMoveToUpdate={onClickMoveToUpdate}
-      onClickMoveToBuy={onClickMoveToBuy}
       onClickDelete={onClickDelete}
       onClickPick={onClickPick}
+      onClickBuying={onClickBuying}
     />
   );
 }

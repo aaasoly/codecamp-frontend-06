@@ -45,6 +45,8 @@ export const UPDATE_USED_ITEM = gql`
       useditemAddress {
         address
         addressDetail
+        lng
+        lat
       }
     }
   }
