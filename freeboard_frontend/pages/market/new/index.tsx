@@ -1,6 +1,8 @@
+import { withAuth } from "../../../src/commons/hoc/withAuth";
 import CreateUsedItem from "../../../src/components/unit/useditem/write/UsedItem.write.container";
-import CreateUsedItemUI from "../../../src/components/unit/useditem/write/UsedItem.write.presenter";
 
-export default function CreateUsedItmePage() {
+function CreateUsedItemPage() {
   return <CreateUsedItem isEdit={false} />;
 }
+
+export default withAuth(CreateUsedItemPage);

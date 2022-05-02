@@ -6,14 +6,16 @@ import {
   ApolloProvider,
   InMemoryCache,
 } from "@apollo/client";
-import { accessTokenState, UserInfoState } from "../store";
+// import { accessTokenState, UserInfoState } from "../store";
 import { useEffect } from "react";
-import { getAccessToken } from "../libraries/getAccessToken";
+// import { getAccessToken } from "../libraries/getAccessToken";
 import { onError } from "@apollo/client/link/error";
+import { accessTokenState, UserInfoState } from "../store";
+import { getAccessToken } from "../libraries/getAccessToken";
 
 export default function ApolloSetting(props) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
+  // const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
 
   useEffect(() => {
     getAccessToken().then((newAccessToken) => {

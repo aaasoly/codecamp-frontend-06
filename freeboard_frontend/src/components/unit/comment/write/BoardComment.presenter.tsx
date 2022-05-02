@@ -1,6 +1,7 @@
 import * as S from "./BoardComment.styles";
 
 export default function BoardCommentWriteUI(props) {
+  console.log(props.isEdit);
   return (
     <S.CommentWrapper>
       {!props.isEdit && (
