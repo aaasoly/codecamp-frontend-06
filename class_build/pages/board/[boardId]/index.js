@@ -47,7 +47,7 @@ export const getServerSideProps = async (context) => {
     "https://backend06.codebootcamp.co.kr/graphql",
     FETCH_BOARD,
     {
-      boardId: context.query.boardId, // apollo seting 에서 contenxt
+      boardId: context.query.boardId, // apollo setting 에서 contenxt
     } // variables : 은 따로 적지 않아도 됨
   );
 
