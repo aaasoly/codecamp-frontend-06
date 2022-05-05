@@ -82,10 +82,15 @@ export default function UsedItemDetailUI(props) {
         >
           {props.sellerId === props.myId ? "수정" : "구매"} 하기
         </S.Edit__Button>
+
         {props.sellerId === props.myId ? (
           <button onClick={props.onClickDelete}>삭제하기</button>
         ) : (
-          ""
+          <S.Edit__Button
+            onClick={props.onClickBasket(props.data?.fetchUseditem)}
+          >
+            장바구니
+          </S.Edit__Button>
         )}
       </S.Wrapper__Footer>
     </S.Wrapper>

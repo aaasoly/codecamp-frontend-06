@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FETCH_USED_ITEM_QUESTIONS } from "../list/Comment.List.queries";
+import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "../reply_list/Reply.List.queries";
 import UseditemQuestionWriteUI from "./Question.Write.presenter";
 import {
   CREATE_USED_ITEM_QUESTION,
@@ -29,8 +30,8 @@ export default function UseditemQuestionWrite(props) {
         },
         refetchQueries: [
           {
-            query: FETCH_USED_ITEM_QUESTIONS,
-            variables: { useditemId: String(router.query.useditemId) },
+            query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
+            variables: { useditemQuestionId: props.el._id },
           },
         ],
       });
@@ -57,8 +58,8 @@ export default function UseditemQuestionWrite(props) {
         },
         refetchQueries: [
           {
-            query: FETCH_USED_ITEM_QUESTIONS,
-            variables: { useditemId: String(router.query.useditemId) },
+            query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
+            variables: { useditemQuestionId: props.el._id },
           },
         ],
       });

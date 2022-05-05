@@ -44,3 +44,18 @@ export const restoreAccessTokenLoadable = selector({
 //     Ma: "",
 //   },
 // });
+
+export const basketCountState = atom({
+  key: "basketCountState",
+  default: 0,
+});
+
+export const basketItemState = atom({
+  key: "basketItemState",
+  default: [],
+});
+
+export const recentItemState = atom({
+  key: "recentItemState",
+  default: [],
+});

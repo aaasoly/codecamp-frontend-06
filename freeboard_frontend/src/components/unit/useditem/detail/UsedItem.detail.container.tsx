@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { string } from "yup";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
-import { UserInfoState } from "../../../../commons/store";
+import {
+  basketCountState,
+  basketItemState,
+  UserInfoState,
+} from "../../../../commons/store";
 import UsedItemDetailUI from "./UsedItem.detail.presenter";
 import {
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
@@ -16,6 +20,8 @@ import {
 
 export default function UsedItemDetail() {
   const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
+  const [, setBasketCount] = useRecoilState(basketCountState);
+  const [basketItem, setBasketItem] = useRecoilState(basketItemState);
   const router = useRouter();
 
   const { data } = useQuery(FETCH_USED_ITEM, {
@@ -33,7 +39,7 @@ export default function UsedItemDetail() {
   //   data?.fetchUseditem.seller._id === logindata?.fetchUserLoggedIn._id
   // );
 
-  console.log(data);
+  // console.log(data);
 
   // console.log(data?.fetchUseditem.seller._id);
   // console.log(logindata?.fetchUserLoggedIn._id);
@@ -109,6 +115,23 @@ export default function UsedItemDetail() {
     }
   };
 
+  const onClickBasket = (el) => () => {
+    const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
+
+    const temp = baskets.filter((basketEl) => basketEl._id === el._id);
+    if (temp.length === 1) {
+      alert("이미 담으신 상품입니다");
+      return;
+    }
+
+    // rest parameter
+    const { __typename, ...newEl } = el;
+    baskets.push(newEl);
+    localStorage.setItem("baskets", JSON.stringify(baskets));
+    setBasketItem(baskets);
+    setBasketCount(baskets.length);
+  };
+
   return (
     <UsedItemDetailUI
       data={data}
@@ -120,6 +143,7 @@ export default function UsedItemDetail() {
       onClickDelete={onClickDelete}
       onClickPick={onClickPick}
       onClickBuying={onClickBuying}
+      onClickBasket={onClickBasket}
     />
   );
 }

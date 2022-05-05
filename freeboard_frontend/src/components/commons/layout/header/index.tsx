@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
@@ -41,9 +41,16 @@ const MenuItem = styled.div`
   }
 `;
 
+const LOG_OUT_USER = gql`
+  mutation logoutUser {
+    logoutUser
+  }
+`;
+
 export default function LayoutHeader() {
   const router = useRouter();
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  const [logoutUser] = useMutation(LOG_OUT_USER);
 
   const onClickLanding = () => {
     router.push("/");
@@ -69,6 +76,11 @@ export default function LayoutHeader() {
     router.push("/mypage");
   };
 
+  const onClickLogOut = async () => {
+    await logoutUser();
+    location.reload();
+  };
+
   return (
     <Wrapper>
       <Box>
@@ -78,8 +90,17 @@ export default function LayoutHeader() {
           <MenuItem onClick={onClickMarket}>Market</MenuItem>
           <MenuItem onClick={onClickAPI}>API</MenuItem>
           <MenuItem onClick={onClickFirebase}>Guest</MenuItem>
-          <MenuItem onClick={onClickMyPage}>My page</MenuItem>
-          <div>{data?.fetchUserLoggedIn.name}</div>
+          {data?.fetchUserLoggedIn ? (
+            <>
+              <MenuItem onClick={onClickMyPage}>My page</MenuItem>
+              <MenuItem onClick={onClickLogOut}>Logout</MenuItem>
+            </>
+          ) : (
+            ""
+          )}
+          <div onClick={onClickLanding}>
+            {data?.fetchUserLoggedIn.name || "로그인"}
+          </div>
         </Menu>
       </Box>
     </Wrapper>

@@ -127,7 +127,7 @@ export const Wrapper__Footer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 382px;
+  width: 550px;
   margin-bottom: 80px;
 `;
 
