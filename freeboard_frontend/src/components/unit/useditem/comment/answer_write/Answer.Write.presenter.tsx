@@ -1,13 +1,13 @@
-import * as S from "./Reply.Write.styles";
+import * as S from "./Answer.Write.styles";
 
-export default function UseditemQuestionWriteUI(props) {
+export default function UseditemQuestionAnswerWriteUI(props) {
   return (
     <S.Wrapper>
       <S.Contents
         type="text"
         placeholder="개인정보웅애웅"
-        onChange={props.onChangeContents}
-        defaultValue={props.contents || props.el?.contents || ""}
+        onChange={props.onChangeReply}
+        defaultValue={props.reply || props.AnswerEl?.contents || ""}
       ></S.Contents>
 
       <S.Wrapper__Bottom>
@@ -17,7 +17,7 @@ export default function UseditemQuestionWriteUI(props) {
             props.isEdit ? props.onClickUpdateAnswer : props.onClickCreateAnswer
           }
         >
-          답글달기
+          {props.isEdit ? "수정하기" : "답글달기"}
         </S.CreateButton>
       </S.Wrapper__Bottom>
     </S.Wrapper>

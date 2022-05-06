@@ -1,15 +1,16 @@
 import InfiniteScroll from "react-infinite-scroller";
-import UseditemQuestionAnswersListItem from "./Reply.List.presenterItem";
+import UseditemQuestionAnswersListItem from "./Answer.List.presenterItem";
 
 export default function UseditemQuestionAnswersListUI(props) {
   return (
     <>
       <InfiniteScroll pageStart={0} loadMore={props.onLoadMore} hasMore={true}>
-        {props.data?.fetchUseditemQuestionAnswers.map((el) => (
+        {props.data?.fetchUseditemQuestionAnswers.map((AnswerEl) => (
           <UseditemQuestionAnswersListItem
-            key={el._id}
-            el={el}
+            key={AnswerEl._id}
+            AnswerEl={AnswerEl}
             logindata={props.logindata}
+            QuestionEl={props.QuestionEl}
           />
         ))}
       </InfiniteScroll>

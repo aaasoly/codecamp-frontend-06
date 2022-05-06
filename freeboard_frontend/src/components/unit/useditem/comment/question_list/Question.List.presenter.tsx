@@ -1,5 +1,5 @@
 import InfiniteScroll from "react-infinite-scroller";
-import UseditemQuestionListItem from "./Comment.List.presenterItem";
+import UseditemQuestionListItem from "./Question.List.presenterItem";
 
 export default function UseditemQuestionListUI(props) {
   return (

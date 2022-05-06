@@ -2,42 +2,43 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getDate } from "../../../../../commons/libraries/utils";
-import UseditemReplyWrite from "../reply/Reply.Write.container";
-
-import UseditemQuestionWrite from "../write/Question.Write.container";
-import UseditemQuestionAnswerListUI from "./Reply.List.presenter";
+import { CREATE_USED_ITEM_QUESTION_ANSWER } from "../answer_write/Answer.Write.queries";
+import UseditemQuestionAnswerList from "../answer_list/Answer.List.container";
+import UseditemQuestionWrite from "../question_write/Question.Write.container";
 import {
-  DELETE_USED_ITEM_QUESTION_ANSWER,
-  FETCH_USED_ITEMS_QUESTION_ANSWERS,
-} from "./Reply.List.queries";
-import * as S from "./Reply.List.styles";
+  DELETE_USED_ITEM_QUESTION,
+  FETCH_USED_ITEM_QUESTIONS,
+} from "./Question.List.queries";
+import * as S from "./Question.List.styles";
+import UseditemAnswerWrite from "../answer_write/Answer.Write.container";
 
-export default function UseditemQuestionAnswersListItem(props) {
+export default function UseditemQuestionListItem(props) {
   const login = props.logindata?.fetchUserLoggedIn.email;
   const question = props.el.user.email;
 
   const router = useRouter();
 
-  const [deleteUseditemQuestionAnswer] = useMutation(
-    DELETE_USED_ITEM_QUESTION_ANSWER
-  );
+  const [deleteUseditemQuestion] = useMutation(DELETE_USED_ITEM_QUESTION);
 
   // 문의하기 수정 상태값 설정
   const [isEdit, setIsEdit] = useState(false);
 
   // 답댓글 달기 상태값 설정
-  const [createReply, setCreateReply] = useState(false);
+  const [isAnswer, setIsAnswer] = useState(false);
+  const [createUseditemQuestionAnswer] = useMutation(
+    CREATE_USED_ITEM_QUESTION_ANSWER
+  );
 
   // 🔥 문의하기 삭제
-  const onClickDeleteQuestionAnswer = async (event) => {
+  const onClickDeleteQuestion = async (event) => {
     try {
-      await deleteUseditemQuestionAnswer({
+      await deleteUseditemQuestion({
         variables: { useditemQuestionId: props.el._id },
 
         refetchQueries: [
           {
-            query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: props.el_.id },
+            query: FETCH_USED_ITEM_QUESTIONS,
+            variables: { useditemId: router.query.useditemId },
           },
         ],
 
@@ -61,7 +62,7 @@ export default function UseditemQuestionAnswersListItem(props) {
   };
 
   const onClickCreateReply = () => {
-    setCreateReply(true);
+    setIsAnswer(true);
   };
 
   return (
@@ -84,15 +85,13 @@ export default function UseditemQuestionAnswersListItem(props) {
                 </S.EditButton>
                 <S.DeleteButton
                   id={props.el._id}
-                  // onClick={onClickDeleteQuestion}
+                  onClick={onClickDeleteQuestion}
                 >
                   삭제
                 </S.DeleteButton>
               </S.MyQuestion>
             ) : (
-              <S.EditButton onClick={onClickDeleteQuestionAnswer}>
-                댓글
-              </S.EditButton>
+              <S.EditButton onClick={onClickCreateReply}>답글달기</S.EditButton>
             )}
           </S.Wrapper__Right>
         </S.Question__Wrapper>
@@ -106,8 +105,12 @@ export default function UseditemQuestionAnswersListItem(props) {
         />
       )}
       {/* 대댓글 작성 인풋 */}
-      {createReply === true && <UseditemReplyWrite el={props.el} />}
-      <UseditemQuestionAnswerListUI />
+      <div style={{ marginLeft: "30px" }}>
+        {isAnswer === true && (
+          <UseditemAnswerWrite el={props.el} setIsAnswer={setIsAnswer} />
+        )}
+        <UseditemQuestionAnswerList el={props.el} />
+      </div>
     </>
   );
 }

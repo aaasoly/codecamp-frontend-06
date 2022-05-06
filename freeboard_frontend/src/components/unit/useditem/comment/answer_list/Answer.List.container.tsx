@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { FETCH_USER_LOGGED_IN } from "../../../../../commons/login/Login.queries";
-import UseditemQuestionAnswersListUI from "./Reply.List.presenter";
-import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "./Reply.List.queries";
+import UseditemQuestionAnswersListUI from "./Answer.List.presenter";
+import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "./Answer.List.queries";
 
 export default function UseditemQuestionAnswerList(props) {
   // const router = useRouter();
@@ -14,10 +14,10 @@ export default function UseditemQuestionAnswerList(props) {
   // 로그인된 유저랑 같으면 수정 삭제 버튼 띄우기
   const { data: logindata } = useQuery(FETCH_USER_LOGGED_IN);
 
-  console.log("앤써" + data);
-  console.log(props.el._id);
-  // console.log(logindata);
+  // console.log("밑에가 페치앤써 아이디");
+  // console.log(props.el._id);
 
+  // 무한 스크롤
   const onLoadMore = () => {
     if (!data) return;
     fetchMore({
@@ -47,6 +47,7 @@ export default function UseditemQuestionAnswerList(props) {
       data={data}
       onLoadMore={onLoadMore}
       logindata={logindata}
+      QuestionEl={props.el} // 페치 퀘스쳔에서 아이디값 넘겨주기
     />
   );
 }

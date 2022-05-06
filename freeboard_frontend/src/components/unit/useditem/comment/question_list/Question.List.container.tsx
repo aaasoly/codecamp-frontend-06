@@ -5,12 +5,12 @@ import {
   IQuery,
   IQueryFetchUseditemQuestionsArgs,
 } from "../../../../../commons/types/generated/types";
-import UseditemQuestionListUI from "./Comment.List.presenter";
+import UseditemQuestionListUI from "./Question.List.presenter";
 import {
   DELETE_USED_ITEM_QUESTION,
   FETCH_USED_ITEM_QUESTIONS,
   UPDATE_USED_ITEM_QUESTIONS,
-} from "./Comment.List.queries";
+} from "./Question.List.queries";
 
 export default function UseditemQuestionList() {
   const router = useRouter();

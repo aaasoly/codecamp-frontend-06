@@ -1,15 +1,15 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FETCH_USED_ITEM_QUESTIONS } from "../list/Comment.List.queries";
-import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "../reply_list/Reply.List.queries";
-import UseditemQuestionWriteUI from "./Reply.Write.presenter";
+import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "../answer_list/Answer.List.queries";
+import UseditemQuestionAnswerWriteUI from "./Answer.Write.presenter";
+
 import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
   UPDATE_USED_ITEM_QUESTION_ANSWER,
-} from "./Reply.Write.queries";
+} from "./Answer.Write.queries";
 
-export default function UseditemReplyWrite(props) {
+export default function UseditemAnswerWrite(props) {
   const router = useRouter();
   const [createUseditemQuestionAnswer] = useMutation(
     CREATE_USED_ITEM_QUESTION_ANSWER
@@ -17,36 +17,35 @@ export default function UseditemReplyWrite(props) {
   const [updateUseditemQuestionAnswer] = useMutation(
     UPDATE_USED_ITEM_QUESTION_ANSWER
   );
-  // const { data } = useQuery(FETCH_USED_ITEMS_QUESTION_ANSWERS);
-  // const { data } = useQuery(FETCH_USED_ITEM_QUESTIONS);
 
-  const [contents, setContents] = useState("");
+  const [reply, setReply] = useState("");
 
-  const onChangeContents = (event) => {
-    setContents(event.target.value);
+  const onChangeReply = (event) => {
+    setReply(event.target.value);
   };
 
-  console.log(props.el._id);
-  // console.log(data);
+  console.log(props.AnswerEl);
+  console.log(props.QuestionEl);
 
   // ✏️ 답글 등록
   const onClickCreateAnswer = async () => {
     try {
       const result = await createUseditemQuestionAnswer({
         variables: {
-          createUseditemQuestionAnswerInput: { contents },
-          useditemQuestionId: props.el._id,
+          createUseditemQuestionAnswerInput: { contents: reply },
+          useditemQuestionId: props.el._id, // props.QuestionEl._id,
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: String(router.query.useditemId) },
+            variables: { useditemQuestionId: props.el._id }, // props.QuestionEl._id,
           },
         ],
       });
       alert("답글이 등록되었습니다.");
       console.log(result);
-      setContents("");
+      setReply("");
+      props.setIsAnswer?.(false);
     } catch (error) {
       alert(error.message);
     }
@@ -55,23 +54,23 @@ export default function UseditemReplyWrite(props) {
   // ✏️ 답댓 업데이트
   const onClickUpdateAnswer = async () => {
     try {
-      // if (!props.el?._id) return;
+      if (!props.AnswerEl?._id) return;
 
-      const updateUseditemQuestionAnswerInput = {};
-      if (contents !== "")
-        updateUseditemQuestionAnswerInput.contents = contents;
+      // const updateUseditemQuestionAnswerInput = {};
+      // if (contents !== "")
+      //   updateUseditemQuestionAnswerInput.contents = contents;
 
       const result = await updateUseditemQuestionAnswer({
         variables: {
-          updateUseditemQuestionAnswerInput,
-          useditemQuestionId: props.el._id,
+          updateUseditemQuestionAnswerInput: { contents: reply },
+          useditemQuestionAnswerId: props.AnswerEl._id,
         },
-        // refetchQueries: [
-        //   {
-        //     query:
-        //     variables: {  },
-        //   },
-        // ],
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
+            variables: { useditemQuestionId: props.QuestionEl._id },
+          },
+        ],
       });
       props.setIsEdit?.(false);
       alert("수정이 완료되었습니다.");
@@ -82,13 +81,14 @@ export default function UseditemReplyWrite(props) {
   };
 
   return (
-    <UseditemQuestionWriteUI
-      onChangeContents={onChangeContents}
+    <UseditemQuestionAnswerWriteUI
+      onChangeReply={onChangeReply}
       onClickCreateAnswer={onClickCreateAnswer}
       onClickUpdateAnswer={onClickUpdateAnswer}
-      contents={contents}
+      reply={reply}
       el={props.el}
       isEdit={props.isEdit}
+      AnswerEl={props.AnswerEl}
     />
   );
 }

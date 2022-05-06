@@ -1,6 +1,6 @@
 import { withAuth } from "../../../src/commons/hoc/withAuth";
-import UseditemQuestionList from "../../../src/components/unit/useditem/comment/list/Comment.List.container";
-import UseditemQuestionWrite from "../../../src/components/unit/useditem/comment/write/Question.Write.container";
+import UseditemQuestionList from "../../../src/components/unit/useditem/comment/question_list/Question.List.container";
+import UseditemQuestionWrite from "../../../src/components/unit/useditem/comment/question_write/Question.Write.container";
 import UsedItemDetail from "../../../src/components/unit/useditem/detail/UsedItem.detail.container";
 
 function UsedItemDetailPage() {
