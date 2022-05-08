@@ -55,7 +55,12 @@ export const basketItemState = atom({
   default: [],
 });
 
-export const recentItemState = atom({
-  key: "recentItemState",
+export const todayItemState = atom({
+  key: "todayItemState",
   default: [],
 });
+
+// export const myTodayBasket = atom({
+//   key: "myTodayBasket",
+//   default: false,
+// });

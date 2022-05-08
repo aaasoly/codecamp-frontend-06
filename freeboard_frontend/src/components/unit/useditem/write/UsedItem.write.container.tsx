@@ -34,7 +34,7 @@ export default function CreateUsedItem(props) {
       // setHashArr((prev) => [...prev, hashtag]);
       // setHashtag("");
       setHashArr([...hashArr, "#" + event.target.value]);
-      event.target.value = hashArr.map((el) => el);
+      event.target.value = "";
     }
   };
 
@@ -77,7 +77,7 @@ export default function CreateUsedItem(props) {
             remarks: data.remarks,
             contents: data.contents,
             price: Number(data.price),
-            tags: data.tags,
+            tags: hashArr,
             images: fileUrls,
             useditemAddress: {
               address: useditemAddress,

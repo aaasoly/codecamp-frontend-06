@@ -2,6 +2,14 @@ import InfiniteScroll from "react-infinite-scroller";
 import UsedItemListUIItem from "./UsedItem.list.presenterItem";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
+import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import {
+  myTodayBasket,
+  recentItemState,
+  todayItemState,
+} from "../../../../commons/store";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   width: 1600px;
@@ -31,16 +39,21 @@ const TodayView = styled.div`
   border: 1px solid #bdbdbd;
   position: static;
   padding: 5px;
-`;
-
-const Today = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
-const TodayItem = styled.div`
+// const Today = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
+
+const TodayItem = styled.img`
   width: 160px;
   height: 160px;
+  margin-bottom: 10px;
+  background-color: #000;
 `;
 
 const CreateButton = styled.button`
@@ -50,15 +63,31 @@ const CreateButton = styled.button`
 `;
 
 export default function UsedItemListUI(props) {
+  // const [todayBasketState] = useRecoilState(myTodayBasket);
+  const [todayItem, setTodayItem] = useRecoilState(todayItemState);
+
+  const router = useRouter();
+
+  // 오늘 본 상품 목록 뿌리기
+  useEffect(() => {
+    const today = JSON.parse(localStorage.getItem(props.todayWatched) || "[]");
+    const threeToday = today.slice(0, 3);
+    setTodayItem(threeToday);
+  }, []);
+
+  const onClickMoveToDetail = (event) => {
+    router.push(`market/${event.currentTarget.id}`);
+  };
+
   return (
     <Wrapper>
       <Wrapper__Top>
         인기 상품
-        <Today>
-          {/* {props.ofTheBest?.fetchUseditemsOfTheBest.map((el) => (
+        {/* <Today> */}
+        {/* {props.ofTheBest?.fetchUseditemsOfTheBest.map((el) => (
             <div>{props.el._id}</div>
           ))} */}
-        </Today>
+        {/* </Today> */}
       </Wrapper__Top>
       <Wrapper__Body>
         <div style={{ height: "1004px", overflow: "auto" }}>
@@ -72,7 +101,7 @@ export default function UsedItemListUI(props) {
               <UsedItemListUIItem
                 key={uuidv4()}
                 el={el}
-                onClickMoveToDetail={props.onClickMoveToDetail}
+                onClickMoveToDetail={props.onClickMoveToDetail(el)}
               />
             ))}
           </InfiniteScroll>
@@ -81,11 +110,16 @@ export default function UsedItemListUI(props) {
         <Wrapper__Right>
           <TodayView>
             오늘 본 상품
-            <Today>
-              {/* {props.today.map((el) => {
-                <TodayItem>{props.el.seller}</TodayItem>;
-              })} */}
-            </Today>
+            {/* <Today> */}
+            {todayItem.map((el) => (
+              <TodayItem
+                key={el._id}
+                src={`https://storage.googleapis.com/${el.images?.[0]}`}
+                onClick={onClickMoveToDetail}
+                id={el._id}
+              />
+            ))}
+            {/* </Today> */}
           </TodayView>
         </Wrapper__Right>
       </Wrapper__Body>

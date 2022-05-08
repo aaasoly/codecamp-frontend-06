@@ -76,6 +76,11 @@ export default function CreateUsedItemUI(props: any) {
             defaultValue={props.data?.fetchUseditem.tags}
           />
         </S.Tags>
+        <div style={{ marginLeft: "260px" }}>
+          {props.hashArr.map((el, idx) => (
+            <span key={idx}>{el}</span>
+          ))}
+        </div>
 
         <S.Location>
           <S.Location__Left>

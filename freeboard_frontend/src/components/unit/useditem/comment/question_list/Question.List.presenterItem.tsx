@@ -89,9 +89,10 @@ export default function UseditemQuestionListItem(props) {
                 >
                   삭제
                 </S.DeleteButton>
+                {/* <S.EditButton onClick={onClickCreateReply}>답글</S.EditButton> */}
               </S.MyQuestion>
             ) : (
-              <S.EditButton onClick={onClickCreateReply}>답글달기</S.EditButton>
+              <S.EditButton onClick={onClickCreateReply}>답글</S.EditButton>
             )}
           </S.Wrapper__Right>
         </S.Question__Wrapper>

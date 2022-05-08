@@ -28,7 +28,7 @@ export default function UseditemQuestionList() {
   // 로그인된 유저랑 같으면 수정 삭제 버튼 띄우기
   const { data: logindata } = useQuery(FETCH_USER_LOGGED_IN);
 
-  console.log(data);
+  // console.log(data);
 
   // console.log(logindata);
   const onLoadMore = () => {

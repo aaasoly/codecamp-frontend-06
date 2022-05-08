@@ -61,7 +61,17 @@ export default function UsedItemDetailUI(props) {
           ) : (
             <div></div>
           )}
-          <S.Tags>{props.data?.fetchUseditem.tags}</S.Tags>
+          <S.Tags>
+            {props.data?.fetchUseditem.tags ? (
+              <div>
+                {props.data?.fetchUseditem.tags.map((el, idx) => (
+                  <span key={idx}>{el}</span>
+                ))}
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </S.Tags>
         </S.Body__Center>
 
         <S.Map>

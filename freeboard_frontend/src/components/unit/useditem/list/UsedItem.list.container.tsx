@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { todayItemState } from "../../../../commons/store";
 import UsedItemListUI from "./UsedItem.list.presenter";
 import {
   FETCH_USED_ITEMS,
@@ -13,11 +15,14 @@ export default function UsedItemList() {
 
   const router = useRouter();
 
-  const [isSaw, setIsSaw] = useState(false);
-  const [today, setToday] = useState([]);
+  const [todayItem, setTodayItem] = useRecoilState(todayItemState);
+  // const [, setTodayState] = useRecoilState(myTodayBasket);
+
+  // const [isSaw, setIsSaw] = useState(false);
+  // const [today, setToday] = useState([]);
 
   // 오늘 본 상품
-  const wasSaw = () => {
+  const myDate = () => {
     const newdate = new Date();
     const yyyy = newdate.getFullYear();
     const mm = newdate.getMonth() + 1;
@@ -25,11 +30,11 @@ export default function UsedItemList() {
     return `${yyyy}-${mm}-${dd}`;
   };
 
-  const todaySaw = wasSaw();
+  // const todaySaw = wasSaw();
 
-  useEffect(() => {
-    setToday(JSON.parse(localStorage.getItem(todaySaw) || "[]"));
-  }, []);
+  // useEffect(() => {
+  //   setToday(JSON.parse(localStorage.getItem(todaySaw) || "[]"));
+  // }, []);
 
   // const onClickItem = (el) => () => {
   //   setIsSaw(true);
@@ -50,8 +55,22 @@ export default function UsedItemList() {
     router.push("/market/new");
   };
 
-  const onClickMoveToDetail = (event) => {
+  const todayWatched = myDate();
+
+  const onClickMoveToDetail = (el) => (event) => {
     router.push(`/market/${event.currentTarget.id}`);
+
+    const today = JSON.parse(localStorage.getItem(todayWatched) || "[]");
+    // const today = JSON.parse(localStorage.getItem("today") || "[]");
+
+    const { __typename, ...newEl } = el;
+    today.unshift(newEl);
+    localStorage.setItem(todayWatched, JSON.stringify(today));
+    // localStorage.setItem("today", JSON.stringify(today));
+    const threeRecent = today.slice(0, 3);
+    setTodayItem(threeRecent);
+
+    // setTodayState((prev) => !prev);
 
     // 오늘 본 아이템
     // setIsSaw(true);
@@ -93,7 +112,8 @@ export default function UsedItemList() {
       onLoadMore={onLoadMore}
       onClickMoveToWrite={onClickMoveToWrite}
       ofTheBest={ofTheBest}
-      today={today}
+      // today={today}
+      todayWatched={todayWatched}
     />
   );
 }
