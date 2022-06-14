@@ -28,8 +28,8 @@ export const SearchInput = styled.input`
   border: none;
   width: 300px;
   height: 40px;
-  padding: 5px 10px;
-  border-radius: 10px;
+  padding: 5px 15px;
+  border-radius: 30px;
   background-color: #eee;
   &:focus {
     outline: none;
@@ -45,12 +45,14 @@ export const Row = styled.div`
 
 export const BoradReview = styled.div`
   width: 300px;
-  height: 500px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #bebebe;
+  overflow: hidden;
 `;
 
 export const Thum__Header = styled.div`
@@ -81,6 +83,7 @@ export const Thum__Bottom = styled.div`
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #bdbdbd;
+  padding: 8px;
 `;
 
 export const Title = styled.div`
@@ -89,6 +92,9 @@ export const Title = styled.div`
   padding: 8px;
   font-weight: 700;
   border-bottom: 1px solid #bdbdbd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Contents = styled.div`

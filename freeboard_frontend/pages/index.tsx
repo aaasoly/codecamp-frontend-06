@@ -193,8 +193,7 @@ export default function Home() {
   );
 }
 
-{
-  /* <StyledSlider {...settings}>
+/* <StyledSlider {...settings}>
               <ImgBox>
                 <BannerImg src="/img/1.jpeg" />
               </ImgBox>
@@ -205,4 +204,3 @@ export default function Home() {
                 <BannerImg src="/img/3.jpeg" />
               </ImgBox>
             </StyledSlider> */
-}

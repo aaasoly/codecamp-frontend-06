@@ -1,10 +1,6 @@
 import * as S from "./Boardetail.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleUser,
-  faLink,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 // import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import { IMyPropsBoardDetailUI } from "./Boardetail.types";
 import { getDate } from "../../../../commons/libraries/utils";
@@ -15,6 +11,7 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
     <S.Wrapper>
       <S.PostWrapper>
         <S.PostHeader>
+          <S.PostTitle>{props.data?.fetchBoard?.title}</S.PostTitle>
           <S.HeaderLeft>
             <S.PostUserIcon>
               <FontAwesomeIcon icon={faCircleUser} size="3x" />
@@ -22,12 +19,12 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
             <S.PostInfo>
               <S.PostUser>{props.data?.fetchBoard?.writer}</S.PostUser>
               <S.PostDate>
-                Date : {getDate(props.data?.fetchBoard?.createdAt)}
+                {getDate(props.data?.fetchBoard?.createdAt)}
               </S.PostDate>
             </S.PostInfo>
           </S.HeaderLeft>
 
-          <S.HeaderRight>
+          {/* <S.HeaderRight>
             <S.LocaDetail>
               <S.Address>
                 {props.data?.fetchBoard?.boardAddress?.zipcode}
@@ -47,11 +44,10 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
                 <FontAwesomeIcon icon={faLocationDot} size="2x" />
               </S.LocaIcon>
             </S.HeaderIcon>
-          </S.HeaderRight>
+          </S.HeaderRight> */}
         </S.PostHeader>
 
         <S.PostBody>
-          <S.PostTitle>{props.data?.fetchBoard?.title}</S.PostTitle>
           {props.data?.fetchBoard.images
             ?.filter((el: string) => el)
             .map((el: string) => (

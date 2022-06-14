@@ -5,7 +5,6 @@ import ReactPlayer from "react-player";
 //  게시글 상세 전체
 export const Wrapper = styled.div`
   width: 100%;
-  /* background-color: #ffffff; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,33 +16,31 @@ export const Wrapper = styled.div`
 
 export const PostWrapper = styled.div`
   width: 1200px;
-  /* height: 1602px; */
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 102px;
+  padding: 50px 102px;
   box-sizing: border-box;
+  border-radius: 30px;
 `;
 export const PostHeader = styled.div`
   width: 996px;
   height: 160px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   border-bottom: 1px solid #bdbdbd;
-  padding-top: 80px;
-  padding-bottom: 20px;
   box-sizing: border-box;
 `;
 
 // 작성 정보
 export const HeaderLeft = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 export const PostInfo = styled.div`
@@ -60,7 +57,7 @@ export const PostUserIcon = styled.div`
   color: #bdbdbd;
 `;
 export const PostUser = styled.div`
-  font-size: 24px;
+  font-size: 20px;
 `;
 export const PostDate = styled.div`
   color: #828282;
@@ -125,7 +122,6 @@ export const LocaIcon = styled.div`
 // 본문
 export const PostBody = styled.div`
   width: 996px;
-  /* height: 1441px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -133,11 +129,9 @@ export const PostBody = styled.div`
   padding-top: 80px;
 `;
 
-export const PostTitle = styled.div`
-  /* width: 285px; */
-  height: 54px;
-  font-size: 26px;
-  margin-bottom: 40px;
+export const PostTitle = styled.span`
+  font-size: 24px;
+  margin-bottom: 20px;
 `;
 
 export const PostPicture = styled.img`
@@ -147,7 +141,7 @@ export const PostPicture = styled.img`
 `;
 export const PostText = styled.div`
   width: 100%;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 120px;
 `;
 export const Youtube = styled(ReactPlayer)`
@@ -208,14 +202,16 @@ export const BtnGroup = styled.div`
   border-bottom: 1px solid #bdbdbd;
 `;
 export const Btn = styled.button`
-  width: 179px;
-  height: 45px;
+  width: 150px;
+  height: 50px;
   border: 1px solid #bdbdbd;
   background-color: #fff;
-  padding: 11px 60px;
+  text-align: center;
+  border-radius: 30px;
   cursor: pointer;
   &:hover {
     background-color: thistle;
     color: #fff;
+    border: 1px solid #fff;
   }
 `;
