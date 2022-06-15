@@ -10,6 +10,7 @@ import {
   getLngState,
   useditemAddressState,
 } from "../../../../commons/store";
+import Pick from "../../../../../public/img/heart.svg";
 
 export default function UsedItemDetailUI(props) {
   const settings = {
@@ -22,36 +23,31 @@ export default function UsedItemDetailUI(props) {
 
   return (
     <S.Wrapper>
-      <S.Wrapper__Header>
-        <S.UserIcon></S.UserIcon>
-        <S.Seller>{props.data?.fetchUseditem.seller.name}</S.Seller>
-      </S.Wrapper__Header>
+      <S.DetailTop>
+        <S.StyledSlider {...settings}>
+          {props.data?.fetchUseditem.images
+            ?.filter((el: string) => el)
+            .map((el: string) => (
+              <S.Images key={el} src={`https://storage.googleapis.com/${el}`} />
+            ))}
+        </S.StyledSlider>
 
-      <S.Wrapper__Body>
-        <S.Body__Top>
+        <S.DetailTopRight>
           <S.ProductInfo>
-            <S.Remarks>{props.data?.fetchUseditem.remarks}</S.Remarks>
-            <button onClick={props.onClickPick}>픽하기</button>
-            {props.data?.fetchUseditem.pickedCount}
             <S.Name>{props.data?.fetchUseditem.name}</S.Name>
-            <S.Price>{props.data?.fetchUseditem.price}</S.Price>
+            <S.Remarks>{props.data?.fetchUseditem.remarks}</S.Remarks>
             <S.CreatedAt>
               {getDate(props.data?.fetchUseditem.createdAt)}
             </S.CreatedAt>
+            <S.InfoBottom>
+              <S.Price>{props.data?.fetchUseditem.price} 원</S.Price>
+              <S.PickButton onClick={props.onClickPick}>
+                <Pick style={{ cursor: "pointer" }} width="27" height="25" />
+              </S.PickButton>
+              {props.data?.fetchUseditem.pickedCount}
+            </S.InfoBottom>
           </S.ProductInfo>
-        </S.Body__Top>
 
-        <S.Body__Center>
-          <S.StyledSlider {...settings}>
-            {props.data?.fetchUseditem.images
-              ?.filter((el: string) => el)
-              .map((el: string) => (
-                <S.Images
-                  key={el}
-                  src={`https://storage.googleapis.com/${el}`}
-                />
-              ))}
-          </S.StyledSlider>
           {typeof window !== "undefined" ? (
             <S.Contents
               dangerouslySetInnerHTML={{
@@ -61,19 +57,26 @@ export default function UsedItemDetailUI(props) {
           ) : (
             <div></div>
           )}
-          <S.Tags>
+          <S.TagDiv>
             {props.data?.fetchUseditem.tags ? (
               <div>
                 {props.data?.fetchUseditem.tags.map((el, idx) => (
-                  <span key={idx}>{el}</span>
+                  <S.Tags key={idx}>{el}</S.Tags>
                 ))}
               </div>
             ) : (
               <div></div>
             )}
-          </S.Tags>
-        </S.Body__Center>
+          </S.TagDiv>
 
+          <S.SellerInfo>
+            <S.UserIcon></S.UserIcon>
+            <S.Seller>{props.data?.fetchUseditem.seller.name}</S.Seller>
+          </S.SellerInfo>
+        </S.DetailTopRight>
+      </S.DetailTop>
+
+      <S.Wrapper__Body>
         <S.Map>
           <FetchMap data={props.data} />
         </S.Map>

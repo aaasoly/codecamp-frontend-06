@@ -18,10 +18,12 @@ export const Wrapper__Header = styled.div`
 
 export const Wrapper__Body = styled.div`
   width: 1600px;
+  height: 860px;
   display: flex;
   justify-content: space-between;
   align-items: space-between;
   flex-wrap: wrap;
+  gap: 1;
 `;
 
 export const SearchInput = styled.input`
@@ -50,7 +52,7 @@ export const BoradReview = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 30px;
+  border-radius: 20px;
   border: 1px solid #bebebe;
   overflow: hidden;
 `;
