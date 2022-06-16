@@ -11,7 +11,6 @@ export default function UseditemQuestionWriteUI(props) {
       ></S.Contents>
 
       <S.Wrapper__Bottom>
-        <S.WordCount></S.WordCount>
         <S.CreateButton
           onClick={
             props.isEdit
@@ -19,7 +18,7 @@ export default function UseditemQuestionWriteUI(props) {
               : props.onClickCreateQuestion
           }
         >
-          {props.isEdit ? "수정하기" : "문의하기"}
+          {props.isEdit ? "수정" : "등록"}
         </S.CreateButton>
       </S.Wrapper__Bottom>
     </S.Wrapper>

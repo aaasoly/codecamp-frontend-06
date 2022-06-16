@@ -5,9 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 export const Wrapper = styled.div`
   width: 1200px;
+  height: 1650px;
   padding: 80px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   border: 1px solid #bebebe;
   border-radius: 30px;
@@ -15,41 +17,70 @@ export const Wrapper = styled.div`
 
 export const DetailTop = styled.div`
   width: 1040px;
-  height: 800px;
+  height: 635px;
   display: flex;
   justify-content: space-between;
 `;
 
 export const DetailTopRight = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
 `;
 
 export const SellerInfo = styled.div`
   width: 415px;
   height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 15px;
   padding: 15px;
   border: 1px solid #bebebe;
 `;
 
+export const SellerDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const UserIcon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   background-color: #bbb;
   border-radius: 50%;
-  margin-right: 15px;
+  margin-right: 8px;
 `;
 
 export const Seller = styled.div`
   font-size: 18px;
+  font-weight: 600;
 `;
 
-export const Wrapper__Body = styled.div`
-  width: 792px;
+export const DetailBottom = styled.div`
+  width: 1040px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Category = styled.span`
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+export const DetailBottomLeft = styled.div`
+  width: 580px;
+  height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+export const DetailBottomRight = styled.div`
+  width: 415px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Body__Top = styled.div`
@@ -69,14 +100,12 @@ export const ProductInfo = styled.div`
   align-items: flex-start;
 `;
 
-export const Remarks = styled.div`
-  height: 27px;
+export const Remarks = styled.span`
   font-size: 18px;
   color: #bdbdbd;
 `;
 
-export const Name = styled.div`
-  height: 36px;
+export const Name = styled.span`
   font-size: 24px;
   color: #4f4f4f;
 `;
@@ -90,9 +119,19 @@ export const InfoBottom = styled.div`
   border-bottom: 1px solid #bebebe;
 `;
 
-export const Price = styled.div`
-  height: 53px;
-  font-size: 36px;
+export const Price = styled.span`
+  font-size: 30px;
+`;
+
+export const PickUnit = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PickCount = styled.span`
+  font-size: 16px;
 `;
 
 export const PickButton = styled.button`
@@ -100,7 +139,7 @@ export const PickButton = styled.button`
   background-color: #fff;
 `;
 
-export const CreatedAt = styled.div`
+export const CreatedAt = styled.span`
   color: #bdbdbd;
 `;
 
@@ -112,14 +151,6 @@ export const Body__Center = styled.div`
   border-bottom: 1px solid #bdbdbd;
   padding: 20px 0 40px;
   margin-bottom: 80px;
-`;
-
-export const ImageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 504px;
-  height: 384px;
-  //margin-bottom: 80px;
 `;
 
 export const StyledSlider = styled(Slider)`
@@ -148,9 +179,8 @@ export const Images = styled.img`
 
 export const Contents = styled.div`
   width: 100%;
-  height: 20%;
+  height: 363px;
   padding: 35px 10px;
-  margin-bottom: 15px;
   color: #4f4f4f;
   font-size: 18px;
 `;
@@ -158,6 +188,7 @@ export const Contents = styled.div`
 export const TagDiv = styled.div`
   width: 100%;
   height: auto;
+  margin-bottom: 30px;
 `;
 
 export const Tags = styled.span`
@@ -177,27 +208,28 @@ export const Map = styled.div`
   overflow: hidden;
 `;
 
-export const Wrapper__Footer = styled.div`
+export const ButtonGroup = styled.div`
+  width: 580px;
+  height: 40px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 550px;
-  margin-bottom: 80px;
 `;
 
-export const List__Button = styled.div`
-  width: 180px;
+export const List__Button = styled.button`
+  width: 150px;
   height: 45px;
-  text-align: center;
+  padding: 13px 47px;
   border: 1px solid #bdbdbd;
   border-radius: 30px;
+  background-color: #fff;
 `;
 
 export const Edit__Button = styled.div`
-  width: 180px;
+  width: 150px;
   height: 45px;
-  padding: 14px 60px;
+  padding: 13px 47px;
   border: 1px solid #bdbdbd;
   border-radius: 30px;
+  background-color: #fff;
 `;

@@ -11,6 +11,8 @@ import {
   useditemAddressState,
 } from "../../../../commons/store";
 import Pick from "../../../../../public/img/heart.svg";
+import UseditemQuestionWrite from "../comment/question_write/Question.Write.container";
+import UseditemQuestionList from "../comment/question_list/Question.List.container";
 
 export default function UsedItemDetailUI(props) {
   const settings = {
@@ -41,10 +43,14 @@ export default function UsedItemDetailUI(props) {
             </S.CreatedAt>
             <S.InfoBottom>
               <S.Price>{props.data?.fetchUseditem.price} 원</S.Price>
-              <S.PickButton onClick={props.onClickPick}>
-                <Pick style={{ cursor: "pointer" }} width="27" height="25" />
-              </S.PickButton>
-              {props.data?.fetchUseditem.pickedCount}
+              <S.PickUnit>
+                <S.PickCount>
+                  {props.data?.fetchUseditem.pickedCount}
+                </S.PickCount>
+                <S.PickButton onClick={props.onClickPick}>
+                  <Pick style={{ cursor: "pointer" }} width="25" height="23" />
+                </S.PickButton>
+              </S.PickUnit>
             </S.InfoBottom>
           </S.ProductInfo>
 
@@ -70,19 +76,31 @@ export default function UsedItemDetailUI(props) {
           </S.TagDiv>
 
           <S.SellerInfo>
-            <S.UserIcon></S.UserIcon>
-            <S.Seller>{props.data?.fetchUseditem.seller.name}</S.Seller>
+            <S.Category>판매자</S.Category>
+            <S.SellerDiv>
+              <S.UserIcon></S.UserIcon>
+              <S.Seller>{props.data?.fetchUseditem.seller.name}</S.Seller>
+            </S.SellerDiv>
           </S.SellerInfo>
         </S.DetailTopRight>
       </S.DetailTop>
 
-      <S.Wrapper__Body>
-        <S.Map>
-          <FetchMap data={props.data} />
-        </S.Map>
-      </S.Wrapper__Body>
+      <S.DetailBottom>
+        <S.DetailBottomLeft>
+          <S.Category>거래 위치</S.Category>
+          <S.Map>
+            <FetchMap data={props.data} />
+          </S.Map>
+        </S.DetailBottomLeft>
 
-      <S.Wrapper__Footer>
+        <S.DetailBottomRight>
+          <S.Category>문의</S.Category>
+          <UseditemQuestionWrite />
+          <UseditemQuestionList />
+        </S.DetailBottomRight>
+      </S.DetailBottom>
+
+      <S.ButtonGroup>
         <S.List__Button onClick={props.onClickMoveToList}>
           목록으로
         </S.List__Button>
@@ -105,7 +123,7 @@ export default function UsedItemDetailUI(props) {
             장바구니
           </S.Edit__Button>
         )}
-      </S.Wrapper__Footer>
+      </S.ButtonGroup>
     </S.Wrapper>
   );
 }

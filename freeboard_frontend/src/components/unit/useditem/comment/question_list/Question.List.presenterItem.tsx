@@ -69,8 +69,6 @@ export default function UseditemQuestionListItem(props) {
     <>
       {!isEdit && (
         <S.Question__Wrapper>
-          <S.Wrapper__Left></S.Wrapper__Left>
-
           <S.Wrapper__Body>
             <S.UserName>{props.el.user.name}</S.UserName>
             <S.Contents>{props.el.contents}</S.Contents>
