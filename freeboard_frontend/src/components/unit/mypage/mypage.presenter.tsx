@@ -6,6 +6,7 @@ import { basketItemState } from "../../../commons/store";
 
 import * as MyPage from "./mypage.styles";
 import Link from "next/link";
+import PaymentLoading from "../../../commons/loading";
 
 export default function MyPageUI() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
@@ -47,8 +48,12 @@ export default function MyPageUI() {
           <MyPage.MyPoint>
             <MyPage.MenuTitle>내 결제</MyPage.MenuTitle>
             <MyPage.MenuList>
-              <MyPage.MenuItem>포인트 사용 내역</MyPage.MenuItem>
-              <MyPage.MenuItem>구매 내역</MyPage.MenuItem>
+              <Link href="/mypage/myPayment">
+                <a>포인트 조회</a>
+              </Link>
+              <Link href="/mypage/myPayment/bought">
+                <a>구매 내역</a>
+              </Link>
               <MyPage.MenuItem>판매 내역</MyPage.MenuItem>
             </MyPage.MenuList>
           </MyPage.MyPoint>
@@ -61,7 +66,9 @@ export default function MyPageUI() {
         </MyPage.MenuDiv>
       </MyPage.SideBar>
 
-      <MyPage.Main></MyPage.Main>
+      <MyPage.Main>
+        <PaymentLoading />
+      </MyPage.Main>
     </MyPage.Wrapper>
   );
 }
