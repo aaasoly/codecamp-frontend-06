@@ -1,12 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { Children, useEffect } from "react";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import PaymentLoading from "../../../commons/loading";
 import { FETCH_USER_LOGGED_IN } from "../../../commons/login/Login.queries";
 import { basketItemState } from "../../../commons/store";
+
 import * as MyPage from "./mypage.styles";
-import MyMarket from "./myMarket/myMarket.container";
-import { Outlet, Link, Route, Routes } from "react-router-dom";
+import Link from "next/link";
 
 export default function MyPageUI() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
@@ -20,20 +19,6 @@ export default function MyPageUI() {
   console.log(basketItem);
 
   return (
-    // <div>
-    //   <PaymentLoading />
-    //   <div>충전된 포인트: {data?.fetchUserLoggedIn.userPoint.amount}</div>
-
-    //   <BasketBox>
-    //     {basketItem.map((el, idx) => (
-    //       <div key={idx}>
-    //         <Colunm>{el.name}</Colunm>
-    //         <Colunm>{el.price}</Colunm>
-    //         <Colunm>{el.seller.name}</Colunm>
-    //       </div>
-    //     ))}
-    //   </BasketBox>
-    // </div>
     <MyPage.Wrapper>
       <MyPage.SideBar>
         <MyPage.UserDiv>
@@ -50,24 +35,28 @@ export default function MyPageUI() {
           <MyPage.MyMarket>
             <MyPage.MenuTitle>내 장터</MyPage.MenuTitle>
             <MyPage.MenuList>
-              <MyPage.MenuItem>
-                <Link to="/">올린 상품</Link>
-              </MyPage.MenuItem>
-              <MyPage.MenuItem>찜</MyPage.MenuItem>
+              <Link href="/mypage/myitem">
+                <a>내 상품 조회</a>
+              </Link>
+              <Link href="/mypage/mypick">
+                <a>찜 상품 조회</a>
+              </Link>
             </MyPage.MenuList>
           </MyPage.MyMarket>
 
           <MyPage.MyPoint>
-            <MyPage.MenuTitle>내 포인트</MyPage.MenuTitle>
+            <MyPage.MenuTitle>내 결제</MyPage.MenuTitle>
             <MyPage.MenuList>
-              <MyPage.MenuItem>포인트 조회</MyPage.MenuItem>
-              <MyPage.MenuItem>결제 내역</MyPage.MenuItem>
+              <MyPage.MenuItem>포인트 사용 내역</MyPage.MenuItem>
+              <MyPage.MenuItem>구매 내역</MyPage.MenuItem>
               <MyPage.MenuItem>판매 내역</MyPage.MenuItem>
             </MyPage.MenuList>
           </MyPage.MyPoint>
 
           <MyPage.MyProfile>
-            <MyPage.MenuTitle>내 프로필</MyPage.MenuTitle>
+            <Link href="/mypage/myprofile">
+              <a>내 프로필</a>
+            </Link>
           </MyPage.MyProfile>
         </MyPage.MenuDiv>
       </MyPage.SideBar>
