@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { FETCH_USER_LOGGED_IN } from "../../../commons/login/Login.queries";
 import { basketItemState } from "../../../commons/store";
-
 import * as MyPage from "./mypage.styles";
 import Link from "next/link";
 import PaymentLoading from "../../../commons/loading";
+import Sidebar from "../../commons/layout/sidebar";
 
 export default function MyPageUI() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
@@ -21,53 +21,29 @@ export default function MyPageUI() {
 
   return (
     <MyPage.Wrapper>
-      <MyPage.SideBar>
-        <MyPage.UserDiv>
-          <MyPage.UserPicture></MyPage.UserPicture>
-          <MyPage.UserName>{data?.fetchUserLoggedIn.name}</MyPage.UserName>
-          <MyPage.UserPoint>
-            {data?.fetchUserLoggedIn.userPoint.amount} P
-          </MyPage.UserPoint>
-        </MyPage.UserDiv>
+      <MyPage.Main>
+        <MyPage.MainTop>
+          {data?.fetchUserLoggedIn.name}님 환영합니다!
+        </MyPage.MainTop>
 
-        <MyPage.MenuDiv>
-          <MyPage.MyPage>마이 페이지</MyPage.MyPage>
-
-          <MyPage.MyMarket>
-            <MyPage.MenuTitle>내 장터</MyPage.MenuTitle>
-            <MyPage.MenuList>
-              <Link href="/mypage/myitem">
-                <a>내 상품 조회</a>
-              </Link>
-              <Link href="/mypage/mypick">
-                <a>찜 상품 조회</a>
-              </Link>
-            </MyPage.MenuList>
-          </MyPage.MyMarket>
-
-          <MyPage.MyPoint>
-            <MyPage.MenuTitle>내 결제</MyPage.MenuTitle>
-            <MyPage.MenuList>
-              <Link href="/mypage/myPayment">
-                <a>포인트 조회</a>
-              </Link>
-              <Link href="/mypage/myPayment/bought">
-                <a>구매 내역</a>
-              </Link>
-              <MyPage.MenuItem>판매 내역</MyPage.MenuItem>
-            </MyPage.MenuList>
-          </MyPage.MyPoint>
-
-          <MyPage.MyProfile>
+        <MyPage.MainBottom>
+          <MyPage.MenuBox>포인트 충전</MyPage.MenuBox>
+          <MyPage.MenuBox>
+            <Link href="/mypage/myitem">
+              <a>내 장터</a>
+            </Link>
+          </MyPage.MenuBox>
+          <MyPage.MenuBox>
+            <Link href="/mypage/myPayment">
+              <a>내 결제</a>
+            </Link>
+          </MyPage.MenuBox>
+          <MyPage.MenuBox>
             <Link href="/mypage/myprofile">
               <a>내 프로필</a>
             </Link>
-          </MyPage.MyProfile>
-        </MyPage.MenuDiv>
-      </MyPage.SideBar>
-
-      <MyPage.Main>
-        <PaymentLoading />
+          </MyPage.MenuBox>
+        </MyPage.MainBottom>
       </MyPage.Main>
     </MyPage.Wrapper>
   );

@@ -1,9 +1,20 @@
 import styled from "@emotion/styled";
+import Sidebar from "../../../commons/layout/sidebar";
 
-const Wrapper = styled.div`
-  width: 910px;
+export const Wrapper = styled.div`
+  width: 1290px;
+  min-height: 900px;
+  display: flex;
+  font-size: 16px;
+`;
+
+export const Main = styled.div`
+  width: 1000px;
+  min-height: 900px;
+  border-left: none;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const FlexDiv = styled.div`
@@ -35,22 +46,25 @@ const ActiveBtn = styled.button`
 export default function MyProfilePage() {
   return (
     <Wrapper>
-      <FlexDiv>
-        <Text>현재 비밀번호</Text>
-        <Input type="password" />
-      </FlexDiv>
+      <Sidebar />
+      <Main>
+        <FlexDiv>
+          <Text>현재 비밀번호</Text>
+          <Input type="password" />
+        </FlexDiv>
 
-      <FlexDiv>
-        <Text>새 비밀번호</Text>
-        <Input type="password" />
-      </FlexDiv>
+        <FlexDiv>
+          <Text>새 비밀번호</Text>
+          <Input type="password" />
+        </FlexDiv>
 
-      <FlexDiv>
-        <Text>비밀번호 확인</Text>
-        <Input type="password" />
-      </FlexDiv>
+        <FlexDiv>
+          <Text>비밀번호 확인</Text>
+          <Input type="password" />
+        </FlexDiv>
 
-      <ActiveBtn>비밀번호 변경</ActiveBtn>
+        <ActiveBtn>비밀번호 변경</ActiveBtn>
+      </Main>
     </Wrapper>
   );
 }
