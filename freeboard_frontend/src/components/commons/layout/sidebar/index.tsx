@@ -1,6 +1,7 @@
-import { useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 
 const SideBar = styled.div`
@@ -8,7 +9,8 @@ const SideBar = styled.div`
   height: 900px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #bebebe;
+  background-color: #fff;
+  box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
 `;
 
 const UserDiv = styled.div`
@@ -18,7 +20,6 @@ const UserDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #bebebe;
 `;
 
 const MenuDiv = styled.div`
@@ -31,16 +32,25 @@ const MenuDiv = styled.div`
   font-size: 18px;
 `;
 
-const UserPicture = styled.div`
+const UserPicture = styled.img`
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 1px solid #fff;
+  box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
+  margin-bottom: 10px;
 `;
 
-const UserName = styled.span``;
+const UserName = styled.span`
+  font-weight: 700;
+  margin-bottom: 8px;
+`;
 
-const UserPoint = styled.span``;
+const UserPoint = styled.span`
+  font-size: 14px;
+  padding: 3px 10px;
+  border-radius: 30px;
+  background-color: aliceblue;
+`;
 
 const MyPage = styled.span`
   font-weight: 700;
@@ -82,12 +92,15 @@ const MyProfile = styled.div`
 
 export default function Sidebar() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+
   return (
     <SideBar>
       <UserDiv>
-        <UserPicture></UserPicture>
+        <UserPicture src={data?.fetchUserLoggedIn.picture} />
         <UserName>{data?.fetchUserLoggedIn.name}</UserName>
-        <UserPoint>{data?.fetchUserLoggedIn.userPoint.amount} P</UserPoint>
+        <UserPoint>
+          보유 포인트 {data?.fetchUserLoggedIn.userPoint.amount} P
+        </UserPoint>
       </UserDiv>
 
       <MenuDiv>
@@ -139,7 +152,7 @@ export default function Sidebar() {
           <MenuList>
             <MenuItem>
               <Link href="/mypage/myprofile">
-                <a>비밀번호 변경</a>
+                <a>프로필 변경</a>
               </Link>
             </MenuItem>
           </MenuList>

@@ -5,13 +5,12 @@ export const Wrapper = styled.div`
   min-height: 900px;
   display: flex;
   font-size: 16px;
+  // background-color: #f9fbfc;
 `;
 
 export const Main = styled.div`
   width: 1000px;
   min-height: 900px;
-  // border: 1px solid #bebebe;
-  border-left: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,10 +23,9 @@ export const ItemDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 27px 10px 27px 35px;
-  /* border-top: 1px solid #bebebe; */
-  border-bottom: 1px solid #bebebe;
+  border-bottom: 1px solid #e5e5e5;
   &:first-child {
-    border-top: 1px solid #bebebe;
+    border-top: 1px solid #e5e5e5;
   }
 `;
 

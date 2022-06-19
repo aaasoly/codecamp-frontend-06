@@ -23,6 +23,7 @@ export const FETCH_USED_ITEM = gql`
         _id
         email
         name
+        picture
       }
     }
   }

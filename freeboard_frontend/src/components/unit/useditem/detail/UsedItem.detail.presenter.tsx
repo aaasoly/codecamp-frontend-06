@@ -78,7 +78,12 @@ export default function UsedItemDetailUI(props) {
           <S.SellerInfo>
             <S.Category>판매자</S.Category>
             <S.SellerDiv>
-              <S.UserIcon></S.UserIcon>
+              {props.data?.fetchUseditem.seller.picture ? (
+                <S.UserIcon src={props.data?.fetchUseditem.seller.picture} />
+              ) : (
+                <S.UserIcon src="/img/userImg.png" />
+              )}
+
               <S.Seller>{props.data?.fetchUseditem.seller.name}</S.Seller>
             </S.SellerDiv>
           </S.SellerInfo>

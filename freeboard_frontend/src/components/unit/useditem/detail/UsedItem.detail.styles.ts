@@ -44,7 +44,7 @@ export const SellerDiv = styled.div`
   align-items: center;
 `;
 
-export const UserIcon = styled.div`
+export const UserIcon = styled.img`
   width: 34px;
   height: 34px;
   background-color: #bbb;
@@ -183,6 +183,7 @@ export const Contents = styled.div`
   padding: 35px 10px;
   color: #4f4f4f;
   font-size: 18px;
+  overflow: auto;
 `;
 
 export const TagDiv = styled.div`
