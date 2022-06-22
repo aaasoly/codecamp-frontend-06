@@ -19,6 +19,7 @@ export const CREATE_USED_ITEM = gql`
       useditemAddress {
         address
         addressDetail
+        zipcode
         lng
         lat
       }

@@ -35,6 +35,13 @@ export const NameInput = styled.input`
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
+  border-radius: 30px;
+  &:placeholder {
+    color: #bdbdbd;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Remarks = styled.div`
@@ -46,6 +53,13 @@ export const RemarksInput = styled.input`
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
+  border-radius: 30px;
+  &:placeholder {
+    color: #bdbdbd;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Contents = styled.div`
@@ -57,7 +71,9 @@ export const ReactQuillInput = styled(ReactQuill)`
   width: 996px;
   height: 320px;
   margin-bottom: 40px;
+  border-radius: 30px;
 `;
+
 export const Price = styled.div`
   margin-bottom: 40px;
 `;
@@ -67,6 +83,13 @@ export const PriceInput = styled.input`
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
+  border-radius: 30px;
+  &:placeholder {
+    color: #bdbdbd;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Tags = styled.div`
@@ -78,6 +101,13 @@ export const TagsInput = styled.input`
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
+  border-radius: 30px;
+  &:placeholder {
+    color: #bdbdbd;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Location = styled.div`
@@ -102,6 +132,31 @@ export const Location__Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
+
+export const PostCode = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 217px;
+  height: 52px;
+`;
+
+export const PostInput = styled.input`
+  width: 77px;
+  height: 52px;
+  padding: 14px;
+  border-radius: 30px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const AddrSearch = styled.button`
+  width: 124px;
+  height: 51px;
+  padding: 14px 16px 14px 16px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 30px;
 `;
 
 export const GPS = styled.div`
@@ -130,17 +185,39 @@ export const LNG = styled.input`
   color: #4f4f4f;
 `;
 
-export const Adress = styled.div`
+export const Address = styled.div`
   width: 588px;
   height: 160px;
 `;
 
-export const Adress1 = styled.input`
+export const AddrInput = styled.input`
   width: 588px;
   height: 52px;
   margin-bottom: 16px;
   border: 1px solid #bdbdbd;
-  color: #bdbdbd;
+  border-radius: 30px;
+  padding: 14px 16px;
+  &:placeholder {
+    color: #bdbdbd;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const AddrDetailInput = styled.input`
+  width: 588px;
+  height: 52px;
+  margin-bottom: 16px;
+  border: 1px solid #bdbdbd;
+  border-radius: 30px;
+  padding: 14px 16px;
+  &:placeholder {
+    color: #bdbdbd;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Images = styled.div`
@@ -156,4 +233,10 @@ export const ImageBox = styled.div`
   height: 180px;
 `;
 
-export const Button = styled.button``;
+export const Button = styled.button`
+  width: 124px;
+  height: 52px;
+  background-color: #fff;
+  border-radius: 30px;
+  border: 1px solid #bebebe;
+`;

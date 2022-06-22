@@ -21,6 +21,10 @@ export default function CreateUsedItem(props) {
   const [getLat, setGetLat] = useRecoilState(getLatState);
   const [getLng, setGetLng] = useRecoilState(getLngState);
 
+  const [address, setAddress] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [addrDetail, setAddrDetail] = useState("");
+
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
@@ -28,6 +32,17 @@ export default function CreateUsedItem(props) {
 
   const [hashtag, setHashtag] = useState("");
   const [hashArr, setHashArr] = useState([]);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const showModal = () => {
+    setIsOpen(true);
+  };
+  const handleOk = () => {
+    setIsOpen(false);
+  };
+  const handleCancel = () => {
+    setIsOpen(false);
+  };
 
   const onKeyUpHash = (event) => {
     if (event.keyCode === 32 && event.target.value !== " ") {
@@ -54,8 +69,18 @@ export default function CreateUsedItem(props) {
     setUseditemAddress(event.target.value);
   };
 
+  const onChangeAddrDetail = (event) => {
+    setAddrDetail(event.target.value);
+    console.log(addrDetail);
+  };
+
+  const handleComplete = (address: any) => {
+    setPostcode(address.zonecode);
+    setAddress(address.address);
+    setIsOpen(false);
+  };
+
   const onChangeContents = (value: string) => {
-    // console.log(value);
     setValue("contents", value === "<p><br></p>" ? "" : value);
     trigger("contents");
   };
@@ -80,9 +105,12 @@ export default function CreateUsedItem(props) {
             tags: hashArr,
             images: fileUrls,
             useditemAddress: {
-              address: useditemAddress,
-              lat: getLat,
-              lng: getLng,
+              address: address,
+              zipcode: postcode,
+              addressDetail: addrDetail,
+              // address: useditemAddress,
+              // lat: getLat,
+              // lng: getLng,
             },
           },
         },
@@ -123,13 +151,21 @@ export default function CreateUsedItem(props) {
     if (data.price) updateUseditemInput.price = Number(data.price);
     if (data.remarks) updateUseditemInput.remarks = data.remarks;
     if (isChangedFiles) updateUseditemInput.images = fileUrls;
-    if (useditemAddress || getLng || getLat) {
+    if (address || postcode || addrDetail) {
       updateUseditemInput.useditemAddress = {};
-      if (useditemAddress)
-        updateUseditemInput.useditemAddress.address = useditemAddress;
-      if (getLng) updateUseditemInput.useditemAddress.lng = getLng;
-      if (getLat) updateUseditemInput.useditemAddress.lat = getLat;
+      if (address) updateUseditemInput.useditemAddress.address = address;
+      if (postcode) updateUseditemInput.useditemAddress.zipcode = postcode;
+      if (addrDetail)
+        updateUseditemInput.useditemAddress.addressDetail = addrDetail;
     }
+    if (isChangedFiles) updateUseditemInput.images = fileUrls;
+    // if (useditemAddress || getLng || getLat) {
+    //   updateUseditemInput.useditemAddress = {};
+    //   if (useditemAddress)
+    //     updateUseditemInput.useditemAddress.address = useditemAddress;
+    //   if (getLng) updateUseditemInput.useditemAddress.lng = getLng;
+    //   if (getLat) updateUseditemInput.useditemAddress.lat = getLat;
+    // }
 
     try {
       await updateUseditem({
@@ -181,6 +217,15 @@ export default function CreateUsedItem(props) {
       onKeyUpHash={onKeyUpHash}
       hashArr={hashArr}
       getValues={getValues}
+      isOpen={isOpen}
+      showModal={showModal}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      handleComplete={handleComplete}
+      postcode={postcode}
+      address={address}
+      addrDetail={addrDetail}
+      onChangeAddrDetail={onChangeAddrDetail}
     />
   );
 }

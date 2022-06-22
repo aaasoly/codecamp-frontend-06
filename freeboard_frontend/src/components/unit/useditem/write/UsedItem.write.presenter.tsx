@@ -11,6 +11,9 @@ import {
   getLngState,
 } from "../../../../commons/store";
 import WriteMap from "../../../commons/map/Writemap";
+import MapPage from "../../../commons/map/01";
+import DaumPostcode from "react-daum-postcode";
+import { Modal } from "antd";
 
 export default function CreateUsedItemUI(props: any) {
   const [getLat] = useRecoilState(getLatState);
@@ -75,23 +78,51 @@ export default function CreateUsedItemUI(props: any) {
             placeholder="#태그 #태그 #태그"
             defaultValue={props.data?.fetchUseditem.tags}
           />
+          <div>
+            {props.hashArr.map((el, idx) => (
+              <span key={idx}>{el}</span>
+            ))}
+          </div>
         </S.Tags>
-        <div style={{ marginLeft: "260px" }}>
-          {props.hashArr.map((el, idx) => (
-            <span key={idx}>{el}</span>
-          ))}
-        </div>
 
         <S.Location>
           <S.Location__Left>
             <S.SubTitle>거래 위치</S.SubTitle>
             <S.Map>
-              <WriteMap useditemAddress={props.useditemAddress} />
+              <MapPage
+                address={props.address}
+                addrDetail={props.addrDetail}
+                fetchAddr={props.data?.fetchUseditem?.useditemAddress?.address}
+              />
             </S.Map>
           </S.Location__Left>
 
           <S.Location__Right>
-            <S.GPS>
+            <S.SubTitle></S.SubTitle>
+            <S.PostCode>
+              <S.PostInput
+                placeholder="07520"
+                value={
+                  props.postcode ||
+                  props.data?.fetchUseditem?.useditemAddress?.zipcode ||
+                  ""
+                }
+                {...props.register("postcode")}
+              />
+              <S.AddrSearch type="button" onClick={props.showModal}>
+                우편번호 검색
+              </S.AddrSearch>
+              {props.isOpen && (
+                <Modal
+                  visible={true}
+                  onOk={props.handleOk}
+                  onCancel={props.handleCancel}
+                >
+                  <DaumPostcode onComplete={props.handleComplete} />
+                </Modal>
+              )}
+            </S.PostCode>
+            {/* <S.GPS>
               <S.SubTitle>GPS</S.SubTitle>
               <S.GPS__Input>
                 <S.LAT
@@ -111,18 +142,25 @@ export default function CreateUsedItemUI(props: any) {
                   }
                 />
               </S.GPS__Input>
-            </S.GPS>
+              </S.GPS>
+              */}
 
-            <S.Adress>
+            <S.Address>
               <S.SubTitle>주소</S.SubTitle>
-              <S.Adress1
+              <S.AddrInput
                 onChange={props.onChangeAddress}
                 defaultValue={
-                  props.data?.fetchUseditem.useditemAddress.address || ""
+                  props.address ||
+                  props.data?.fetchUseditem?.useditemAddress?.address ||
+                  ""
                 }
+                // {...props.register("address")}
               />
-              <S.Adress1 />
-            </S.Adress>
+              <S.AddrDetailInput
+                onChange={props.onChangeAddrDetail}
+                // {...props.register("addressDetail")}
+              />
+            </S.Address>
           </S.Location__Right>
         </S.Location>
 
@@ -139,7 +177,6 @@ export default function CreateUsedItemUI(props: any) {
             ))}
           </S.ImageBox>
         </S.Images>
-
         <S.Button>{props.isEdit ? "수정" : "등록"} 하기</S.Button>
       </form>
     </S.Wrapper>
