@@ -91,8 +91,6 @@ export default function CreateUsedItem(props) {
     setFileUrls(newFileUrls);
   };
 
-  console.log("밑에가 result");
-
   const onClickSubmit = async (data) => {
     try {
       const result = await createUseditem({

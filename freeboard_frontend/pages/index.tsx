@@ -7,19 +7,14 @@ import { useRouter } from "next/router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import LoginPage from "../src/commons/login/Login.container";
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: #333;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("/img/landing.jpg");
-  background-size: cover;
-  font-family: "DM Serif Display", serif;
-  overflow: hidden;
+  justify-content: flex-start;
+  position: relative;
 `;
 
 const BackSlider = styled(Slider)`
@@ -31,15 +26,15 @@ const BackSlider = styled(Slider)`
 `;
 
 const Wrapper__Header = styled.div`
-  width: 80%;
-  height: 100px;
+  width: 140rem;
+  height: 10rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 `;
 
 const Header__Right = styled.div`
-  width: 150px;
+  width: 15rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -47,61 +42,71 @@ const Header__Right = styled.div`
 
 const Login = styled.div`
   font-size: 16px;
-  color: #fff;
+  color: #333;
 `;
 
 const MenuIcon = styled.div`
   font-size: 16px;
+  color: #333;
+`;
+
+const BodyImg = styled.img`
+  position: absolute;
+  left: 20rem;
+  top: 10.7rem;
+  width: 83rem;
+  height: 78rem;
+  border-radius: 3rem;
+  object-fit: cover;
+  z-index: 1;
+`;
+
+const BackBox = styled.div`
+  position: absolute;
+  width: 122rem;
+  height: 94.3rem;
+  left: 69.6rem;
+  background: #cbe1e8;
+`;
+
+const GreetingKo = styled.span`
+  display: inline-block;
+  position: absolute;
+  left: 39rem;
+  top: 23rem;
+  font-weight: 700;
+  font-size: 5rem;
   color: #fff;
 `;
 
-const Wrapper__Body = styled.div`
-  width: 1600px;
-  height: 100%;
-  /* display: flex;
-  justify-content: center; */
-`;
-
-const Body__img = styled.div``;
-
-// const ImgBox = styled.div`
-//   width: 100%;
-// `;
-
-// const BannerImg = styled.img`
-//   width: 500px;
-//   margin: 0 auto;
-// `;
-
-// const StyledSlider = styled(Slider)`
-//   width: 70%;
-//   height: 100%;
-// `;
-
-const Body__Left = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-`;
-
-const TextBox = styled.div`
-  /* width: 70%; */
-  height: 500px;
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  text-align: right;
-  padding: 100px 50px;
-`;
-
-const Title = styled.div`
-  font-size: 40px;
-`;
-
-const Subtext = styled.div`
-  font-size: 25rem;
+const GreetingEng = styled.span`
+  display: inline-block;
+  position: absolute;
+  left: 39rem;
+  top: 30rem;
+  font-weight: 700;
+  font-size: 5.2rem;
   color: #fff;
+`;
+
+const About = styled.p`
+  display: inline-block;
+  position: absolute;
+  width: 45rem;
+  left: 39rem;
+  top: 40.8rem;
+  font-size: 20px;
+  color: #fff;
+`;
+
+const More = styled.span`
+  display: inline-block;
+  position: absolute;
+  left: 39rem;
+  top: 72.2rem;
+  font-size: 23px;
+  color: #fff;
+  cursor: pointer;
 `;
 
 export default function Home() {
@@ -122,6 +127,7 @@ export default function Home() {
   };
 
   const onClickBoard = () => {
+    console.log("클릭");
     router.push("/boards");
   };
 
@@ -142,9 +148,8 @@ export default function Home() {
   );
 
   return (
-    <>
-      <Wrapper>
-        <Wrapper__Header>
+    <Wrapper>
+      {/* <Wrapper__Header>
           <Header__Right>
             <MenuIcon>
               <Dropdown
@@ -161,35 +166,19 @@ export default function Home() {
             </MenuIcon>
             <Login onClick={onClickLogin}>Login</Login>
           </Header__Right>
-        </Wrapper__Header>
+        </Wrapper__Header> */}
 
-        {/* <BackSlider {...settings}> */}
-        <Wrapper__Body>
-          <Body__img></Body__img>
-          <Body__Left>
-            {/* <TextBox>
-              <Subtext>Bon</Subtext>
-            </TextBox> */}
-            <LoginPage />
-          </Body__Left>
-        </Wrapper__Body>
-        {/* <Wrapper__Body>
-            <Body__img></Body__img>
-            <Body__Left>
-              <TextBox>
-                <Title>HELLO!</Title>
-                <Subtext>
-                  Some day you will find me. Caught beneath the landslide. In a
-                  champagne supernova in the sky. Some day you will find me.
-                  Caught beneath the landslide. In a champagne supernova, a
-                  champagne supernova in the sky.
-                </Subtext>
-              </TextBox>
-            </Body__Left>
-          </Wrapper__Body> */}
-        {/* </BackSlider> */}
-      </Wrapper>
-    </>
+      <BodyImg src="/img/landing.jpg" />
+      <BackBox>
+        <GreetingKo>환영합니다!</GreetingKo>
+        <GreetingEng>Welcome!</GreetingEng>
+        <About>
+          Greeting! Welcome to my Freeboard and Second Hand Market Project.
+          Thank you for visiting!
+        </About>
+        <More onClick={onClickBoard}>More</More>
+      </BackBox>
+    </Wrapper>
   );
 }
 
