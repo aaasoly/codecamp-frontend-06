@@ -5,24 +5,26 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 500px;
+  height: 50rem;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const StyledSlider = styled(Slider)`
-  width: 1600px;
-  height: 100%;
+  width: 160rem;
+  height: 500px;
   overflow: hidden;
+  border-radius: 30px;
 `;
 
 const ImgBox = styled.div`
-  width: 100%;
+  width: 1600px;
+  overflow: hidden;
 `;
 
 const BannerImg = styled.img`
-  width: 100%;
+  width: 1600px;
   margin-top: -450px;
   /* margin: 0 auto; */
 `;

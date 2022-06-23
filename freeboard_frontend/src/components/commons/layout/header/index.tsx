@@ -5,40 +5,44 @@ import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 
 const Wrapper = styled.div`
   position: fixed;
-  width: 100vw;
-  height: 100px;
+  top: 0;
+  width: 160rem;
+  height: 5rem;
   display: flex;
   justify-content: center;
   z-index: 9999;
-  background-color: #fff;
+  color: #fff;
 `;
 
 const Box = styled.div`
-  width: 1600px;
-  height: 100%;
+  width: 145rem;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+`;
+
+const Logo = styled.div`
+  width: 10rem;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+const Menu = styled.div`
+  width: 50rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-const Logo = styled.div`
-  width: 100px;
-  font-size: 20px;
-`;
-
-const Menu = styled.div`
-  width: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const MenuItem = styled.div`
-  font-size: 12px;
-  transition-duration: 0.3s;
+const MenuItem = styled.span`
+  font-size: 1.4rem;
+  transition-duration: 0.4s;
   &:hover {
-    color: violet;
+    opacity: 0.5;
   }
+  cursor: pointer;
 `;
 
 const LOG_OUT_USER = gql`
@@ -98,9 +102,9 @@ export default function LayoutHeader() {
           ) : (
             ""
           )}
-          <div onClick={onClickLanding}>
+          <MenuItem onClick={onClickLanding}>
             {data?.fetchUserLoggedIn.name || "로그인"}
-          </div>
+          </MenuItem>
         </Menu>
       </Box>
     </Wrapper>
