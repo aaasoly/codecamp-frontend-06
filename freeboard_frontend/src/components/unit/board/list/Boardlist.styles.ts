@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Wrapper__Header = styled.div`
+export const WrapperHeader = styled.div`
   /* width: 1600px; */
   display: flex;
   justify-content: flex-end;
@@ -21,7 +21,7 @@ export const Wrapper__Header = styled.div`
   margin-bottom: 50px;
 `;
 
-export const Wrapper__Body = styled.div`
+export const WrapperBody = styled.div`
   width: 160rem;
   height: 86rem;
   display: flex;
@@ -68,28 +68,30 @@ export const BoradReview = styled.div`
   }
 `;
 
-export const Thum__Header = styled.div`
+export const ThumHeader = styled.div`
   width: 100%;
   height: 200px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
-export const Thum__img = styled.img`
+export const ThumImg = styled.img`
   width: 100%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 `;
 
-export const Thum__Body = styled.div`
+export const ThumBody = styled.div`
   width: 100%;
   height: 170px;
+  cursor: pointer;
 `;
 
-export const Thum__Bottom = styled.div`
+export const ThumBottom = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
@@ -110,14 +112,13 @@ export const Title = styled.div`
   text-overflow: ellipsis;
 `;
 
-export const Contents = styled.div`
+export const Contents = styled.p`
   width: 300px;
   height: 120px;
   padding: 8px;
+  word-wrap: break-word;
   overflow: hidden;
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
+  text-overflow: ellipsis;
 `;
 
 export const Writer = styled.div`
@@ -131,81 +132,6 @@ export const LikeIcon = styled(HeartFilled)`
   margin-right: 10px;
   color: coral;
 `;
-// export const ColumnNumberHead = styled.div`
-//   width: 15%;
-//   height: 52px;
-//   padding: 11px 0;
-//   font-weight: 700;
-//   text-align: center;
-// `;
-
-// export const ColumnTitleHead = styled.div`
-//   width: 55%;
-//   height: 52px;
-//   padding: 11px 0;
-//   font-weight: 700;
-//   text-align: center;
-// `;
-
-// export const ColumnContentsHead = styled.div`
-//   width: 15%;
-//   height: 52px;
-//   padding: 11px 0;
-//   font-weight: 700;
-//   text-align: center;
-// `;
-
-// export const ColumnDateHead = styled.div`
-//   width: 15%;
-//   height: 52px;
-//   padding: 11px 0;
-//   font-weight: 700;
-//   text-align: center;
-// `;
-
-// export const ColumnNumber = styled.div`
-//   width: 15%;
-//   height: 52px;
-//   padding: 14px 0;
-//   text-align: center;
-//   cursor: pointer;
-//   &:hover {
-//     color: #b2b2b2;
-//   }
-// `;
-
-// export const ColumnTitle = styled.div`
-//   width: 55%;
-//   height: 52px;
-//   padding: 14px 0;
-//   text-align: center;
-//   cursor: pointer;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   &:hover {
-//     color: #b2b2b2;
-//   }
-//   color: black;
-// `;
-
-// export const ColumnWriter = styled.div`
-//   width: 15%;
-//   height: 52px;
-//   padding: 14px 0;
-//   text-align: center;
-//   cursor: pointer;
-//   &:hover {
-//     color: #b2b2b2;
-//   }
-// `;
-
-// export const ColumnDate = styled.div`
-//   width: 15%;
-//   height: 52px;
-//   padding: 14px 0;
-//   text-align: center;
-// `;
 
 export const Footer = styled.div`
   width: 160rem;

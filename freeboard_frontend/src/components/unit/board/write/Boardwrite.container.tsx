@@ -17,6 +17,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     contents: "",
   });
 
+  const [imageUrl, setImageUrl] = useState([]);
+
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [youtubeUrl, setYoutubeUrl] = useState("");
 
@@ -49,10 +51,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 주소
   const handleComplete = (address: any) => {
-    // setAddress({
-    //   address: address.address,
-    //   zipcode: address.zonecode,
-    // });
     setPostcode(address.zonecode);
     setAddress(address.address);
     setIsOpen(false);
@@ -66,11 +64,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
     const isActive = Object.values(setInputs).every((el) => el);
     setIsActive(isActive);
-    // if (event.target.value) {
-    //   setIsActive(true);
-    // } else {
-    //   setIsActive(false);
-    // }
   };
 
   const onChangeYoutube = (event: ChangeEvent<HTMLInputElement>) => {
@@ -79,14 +72,29 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressDetail(event.target.value);
-    // addressDetail: address.addressDetail;
   };
 
-  const onChangeFileUrls = (fileUrl: string, index: number) => {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
-  };
+  // const onChangeFileUrls = (fileUrl: string, index: number) => {
+  //   const newFileUrls = [...fileUrls];
+  //   newFileUrls[index] = fileUrl;
+  //   setFileUrls(newFileUrls);
+  // };
+
+  // const onChangeFileUrls = (event) => {
+  //   const file = event?.target.files?.[0];
+  //   if (!file) {
+  //     return;
+  //   }
+
+  //   const fileReader = new FileReader();
+  //   fileReader.readAsDataURL(file);
+  //   fileReader.onload = (data) => {
+  //     if (typeof data.target?.result === "string") {
+  //       console.log(data.target?.result);
+  //       setImageUrl([data.target?.result]);
+  //     }
+  //   };
+  // };
 
   // 게시글 등록 버튼
   const onClickSubmit = async () => {
@@ -130,14 +138,14 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 게시글 수정 버튼
   const onClickUpdate = async () => {
-    const currentFiles = JSON.stringify(fileUrls);
-    const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
-    const isChangedFiles = currentFiles !== defaultFiles;
+    // const currentFiles = JSON.stringify(fileUrls);
+    // const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    // const isChangedFiles = currentFiles !== defaultFiles;
 
     // 조건문은 있을 때 튕기는 것이 아니라 없을 때 튕기게 작성해야 한다
     // early exit pattern
 
-    if (!inputs.title && !inputs.contents && !youtubeUrl && !isChangedFiles) {
+    if (!inputs.title && !inputs.contents && !youtubeUrl) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;
     } else {
@@ -151,8 +159,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     }
 
     const updateBoardInput: IUpdateBoardInput = {};
-    if (title) updateBoardInput.title = title;
-    if (contents) updateBoardInput.contents = contents;
+    if (inputs.title) updateBoardInput.title = inputs.title;
+    if (inputs.contents) updateBoardInput.contents = inputs.contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
     if (postcode || address || addressDetail) {
       updateBoardInput.boardAddress = {};
@@ -161,14 +169,14 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
-    if (isChangedFiles) updateBoardInput.images = fileUrls;
+    // if (isChangedFiles) updateBoardInput.images = fileUrls;
 
     try {
       await updateBoard({
         variables: {
           boardId: String(router.query.boardId),
-          password,
-          images: fileUrls,
+          password: inputs.password,
+          // images: fileUrls,
           updateBoardInput,
         },
       });
@@ -210,7 +218,8 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
       fileUrls={fileUrls}
-      onChangeFileUrls={onChangeFileUrls}
+      // onChangeFileUrls={onChangeFileUrls}
+      imageUrl={imageUrl}
     />
   );
 }

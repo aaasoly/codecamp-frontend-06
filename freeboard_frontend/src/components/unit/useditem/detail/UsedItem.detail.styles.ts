@@ -23,8 +23,17 @@ export const DetailTop = styled.div`
   justify-content: space-between;
 `;
 
+export const DetailTopLeft = styled.div`
+  width: 580px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
 export const DetailTopRight = styled.div`
   display: flex;
+  width: 415px;
   height: 100%;
   flex-direction: column;
 `;
@@ -179,6 +188,18 @@ export const Images = styled.img`
   object-fit: cover;
 `;
 
+export const ThumSlider = styled(Slider)`
+  margin: 0 auto;
+  width: 510px;
+  height: 100px;
+`;
+
+export const ThumImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+`;
+
 export const Contents = styled.div`
   width: 100%;
   height: 363px;
@@ -219,6 +240,13 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  & > button:hover {
+    background-color: #6b48ff;
+    color: #fff;
+    border: 1px solid #6b48ff;
+    cursor: pointer;
+  }
 `;
 
 export const List__Button = styled.button`
@@ -228,13 +256,15 @@ export const List__Button = styled.button`
   border: 1px solid #bdbdbd;
   border-radius: 30px;
   background-color: #fff;
+  transition-duration: 0.3s;
 `;
 
-export const Edit__Button = styled.div`
+export const Edit__Button = styled.button`
   width: 150px;
   height: 45px;
   padding: 11px 47px;
   border: 1px solid #bdbdbd;
   border-radius: 30px;
   background-color: #fff;
+  transition-duration: 0.3s;
 `;

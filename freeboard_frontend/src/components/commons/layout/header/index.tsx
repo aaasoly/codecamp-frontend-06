@@ -23,7 +23,7 @@ const Box = styled.div`
   @media ${device.laptop} {
     width: 110rem;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     justify-content: flex-end;
   }
 `;
@@ -39,6 +39,9 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 const MenuItem = styled.span`
@@ -54,9 +57,9 @@ const MenuItem = styled.span`
 `;
 
 const MenuLaptop = styled.span`
-  font-size: 20px;
+  font-size: 18px;
   display: none;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     display: block;
   }
   color: black;

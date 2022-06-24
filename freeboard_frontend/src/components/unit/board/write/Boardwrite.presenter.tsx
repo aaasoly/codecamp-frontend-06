@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function BoardWriteUI(props: IPropsBoardWriteUI) {
   return (
     <S.Wrapper>
-      <S.MainTitle>게시물 {props.isEdit ? "수정" : "등록"}</S.MainTitle>
+      {/* <S.MainTitle>게시물 {props.isEdit ? "수정" : "등록"}</S.MainTitle> */}
 
       <S.User>
         <S.UserInfo>
@@ -111,13 +111,13 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
         <S.Item>유튜브</S.Item>
         <S.Blank
           type="text"
-          placeholder="링크를 복사해주세요."
+          placeholder="첨부하고 싶은 유튜브 동영상 링크를 넣어주세요."
           onChange={props.onChangeYoutube}
           defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
         />
       </S.Youtube>
 
-      <S.Picture>
+      {/* <S.Picture>
         <S.Item>사진첨부</S.Item>
         <S.ImgIcon>
           {props.fileUrls.map((el, index) => (
@@ -130,17 +130,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
           ))}
         </S.ImgIcon>
         <S.Upload></S.Upload>
-      </S.Picture>
-
-      <S.Setting>
-        <S.Item>메인 설정</S.Item>
-        <S.Select>
-          <S.Radio type="radio" name="setting" />
-          <S.RadioLabel>유튜브</S.RadioLabel>
-          <S.Radio type="radio" name="setting" />
-          <S.RadioLabel>사진</S.RadioLabel>
-        </S.Select>
-      </S.Setting>
+      </S.Picture> */}
 
       <S.BtnSubmit
         onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}

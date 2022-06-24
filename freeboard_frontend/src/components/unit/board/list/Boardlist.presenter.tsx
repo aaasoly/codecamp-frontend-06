@@ -15,32 +15,28 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
 
   return (
     <S.Wrapper>
-      <S.Wrapper__Header>
+      <S.WrapperHeader>
         <S.SearchInput placeholder="Search" onChange={props.onChangeSearch} />
-      </S.Wrapper__Header>
+      </S.WrapperHeader>
 
-      {/* <S.Row>
-        <S.ColumnNumberHead>No.</S.ColumnNumberHead>
-        <S.ColumnTitleHead>Title</S.ColumnTitleHead>
-        <S.ColumnContentsHead>Writer</S.ColumnContentsHead>
-        <S.ColumnDateHead>Date</S.ColumnDateHead>
-      </S.Row> */}
-      {/*map(처리할 요소, 처리할 요소의 인덱스, 현재 배열)*/}
-      <S.Wrapper__Body>
+      <S.WrapperBody>
         {props.data?.fetchBoards.map((el: any, index: number) => (
-          <S.BoradReview key={el._id}>
-            {/* <div>{props.data?.fetchBoards.length - index}</div> */}
-            <S.Thum__Header>
-              <S.Thum__img
+          <S.BoradReview
+            key={el._id}
+            id={el._id}
+            onClick={props.onClickMoveToBoardDetail}
+          >
+            <S.ThumHeader>
+              <S.ThumImg
                 src={
                   el.images[0]
                     ? `https://storage.googleapis.com/${el.images?.[0]}`
                     : `/img/1.jpg`
                 }
               />
-            </S.Thum__Header>
-            <S.Thum__Body>
-              <S.Title id={el._id} onClick={props.onClickMoveToBoardDetail}>
+            </S.ThumHeader>
+            <S.ThumBody>
+              <S.Title>
                 {el.title
                   .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
                   .split("#$%")
@@ -51,19 +47,17 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
                   ))}
               </S.Title>
               <S.Contents>{el.contents}</S.Contents>
-            </S.Thum__Body>
-            <S.Thum__Bottom>
+            </S.ThumBody>
+            <S.ThumBottom>
               <S.Writer>{el.writer}</S.Writer>
-              {/* <div>{getDate(el.createdAt)}</div> */}
               <S.Like>
                 <S.LikeIcon />
                 {el.likeCount}
               </S.Like>
-            </S.Thum__Bottom>
-            {/* <S.ColumnRight>{el.createdAt}</S.ColumnRight> */}
+            </S.ThumBottom>
           </S.BoradReview>
         ))}
-      </S.Wrapper__Body>
+      </S.WrapperBody>
 
       <S.Footer>
         <Pagination refetch={props.refetch} count={props.count} />

@@ -13,8 +13,13 @@ import {
 import Pick from "../../../../../public/img/heart.svg";
 import UseditemQuestionWrite from "../comment/question_write/Question.Write.container";
 import UseditemQuestionList from "../comment/question_list/Question.List.container";
+import { useState } from "react";
+import Slider from "react-slick";
 
 export default function UsedItemDetailUI(props) {
+  const [nav1, setNav1] = useState();
+  const [nav2, setNav2] = useState();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -23,16 +28,48 @@ export default function UsedItemDetailUI(props) {
     slidesToScroll: 1,
   };
 
+  const pagingSettings = {
+    dots: false,
+    arrows: false,
+    centerMode: true,
+    slidesToShow: 3,
+    swipeToSlide: true,
+    focusOnSelect: true,
+  };
+
   return (
     <S.Wrapper>
       <S.DetailTop>
-        <S.StyledSlider {...settings}>
-          {props.data?.fetchUseditem.images
-            ?.filter((el: string) => el)
-            .map((el: string) => (
-              <S.Images key={el} src={`https://storage.googleapis.com/${el}`} />
-            ))}
-        </S.StyledSlider>
+        <S.DetailTopLeft>
+          <S.StyledSlider
+            asNavFor={nav2}
+            ref={(slider1) => setNav1(slider1)}
+            {...settings}
+          >
+            {props.data?.fetchUseditem.images
+              ?.filter((el: string) => el)
+              .map((el: string) => (
+                <S.Images
+                  key={el}
+                  src={`https://storage.googleapis.com/${el}`}
+                />
+              ))}
+          </S.StyledSlider>
+          <S.ThumSlider
+            asNavFor={nav1}
+            ref={(slider2) => setNav2(slider2)}
+            {...pagingSettings}
+          >
+            {props.data?.fetchUseditem.images
+              ?.filter((el: string) => el)
+              .map((el: string) => (
+                <S.ThumImg
+                  key={el}
+                  src={`https://storage.googleapis.com/${el}`}
+                />
+              ))}
+          </S.ThumSlider>
+        </S.DetailTopLeft>
 
         <S.DetailTopRight>
           <S.ProductInfo>
@@ -120,7 +157,9 @@ export default function UsedItemDetailUI(props) {
         </S.Edit__Button>
 
         {props.sellerId === props.myId ? (
-          <button onClick={props.onClickDelete}>삭제하기</button>
+          <S.Edit__Button onClick={props.onClickDelete}>
+            삭제하기
+          </S.Edit__Button>
         ) : (
           <S.Edit__Button
             onClick={props.onClickBasket(props.data?.fetchUseditem)}

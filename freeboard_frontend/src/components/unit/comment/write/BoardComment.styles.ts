@@ -13,7 +13,7 @@ export const CommentWrapper = styled.div`
   @media ${device.laptop} {
     width: 90rem;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 500px;
   }
 `;
@@ -26,7 +26,7 @@ export const CommentIcon = styled(CommentOutlined)`
   font-size: 20px;
   color: #ffd600;
   margin-right: 1.4rem;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 14px;
   }
 `;
@@ -40,7 +40,7 @@ export const CreateComment = styled.div`
   @media ${device.laptop} {
     width: 80rem;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 500px;
   }
 `;
@@ -52,7 +52,7 @@ export const CommentUser = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 320px;
   }
 `;
@@ -64,7 +64,7 @@ export const CommentWriter = styled.input`
   padding: 1.4rem 10.1rem 1.4rem 2rem;
   font-size: 1.6rem;
   border-radius: 30px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 100px;
   }
 `;
@@ -76,7 +76,7 @@ export const CommentPassword = styled.input`
   padding: 1.4rem 0 1.4rem 2rem;
   font-size: 1.64rem;
   border-radius: 30px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 100px;
   }
 `;
@@ -88,7 +88,7 @@ export const CommentStars = styled(Rate)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 14px;
   }
 `;
@@ -108,7 +108,7 @@ export const CommentContent = styled.textarea`
   @media ${device.laptop} {
     width: 90rem;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 500px;
   }
 `;
@@ -123,7 +123,7 @@ export const CommentInputBottom = styled.div`
   @media ${device.laptop} {
     width: 90rem;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 500px;
   }
 `;

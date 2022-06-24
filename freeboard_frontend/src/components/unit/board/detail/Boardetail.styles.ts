@@ -15,8 +15,8 @@ export const Wrapper = styled.div`
   @media ${device.laptop} {
     width: 120rem;
   }
-  @media ${device.mobile} {
-    width: 500px;
+  @media ${device.tablet} {
+    max-width: 500px;
   }
 `;
 
@@ -32,8 +32,8 @@ export const PostWrapper = styled.div`
   @media ${device.laptop} {
     width: 90rem;
   }
-  @media ${device.mobile} {
-    width: 500px;
+  @media ${device.tablet} {
+    max-width: 500px;
   }
 `;
 
@@ -48,7 +48,7 @@ export const PostHeader = styled.div`
   @media ${device.laptop} {
     width: 69.6rem;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 400px;
   }
 `;
@@ -71,21 +71,22 @@ export const PostInfo = styled.div`
 export const PostUserIcon = styled.div`
   width: 46px;
   height: 46px;
+  font-size: 18px;
   color: #bdbdbd;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 12px;
   }
 `;
 export const PostUser = styled.div`
   font-size: 20px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 18px;
   }
 `;
 export const PostDate = styled.div`
   color: #828282;
   font-size: 16px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 12px;
   }
 `;
@@ -120,7 +121,7 @@ export const PostBody = styled.div`
   @media ${device.laptop} {
     width: 69.6rem;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 400px;
   }
 `;
@@ -128,7 +129,7 @@ export const PostBody = styled.div`
 export const PostTitle = styled.span`
   font-size: 24px;
   margin-bottom: 20px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 20px;
   }
 `;
@@ -143,7 +144,7 @@ export const PostContent = styled.p`
   font-size: 1.8rem;
   margin-bottom: 120px;
   word-wrap: break-word;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 14px;
   }
 `;
@@ -169,17 +170,17 @@ export const Like = styled.div`
 `;
 export const Likebutton = styled(LikeOutlined)`
   font-size: 20px;
-  color: thistle;
+  color: #6b48ff;
   cursor: pointer;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 14px;
   }
 `;
 export const LikeNum = styled.div`
-  color: thistle;
+  color: #6b48ff;
   font-size: 18px;
   padding-top: 10px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 14px;
   }
 `;
@@ -194,7 +195,7 @@ export const Dislikebutton = styled(DislikeOutlined)`
   font-size: 20px;
   color: #828282;
   cursor: pointer;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 14px;
   }
 `;
@@ -202,7 +203,7 @@ export const DisLikeNum = styled.div`
   color: #828282;
   font-size: 18px;
   padding-top: 10px;
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     font-size: 14px;
   }
 `;
@@ -219,7 +220,7 @@ export const BtnGroup = styled.div`
     width: 90rem;
     padding: 50px 30px 50px 30px;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     width: 500px;
   }
 `;
@@ -232,9 +233,10 @@ export const Btn = styled.button`
   text-align: center;
   border-radius: 30px;
   cursor: pointer;
+  transition-duration: 0.3s;
   &:hover {
-    background-color: thistle;
+    background-color: #6b48ff;
     color: #fff;
-    border: 1px solid #fff;
+    border: 1px solid #6b48ff;
   }
 `;

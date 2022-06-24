@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FETCH_USED_ITEM_QUESTIONS } from "../question_list/Question.List.queries";
@@ -12,6 +12,9 @@ export default function UseditemQuestionWrite(props) {
   const router = useRouter();
   const [createUseditemQuestion] = useMutation(CREATE_USED_ITEM_QUESTION);
   const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);
+  const { data } = useQuery(FETCH_USED_ITEM_QUESTIONS, {
+    variables: { useditemId: String(router.query.useditemId) },
+  });
 
   const [contents, setContents] = useState("");
 
@@ -52,7 +55,7 @@ export default function UseditemQuestionWrite(props) {
       const result = await updateUseditemQuestion({
         variables: {
           updateUseditemQuestionInput,
-          useditemId: String(router.query.useditemId),
+          useditemQuestionId: String(props.el?._id),
         },
         refetchQueries: [
           {

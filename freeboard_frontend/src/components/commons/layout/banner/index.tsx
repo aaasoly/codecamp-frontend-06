@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   @media ${device.laptop} {
     height: 300px;
   }
-  @media ${device.mobile} {
+  @media ${device.tablet} {
     display: none;
   }
 `;
@@ -22,9 +22,8 @@ const StyledSlider = styled(Slider)`
   width: 1600px;
   height: 100%;
   overflow: hidden;
-  border-radius: 30px;
   @media ${device.laptop} {
-    min-width: 1200px;
+    width: 120rem;
   }
 `;
 
@@ -32,7 +31,7 @@ const ImgBox = styled.div`
   width: 1600px;
   overflow: hidden;
   @media ${device.laptop} {
-    width: 1200px;
+    width: 120rem;
   }
 `;
 

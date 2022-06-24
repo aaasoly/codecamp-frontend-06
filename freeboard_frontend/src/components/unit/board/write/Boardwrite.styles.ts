@@ -1,17 +1,21 @@
 import styled from "@emotion/styled";
+import { device } from "../../../../commons/responsive/breakPoint";
 import { ISubmitButtonProps } from "./Boardwrite.types";
-import DaumPostcode from "react-daum-postcode";
-import { PictureOutlined } from "@ant-design/icons";
+
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 120rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
   background-color: #fff;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  padding: 60px 103px 100px 101px;
-  margin: 50px 50px;
+  /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); */
+  padding: 6rem 10.3rem 10rem 10.1rem;
+  /* margin: 50px 50px; */
+  font-size: 14px;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
 `;
 
 export const MainTitle = styled.div`
@@ -24,8 +28,7 @@ export const MainTitle = styled.div`
 export const User = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -34,12 +37,15 @@ export const UserInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 486px;
+  width: 48.6rem;
   padding-bottom: 20px;
+  @media ${device.laptop} {
+    width: 34rem;
+  }
 `;
 
 export const Title = styled.div`
-  width: 996px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,14 +72,26 @@ export const Blank = styled.input`
   height: 52px;
   border: 1px solid #bdbdbd;
   padding: 14px 16px;
+  border-radius: 30px;
+  :focus {
+    outline: none;
+  }
 `;
 
-export const MainContents = styled.input`
-  width: 996px;
+export const MainContents = styled.textarea`
+  width: 99.6rem;
   height: 480px;
   border: 1px solid #bdbdbd;
-  padding: 14px 16px 442px;
+  padding: 14px 16px;
   margin-bottom: 16px;
+  border-radius: 30px;
+  resize: none;
+  :focus {
+    outline: none;
+  }
+  @media ${device.laptop} {
+    width: 70rem;
+  }
 `;
 
 export const Post = styled.div`
@@ -90,19 +108,24 @@ export const PostBlank = styled.input`
   border: 1px solid #bdbdbd;
   padding: 14px 16px;
   margin-right: 16px;
+  border-radius: 25px;
+  :focus {
+    outline: none;
+  }
 `;
 
 export const PostSearch = styled.button`
   width: 124px;
   height: 52px;
-  box-sizing: border-box;
-  background-color: #000;
+  background-color: #6b48ff;
   color: #fff;
   padding: 14px 16px;
+  border: none;
+  border-radius: 30px;
 `;
 
 export const Address = styled.div`
-  width: 996px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -115,10 +138,14 @@ export const AddressBlank = styled.input`
   border: 1px solid #bdbdbd;
   padding: 14px 16px;
   margin-bottom: 30px;
+  border-radius: 30px;
+  :focus {
+    outline: none;
+  }
 `;
 
 export const Youtube = styled.div`
-  width: 996px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -152,38 +179,18 @@ export const Upload = styled.div`
   align-items: center;
 `;
 
-export const Setting = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`;
-
-export const Select = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const Radio = styled.input`
-  width: 20px;
-  height: 20px;
-`;
-
-export const RadioLabel = styled.div`
-  padding-right: 22px;
-`;
-
 export const BtnSubmit = styled.button`
   width: 179px;
   height: 52px;
   padding: 14px 60px;
-  border: none;
+  border: ${(props: ISubmitButtonProps) =>
+    props.isActive ? "1px solid #6b48ff" : "1px solid #bebebe"};
+  border-radius: 30px;
   background-color: ${(props: ISubmitButtonProps) =>
-    props.isActive ? "#ffd600" : "#bdbdbd"};
-  color: #000;
-  margin: 80px 0 100px 409px;
+    props.isActive ? "#6b48ff" : "#fff"};
+  color: ${(props: ISubmitButtonProps) =>
+    props.isActive ? "#fff" : "#bebebe"};
+  margin: 0 auto;
 `;
 
 export const Error = styled.div`
