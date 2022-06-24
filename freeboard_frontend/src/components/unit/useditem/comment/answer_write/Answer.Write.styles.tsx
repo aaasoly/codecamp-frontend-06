@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 415px;
+  width: 400px;
   height: 160px;
   border: 1px solid #bebebe;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   padding: 10px 18px;
+  margin-top: 10px;
 `;
 
 export const Contents = styled.input`

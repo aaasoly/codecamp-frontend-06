@@ -6,6 +6,7 @@ import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
+  left: 10rem;
   width: 160rem;
   height: 5rem;
   display: flex;
@@ -15,17 +16,16 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
-  width: 145rem;
+  width: 140rem;
   height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
 `;
 
 const Logo = styled.div`
-  width: 10rem;
-  font-size: 20px;
+  width: 30rem;
+  font-size: 2rem;
   cursor: pointer;
 `;
 
@@ -85,26 +85,27 @@ export default function LayoutHeader() {
     location.reload();
   };
 
+  const onClickLogIn = () => {
+    router.push("/login");
+  };
+
   return (
     <Wrapper>
       <Box>
         <Logo onClick={onClickLanding}>Logo</Logo>
         <Menu>
-          <MenuItem onClick={onClickBoard}>Board</MenuItem>
-          <MenuItem onClick={onClickMarket}>Market</MenuItem>
+          <MenuItem onClick={onClickBoard}>게시판</MenuItem>
+          <MenuItem onClick={onClickMarket}>중고마켓</MenuItem>
           <MenuItem onClick={onClickAPI}>API</MenuItem>
-          <MenuItem onClick={onClickFirebase}>Guest</MenuItem>
+          <MenuItem onClick={onClickFirebase}>방명록</MenuItem>
           {data?.fetchUserLoggedIn ? (
             <>
-              <MenuItem onClick={onClickMyPage}>My page</MenuItem>
-              <MenuItem onClick={onClickLogOut}>Logout</MenuItem>
+              <MenuItem onClick={onClickMyPage}>마이 페이지</MenuItem>
+              <MenuItem onClick={onClickLogOut}>로그아웃</MenuItem>
             </>
           ) : (
-            ""
+            <MenuItem onClick={onClickLogIn}>로그인</MenuItem>
           )}
-          <MenuItem onClick={onClickLanding}>
-            {data?.fetchUserLoggedIn.name || "로그인"}
-          </MenuItem>
         </Menu>
       </Box>
     </Wrapper>

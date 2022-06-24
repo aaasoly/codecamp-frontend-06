@@ -5,9 +5,14 @@ html {
   font-size: 62.5%;
   margin: 0;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   html {
     font-size: 50%;
+  }
+}
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 30%;
   }
 }
 

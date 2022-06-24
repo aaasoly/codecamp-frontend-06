@@ -46,11 +46,14 @@ export default function CreateUsedItem(props) {
 
   const onKeyUpHash = (event) => {
     if (event.keyCode === 32 && event.target.value !== " ") {
-      // setHashArr((prev) => [...prev, hashtag]);
-      // setHashtag("");
       setHashArr([...hashArr, "#" + event.target.value]);
       event.target.value = "";
     }
+  };
+
+  const deleteTag = (event) => {
+    const updateTag = hashArr.filter((tag) => tag !== event.target.innerHTML);
+    setHashArr(updateTag);
   };
 
   const {
@@ -224,6 +227,7 @@ export default function CreateUsedItem(props) {
       address={address}
       addrDetail={addrDetail}
       onChangeAddrDetail={onChangeAddrDetail}
+      deleteTag={deleteTag}
     />
   );
 }

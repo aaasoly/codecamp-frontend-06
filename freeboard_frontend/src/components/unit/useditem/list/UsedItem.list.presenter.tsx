@@ -12,30 +12,32 @@ import {
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
-  width: 1600px;
+  width: 160rem;
 `;
 
 const Wrapper__Top = styled.div`
   display: flex;
-  width: 1350px;
-  height: 473px;
+  width: 135rem;
+  height: 47.3rem;
 `;
 const Wrapper__Body = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 `;
 const Wrapper__Right = styled.div``;
 
 const Wrapper__Bottom = styled.div`
-  width: 1350px;
+  width: 135rem;
   display: flex;
   justify-content: flex-end;
 `;
 
 const TodayView = styled.div`
-  width: 196px;
-  height: 550px;
+  width: 19.6rem;
+  height: 55rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   border: 1px solid #bdbdbd;
   position: static;
   padding: 5px;
@@ -46,25 +48,22 @@ const TodayView = styled.div`
   border-radius: 20px;
 `;
 
-// const Today = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
 const TodayItem = styled.img`
-  width: 160px;
-  height: 160px;
-  margin-bottom: 10px;
+  width: 16rem;
+  height: 16rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
   border: 1px solid #bebebe;
-  object-fit: contain;
 `;
 
 const CreateButton = styled.button`
-  width: 124px;
-  height: 52px;
+  width: 12.4rem;
+  height: 5.2rem;
+  font-size: 1.4rem;
   background-color: #fff;
   border-radius: 30px;
   border: 1px solid #bebebe;
+  cursor: pointer;
 `;
 
 export default function UsedItemListUI(props) {
@@ -95,7 +94,7 @@ export default function UsedItemListUI(props) {
         </Today>
       </Wrapper__Top> */}
       <Wrapper__Body>
-        <div style={{ height: "1004px", overflow: "auto" }}>
+        <div style={{ height: "100.4rem", overflow: "auto" }}>
           <InfiniteScroll
             pageStart={0}
             loadMore={props.onLoadMore}

@@ -5,7 +5,7 @@ export default function UseditemQuestionWriteUI(props) {
     <S.Wrapper>
       <S.Contents
         type="text"
-        placeholder="개인정보웅애웅"
+        placeholder="판매자에게 궁금한 사항을 물어보세요."
         onChange={props.onChangeContents}
         defaultValue={props.contents || props.el?.contents || ""}
       ></S.Contents>

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Question__Wrapper = styled.div`
   width: 415px;
-  height: 130px;
+  height: auto;
   display: flex;
   border-bottom: 1px solid #bebebe;
   padding: 25px 0;
@@ -13,8 +13,7 @@ export const Wrapper__Left = styled.div`
 `;
 
 export const Wrapper__Body = styled.div`
-  width: 100%;
-  height: 130px;
+  width: 350px;
   display: flex;
   flex-direction: column;
 `;
@@ -24,10 +23,12 @@ export const UserName = styled.span`
   font-weight: 700;
   margin-bottom: 4px;
 `;
-export const Contents = styled.span`
-  font-size: 16px;
-  height: 40px;
-  margin-bottom: 4px;
+export const Contents = styled.p`
+  width: 400px;
+  font-size: 14px;
+  height: auto;
+  margin-bottom: 5px;
+  word-wrap: break-word;
 `;
 
 export const CreatedAt = styled.span`

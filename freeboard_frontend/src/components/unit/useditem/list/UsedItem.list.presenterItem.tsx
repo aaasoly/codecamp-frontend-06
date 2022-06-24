@@ -32,7 +32,7 @@ export default function UsedItemListUIItem(props) {
         </S.Column__Center>
 
         <S.Column__Right>
-          <S.Price>₩ {props.el.price}</S.Price>
+          <S.Price> {props.el.price} 원</S.Price>
         </S.Column__Right>
       </S.Row>
     </S.Wrapper>

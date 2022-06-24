@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   align-items: center;
   border: 1px solid #bebebe;
   border-radius: 30px;
+  font-size: 14px;
 `;
 
 export const DetailTop = styled.div`
@@ -78,9 +79,10 @@ export const DetailBottomLeft = styled.div`
 
 export const DetailBottomRight = styled.div`
   width: 415px;
-  height: 600px;
+  height: 650px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 `;
 
 export const Body__Top = styled.div`
@@ -189,12 +191,14 @@ export const Contents = styled.div`
 export const TagDiv = styled.div`
   width: 100%;
   height: auto;
+  display: flex;
+  flex-wrap: wrap;
   margin-bottom: 30px;
 `;
 
 export const Tags = styled.span`
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   padding: 6px 15px 5px;
   color: #fff;
   border-radius: 20px;
@@ -220,7 +224,7 @@ export const ButtonGroup = styled.div`
 export const List__Button = styled.button`
   width: 150px;
   height: 45px;
-  padding: 13px 47px;
+  padding: 11px 47px;
   border: 1px solid #bdbdbd;
   border-radius: 30px;
   background-color: #fff;
@@ -229,7 +233,7 @@ export const List__Button = styled.button`
 export const Edit__Button = styled.div`
   width: 150px;
   height: 45px;
-  padding: 13px 47px;
+  padding: 11px 47px;
   border: 1px solid #bdbdbd;
   border-radius: 30px;
   background-color: #fff;

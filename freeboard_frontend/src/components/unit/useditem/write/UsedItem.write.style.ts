@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   background: #ffffff;
   /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); */
   padding: 80px 102px;
+  font-size: 1.4rem;
 `;
 
 export const MainTitle = styled.div`
@@ -93,6 +94,7 @@ export const PriceInput = styled.input`
 `;
 
 export const Tags = styled.div`
+  width: 996px;
   margin-bottom: 40px;
 `;
 
@@ -108,6 +110,17 @@ export const TagsInput = styled.input`
   &:focus {
     outline: none;
   }
+  margin-bottom: 10px;
+`;
+
+export const TagUnit = styled.span`
+  display: inline-block;
+  font-size: 13px;
+  padding: 6px 15px 5px;
+  color: #fff;
+  border-radius: 20px;
+  margin-right: 5px;
+  background-color: #ac92fa;
 `;
 
 export const Location = styled.div`
@@ -157,6 +170,7 @@ export const AddrSearch = styled.button`
   background-color: #000;
   color: #fff;
   border-radius: 30px;
+  cursor: pointer;
 `;
 
 export const GPS = styled.div`
@@ -239,4 +253,5 @@ export const Button = styled.button`
   background-color: #fff;
   border-radius: 30px;
   border: 1px solid #bebebe;
+  cursor: pointer;
 `;

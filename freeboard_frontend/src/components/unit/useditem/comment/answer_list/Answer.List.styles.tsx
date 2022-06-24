@@ -1,17 +1,16 @@
 import styled from "@emotion/styled";
 
 export const Question__Wrapper = styled.div`
-  width: 1200px;
-  height: 130px;
+  width: 400px;
+  height: auto;
   display: flex;
-`;
-
-export const Wrapper__Left = styled.div`
-  width: 40px;
+  border-bottom: 1px solid #bebebe;
+  margin-top: 10px;
+  margin-left: 10px;
 `;
 
 export const Wrapper__Body = styled.div`
-  width: 1146px;
+  width: 415px;
   height: 130px;
   display: flex;
   flex-direction: column;
@@ -23,8 +22,8 @@ export const UserName = styled.span`
   margin-bottom: 4px;
 `;
 export const Contents = styled.span`
-  font-size: 16px;
-  height: 40px;
+  font-size: 14px;
+  height: auto;
   margin-bottom: 4px;
 `;
 

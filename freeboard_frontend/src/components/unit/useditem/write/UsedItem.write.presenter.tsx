@@ -46,7 +46,7 @@ export default function CreateUsedItemUI(props: any) {
           <S.RemarksInput
             type="text"
             {...props.register("remarks")}
-            placeholder="상품명을 작성해주세요."
+            placeholder="상품에 대해 간략하게 소개해주세요."
             defaultValue={props.data?.fetchUseditem.remarks}
           />
         </S.Remarks>
@@ -75,12 +75,14 @@ export default function CreateUsedItemUI(props: any) {
             type="text"
             onKeyUp={props.onKeyUpHash}
             {...props.register("tags")}
-            placeholder="#태그 #태그 #태그"
+            placeholder="입력 후 스페이스바를 눌러 등록할 수 있습니다. 등록된 태그 클릭시 삭제됩니다."
             defaultValue={props.data?.fetchUseditem.tags}
           />
           <div>
             {props.hashArr.map((el, idx) => (
-              <span key={idx}>{el}</span>
+              <S.TagUnit key={idx} onClick={props.deleteTag}>
+                {el}
+              </S.TagUnit>
             ))}
           </div>
         </S.Tags>

@@ -22,7 +22,7 @@ export default function UseditemQuestionWrite(props) {
   // ✏️ 문의하기 등록
   const onClickCreateQuestion = async () => {
     try {
-      const result = await createUseditemQuestion({
+      await createUseditemQuestion({
         variables: {
           createUseditemQuestionInput: { contents },
           useditemId: String(router.query.useditemId),
@@ -35,7 +35,6 @@ export default function UseditemQuestionWrite(props) {
         ],
       });
       alert("댓글이 등록되었습니다.");
-      console.log(result);
       setContents("");
     } catch (error) {
       alert(error.message);

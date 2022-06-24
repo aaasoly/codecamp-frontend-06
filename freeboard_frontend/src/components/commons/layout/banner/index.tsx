@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 const StyledSlider = styled(Slider)`
   width: 160rem;
-  height: 500px;
+  height: 50rem;
   overflow: hidden;
   border-radius: 30px;
 `;

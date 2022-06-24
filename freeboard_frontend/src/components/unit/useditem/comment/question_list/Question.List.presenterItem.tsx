@@ -104,12 +104,12 @@ export default function UseditemQuestionListItem(props) {
         />
       )}
       {/* 대댓글 작성 인풋 */}
-      <div style={{ marginLeft: "30px" }}>
-        {isAnswer === true && (
-          <UseditemAnswerWrite el={props.el} setIsAnswer={setIsAnswer} />
-        )}
-        <UseditemQuestionAnswerList el={props.el} />
-      </div>
+      {/* <div style={{ marginTop: "10px" }}> */}
+      {isAnswer === true && (
+        <UseditemAnswerWrite el={props.el} setIsAnswer={setIsAnswer} />
+      )}
+      <UseditemQuestionAnswerList el={props.el} />
+      {/* </div> */}
     </>
   );
 }
