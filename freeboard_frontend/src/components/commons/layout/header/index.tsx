@@ -2,25 +2,30 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
-  left: 10rem;
-  width: 160rem;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  height: 50px;
   z-index: 9999;
   color: #fff;
 `;
 
 const Box = styled.div`
   width: 140rem;
-  height: 5rem;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+  @media ${device.laptop} {
+    width: 110rem;
+  }
+  @media ${device.mobile} {
+    justify-content: flex-end;
+  }
 `;
 
 const Logo = styled.div`
@@ -37,12 +42,24 @@ const Menu = styled.div`
 `;
 
 const MenuItem = styled.span`
-  font-size: 1.4rem;
+  font-size: 14px;
   transition-duration: 0.4s;
   &:hover {
     opacity: 0.5;
   }
   cursor: pointer;
+  @media ${device.laptop} {
+    font-size: 12px;
+  }
+`;
+
+const MenuLaptop = styled.span`
+  font-size: 20px;
+  display: none;
+  @media ${device.mobile} {
+    display: block;
+  }
+  color: black;
 `;
 
 const LOG_OUT_USER = gql`
@@ -107,6 +124,7 @@ export default function LayoutHeader() {
             <MenuItem onClick={onClickLogIn}>로그인</MenuItem>
           )}
         </Menu>
+        <MenuLaptop>메뉴</MenuLaptop>
       </Box>
     </Wrapper>
   );

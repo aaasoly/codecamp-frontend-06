@@ -23,28 +23,6 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
               </S.PostDate>
             </S.PostInfo>
           </S.HeaderLeft>
-
-          {/* <S.HeaderRight>
-            <S.LocaDetail>
-              <S.Address>
-                {props.data?.fetchBoard?.boardAddress?.zipcode}
-                <br />
-                {props.data?.fetchBoard?.boardAddress?.address}
-                <br />
-                {props.data?.fetchBoard?.boardAddress?.addressDetail}
-              </S.Address>
-              <S.Triangle></S.Triangle>
-            </S.LocaDetail>
-
-            <S.HeaderIcon>
-              <S.LinkIcon>
-                <FontAwesomeIcon icon={faLink} size="2x" />
-              </S.LinkIcon>
-              <S.LocaIcon>
-                <FontAwesomeIcon icon={faLocationDot} size="2x" />
-              </S.LocaIcon>
-            </S.HeaderIcon>
-          </S.HeaderRight> */}
         </S.PostHeader>
 
         <S.PostBody>
@@ -56,7 +34,7 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
                 src={`https://storage.googleapis.com/${el}`}
               />
             ))}
-          <S.PostText>{props.data?.fetchBoard?.contents}</S.PostText>
+          <S.PostContent>{props.data?.fetchBoard?.contents}</S.PostContent>
           {props.data?.fetchBoard.youtubeUrl && (
             <S.Youtube url={String(props.data?.fetchBoard?.youtubeUrl)} />
           )}

@@ -1,33 +1,48 @@
 import styled from "@emotion/styled";
 import { CommentOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 export const CommentWrapper = styled.div`
-  width: 1200px;
-  /* height: 161px; */
+  width: 120rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: auto;
+  margin: 0 auto;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
+  @media ${device.mobile} {
+    width: 500px;
+  }
 `;
 
 export const CommentHeader = styled.div`
-  font-size: 18px;
+  font-size: 1.8rem;
 `;
 
 export const CommentIcon = styled(CommentOutlined)`
   font-size: 20px;
   color: #ffd600;
-  margin-right: 14px;
+  margin-right: 1.4rem;
+  @media ${device.mobile} {
+    font-size: 14px;
+  }
 `;
 export const CreateComment = styled.div`
-  width: 1200px;
-  height: 300px;
+  width: 120rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  @media ${device.laptop} {
+    width: 80rem;
+  }
+  @media ${device.mobile} {
+    width: 500px;
+  }
 `;
 
 export const CommentUser = styled.div`
@@ -37,30 +52,45 @@ export const CommentUser = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  @media ${device.mobile} {
+    width: 320px;
+  }
 `;
 
 export const CommentWriter = styled.input`
   width: 180px;
-  height: 52px;
+  height: 5.2rem;
   border: 1px solid #bdbdbd;
-  padding: 14px 101px 14px 20px;
-  font-size: 16px;
+  padding: 1.4rem 10.1rem 1.4rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 30px;
+  @media ${device.mobile} {
+    width: 100px;
+  }
 `;
 
 export const CommentPassword = styled.input`
   width: 180px;
-  height: 52px;
+  height: 5.2rem;
   border: 1px solid #bdbdbd;
-  padding: 14px 0 14px 20px;
-  font-size: 16px;
+  padding: 1.4rem 0 1.4rem 2rem;
+  font-size: 1.64rem;
+  border-radius: 30px;
+  @media ${device.mobile} {
+    width: 100px;
+  }
 `;
 
 export const CommentStars = styled(Rate)`
+  font-size: 20px;
   height: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @media ${device.mobile} {
+    font-size: 14px;
+  }
 `;
 
 export const CommentWriteBox = styled.div`
@@ -69,38 +99,50 @@ export const CommentWriteBox = styled.div`
 `;
 
 export const CommentContent = styled.textarea`
-  width: 1200px;
-  height: 108px;
+  width: 120rem;
+  height: 10.8rem;
   border: none;
-  padding: 20px 0 64px 20px;
+  padding: 2rem 2rem 6.4rem 2rem;
   color: #bdbdbd;
-  font-size: 16px;
+  font-size: 1.6rem;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
+  @media ${device.mobile} {
+    width: 500px;
+  }
 `;
 
 export const CommentInputBottom = styled.div`
-  width: 1200px;
-  height: 52px;
+  width: 120rem;
+  height: 5.2rem;
   display: flex;
   flex-direction: row;
   justify-content: end;
   align-items: flex-start;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
+  @media ${device.mobile} {
+    width: 500px;
+  }
 `;
 
 export const CommentCharNum = styled.div`
-  width: 1198px;
-  height: 55px;
+  width: 119.8rem;
+  height: 100%;
+  font-size: 1.4rem;
   border-top: 1px solid #f2f2f2;
-  padding: 14px 20px;
+  padding: 1.4rem 2rem;
   color: #bdbdbd;
 `;
 export const CommentCreateButton = styled.button`
-  width: 91px;
+  width: 9.1rem;
   height: 100%;
   background-color: #000;
   color: #fff;
   border: none;
-  padding: 14px 16px;
-  font-size: 14px;
+  padding: 1.4rem 1.6rem;
+  font-size: 1.4rem;
   cursor: pointer;
-  box-sizing: border-box;
 `;

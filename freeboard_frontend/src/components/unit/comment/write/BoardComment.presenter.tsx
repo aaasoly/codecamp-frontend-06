@@ -45,7 +45,7 @@ export default function BoardCommentWriteUI(props) {
                 props.isEdit ? props.onClickUpdate : props.onClickCreateComment
               }
             >
-              {props.isEdit ? "수정하기" : "등록하기"}
+              {props.isEdit ? "수정" : "등록"}
             </S.CommentCreateButton>
           </S.CommentInputBottom>
         </S.CommentWriteBox>

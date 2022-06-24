@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import { HeartFilled } from "@ant-design/icons";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 export const Wrapper = styled.div`
-  width: 1600px;
+  width: 160rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-size: 14px;
+  @media screen and ${device.laptop} {
+    width: 120rem;
+  }
 `;
 
 export const Wrapper__Header = styled.div`
@@ -17,13 +22,16 @@ export const Wrapper__Header = styled.div`
 `;
 
 export const Wrapper__Body = styled.div`
-  width: 1600px;
-  height: 860px;
+  width: 160rem;
+  height: 86rem;
   display: flex;
   justify-content: space-between;
   align-items: space-between;
   flex-wrap: wrap;
   gap: 1;
+  @media ${device.laptop} {
+    width: 120rem;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -55,6 +63,9 @@ export const BoradReview = styled.div`
   border-radius: 20px;
   border: 1px solid #bebebe;
   overflow: hidden;
+  @media ${device.laptop} {
+    width: 230px;
+  }
 `;
 
 export const Thum__Header = styled.div`
@@ -110,7 +121,7 @@ export const Contents = styled.div`
 `;
 
 export const Writer = styled.div`
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
 `;
 
@@ -197,12 +208,15 @@ export const LikeIcon = styled(HeartFilled)`
 // `;
 
 export const Footer = styled.div`
-  width: 1600px;
+  width: 160rem;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   padding-top: 20px;
+  @media ${device.laptop} {
+    width: 1200px;
+  }
 `;
 export const WriteIcon = styled.button`
   width: 60px;

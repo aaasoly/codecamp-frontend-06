@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -9,18 +10,30 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media ${device.laptop} {
+    height: 300px;
+  }
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
 
 const StyledSlider = styled(Slider)`
-  width: 160rem;
-  height: 50rem;
+  width: 1600px;
+  height: 100%;
   overflow: hidden;
   border-radius: 30px;
+  @media ${device.laptop} {
+    min-width: 1200px;
+  }
 `;
 
 const ImgBox = styled.div`
   width: 1600px;
   overflow: hidden;
+  @media ${device.laptop} {
+    width: 1200px;
+  }
 `;
 
 const BannerImg = styled.img`
