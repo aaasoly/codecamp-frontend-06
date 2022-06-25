@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 import { device } from "../../../../commons/responsive/breakPoint";
 
@@ -10,7 +11,9 @@ const Wrapper = styled.div`
   width: 100%;
   height: 50px;
   z-index: 9999;
-  color: #fff;
+  background-color: #fff;
+  color: #333;
+  display: ${(props) => (props.isVisible ? "block" : "none")};
 `;
 
 const Box = styled.div`
@@ -75,6 +78,21 @@ export default function LayoutHeader() {
   const router = useRouter();
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [logoutUser] = useMutation(LOG_OUT_USER);
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (typeof window !== "undefined") {
+    // window.addEventListener("scroll", () => {
+    //   console.log(window.scrollX, window.scrollY);
+    // });
+
+    window.addEventListener("wheel", (e: WheelEvent) => {
+      if (e.deltaY < 0) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    });
+  }
 
   const onClickLanding = () => {
     router.push("/");
@@ -110,7 +128,7 @@ export default function LayoutHeader() {
   };
 
   return (
-    <Wrapper>
+    <Wrapper isVisible={isVisible}>
       <Box>
         <Logo onClick={onClickLanding}>Logo</Logo>
         <Menu>
