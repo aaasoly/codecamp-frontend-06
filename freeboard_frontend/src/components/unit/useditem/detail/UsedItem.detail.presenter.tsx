@@ -14,7 +14,6 @@ import Pick from "../../../../../public/img/heart.svg";
 import UseditemQuestionWrite from "../comment/question_write/Question.Write.container";
 import UseditemQuestionList from "../comment/question_list/Question.List.container";
 import { useState } from "react";
-import Slider from "react-slick";
 
 export default function UsedItemDetailUI(props) {
   const [nav1, setNav1] = useState();
@@ -35,6 +34,7 @@ export default function UsedItemDetailUI(props) {
     slidesToShow: 3,
     swipeToSlide: true,
     focusOnSelect: true,
+    infinite: false,
   };
 
   return (
