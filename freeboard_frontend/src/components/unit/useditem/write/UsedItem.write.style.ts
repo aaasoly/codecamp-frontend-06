@@ -279,4 +279,5 @@ export const Button = styled.button`
   border: 1px solid #bebebe;
   cursor: pointer;
   margin: 0 auto;
+  color: ${(props) => (props.isActive ? "black" : "#bebebe")};
 `;

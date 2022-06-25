@@ -23,8 +23,7 @@ export default function CreateUsedItemUI(props: any) {
 
   return (
     <S.Wrapper>
-      {/* <S.MainTitle>상품 {props.isEdit ? "수정" : "등록"} 하기</S.MainTitle> */}
-      <S.Form
+      <form
         onSubmit={
           props.isEdit
             ? props.handleSubmit(props.onClickUpdate)
@@ -124,8 +123,12 @@ export default function CreateUsedItemUI(props: any) {
                   ""
                 }
                 readOnly
+                {...props.register("address")}
               />
-              <S.AddrDetailInput onChange={props.onChangeAddrDetail} />
+              <S.AddrDetailInput
+                onChange={props.onChangeAddrDetail}
+                {...props.register("addrDetail")}
+              />
             </S.Address>
           </S.LocationTop>
 
@@ -153,8 +156,10 @@ export default function CreateUsedItemUI(props: any) {
             ))}
           </S.ImageBox>
         </S.Images>
-        <S.Button>{props.isEdit ? "수정" : "등록"} 하기</S.Button>
-      </S.Form>
+        <S.Button isActive={props.isActive}>
+          {props.isEdit ? "수정" : "등록"} 하기
+        </S.Button>
+      </form>
     </S.Wrapper>
   );
 }

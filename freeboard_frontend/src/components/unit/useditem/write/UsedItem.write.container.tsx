@@ -37,6 +37,8 @@ export default function CreateUsedItem(props) {
   const [hashtag, setHashtag] = useState("");
   const [hashArr, setHashArr] = useState([]);
 
+  const [isActive, setIsActive] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const showModal = () => {
     setIsOpen(true);
@@ -68,6 +70,7 @@ export default function CreateUsedItem(props) {
     trigger,
     reset,
     getValues,
+    watch,
   } = useForm({
     mode: "onChange",
   });
@@ -78,7 +81,6 @@ export default function CreateUsedItem(props) {
 
   const onChangeAddrDetail = (event) => {
     setAddrDetail(event.target.value);
-    console.log(addrDetail);
   };
 
   const handleComplete = (address: any) => {
@@ -195,6 +197,16 @@ export default function CreateUsedItem(props) {
     }
   };
 
+  const watchAll = Object.values(watch());
+
+  useEffect(() => {
+    if (watchAll.every((el) => el) && fileUrls.some((el) => el)) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [watchAll, fileUrls]);
+
   useEffect(() => {
     reset({ contents: props.data?.fetchUseditem.contents });
   }, [props.data]);
@@ -232,6 +244,7 @@ export default function CreateUsedItem(props) {
       addrDetail={addrDetail}
       onChangeAddrDetail={onChangeAddrDetail}
       deleteTag={deleteTag}
+      isActive={isActive}
     />
   );
 }
