@@ -1,13 +1,20 @@
 import styled from "@emotion/styled";
 import { HeartFilled } from "@ant-design/icons";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 export const Wrapper = styled.div`
   width: 135rem;
   display: flex;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
+  @media ${device.tablet} {
+    width: 500px;
+  }
 `;
 
 export const Row = styled.div`
-  width: 135rem;
+  width: 100%;
   height: 20rem;
   display: flex;
   justify-content: space-around;
@@ -26,6 +33,12 @@ export const Column__Center = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media ${device.laptop} {
+    width: 700px;
+  }
+  @media ${device.tablet} {
+    width: 330px;
+  }
 `;
 
 export const Column__Right = styled.div`
@@ -43,6 +56,9 @@ export const Img = styled.img`
 export const Name = styled.span`
   font-size: 2rem;
   font-weight: 600;
+  @media ${device.tablet} {
+    font-size: 10px;
+  }
 `;
 
 export const Remarks = styled.span`

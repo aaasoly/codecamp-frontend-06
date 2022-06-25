@@ -164,19 +164,10 @@ export const Picture = styled.div`
 
 export const ImgIcon = styled.div`
   font-size: 22px;
-  width: 20%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-left: 20px;
   color: #bdbdbd;
-`;
-
-export const Upload = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const BtnSubmit = styled.button`

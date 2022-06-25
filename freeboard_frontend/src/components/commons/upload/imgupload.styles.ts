@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { PictureOutlined } from "@ant-design/icons";
 
 export const PicAttach = styled.img`
   width: 180px;
@@ -8,11 +7,14 @@ export const PicAttach = styled.img`
 `;
 
 export const ImgIcon = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  border: 1px solid #bebebe;
   font-size: 22px;
-  /* width: 20%; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding-left: 20px;
-  color: #bdbdbd;
+  color: #bebebe;
+  margin-right: 10px;
 `;

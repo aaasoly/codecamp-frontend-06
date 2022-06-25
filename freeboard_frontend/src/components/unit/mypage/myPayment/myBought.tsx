@@ -6,7 +6,6 @@ import Sidebar from "../../../commons/layout/sidebar";
 
 export default function MyBoughtPage() {
   const { data } = useQuery(FETCH_POINT_TRANSACTIONS_OF_BUYING);
-  console.log(data);
 
   return (
     <MyItem.Wrapper>

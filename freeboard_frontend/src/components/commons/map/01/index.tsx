@@ -41,15 +41,12 @@ export default function MapPage(props) {
                 position: coords,
               });
 
-              console.log(props.addrDetail);
-              console.log(marker.position);
-
               // 인포윈도우로 장소에 대한 설명을 표시합니다
               const infowindow = new window.kakao.maps.InfoWindow({
-                content: `<div style="width:150px;height:60px;text-align:center;padding:6px;">${
-                  props.address + `\t${props.addrDetail}` ||
+                content: `<div style="width:160px;height:70px;text-align:center;padding:10px 5px;">${
+                  props?.address ||
                   props.fetchAddr ||
-                  "거래 장소를 입력하세요"
+                  "우편번호 검색 버튼을 눌러 주소를 등록하세요"
                 } </div>`,
               });
               infowindow.open(map, marker);
@@ -65,12 +62,7 @@ export default function MapPage(props) {
 
   return (
     <div>
-      {/* {props.address ? (
-        <div id="map" style={{ width: "384px", height: "252px" }}></div>
-      ) : (
-        <div>주소를 검색해주세요</div>
-      )} */}
-      <div id="map" style={{ width: "384px", height: "252px" }}></div>
+      <div id="map" style={{ width: "584px", height: "352px" }}></div>
     </div>
   );
 }

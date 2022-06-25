@@ -49,7 +49,8 @@ const UserPoint = styled.span`
   font-size: 14px;
   padding: 3px 10px;
   border-radius: 30px;
-  background-color: aliceblue;
+  background-color: #6b48ff;
+  color: #fff;
 `;
 
 const MyPage = styled.span`
@@ -104,11 +105,7 @@ export default function Sidebar() {
       </UserDiv>
 
       <MenuDiv>
-        <MyPage>
-          <Link href="/mypage">
-            <a>마이 페이지</a>
-          </Link>
-        </MyPage>
+        <MyPage>마이페이지</MyPage>
 
         <MyMarket>
           <MenuTitle>내 장터</MenuTitle>
@@ -120,7 +117,7 @@ export default function Sidebar() {
             </MenuItem>
             <MenuItem>
               <Link href="/mypage/mypick">
-                <a>찜 상품 조회</a>
+                <a>장바구니</a>
               </Link>
             </MenuItem>
           </MenuList>

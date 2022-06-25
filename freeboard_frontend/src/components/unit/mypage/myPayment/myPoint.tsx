@@ -6,7 +6,6 @@ import Sidebar from "../../../commons/layout/sidebar";
 
 export default function MyPointPage() {
   const { data } = useQuery(FETCH_POINT_TRANSACTIONS);
-  console.log(data);
 
   return (
     <MyItem.Wrapper>

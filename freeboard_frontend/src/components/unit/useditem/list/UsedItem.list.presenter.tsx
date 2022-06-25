@@ -10,9 +10,16 @@ import {
   todayItemState,
 } from "../../../../commons/store";
 import { useRouter } from "next/router";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 const Wrapper = styled.div`
   width: 160rem;
+  @media ${device.laptop} {
+    width: 120rem;
+  }
+  @media ${device.tablet} {
+    width: 500px;
+  }
 `;
 
 const Wrapper__Top = styled.div`
@@ -21,6 +28,7 @@ const Wrapper__Top = styled.div`
   height: 47.3rem;
 `;
 const Wrapper__Body = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 4rem;
@@ -28,7 +36,7 @@ const Wrapper__Body = styled.div`
 const Wrapper__Right = styled.div``;
 
 const Wrapper__Bottom = styled.div`
-  width: 135rem;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
 `;
@@ -46,6 +54,9 @@ const TodayView = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 const TodayItem = styled.img`

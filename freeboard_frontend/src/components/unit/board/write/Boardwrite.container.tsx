@@ -74,11 +74,11 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     setAddressDetail(event.target.value);
   };
 
-  // const onChangeFileUrls = (fileUrl: string, index: number) => {
-  //   const newFileUrls = [...fileUrls];
-  //   newFileUrls[index] = fileUrl;
-  //   setFileUrls(newFileUrls);
-  // };
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
 
   // const onChangeFileUrls = (event) => {
   //   const file = event?.target.files?.[0];
@@ -138,9 +138,9 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 게시글 수정 버튼
   const onClickUpdate = async () => {
-    // const currentFiles = JSON.stringify(fileUrls);
-    // const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
-    // const isChangedFiles = currentFiles !== defaultFiles;
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
 
     // 조건문은 있을 때 튕기는 것이 아니라 없을 때 튕기게 작성해야 한다
     // early exit pattern
@@ -169,7 +169,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
-    // if (isChangedFiles) updateBoardInput.images = fileUrls;
+    if (isChangedFiles) updateBoardInput.images = fileUrls;
 
     try {
       await updateBoard({
@@ -191,7 +191,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   // 사진
   useEffect(() => {
-    if (props.data?.fetchBoard.image?.length) {
+    if (props.data?.fetchBoard.images?.length) {
       setFileUrls([...props.data?.fetchBoard.images]);
     }
   }, [props.data]);
@@ -218,7 +218,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       postcode={postcode}
       onChangeAddressDetail={onChangeAddressDetail}
       fileUrls={fileUrls}
-      // onChangeFileUrls={onChangeFileUrls}
+      onChangeFileUrls={onChangeFileUrls}
       imageUrl={imageUrl}
     />
   );

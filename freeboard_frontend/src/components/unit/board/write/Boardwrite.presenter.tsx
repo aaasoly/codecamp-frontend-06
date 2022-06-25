@@ -54,7 +54,6 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
         <S.Item>내용</S.Item>
         <S.MainContents
           id="contents"
-          type="text"
           placeholder="내용을 작성해주세요."
           onChange={props.onChangeInput}
           defaultValue={props.data?.fetchBoard.contents}
@@ -117,20 +116,19 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
         />
       </S.Youtube>
 
-      {/* <S.Picture>
+      <S.Picture>
         <S.Item>사진첨부</S.Item>
         <S.ImgIcon>
           {props.fileUrls.map((el, index) => (
             <ImgUpload
               key={uuidv4()}
               index={index}
-              imgUrl={el}
+              fileUrl={el}
               onChangeFileUrls={props.onChangeFileUrls}
             />
           ))}
         </S.ImgIcon>
-        <S.Upload></S.Upload>
-      </S.Picture> */}
+      </S.Picture>
 
       <S.BtnSubmit
         onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}

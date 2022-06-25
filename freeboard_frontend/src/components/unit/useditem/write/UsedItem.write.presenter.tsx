@@ -23,8 +23,8 @@ export default function CreateUsedItemUI(props: any) {
 
   return (
     <S.Wrapper>
-      <S.MainTitle>상품 {props.isEdit ? "수정" : "등록"} 하기</S.MainTitle>
-      <form
+      {/* <S.MainTitle>상품 {props.isEdit ? "수정" : "등록"} 하기</S.MainTitle> */}
+      <S.Form
         onSubmit={
           props.isEdit
             ? props.handleSubmit(props.onClickUpdate)
@@ -88,19 +88,8 @@ export default function CreateUsedItemUI(props: any) {
         </S.Tags>
 
         <S.Location>
-          <S.Location__Left>
+          <S.LocationTop>
             <S.SubTitle>거래 위치</S.SubTitle>
-            <S.Map>
-              <MapPage
-                address={props.address}
-                addrDetail={props.addrDetail}
-                fetchAddr={props.data?.fetchUseditem?.useditemAddress?.address}
-              />
-            </S.Map>
-          </S.Location__Left>
-
-          <S.Location__Right>
-            <S.SubTitle></S.SubTitle>
             <S.PostCode>
               <S.PostInput
                 placeholder="07520"
@@ -109,6 +98,7 @@ export default function CreateUsedItemUI(props: any) {
                   props.data?.fetchUseditem?.useditemAddress?.zipcode ||
                   ""
                 }
+                readOnly
                 {...props.register("postcode")}
               />
               <S.AddrSearch type="button" onClick={props.showModal}>
@@ -124,31 +114,8 @@ export default function CreateUsedItemUI(props: any) {
                 </Modal>
               )}
             </S.PostCode>
-            {/* <S.GPS>
-              <S.SubTitle>GPS</S.SubTitle>
-              <S.GPS__Input>
-                <S.LAT
-                  placeholder="위도(LAT)"
-                  value={
-                    getLat ||
-                    props.data?.fetchUseditem.useditemAddress.lat ||
-                    ""
-                  }
-                />
-                <S.LNG
-                  placeholder="경도(LNG)"
-                  value={
-                    getLng ||
-                    props.data?.fetchUseditem.useditemAddress.lng ||
-                    ""
-                  }
-                />
-              </S.GPS__Input>
-              </S.GPS>
-              */}
 
             <S.Address>
-              <S.SubTitle>주소</S.SubTitle>
               <S.AddrInput
                 onChange={props.onChangeAddress}
                 defaultValue={
@@ -156,14 +123,21 @@ export default function CreateUsedItemUI(props: any) {
                   props.data?.fetchUseditem?.useditemAddress?.address ||
                   ""
                 }
-                // {...props.register("address")}
+                readOnly
               />
-              <S.AddrDetailInput
-                onChange={props.onChangeAddrDetail}
-                // {...props.register("addressDetail")}
-              />
+              <S.AddrDetailInput onChange={props.onChangeAddrDetail} />
             </S.Address>
-          </S.Location__Right>
+          </S.LocationTop>
+
+          <S.LocationBottom>
+            <S.Map>
+              <MapPage
+                address={props.address}
+                addrDetail={props.addrDetail}
+                fetchAddr={props.data?.fetchUseditem?.useditemAddress?.address}
+              />
+            </S.Map>
+          </S.LocationBottom>
         </S.Location>
 
         <S.Images>
@@ -180,7 +154,7 @@ export default function CreateUsedItemUI(props: any) {
           </S.ImageBox>
         </S.Images>
         <S.Button>{props.isEdit ? "수정" : "등록"} 하기</S.Button>
-      </form>
+      </S.Form>
     </S.Wrapper>
   );
 }

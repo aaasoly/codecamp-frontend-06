@@ -1,20 +1,31 @@
 import styled from "@emotion/styled";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  height: 1600px;
+  width: 120rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
+  justify-content: space-between;
   align-items: center;
   background: #ffffff;
   /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); */
-  padding: 80px 102px;
-  font-size: 1.4rem;
+  padding: 8rem 10.2rem;
+  font-size: 14px;
+  margin: 0 auto;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120rem;
 `;
 
 export const MainTitle = styled.div`
@@ -28,11 +39,11 @@ export const SubTitle = styled.div`
 `;
 
 export const Name = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 `;
 
 export const NameInput = styled.input`
-  width: 996px;
+  width: 99.6rem;
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
@@ -46,11 +57,11 @@ export const NameInput = styled.input`
 `;
 
 export const Remarks = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 `;
 
 export const RemarksInput = styled.input`
-  width: 996px;
+  width: 99.6rem;
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
@@ -64,23 +75,25 @@ export const RemarksInput = styled.input`
 `;
 
 export const Contents = styled.div`
-  height: 400px;
+  height: 40rem;
   margin-bottom: 40px;
+  @media ${device.tablet} {
+    height: 210px;
+  }
 `;
 
 export const ReactQuillInput = styled(ReactQuill)`
-  width: 996px;
-  height: 320px;
-  margin-bottom: 40px;
+  width: 99.6rem;
+  height: 32rem;
   border-radius: 30px;
 `;
 
 export const Price = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 `;
 
 export const PriceInput = styled.input`
-  width: 996px;
+  width: 99.6rem;
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
@@ -94,12 +107,12 @@ export const PriceInput = styled.input`
 `;
 
 export const Tags = styled.div`
-  width: 996px;
+  width: 99.6rem;
   margin-bottom: 40px;
 `;
 
 export const TagsInput = styled.input`
-  width: 996px;
+  width: 99.6rem;
   height: 52px;
   padding: 14px 16px;
   border: 1px solid #bdbdbd;
@@ -124,24 +137,16 @@ export const TagUnit = styled.span`
 `;
 
 export const Location = styled.div`
+  width: 99.6rem;
   display: flex;
-  height: 292px;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
   margin-bottom: 24px;
 `;
 
-export const Location__Left = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Map = styled.div`
-  width: 384px;
-  height: 252px;
-  border: 1px solid #bdbdbd;
-`;
-
-export const Location__Right = styled.div`
+export const LocationTop = styled.div`
+  width: 100%;
+  height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -173,39 +178,58 @@ export const AddrSearch = styled.button`
   cursor: pointer;
 `;
 
-export const GPS = styled.div`
+export const LocationBottom = styled.div`
+  width: 100%;
+  height: 360px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  margin-bottom: 4rem;
 `;
 
-export const GPS__Input = styled.div`
-  display: flex;
-  width: 272px;
-  justify-content: space-between;
+export const Map = styled.div`
+  width: 475px;
+  height: 352px;
+  border: 1px solid #bdbdbd;
+  overflow: hidden;
+  margin: 0 auto;
 `;
 
-export const LAT = styled.input`
-  width: 108px;
-  height: 52px;
-  padding: 14px 18px;
-  color: #4f4f4f;
-`;
+// export const GPS = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+// `;
 
-export const LNG = styled.input`
-  width: 108px;
-  height: 52px;
-  padding: 14px 18px;
-  color: #4f4f4f;
-`;
+// export const GPS__Input = styled.div`
+//   display: flex;
+//   width: 272px;
+//   justify-content: space-between;
+// `;
+
+// export const LAT = styled.input`
+//   width: 108px;
+//   height: 52px;
+//   padding: 14px 18px;
+//   color: #4f4f4f;
+// `;
+
+// export const LNG = styled.input`
+//   width: 108px;
+//   height: 52px;
+//   padding: 14px 18px;
+//   color: #4f4f4f;
+// `;
 
 export const Address = styled.div`
-  width: 588px;
+  width: 58.8rem;
   height: 160px;
+  @media ${device.laptop} {
+    width: 300px;
+  }
 `;
 
 export const AddrInput = styled.input`
-  width: 588px;
+  width: 99.6rem;
   height: 52px;
   margin-bottom: 16px;
   border: 1px solid #bdbdbd;
@@ -220,7 +244,7 @@ export const AddrInput = styled.input`
 `;
 
 export const AddrDetailInput = styled.input`
-  width: 588px;
+  width: 99.6rem;
   height: 52px;
   margin-bottom: 16px;
   border: 1px solid #bdbdbd;
@@ -235,15 +259,15 @@ export const AddrDetailInput = styled.input`
 `;
 
 export const Images = styled.div`
+  width: 99.6rem;
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
-  width: 100%;
 `;
 
 export const ImageBox = styled.div`
   display: flex;
-  width: 180px;
+  width: 100%;
   height: 180px;
 `;
 
@@ -254,4 +278,5 @@ export const Button = styled.button`
   border-radius: 30px;
   border: 1px solid #bebebe;
   cursor: pointer;
+  margin: 0 auto;
 `;
