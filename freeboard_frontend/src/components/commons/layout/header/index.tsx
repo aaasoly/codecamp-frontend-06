@@ -4,6 +4,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 import { device } from "../../../../commons/responsive/breakPoint";
+import ResponsiveNav from "../navigation";
+
+interface IHeaderWrapperProps {
+  isVisible: boolean;
+}
 
 const Wrapper = styled.div`
   position: fixed;
@@ -13,7 +18,8 @@ const Wrapper = styled.div`
   z-index: 9999;
   background-color: #fff;
   color: #333;
-  display: ${(props) => (props.isVisible ? "block" : "none")};
+  display: ${(props: IHeaderWrapperProps) =>
+    props.isVisible ? "block" : "none"};
 `;
 
 const Box = styled.div`
@@ -25,9 +31,6 @@ const Box = styled.div`
   margin: 0 auto;
   @media ${device.laptop} {
     width: 110rem;
-  }
-  @media ${device.tablet} {
-    justify-content: flex-end;
   }
 `;
 
@@ -60,12 +63,23 @@ const MenuItem = styled.span`
 `;
 
 const MenuLaptop = styled.span`
-  font-size: 18px;
+  font-size: 14px;
   display: none;
   @media ${device.tablet} {
     display: block;
   }
   color: black;
+`;
+
+const ToggleBtn = styled.div`
+  position: relative;
+`;
+
+const ToggleMenuDiv = styled.div`
+  position: absolute;
+  top: 45px;
+  right: 70px;
+  display: ${(props) => (props.isToggle ? "block" : "none")};
 `;
 
 const LOG_OUT_USER = gql`
@@ -79,12 +93,9 @@ export default function LayoutHeader() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [logoutUser] = useMutation(LOG_OUT_USER);
   const [isVisible, setIsVisible] = useState(true);
+  const [isToggle, setIsToggle] = useState(false);
 
   if (typeof window !== "undefined") {
-    // window.addEventListener("scroll", () => {
-    //   console.log(window.scrollX, window.scrollY);
-    // });
-
     window.addEventListener("wheel", (e: WheelEvent) => {
       if (e.deltaY < 0) {
         setIsVisible(true);
@@ -93,6 +104,14 @@ export default function LayoutHeader() {
       }
     });
   }
+
+  const onClickToggle = () => {
+    if (isToggle === false) {
+      setIsToggle(true);
+    } else {
+      setIsToggle(false);
+    }
+  };
 
   const onClickLanding = () => {
     router.push("/");
@@ -145,7 +164,12 @@ export default function LayoutHeader() {
             <MenuItem onClick={onClickLogIn}>로그인</MenuItem>
           )}
         </Menu>
-        <MenuLaptop>메뉴</MenuLaptop>
+        <MenuLaptop>
+          <ToggleBtn onClick={onClickToggle}>메뉴</ToggleBtn>
+          <ToggleMenuDiv isToggle={isToggle}>
+            <ResponsiveNav />
+          </ToggleMenuDiv>
+        </MenuLaptop>
       </Box>
     </Wrapper>
   );
