@@ -8,13 +8,13 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   font-size: 14px;
-  @media screen and ${device.laptop} {
-    width: 120rem;
+  @media ${device.laptop} {
+    width: 900px;
   }
+  margin: 0 auto;
 `;
 
 export const WrapperHeader = styled.div`
-  /* width: 1600px; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -23,14 +23,14 @@ export const WrapperHeader = styled.div`
 
 export const WrapperBody = styled.div`
   width: 160rem;
-  height: 86rem;
   display: flex;
   justify-content: space-between;
   align-items: space-between;
   flex-wrap: wrap;
   gap: 1;
   @media ${device.laptop} {
-    width: 120rem;
+    width: 900px;
+    justify-content: center;
   }
 `;
 

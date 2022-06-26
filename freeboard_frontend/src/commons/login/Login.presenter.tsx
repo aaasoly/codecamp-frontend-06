@@ -1,33 +1,31 @@
 import * as S from "./Login.styles";
+import { ILoginPageUIProps } from "./Login.types";
 
-export default function LoginPageUI(props) {
+export default function LoginPageUI(props: ILoginPageUIProps) {
   return (
     <S.Wrapper>
-      <S.Wrapper__Header>Welcome!</S.Wrapper__Header>
-      <S.LoginInput
-        type="text"
-        placeholder="이메일을 입력하세요"
-        onChange={props.onChangeEmail}
-      />
-      <S.LoginInput
-        type="password"
-        placeholder="비밀번호를 입력하세요"
-        onChange={props.onChangePassword}
-      />
-      <S.MaintainLogin>로그인 정보 기억하기</S.MaintainLogin>
-      <S.LoginButton onClick={props.onClickLogin}>Log In</S.LoginButton>
-
-      {/* <S.HorizonLine></S.HorizonLine> */}
-
-      <S.Wrapper__Footer>
-        <S.FooterMenu>이메일 찾기</S.FooterMenu>
-        <S.VerticalLine></S.VerticalLine>
-        <S.FooterMenu>비밀번호 찾기</S.FooterMenu>
-        <S.VerticalLine></S.VerticalLine>
-        <S.FooterMenu onClick={props.onClickMoveToSignup}>
-          회원가입
-        </S.FooterMenu>
-      </S.Wrapper__Footer>
+      <S.Form onSubmit={props.handleSubmit(props.onClickLogin)}>
+        <S.WrapperHeader>로그인</S.WrapperHeader>
+        <S.LoginInput
+          type="text"
+          placeholder="이메일"
+          {...props.register("email")}
+        />
+        <S.ErrorMessage>{props.formState.errors.email?.message}</S.ErrorMessage>
+        <S.LoginInput
+          type="password"
+          placeholder="비밀번호"
+          {...props.register("password")}
+        />
+        <S.ErrorMessage>
+          {props.formState.errors.password?.message}
+        </S.ErrorMessage>
+        <S.LoginButton>로그인</S.LoginButton>
+      </S.Form>
+      <S.WrapperFooter>
+        <S.SignupQuestion>계정이 없으신가요?</S.SignupQuestion>
+        <S.SignUpBtn onClick={props.onClickMoveToSignup}>회원가입</S.SignUpBtn>
+      </S.WrapperFooter>
     </S.Wrapper>
   );
 }
