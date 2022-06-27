@@ -5,19 +5,10 @@ import { FETCH_USER_LOGGED_IN } from "../../../commons/login/Login.queries";
 import { basketItemState } from "../../../commons/store";
 import * as MyPage from "./mypage.styles";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function MyPageUI() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [basketItem, setBasketItem] = useRecoilState(basketItemState);
-
-  const router = useRouter();
-
-  const menuList = [
-    { id: 1, name: "myItem", path: "/mypage/myitem" },
-    { id: 2, name: "myPay", path: "/mypage/myPayment" },
-    { id: 3, name: "myProfile", path: "/mypage/myprofile" },
-  ];
 
   useEffect(() => {
     const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");

@@ -1,7 +1,11 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
+import {
+  IMutation,
+  IMutationUpdateUserArgs,
+} from "../../../../commons/types/generated/types";
 import Sidebar from "../../../commons/layout/sidebar";
 
 export const Wrapper = styled.div`
@@ -80,7 +84,10 @@ const UPDATE_USER = gql`
 
 export default function MyProfilePage() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
-  const [updateUser] = useMutation(UPDATE_USER);
+  const [updateUser] = useMutation<
+    Pick<IMutation, "updateUser">,
+    IMutationUpdateUserArgs
+  >(UPDATE_USER);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [imageUrl, setImageUrl] = useState("");
@@ -89,7 +96,7 @@ export default function MyProfilePage() {
     fileRef.current?.click();
   };
 
-  const onChangeUserPic = (event) => {
+  const onChangeUserPic = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event?.target.files?.[0];
     if (!file) {
       return;
@@ -117,7 +124,7 @@ export default function MyProfilePage() {
       });
       console.log(result);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
   return (
@@ -125,7 +132,7 @@ export default function MyProfilePage() {
       <Sidebar />
       <Main>
         <ProfileDiv>
-          <InputLabel for="inputPicture">프로필 사진</InputLabel>
+          <InputLabel>프로필 사진</InputLabel>
           {imageUrl ? (
             <UserPicture src={imageUrl} />
           ) : (

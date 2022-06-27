@@ -5,9 +5,16 @@ import { getDate } from "../../../../commons/libraries/utils";
 import Sidebar from "../../../commons/layout/sidebar";
 import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
+import {
+  IQuery,
+  IQueryFetchUseditemsISoldArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function MyItemPage() {
-  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS_I_SOLD);
+  const { data, fetchMore } = useQuery<
+    Pick<IQuery, "fetchUseditemsISold">,
+    IQueryFetchUseditemsISoldArgs
+  >(FETCH_USED_ITEMS_I_SOLD);
 
   const onLoadMore = () => {
     if (!data) return;
@@ -16,7 +23,7 @@ export default function MyItemPage() {
         page: Math.ceil(data.fetchUseditemsISold.length / 10) + 1,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult?.fetchUseditemQuestions)
+        if (!fetchMoreResult?.fetchUseditemsISold)
           return { fetchUseditemsISold: [...prev.fetchUseditemsISold] };
 
         return {
@@ -43,7 +50,7 @@ export default function MyItemPage() {
           {data?.fetchUseditemsISold.map((el) => (
             <MyItem.ItemDiv key={uuidv4()}>
               <MyItem.ItemPicture
-                src={`https://storage.googleapis.com/${el.images[0]}`}
+                src={`https://storage.googleapis.com/${el.images?.[0]}`}
               />
               <MyItem.ItemInfo>
                 <MyItem.ItemName>{el.name}</MyItem.ItemName>
