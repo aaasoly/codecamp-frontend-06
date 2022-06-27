@@ -10,8 +10,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 40px auto 40px;
   @media ${device.laptop} {
     width: 120rem;
   }
@@ -91,25 +90,6 @@ export const PostDate = styled.div`
   }
 `;
 
-// 주소
-export const HeaderRight = styled.div`
-  width: 37.6rem;
-  height: 103.34px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 37px;
-  box-sizing: border-box;
-`;
-export const HeaderIcon = styled.div`
-  width: 80px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 // 본문
 export const PostBody = styled.div`
   width: 99.6rem;
@@ -136,9 +116,9 @@ export const PostTitle = styled.span`
 
 export const PostPicture = styled.img`
   width: 100%;
-  /* height: 480px; */
   margin-bottom: 40px;
 `;
+
 export const PostContent = styled.p`
   width: 100%;
   font-size: 1.8rem;
@@ -150,6 +130,7 @@ export const PostContent = styled.p`
 `;
 export const Youtube = styled(ReactPlayer)`
   margin: auto;
+  width: 50px;
 `;
 
 export const LikeIcons = styled.div`

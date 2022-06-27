@@ -8,8 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 export default function BoardWriteUI(props: IPropsBoardWriteUI) {
   return (
     <S.Wrapper>
-      {/* <S.MainTitle>게시물 {props.isEdit ? "수정" : "등록"}</S.MainTitle> */}
-
       <S.User>
         <S.UserInfo>
           <S.Item>작성자</S.Item>
@@ -19,9 +17,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
             placeholder="이름을 적어주세요."
             onChange={props.onChangeInput}
             defaultValue={props.data?.fetchBoard.writer}
-            // readOnly={true} // 변경 불가능한 요소
-            // disabled={true} 도 가능하지만 색이 회색으로 변함
-            readOnly={props.data?.fetchBoard.writer} // 있으면 true 이기 때문에 연산자 쓸 필요 없음
+            readOnly={props.data?.fetchBoard.writer}
           />
           <S.Error>{props.writerError}</S.Error>
         </S.UserInfo>
@@ -33,7 +29,6 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
             placeholder="비밀번호를 입력하세요."
             onChange={props.onChangeInput}
           />
-          {/* fetch 에서 불러올 데이터 없음, 디폴트 밸류 없음! */}
           <S.Error>{props.passwordError}</S.Error>
         </S.UserInfo>
       </S.User>
@@ -119,7 +114,7 @@ export default function BoardWriteUI(props: IPropsBoardWriteUI) {
       <S.Picture>
         <S.Item>사진첨부</S.Item>
         <S.ImgIcon>
-          {props.fileUrls.map((el, index) => (
+          {props.fileUrls.map((el: string, index: number) => (
             <ImgUpload
               key={uuidv4()}
               index={index}

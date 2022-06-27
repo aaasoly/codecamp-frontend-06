@@ -36,7 +36,10 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
             ))}
           <S.PostContent>{props.data?.fetchBoard?.contents}</S.PostContent>
           {props.data?.fetchBoard.youtubeUrl && (
-            <S.Youtube url={String(props.data?.fetchBoard?.youtubeUrl)} />
+            <S.Youtube
+              url={String(props.data?.fetchBoard?.youtubeUrl)}
+              width="100%"
+            />
           )}
           {/* 좋아요 싫어요 버튼 */}
           <S.LikeIcons>

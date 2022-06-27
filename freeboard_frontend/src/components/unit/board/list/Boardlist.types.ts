@@ -1,4 +1,3 @@
-///프레젠터
 import { ApolloQueryResult } from "@apollo/client";
 import { ChangeEvent, MouseEvent } from "react";
 import {
@@ -13,11 +12,16 @@ export interface IPropsBoardListPageUI {
   data?: Pick<IQuery, "fetchBoards">;
   count?: number;
   keyword: string;
+  isMatched?: boolean;
   refetch: (
     variables: Partial<IQueryFetchBoardsArgs>
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
-  refetchBoardsCount: (
+  refetchBoardsCount?: (
     variables: Partial<IQueryFetchBoardsCountArgs>
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoardsCount">>>;
   onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface IPropsSearchMatched {
+  isMatched: boolean;
 }

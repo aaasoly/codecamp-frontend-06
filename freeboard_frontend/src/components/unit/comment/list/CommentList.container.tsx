@@ -10,7 +10,6 @@ import { FETCH_BOARD_COMMENTS } from "./CommentList.queries";
 import { Modal } from "antd";
 
 export default function BoardCommentList() {
-  // FETCH_COMMENTS Comments list
   const router = useRouter();
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
@@ -34,6 +33,7 @@ export default function BoardCommentList() {
     fetchMore({
       variables: { page: Math.ceil(data.fetchBoardComments.length / 10) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
+        console.log(fetchMoreResult, prev);
         if (!fetchMoreResult?.fetchBoardComments)
           // 더 받아올 데이터가 없을 때
           return { fetchBoardComments: [...prev.fetchBoardComments] }; // 이전 prev 에 저장된 데이터 불러옴

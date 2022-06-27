@@ -15,7 +15,6 @@ import {
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 import { Modal } from "antd";
-import { useEffect } from "react";
 
 export default function BoardDetail() {
   // FETCH_BOARD

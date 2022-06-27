@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { HeartFilled } from "@ant-design/icons";
 import { device } from "../../../../commons/responsive/breakPoint";
+import { IPropsSearchMatched } from "./Boardlist.types";
 
 export const Wrapper = styled.div`
   width: 160rem;
@@ -159,5 +160,5 @@ export const WriteIcon = styled.button`
 `;
 
 export const Token = styled.span`
-  color: ${(props) => (props.isMatched ? "skyblue" : "")};
+  color: ${(props: IPropsSearchMatched) => (props.isMatched ? "skyblue" : "")};
 `;

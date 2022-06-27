@@ -5,7 +5,12 @@ import BoardWriteUI from "./Boardwrite.presenter";
 import { IPropsBoardWrite } from "./Boardwrite.types";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Modal } from "antd";
-import { IUpdateBoardInput } from "../../../../commons/types/generated/types";
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+  IUpdateBoardInput,
+} from "../../../../commons/types/generated/types";
 
 export default function BoardWrite(props: IPropsBoardWrite) {
   const router = useRouter();
@@ -16,8 +21,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     password: "",
     contents: "",
   });
-
-  const [imageUrl, setImageUrl] = useState([]);
 
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [youtubeUrl, setYoutubeUrl] = useState("");
@@ -33,8 +36,14 @@ export default function BoardWrite(props: IPropsBoardWrite) {
 
   const [isActive, setIsActive] = useState(false);
 
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createBoard] = useMutation<
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
+  const [updateBoard] = useMutation<
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
 
   // 모달
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +65,9 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     setIsOpen(false);
   };
 
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeInput = (
+    event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setInputs({
       ...inputs,
       [event.target.id]: event.target.value,
@@ -79,22 +90,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
     newFileUrls[index] = fileUrl;
     setFileUrls(newFileUrls);
   };
-
-  // const onChangeFileUrls = (event) => {
-  //   const file = event?.target.files?.[0];
-  //   if (!file) {
-  //     return;
-  //   }
-
-  //   const fileReader = new FileReader();
-  //   fileReader.readAsDataURL(file);
-  //   fileReader.onload = (data) => {
-  //     if (typeof data.target?.result === "string") {
-  //       console.log(data.target?.result);
-  //       setImageUrl([data.target?.result]);
-  //     }
-  //   };
-  // };
 
   // 게시글 등록 버튼
   const onClickSubmit = async () => {
@@ -125,11 +120,11 @@ export default function BoardWrite(props: IPropsBoardWrite) {
             },
           },
         });
-        console.log(result);
+
         Modal.success({
           content: "게시물 등록에 성공하였습니다!",
         });
-        router.push(`/boards/${result.data.createBoard._id}`);
+        router.push(`/boards/${result.data?.createBoard._id}`);
       } catch (error) {
         if (error instanceof Error) Modal.error({ content: error.message });
       }
@@ -176,7 +171,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
         variables: {
           boardId: String(router.query.boardId),
           password: inputs.password,
-          // images: fileUrls,
           updateBoardInput,
         },
       });
@@ -219,7 +213,6 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       onChangeAddressDetail={onChangeAddressDetail}
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}
-      imageUrl={imageUrl}
     />
   );
 }

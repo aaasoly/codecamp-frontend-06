@@ -1,12 +1,12 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./CommentList.styles";
-import { IBoardCommentListUIProps } from "./CommentList.types";
+import { IBoardCommentListItemUIProps } from "./CommentList.types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import BoardCommentWrite from "../write/BoardComment.container";
-import { useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import {
   FETCH_BOARD_COMMENTS,
   DELETE_BOARD_COMMENT,
@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 
 export default function BoardCommentListUIItem(
-  props: IBoardCommentListUIProps
+  props: IBoardCommentListItemUIProps
 ) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
