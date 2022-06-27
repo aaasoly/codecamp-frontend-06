@@ -4,8 +4,8 @@ import { ISignUpPageUIProps } from "./Signup.types";
 export default function SignupPageUI(props: ISignUpPageUIProps) {
   return (
     <S.Wrapper>
-      <S.WrapperHeader>회원가입</S.WrapperHeader>
       <S.Form onSubmit={props.handleSubmit(props.onClickSignup)}>
+        <S.WrapperHeader>회원가입</S.WrapperHeader>
         <S.SignupInput
           type="text"
           placeholder="이름"

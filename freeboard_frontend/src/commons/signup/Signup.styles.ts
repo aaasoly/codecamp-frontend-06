@@ -12,9 +12,9 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const WrapperHeader = styled.div`
-  width: 384px;
-  font-size: 16px;
+export const WrapperHeader = styled.span`
+  font-size: 20px;
+  margin-bottom: 20px;
 `;
 
 export const Form = styled.form`
@@ -33,11 +33,15 @@ export const SignupLabel = styled.label`
 export const SignupInput = styled.input`
   width: 340px;
   height: 55px;
+  padding: 20px 16px;
   border: none;
   border-bottom: 1px solid #bdbdbd;
-  font-size: 12px;
+  font-size: 13px;
   &:focus {
     outline: none;
+  }
+  ::placeholder {
+    color: #bdbdbd;
   }
 `;
 
