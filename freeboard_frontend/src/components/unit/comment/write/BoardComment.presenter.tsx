@@ -1,7 +1,7 @@
 import * as S from "./BoardComment.styles";
+import { IBoardCommentWriteUIProps } from "./BoardComment.types";
 
-export default function BoardCommentWriteUI(props) {
-  console.log(props.isEdit);
+export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
   return (
     <S.CommentWrapper>
       {!props.isEdit && (
@@ -24,7 +24,6 @@ export default function BoardCommentWriteUI(props) {
             type="password"
             placeholder="비밀번호"
             onChange={props.onChangePassword}
-            value={props.password || props.el?.password || ""}
           ></S.CommentPassword>
           <S.CommentStars
             onChange={props.onChangeStar}

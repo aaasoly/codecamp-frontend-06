@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./Boardwrite.queries";
 import BoardWriteUI from "./Boardwrite.presenter";
-import { IPropsBoardWrite } from "./Boardwrite.types";
+import { IBoardWriteProps } from "./Boardwrite.types";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Modal } from "antd";
 import {
@@ -12,7 +12,7 @@ import {
   IUpdateBoardInput,
 } from "../../../../commons/types/generated/types";
 
-export default function BoardWrite(props: IPropsBoardWrite) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
 
   const [inputs, setInputs] = useState({
@@ -210,6 +210,7 @@ export default function BoardWrite(props: IPropsBoardWrite) {
       handleComplete={handleComplete}
       address={address}
       postcode={postcode}
+      addressDetail={addressDetail}
       onChangeAddressDetail={onChangeAddressDetail}
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}

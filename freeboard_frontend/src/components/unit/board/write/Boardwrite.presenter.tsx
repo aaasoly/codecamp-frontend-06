@@ -1,11 +1,11 @@
 import * as S from "./Boardwrite.styles";
-import { IPropsBoardWriteUI } from "./Boardwrite.types";
+import { IBoardWriteUIProps } from "./Boardwrite.types";
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
 import ImgUpload from "../../../commons/upload/imgupload.container";
 import { v4 as uuidv4 } from "uuid";
 
-export default function BoardWriteUI(props: IPropsBoardWriteUI) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <S.Wrapper>
       <S.User>

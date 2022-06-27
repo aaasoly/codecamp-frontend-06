@@ -10,10 +10,13 @@ import { FETCH_BOARD_COMMENTS } from "../list/CommentList.queries";
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
+  IUpdateBoardCommentInput,
 } from "../../../../commons/types/generated/types";
 import { Modal } from "antd";
+import { IBoardCommentWriteProps } from "./BoardComment.types";
 
-export default function BoardCommentWrite(props) {
+export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const router = useRouter();
 
   const [writer, setWriter] = useState("");
@@ -25,6 +28,10 @@ export default function BoardCommentWrite(props) {
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_BOARD_COMMENT);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -70,12 +77,9 @@ export default function BoardCommentWrite(props) {
       setRating(0);
       // state 이용해서 입력버튼 클릭 후 input 창 비워주기(state가 input창에 바인딩 된 상태)
     } catch (error) {
-      Modal.error({ content: error.message });
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
-
-  // update comment
-  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
 
   const onClickUpdate = async () => {
     if (!contents) {
@@ -90,7 +94,7 @@ export default function BoardCommentWrite(props) {
     try {
       if (!props.el?._id) return; // _id가 없으면 실행하지 않음, 여기 el 은 무한스크롤에서 왔음
 
-      const updateBoardCommentInput = {};
+      const updateBoardCommentInput: IUpdateBoardCommentInput = {};
       if (rating) updateBoardCommentInput.rating = rating; // 바뀌어야 수정
       if (contents !== "") updateBoardCommentInput.contents = contents;
 
@@ -110,7 +114,7 @@ export default function BoardCommentWrite(props) {
       });
       props.setIsEdit?.(false);
     } catch (error) {
-      Modal.error({ content: error.message });
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 

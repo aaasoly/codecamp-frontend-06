@@ -1,7 +1,6 @@
 import { IBoardCommentListUIProps } from "./CommentList.types";
 import BoardCommentListUIItem from "./CommentList.presenterItem";
 import InfiniteScroll from "react-infinite-scroller";
-import { IBoardComment } from "../../../../commons/types/generated/types";
 
 export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (

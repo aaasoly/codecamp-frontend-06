@@ -1,23 +1,19 @@
-import { FetchResult } from "@apollo/client";
 import { ChangeEvent } from "react";
-import { IMutation } from "../../../../commons/types/generated/types";
-/// 컨테이너
 
-export interface IPropsBoardWrite {
+export interface IBoardWriteProps {
   isEdit: boolean;
   data?: any;
-  onChangeFileUrls: (fileUrl: string, index: number) => void;
-  result: FetchResult<
-    Pick<IMutation, "createBoard">,
-    Record<string, any>,
-    Record<string, any>
-  >;
 }
 
 export interface IUpdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
 }
 
 export interface IMyVariables {
@@ -34,18 +30,16 @@ export interface ISubmitButtonProps {
   isActive: boolean;
 }
 
-/// 프레젠터
-
-export interface IPropsBoardWriteUI {
+export interface IBoardWriteUIProps {
   onChangeInput: (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => void;
-  onChangeName: (event: ChangeEvent<HTMLInputElement>) => void; // return 값이 일정하지 않을 경우에 많이 사용
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeName?: (event: ChangeEvent<HTMLInputElement>) => void; // return 값이 일정하지 않을 경우에 많이 사용
+  onChangePassword?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeTitle?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeContents?: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeYoutube: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeAddressDetail?: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeFileUrls?: (fileUrl: string, index: number) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
@@ -54,7 +48,6 @@ export interface IPropsBoardWriteUI {
   passwordError: string;
   titleError: string;
   contentsError: string;
-  // addressError: string;
 
   isActive: boolean;
   isEdit: boolean;

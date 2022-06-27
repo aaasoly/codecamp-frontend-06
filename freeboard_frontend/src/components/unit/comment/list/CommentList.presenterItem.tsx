@@ -13,6 +13,10 @@ import {
 } from "./CommentList.queries";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
+import {
+  IMutation,
+  IMutationDeleteBoardCommentArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function BoardCommentListUIItem(
   props: IBoardCommentListItemUIProps
@@ -21,15 +25,19 @@ export default function BoardCommentListUIItem(
   const [isEdit, setIsEdit] = useState(false);
 
   const [deleteId, setDeleteId] = useState("");
-  const [commentpassword, setCommentpassword] = useState("");
+  const [commentPassword, setCommentPassword] = useState("");
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
+
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
 
   const onClickDeleteComment = async () => {
     try {
       await deleteBoardComment({
         variables: {
-          password: commentpassword,
+          password: commentPassword,
           boardCommentId: deleteId,
         },
         refetchQueries: [
@@ -54,12 +62,12 @@ export default function BoardCommentListUIItem(
     if (event.target instanceof Element) setDeleteId(event.currentTarget.id);
   }
 
-  function onClickCloseDeleteModal(event: MouseEvent<HTMLDivElement>) {
+  function onClickCloseDeleteModal() {
     setIsOpenDeleteModal(false);
   }
 
   function onChangeDeletePassword(event: ChangeEvent<HTMLInputElement>) {
-    setCommentpassword(event.target.value);
+    setCommentPassword(event.target.value);
   }
 
   const onClickMoveToUpdate = () => {
@@ -80,11 +88,7 @@ export default function BoardCommentListUIItem(
       )}
 
       {!isEdit && ( // isEdit 가 아닐 때 (삼항연산자는 길어질 때 잘 쓰지 않는다)
-        <S.CommentBox
-          key={props.el._id}
-          id={String(props.el.writer)}
-          onClick={props.onClickWriter}
-        >
+        <S.CommentBox key={props.el._id} id={String(props.el.writer)}>
           <S.CommentUserIcon>
             <FontAwesomeIcon icon={faCircleUser} size="2x" />
           </S.CommentUserIcon>
