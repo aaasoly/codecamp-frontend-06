@@ -1,34 +1,45 @@
 import * as S from "./Signup.styles";
+import { ISignUpPageUIProps } from "./Signup.types";
 
-export default function SignupPageUI(props) {
+export default function SignupPageUI(props: ISignUpPageUIProps) {
   return (
     <S.Wrapper>
-      <S.Wrapper__Header></S.Wrapper__Header>
-
-      <S.SignupLabel>이름</S.SignupLabel>
-      <S.SignupInput
-        type="text"
-        placeholder="이름을 입력하세요"
-        onChange={props.onChangeName}
-      />
-      <S.SignupLabel>이메일</S.SignupLabel>
-      <S.SignupInput
-        type="text"
-        placeholder="이메일을 입력하세요"
-        onChange={props.onChangeEmail}
-      />
-      {props.emailError}
-      <S.SignupLabel>비밀번호</S.SignupLabel>
-      <S.SignupInput
-        type="password"
-        placeholder="비밀번호를 입력하세요"
-        onChange={props.onChangePassword}
-      />
-      {props.passwordError}
-      <S.SignupLabel>비밀번호 확인</S.SignupLabel>
-      <S.SignupInput type="password" placeholder="비밀번호를 입력하세요" />
-
-      <S.SignupButton onClick={props.onClickSignup}>회원가입</S.SignupButton>
+      <S.WrapperHeader>회원가입</S.WrapperHeader>
+      <S.Form onSubmit={props.handleSubmit(props.onClickSignup)}>
+        <S.SignupInput
+          type="text"
+          placeholder="이름"
+          {...props.register("name")}
+        />
+        <S.ErrorMessage>{props.formState.errors.name?.message}</S.ErrorMessage>
+        <S.SignupInput
+          type="text"
+          placeholder="이메일"
+          {...props.register("email")}
+        />
+        <S.ErrorMessage>{props.formState.errors.email?.message}</S.ErrorMessage>
+        <S.SignupInput
+          type="password"
+          placeholder="비밀번호"
+          {...props.register("password")}
+        />
+        <S.ErrorMessage>
+          {props.formState.errors.password?.message}
+        </S.ErrorMessage>
+        <S.SignupInput
+          type="password"
+          placeholder="비밀번호 확인"
+          {...props.register("passwordCheck")}
+        />
+        <S.ErrorMessage>
+          {props.formState.errors.passwordCheck?.message}
+        </S.ErrorMessage>
+        <S.SignupButton>회원가입</S.SignupButton>
+      </S.Form>
+      <S.WrapperFooter>
+        <S.SignupQuestion>이미 계정이 있신가요?</S.SignupQuestion>
+        <S.SignUpBtn onClick={props.onClickMoveToLogin}>로그인</S.SignUpBtn>
+      </S.WrapperFooter>
     </S.Wrapper>
   );
 }
