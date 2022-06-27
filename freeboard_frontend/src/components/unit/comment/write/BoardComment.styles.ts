@@ -94,7 +94,6 @@ export const CommentStars = styled(Rate)`
 `;
 
 export const CommentWriteBox = styled.div`
-  /* width: 1200px; */
   border: 1px solid #bdbdbd;
 `;
 
@@ -103,8 +102,16 @@ export const CommentContent = styled.textarea`
   height: 10.8rem;
   border: none;
   padding: 2rem 2rem 6.4rem 2rem;
-  color: #bdbdbd;
   font-size: 1.6rem;
+  resize: none;
+  overflow: hidden;
+  border-radius: 20px;
+  :focus {
+    outline: none;
+  }
+  ::placeholder {
+    color: #bdbdbd;
+  }
   @media ${device.laptop} {
     width: 90rem;
   }

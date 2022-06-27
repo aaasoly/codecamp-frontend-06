@@ -7,12 +7,16 @@ import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import BoardCommentWrite from "../write/BoardComment.container";
 import { useState } from "react";
-import { FETCH_BOARD_COMMENTS } from "./CommentList.queries";
-import { DELETE_BOARD_COMMENT } from "./CommentList.queries";
+import {
+  FETCH_BOARD_COMMENTS,
+  DELETE_BOARD_COMMENT,
+} from "./CommentList.queries";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 
-export default function BoardCommentListUIItem(props) {
+export default function BoardCommentListUIItem(
+  props: IBoardCommentListUIProps
+) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
 

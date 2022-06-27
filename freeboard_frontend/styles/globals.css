@@ -33,6 +33,14 @@ a {
   box-sizing: border-box;
 }
 
+input::placeholder {
+  color: #bdbdbd;
+}
+
+input:focus {
+  outline: none;
+}
+
 @font-face {
   font-family: "Abril Fatface";
   src: url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
