@@ -1,26 +1,11 @@
-import Button01 from "../../../commons/buttons/01";
-import Input01 from "../../../commons/inputs/01";
 import ImgUpload from "../../../commons/upload/imgupload.container";
-// import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "./UsedItem.write.style";
 import { v4 as uuidv4 } from "uuid";
-import { useRecoilState } from "recoil";
-import {
-  getLatLngState,
-  getLatState,
-  getLngState,
-} from "../../../../commons/store";
-import WriteMap from "../../../commons/map/Writemap";
 import MapPage from "../../../commons/map/01";
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
 
 export default function CreateUsedItemUI(props: any) {
-  const [getLat] = useRecoilState(getLatState);
-  const [getLng] = useRecoilState(getLngState);
-
-  // const [getLatLng, setGetLatLng] = useRecoilState(getLatLngState);
-
   return (
     <S.Wrapper>
       <form
@@ -78,8 +63,8 @@ export default function CreateUsedItemUI(props: any) {
             defaultValue={props.data?.fetchUseditem.tags}
           />
           <div>
-            {props.hashArr.map((el, idx) => (
-              <S.TagUnit key={idx} onClick={props.deleteTag}>
+            {props.hashArr.map((el: string) => (
+              <S.TagUnit key={uuidv4()} onClick={props.deleteTag}>
                 {el}
               </S.TagUnit>
             ))}
@@ -146,10 +131,10 @@ export default function CreateUsedItemUI(props: any) {
         <S.Images>
           <S.SubTitle>사진 첨부</S.SubTitle>
           <S.ImageBox>
-            {props.fileUrls.map((el, index) => (
+            {props.fileUrls.map((el: string) => (
               <ImgUpload
                 key={uuidv4()}
-                index={index}
+                index={uuidv4()}
                 fileUrl={el}
                 onChangeFileUrls={props.onChangeFileUrls}
               />

@@ -2,28 +2,22 @@ import { useRouter } from "next/router";
 import CreateUsedItemUI from "./UsedItem.write.presenter";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
-import {
-  CREATE_USED_ITEM,
-  UPDATE_USED_ITEM,
-  UPLOAD_FILE,
-} from "./UsedItem.write.queries";
-import { useEffect, useRef, useState } from "react";
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./UsedItem.write.queries";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import useAuth from "../../../../commons/hooks/useAuth";
 import { useRecoilState } from "recoil";
+import { useditemAddressState } from "../../../../commons/store";
 import {
-  getLatState,
-  getLngState,
-  useditemAddressState,
-} from "../../../../commons/store";
-import _ from "lodash";
+  ICreateUsedItemProps,
+  IFormValues,
+  IUpdateUsdeitemInput,
+} from "./Useditem.write.types";
 
-export default function CreateUsedItem(props) {
+export default function CreateUsedItem(props: ICreateUsedItemProps) {
   const router = useRouter();
 
   const [useditemAddress, setUseditemAddress] =
     useRecoilState(useditemAddressState);
-  const [getLat, setGetLat] = useRecoilState(getLatState);
-  const [getLng, setGetLng] = useRecoilState(getLngState);
 
   const [address, setAddress] = useState("");
   const [postcode, setPostcode] = useState("");
@@ -34,9 +28,7 @@ export default function CreateUsedItem(props) {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 
-  const [hashtag, setHashtag] = useState("");
-  const [hashArr, setHashArr] = useState([]);
-
+  const [hashArr, setHashArr] = useState<string[]>([]);
   const [isActive, setIsActive] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -50,14 +42,14 @@ export default function CreateUsedItem(props) {
     setIsOpen(false);
   };
 
-  const onKeyUpHash = (event) => {
+  const onKeyUpHash = (event: ChangeEvent<HTMLInputElement> | any) => {
     if (event.keyCode === 32 && event.target.value !== " ") {
       setHashArr([...hashArr, "#" + event.target.value]);
       event.target.value = "";
     }
   };
 
-  const deleteTag = (event) => {
+  const deleteTag = (event: MouseEvent<HTMLSpanElement> | any) => {
     const updateTag = hashArr.filter((tag) => tag !== event.target.innerHTML);
     setHashArr(updateTag);
   };
@@ -75,11 +67,11 @@ export default function CreateUsedItem(props) {
     mode: "onChange",
   });
 
-  const onChangeAddress = (event) => {
+  const onChangeAddress = (event: ChangeEvent<HTMLInputElement>) => {
     setUseditemAddress(event.target.value);
   };
 
-  const onChangeAddrDetail = (event) => {
+  const onChangeAddrDetail = (event: ChangeEvent<HTMLInputElement>) => {
     setAddrDetail(event.target.value);
   };
 
@@ -100,7 +92,7 @@ export default function CreateUsedItem(props) {
     setFileUrls(newFileUrls);
   };
 
-  const onClickSubmit = async (data) => {
+  const onClickSubmit = async (data: IFormValues) => {
     try {
       const result = await createUseditem({
         variables: {
@@ -109,33 +101,27 @@ export default function CreateUsedItem(props) {
             remarks: data.remarks,
             contents: data.contents,
             price: Number(data.price),
-            tags: hashArr,
+            tags: data.tag,
             images: fileUrls,
             useditemAddress: {
-              address: address,
-              zipcode: postcode,
-              addressDetail: addrDetail,
-              // address: useditemAddress,
-              // lat: getLat,
-              // lng: getLng,
+              address: data.address,
+              zipcode: data.postcode,
+              addressDetail: data.addrDetail,
             },
           },
         },
       });
       console.log(result);
       alert("게시물 등록에 성공했습니다");
-      // setUseditemAddress("");
-      // setGetLat("");
-      // setGetLng("");
       router.push(`/market/${result.data.createUseditem._id}`);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
-  const onClickUpdate = async (data) => {
+  const onClickUpdate = async (data: IFormValues) => {
     const currentFiles = JSON.stringify(fileUrls);
-    const defaultFiles = JSON.stringify(props.data.fetchUseditem.images);
+    const defaultFiles = JSON.stringify(props.data?.fetchUseditem.images);
     const isChangedFiles = currentFiles !== defaultFiles;
     // if (
     //   !data.name &&
@@ -152,7 +138,7 @@ export default function CreateUsedItem(props) {
 
     // }
 
-    const updateUseditemInput = {};
+    const updateUseditemInput: IUpdateUsdeitemInput = {};
     if (data.name) updateUseditemInput.name = data.name;
     if (data.contents) updateUseditemInput.contents = data.contents;
     if (data.price) updateUseditemInput.price = Number(data.price);
@@ -166,34 +152,19 @@ export default function CreateUsedItem(props) {
         updateUseditemInput.useditemAddress.addressDetail = addrDetail;
     }
     if (isChangedFiles) updateUseditemInput.images = fileUrls;
-    // if (useditemAddress || getLng || getLat) {
-    //   updateUseditemInput.useditemAddress = {};
-    //   if (useditemAddress)
-    //     updateUseditemInput.useditemAddress.address = useditemAddress;
-    //   if (getLng) updateUseditemInput.useditemAddress.lng = getLng;
-    //   if (getLat) updateUseditemInput.useditemAddress.lat = getLat;
-    // }
-
     try {
       await updateUseditem({
         variables: {
           useditemId: String(router.query.useditemId),
-          // name: data.name,
-          // remarks: data.remarks,
-          // contents: data.contents,
-          // detail: data.detail,
-          // price: Number(data.price),
-          // tags: data.tags,
+
           updateUseditemInput,
         },
       });
       alert("수정 되었습니다.");
       router.push(`/market/${router.query.useditemId}`);
       setUseditemAddress("");
-      setGetLat("");
-      setGetLng("");
     } catch (error) {
-      console.log(error.message);
+      if (error instanceof Error) console.log(error.message);
     }
   };
 

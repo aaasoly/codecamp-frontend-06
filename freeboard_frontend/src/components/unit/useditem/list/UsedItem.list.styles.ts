@@ -22,12 +22,12 @@ export const Row = styled.div`
   border-top: 1px solid #bdbdbd;
 `;
 
-export const Colunm__Left = styled.div`
+export const ColunmLeft = styled.div`
   width: 16rem;
   height: 16rem;
 `;
 
-export const Column__Center = styled.div`
+export const ColumnCenter = styled.div`
   width: 93rem;
   height: 15rem;
   display: flex;
@@ -41,7 +41,7 @@ export const Column__Center = styled.div`
   }
 `;
 
-export const Column__Right = styled.div`
+export const ColumnRight = styled.div`
   width: 17rem;
   height: 16rem;
   padding: 6.2rem 0;
@@ -89,7 +89,7 @@ export const Price = styled.span`
   font-weight: 600;
 `;
 
-export const Column__Bottom = styled.div`
+export const ColumnBottom = styled.div`
   display: flex;
   align-items: center;
   height: 2.4rem;

@@ -1,5 +1,9 @@
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
+import {
+  IQuery,
+  IQueryFetchUseditemsArgs,
+} from "../../../../src/commons/types/generated/types";
 import CreateUsedItem from "../../../../src/components/unit/useditem/write/UsedItem.write.container";
 
 export const FETCH_USED_ITEM = gql`

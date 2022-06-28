@@ -1,15 +1,8 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { userInfo } from "os";
-import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { string } from "yup";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
-import {
-  basketCountState,
-  basketItemState,
-  UserInfoState,
-} from "../../../../commons/store";
+import { basketCountState, basketItemState } from "../../../../commons/store";
 import UsedItemDetailUI from "./UsedItem.detail.presenter";
 import {
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
@@ -19,7 +12,6 @@ import {
 } from "./UsedItem.detail.queries";
 
 export default function UsedItemDetail() {
-  const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
   const [, setBasketCount] = useRecoilState(basketCountState);
   const [basketItem, setBasketItem] = useRecoilState(basketItemState);
   const router = useRouter();
@@ -71,7 +63,7 @@ export default function UsedItemDetail() {
       alert("상품이 삭제되었습니다.");
       router.push("/market");
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
@@ -111,14 +103,14 @@ export default function UsedItemDetail() {
       alert("구매에 성공했습니다");
       router.push("/market");
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
-  const onClickBasket = (el) => () => {
+  const onClickBasket = (el: any) => () => {
     const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
 
-    const temp = baskets.filter((basketEl) => basketEl._id === el._id);
+    const temp = baskets.filter((basketEl: any) => basketEl._id === el._id);
     if (temp.length === 1) {
       alert("이미 담으신 상품입니다");
       return;
@@ -136,7 +128,6 @@ export default function UsedItemDetail() {
     <UsedItemDetailUI
       data={data}
       onClickMoveToList={onClickMoveToList}
-      // isLogin={isLogin}
       sellerId={sellerId}
       myId={myId}
       onClickMoveToUpdate={onClickMoveToUpdate}

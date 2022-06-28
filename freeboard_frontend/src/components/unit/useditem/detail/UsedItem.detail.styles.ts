@@ -94,7 +94,7 @@ export const DetailBottomRight = styled.div`
   justify-content: space-around;
 `;
 
-export const Body__Top = styled.div`
+export const BodyTop = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -154,7 +154,7 @@ export const CreatedAt = styled.span`
   color: #bdbdbd;
 `;
 
-export const Body__Center = styled.div`
+export const BodyCenter = styled.div`
   display: flex;
   height: auto;
   flex-direction: column;
@@ -249,7 +249,7 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const List__Button = styled.button`
+export const ListButton = styled.button`
   width: 150px;
   height: 45px;
   padding: 11px 47px;
@@ -259,7 +259,7 @@ export const List__Button = styled.button`
   transition-duration: 0.3s;
 `;
 
-export const Edit__Button = styled.button`
+export const EditButton = styled.button`
   width: 150px;
   height: 45px;
   padding: 11px 47px;

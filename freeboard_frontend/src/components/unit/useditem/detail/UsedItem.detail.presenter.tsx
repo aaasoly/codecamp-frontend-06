@@ -1,21 +1,14 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./UsedItem.detail.styles";
 import Dompurify from "dompurify";
-import Map from "../../../commons/map/Writemap";
 import FetchMap from "../../../commons/map/Fetchmap";
-import MapPage from "../../../commons/map/map";
-import { useRecoilState } from "recoil";
-import {
-  getLatState,
-  getLngState,
-  useditemAddressState,
-} from "../../../../commons/store";
 import Pick from "../../../../../public/img/heart.svg";
 import UseditemQuestionWrite from "../comment/question_write/Question.Write.container";
 import UseditemQuestionList from "../comment/question_list/Question.List.container";
 import { useState } from "react";
+import { IUsedItemDetailUIProps } from "./UsedItem.detail.types";
 
-export default function UsedItemDetailUI(props) {
+export default function UsedItemDetailUI(props: IUsedItemDetailUIProps) {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
 
@@ -115,13 +108,13 @@ export default function UsedItemDetailUI(props) {
           <S.SellerInfo>
             <S.Category>판매자</S.Category>
             <S.SellerDiv>
-              {props.data?.fetchUseditem.seller.picture ? (
+              {props.data?.fetchUseditem.seller?.picture ? (
                 <S.UserIcon src={props.data?.fetchUseditem.seller.picture} />
               ) : (
                 <S.UserIcon src="/img/userImg.png" />
               )}
 
-              <S.Seller>{props.data?.fetchUseditem.seller.name}</S.Seller>
+              <S.Seller>{props.data?.fetchUseditem.seller?.name}</S.Seller>
             </S.SellerDiv>
           </S.SellerInfo>
         </S.DetailTopRight>
@@ -143,10 +136,8 @@ export default function UsedItemDetailUI(props) {
       </S.DetailBottom>
 
       <S.ButtonGroup>
-        <S.List__Button onClick={props.onClickMoveToList}>
-          목록으로
-        </S.List__Button>
-        <S.Edit__Button
+        <S.ListButton onClick={props.onClickMoveToList}>목록으로</S.ListButton>
+        <S.EditButton
           onClick={
             props.sellerId === props.myId
               ? props.onClickMoveToUpdate
@@ -154,18 +145,16 @@ export default function UsedItemDetailUI(props) {
           }
         >
           {props.sellerId === props.myId ? "수정" : "구매"} 하기
-        </S.Edit__Button>
+        </S.EditButton>
 
         {props.sellerId === props.myId ? (
-          <S.Edit__Button onClick={props.onClickDelete}>
-            삭제하기
-          </S.Edit__Button>
+          <S.EditButton onClick={props.onClickDelete}>삭제하기</S.EditButton>
         ) : (
-          <S.Edit__Button
+          <S.EditButton
             onClick={props.onClickBasket(props.data?.fetchUseditem)}
           >
             장바구니
-          </S.Edit__Button>
+          </S.EditButton>
         )}
       </S.ButtonGroup>
     </S.Wrapper>

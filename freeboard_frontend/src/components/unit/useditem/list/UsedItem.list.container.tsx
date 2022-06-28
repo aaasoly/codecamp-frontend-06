@@ -1,17 +1,12 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { todayItemState } from "../../../../commons/store";
 import UsedItemListUI from "./UsedItem.list.presenter";
-import {
-  FETCH_USED_ITEMS,
-  FETCH_USED_ITEMS_OF_THE_BEST,
-} from "./UsedItem.list.queries";
+import { FETCH_USED_ITEMS } from "./UsedItem.list.queries";
 
 export default function UsedItemList() {
   const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
-  const { data: ofTheBest } = useQuery(FETCH_USED_ITEMS_OF_THE_BEST);
 
   const router = useRouter();
 
@@ -57,7 +52,7 @@ export default function UsedItemList() {
 
   const todayWatched = myDate();
 
-  const onClickMoveToDetail = (el) => (event) => {
+  const onClickMoveToDetail = (el: any) => (event: any) => {
     router.push(`/market/${event.currentTarget.id}`);
 
     const today = JSON.parse(localStorage.getItem(todayWatched) || "[]");
@@ -111,7 +106,6 @@ export default function UsedItemList() {
       onClickMoveToDetail={onClickMoveToDetail}
       onLoadMore={onLoadMore}
       onClickMoveToWrite={onClickMoveToWrite}
-      ofTheBest={ofTheBest}
       // today={today}
       todayWatched={todayWatched}
     />

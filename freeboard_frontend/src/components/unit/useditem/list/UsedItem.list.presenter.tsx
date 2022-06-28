@@ -3,14 +3,11 @@ import UsedItemListUIItem from "./UsedItem.list.presenterItem";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import { useRecoilState } from "recoil";
-import { useEffect, useState } from "react";
-import {
-  myTodayBasket,
-  recentItemState,
-  todayItemState,
-} from "../../../../commons/store";
+import { useEffect } from "react";
+import { todayItemState } from "../../../../commons/store";
 import { useRouter } from "next/router";
 import { device } from "../../../../commons/responsive/breakPoint";
+import { IUsedItemListUIProps } from "./Useditem.list.types";
 
 const Wrapper = styled.div`
   width: 160rem;
@@ -22,20 +19,20 @@ const Wrapper = styled.div`
   }
 `;
 
-const Wrapper__Top = styled.div`
+const WrapperTop = styled.div`
   display: flex;
   width: 135rem;
   height: 47.3rem;
 `;
-const Wrapper__Body = styled.div`
+const WrapperBody = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 4rem;
 `;
-const Wrapper__Right = styled.div``;
+const WrapperRight = styled.div``;
 
-const Wrapper__Bottom = styled.div`
+const WrapperBottom = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -77,7 +74,7 @@ const CreateButton = styled.button`
   cursor: pointer;
 `;
 
-export default function UsedItemListUI(props) {
+export default function UsedItemListUI(props: IUsedItemListUIProps) {
   // const [todayBasketState] = useRecoilState(myTodayBasket);
   const [todayItem, setTodayItem] = useRecoilState(todayItemState);
 
@@ -90,7 +87,7 @@ export default function UsedItemListUI(props) {
     setTodayItem(threeToday);
   }, []);
 
-  const onClickMoveToDetail = (event) => {
+  const onClickMoveTodayDetail = (event: any) => {
     router.push(`market/${event.currentTarget.id}`);
   };
 
@@ -104,7 +101,7 @@ export default function UsedItemListUI(props) {
           ))}
         </Today>
       </Wrapper__Top> */}
-      <Wrapper__Body>
+      <WrapperBody>
         <div style={{ height: "100.4rem", overflow: "auto" }}>
           <InfiniteScroll
             pageStart={0}
@@ -122,27 +119,27 @@ export default function UsedItemListUI(props) {
           </InfiniteScroll>
         </div>
 
-        <Wrapper__Right>
+        <WrapperRight>
           <TodayView>
             오늘 본 상품
             {/* <Today> */}
-            {todayItem.map((el) => (
+            {todayItem.map((el: any) => (
               <TodayItem
                 key={el._id}
                 src={`https://storage.googleapis.com/${el.images?.[0]}`}
-                onClick={onClickMoveToDetail}
+                onClick={onClickMoveTodayDetail}
                 id={el._id}
               />
             ))}
             {/* </Today> */}
           </TodayView>
-        </Wrapper__Right>
-      </Wrapper__Body>
-      <Wrapper__Bottom>
+        </WrapperRight>
+      </WrapperBody>
+      <WrapperBottom>
         <CreateButton onClick={props.onClickMoveToWrite}>
           상품 등록
         </CreateButton>
-      </Wrapper__Bottom>
+      </WrapperBottom>
     </Wrapper>
   );
 }

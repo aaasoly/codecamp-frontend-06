@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { device } from "../../../../commons/responsive/breakPoint";
+import { IButtonProps } from "./Useditem.write.types";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -279,5 +280,5 @@ export const Button = styled.button`
   border: 1px solid #bebebe;
   cursor: pointer;
   margin: 0 auto;
-  color: ${(props) => (props.isActive ? "black" : "#bebebe")};
+  color: ${(props: IButtonProps) => (props.isActive ? "black" : "#bebebe")};
 `;
