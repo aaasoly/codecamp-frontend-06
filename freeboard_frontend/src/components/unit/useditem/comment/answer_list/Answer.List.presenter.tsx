@@ -1,7 +1,10 @@
 import InfiniteScroll from "react-infinite-scroller";
 import UseditemQuestionAnswersListItem from "./Answer.List.presenterItem";
+import { IUseditemQuestionAnswersListUIProps } from "./Answer.List.types";
 
-export default function UseditemQuestionAnswersListUI(props) {
+export default function UseditemQuestionAnswersListUI(
+  props: IUseditemQuestionAnswersListUIProps
+) {
   return (
     <>
       <InfiniteScroll pageStart={0} loadMore={props.onLoadMore} hasMore={true}>

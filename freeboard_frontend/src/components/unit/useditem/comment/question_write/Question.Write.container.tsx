@@ -1,14 +1,20 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FETCH_USED_ITEM_QUESTIONS } from "../question_list/Question.List.queries";
 import UseditemQuestionWriteUI from "./Question.Write.presenter";
 import {
   CREATE_USED_ITEM_QUESTION,
   UPDATE_USED_ITEM_QUESTION,
 } from "./Question.Write.queries";
+import {
+  IUpdateUseditemQuestionInput,
+  IUseditemQuestionWriteProps,
+} from "./Question.Write.types";
 
-export default function UseditemQuestionWrite(props) {
+export default function UseditemQuestionWrite(
+  props: IUseditemQuestionWriteProps
+) {
   const router = useRouter();
   const [createUseditemQuestion] = useMutation(CREATE_USED_ITEM_QUESTION);
   const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);
@@ -18,7 +24,7 @@ export default function UseditemQuestionWrite(props) {
 
   const [contents, setContents] = useState("");
 
-  const onChangeContents = (event) => {
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
   };
 
@@ -40,7 +46,7 @@ export default function UseditemQuestionWrite(props) {
       alert("댓글이 등록되었습니다.");
       setContents("");
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
@@ -49,7 +55,7 @@ export default function UseditemQuestionWrite(props) {
     try {
       if (!props.el?._id) return;
 
-      const updateUseditemQuestionInput = {};
+      const updateUseditemQuestionInput: IUpdateUseditemQuestionInput = {};
       if (contents !== "") updateUseditemQuestionInput.contents = contents;
 
       const result = await updateUseditemQuestion({
@@ -68,7 +74,7 @@ export default function UseditemQuestionWrite(props) {
       alert("수정이 완료되었습니다.");
       console.log(result);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 

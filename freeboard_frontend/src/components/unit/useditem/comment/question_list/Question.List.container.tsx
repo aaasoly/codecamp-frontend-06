@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { FETCH_USER_LOGGED_IN } from "../../../../../commons/login/Login.queries";
 import {
@@ -6,11 +6,7 @@ import {
   IQueryFetchUseditemQuestionsArgs,
 } from "../../../../../commons/types/generated/types";
 import UseditemQuestionListUI from "./Question.List.presenter";
-import {
-  DELETE_USED_ITEM_QUESTION,
-  FETCH_USED_ITEM_QUESTIONS,
-  UPDATE_USED_ITEM_QUESTIONS,
-} from "./Question.List.queries";
+import { FETCH_USED_ITEM_QUESTIONS } from "./Question.List.queries";
 
 export default function UseditemQuestionList() {
   const router = useRouter();

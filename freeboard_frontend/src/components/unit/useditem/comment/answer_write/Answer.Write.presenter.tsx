@@ -1,7 +1,9 @@
 import * as S from "./Answer.Write.styles";
+import { IUseditemQuestionAnswerWriteUIProps } from "./Answer.Write.types";
 
-export default function UseditemQuestionAnswerWriteUI(props) {
-  // console.log(props.el._id);
+export default function UseditemQuestionAnswerWriteUI(
+  props: IUseditemQuestionAnswerWriteUIProps
+) {
   return (
     <S.Wrapper>
       {props?.isEdit ? (
@@ -20,7 +22,7 @@ export default function UseditemQuestionAnswerWriteUI(props) {
         ></S.Contents>
       )}
 
-      <S.Wrapper__Bottom>
+      <S.WrapperBottom>
         <S.CreateButton
           onClick={
             props.isEdit ? props.onClickUpdateAnswer : props.onClickCreateAnswer
@@ -28,7 +30,7 @@ export default function UseditemQuestionAnswerWriteUI(props) {
         >
           {props.isEdit ? "수정" : "등록"}
         </S.CreateButton>
-      </S.Wrapper__Bottom>
+      </S.WrapperBottom>
     </S.Wrapper>
   );
 }

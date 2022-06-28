@@ -1,16 +1,15 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "../answer_list/Answer.List.queries";
+import { useMutation } from "@apollo/client";
+import { ChangeEvent, useState } from "react";
+import { FETCH_USED_ITEM_QUESTION_ANSWERS } from "../answer_list/Answer.List.queries";
 import UseditemQuestionAnswerWriteUI from "./Answer.Write.presenter";
 
 import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
   UPDATE_USED_ITEM_QUESTION_ANSWER,
 } from "./Answer.Write.queries";
+import { IUseditemAnswerWriteProps } from "./Answer.Write.types";
 
-export default function UseditemAnswerWrite(props) {
-  const router = useRouter();
+export default function UseditemAnswerWrite(props: IUseditemAnswerWriteProps) {
   const [createUseditemQuestionAnswer] = useMutation(
     CREATE_USED_ITEM_QUESTION_ANSWER
   );
@@ -20,12 +19,9 @@ export default function UseditemAnswerWrite(props) {
 
   const [reply, setReply] = useState("");
 
-  const onChangeReply = (event) => {
+  const onChangeReply = (event: ChangeEvent<HTMLInputElement>) => {
     setReply(event.target.value);
   };
-
-  console.log(props.AnswerEl);
-  console.log(props.QuestionEl);
 
   // ✏️ 답글 등록
   const onClickCreateAnswer = async () => {
@@ -33,12 +29,12 @@ export default function UseditemAnswerWrite(props) {
       const result = await createUseditemQuestionAnswer({
         variables: {
           createUseditemQuestionAnswerInput: { contents: reply },
-          useditemQuestionId: props.el._id, // props.QuestionEl._id,
+          useditemQuestionId: props.el?._id, // props.QuestionEl._id,
         },
         refetchQueries: [
           {
-            query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: props.el._id }, // props.QuestionEl._id,
+            query: FETCH_USED_ITEM_QUESTION_ANSWERS,
+            variables: { useditemQuestionId: props.el?._id }, // props.QuestionEl._id,
           },
         ],
       });
@@ -47,7 +43,7 @@ export default function UseditemAnswerWrite(props) {
       setReply("");
       props.setIsAnswer?.(false);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
@@ -67,8 +63,8 @@ export default function UseditemAnswerWrite(props) {
         },
         refetchQueries: [
           {
-            query: FETCH_USED_ITEMS_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: props.QuestionEl._id },
+            query: FETCH_USED_ITEM_QUESTION_ANSWERS,
+            variables: { useditemQuestionId: props.QuestionEl?._id },
           },
         ],
       });
@@ -76,7 +72,7 @@ export default function UseditemAnswerWrite(props) {
       alert("수정이 완료되었습니다.");
       console.log(result);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 

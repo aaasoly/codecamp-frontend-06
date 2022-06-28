@@ -1,13 +1,22 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
+import { useQuery } from "@apollo/client";
 import { FETCH_USER_LOGGED_IN } from "../../../../../commons/login/Login.queries";
+import {
+  IQuery,
+  IQueryFetchUseditemQuestionAnswersArgs,
+} from "../../../../../commons/types/generated/types";
 import UseditemQuestionAnswersListUI from "./Answer.List.presenter";
-import { FETCH_USED_ITEMS_QUESTION_ANSWERS } from "./Answer.List.queries";
+import { FETCH_USED_ITEM_QUESTION_ANSWERS } from "./Answer.List.queries";
+import { IUseditemQuestionAnswerListProps } from "./Answer.List.types";
 
-export default function UseditemQuestionAnswerList(props) {
+export default function UseditemQuestionAnswerList(
+  props: IUseditemQuestionAnswerListProps
+) {
   // const router = useRouter();
-  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS_QUESTION_ANSWERS, {
-    variables: { useditemQuestionId: props.el._id },
+  const { data, fetchMore } = useQuery<
+    Pick<IQuery, "fetchUseditemQuestionAnswers">,
+    IQueryFetchUseditemQuestionAnswersArgs
+  >(FETCH_USED_ITEM_QUESTION_ANSWERS, {
+    variables: { useditemQuestionId: String(props.el?._id) },
   });
 
   // 페치퀘스쳔에서 유저 이메일 받아오기

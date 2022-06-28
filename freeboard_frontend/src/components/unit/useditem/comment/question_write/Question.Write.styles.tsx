@@ -24,7 +24,7 @@ export const Contents = styled.textarea`
   }
 `;
 
-export const Wrapper__Bottom = styled.div`
+export const WrapperBottom = styled.div`
   width: 100%;
   height: 40px;
   display: flex;
