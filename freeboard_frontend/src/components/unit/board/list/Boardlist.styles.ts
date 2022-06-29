@@ -146,17 +146,20 @@ export const Footer = styled.div`
   }
 `;
 export const WriteIcon = styled.button`
-  width: 60px;
-  height: 60px;
-  border: 1px solid #bdbdbd;
-  border-radius: 10px;
-  margin-top: 30px;
+  width: 12.4rem;
+  height: 5.2rem;
+  font-size: 1.4rem;
   background-color: #fff;
-  position: absolute;
-  right: 0;
+  border-radius: 30px;
+  border: 1px solid #bebebe;
   cursor: pointer;
-  &:hover {
+  :hover {
+    background-color: #31588a;
+    color: #feffe0;
+    border: 1px solid #31588a;
+    cursor: pointer;
   }
+  transition-duration: 0.3s;
 `;
 
 export const Token = styled.span`

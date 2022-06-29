@@ -242,9 +242,9 @@ export const ButtonGroup = styled.div`
   align-items: center;
 
   & > button:hover {
-    background-color: #6b48ff;
-    color: #fff;
-    border: 1px solid #6b48ff;
+    background-color: #31588a;
+    color: #feffe0;
+    border: 1px solid #31588a;
     cursor: pointer;
   }
 `;

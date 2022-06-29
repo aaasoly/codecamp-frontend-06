@@ -175,12 +175,12 @@ export const BtnSubmit = styled.button`
   height: 52px;
   padding: 14px 60px;
   border: ${(props: ISubmitButtonProps) =>
-    props.isActive ? "1px solid #6b48ff" : "1px solid #bebebe"};
+    props.isActive ? "1px solid #31588a" : "1px solid #bebebe"};
   border-radius: 30px;
   background-color: ${(props: ISubmitButtonProps) =>
-    props.isActive ? "#6b48ff" : "#fff"};
+    props.isActive ? "#31588a" : "#fff"};
   color: ${(props: ISubmitButtonProps) =>
-    props.isActive ? "#fff" : "#bebebe"};
+    props.isActive ? "#feffe0" : "#bebebe"};
   margin: 0 auto;
 `;
 

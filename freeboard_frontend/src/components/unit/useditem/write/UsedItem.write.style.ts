@@ -276,9 +276,12 @@ export const Button = styled.button`
   width: 124px;
   height: 52px;
   background-color: #fff;
+  border: ${(props: IButtonProps) =>
+    props.isActive ? "1px solid #31588a" : "1px solid #bebebe"};
   border-radius: 30px;
-  border: 1px solid #bebebe;
+  background-color: ${(props: IButtonProps) =>
+    props.isActive ? "#31588a" : "#fff"};
   cursor: pointer;
   margin: 0 auto;
-  color: ${(props: IButtonProps) => (props.isActive ? "black" : "#bebebe")};
+  color: ${(props: IButtonProps) => (props.isActive ? "#feffe0" : "#bebebe")};
 `;

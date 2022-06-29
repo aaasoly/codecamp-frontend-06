@@ -216,8 +216,9 @@ export const Btn = styled.button`
   cursor: pointer;
   transition-duration: 0.3s;
   &:hover {
-    background-color: #6b48ff;
-    color: #fff;
-    border: 1px solid #6b48ff;
+    background-color: #31588a;
+    color: #feffe0;
+    border: 1px solid #31588a;
+    cursor: pointer;
   }
 `;

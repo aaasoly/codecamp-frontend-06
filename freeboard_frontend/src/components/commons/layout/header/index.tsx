@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   z-index: 9999;
   background-color: #fff;
   color: #333;
+  transition: display ease-in-out;
   display: ${(props: IHeaderWrapperProps) =>
     props.isVisible ? "block" : "none"};
 `;
@@ -45,6 +46,7 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   @media ${device.tablet} {
     display: none;
   }
@@ -53,6 +55,7 @@ const Menu = styled.div`
 const MenuItem = styled.span`
   font-size: 14px;
   transition-duration: 0.4s;
+
   &:hover {
     opacity: 0.5;
   }
@@ -68,7 +71,7 @@ const MenuLaptop = styled.span`
   @media ${device.tablet} {
     display: block;
   }
-  color: black;
+  color: #31588a;
 `;
 
 const ToggleBtn = styled.div`

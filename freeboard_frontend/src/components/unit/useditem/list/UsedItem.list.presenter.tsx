@@ -72,6 +72,13 @@ const CreateButton = styled.button`
   border-radius: 30px;
   border: 1px solid #bebebe;
   cursor: pointer;
+  :hover {
+    background-color: #31588a;
+    color: #feffe0;
+    border: 1px solid #31588a;
+    cursor: pointer;
+  }
+  transition-duration: 0.3s;
 `;
 
 export default function UsedItemListUI(props: IUsedItemListUIProps) {

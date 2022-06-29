@@ -9,8 +9,8 @@ import { useState } from "react";
 import { IUsedItemDetailUIProps } from "./UsedItem.detail.types";
 
 export default function UsedItemDetailUI(props: IUsedItemDetailUIProps) {
-  const [nav1, setNav1] = useState();
-  const [nav2, setNav2] = useState();
+  const [nav1, setNav1] = useState(null);
+  const [nav2, setNav2] = useState(null);
 
   const settings = {
     dots: true,

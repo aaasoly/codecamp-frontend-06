@@ -62,7 +62,7 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
       <S.Footer>
         <Pagination refetch={props.refetch} count={props.count} />
         <S.WriteIcon onClick={props.onClickMoveToBoardNew}>
-          <FileTextOutlined />
+          새 글 작성
         </S.WriteIcon>
       </S.Footer>
     </S.Wrapper>
