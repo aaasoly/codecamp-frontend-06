@@ -45,6 +45,7 @@ const MenuTest1 = styled.span`
     z-index: 9999;
   }
   padding: 20px;
+  transition: color ease-in-out 0.1s;
 `;
 
 const MenuTest2 = styled.span`
@@ -59,6 +60,7 @@ const MenuTest2 = styled.span`
     z-index: 9999;
   }
   padding: 20px;
+  transition: color ease-in-out 0.1s;
 `;
 
 const BodyImg = styled.img`
@@ -156,7 +158,7 @@ const Ball = styled.div`
   left: ${(props) => props.left}px;
   top: ${(props) => props.top}px;
   transform: translate(-50%, -50%);
-  transition-duration: 0.1s;
+  transition: width, height ease-in-out 0.3s;
 `;
 
 export default function Home() {
@@ -172,8 +174,8 @@ export default function Home() {
 
   const [left, setLeft] = useState(0);
   const [top, setTop] = useState(0);
-  const [width, setWidth] = useState(20);
-  const [height, setHeight] = useState(20);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     document.addEventListener("mousemove", function (e) {
@@ -188,8 +190,8 @@ export default function Home() {
   };
 
   const originalCircle = () => {
-    setWidth(20);
-    setHeight(20);
+    setWidth(0);
+    setHeight(0);
   };
 
   const router = useRouter();
