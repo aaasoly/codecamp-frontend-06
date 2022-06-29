@@ -12,7 +12,7 @@ import {
 } from "./UsedItem.detail.queries";
 
 export default function UsedItemDetail() {
-  const [, setBasketCount] = useRecoilState(basketCountState);
+  const [basketCount, setBasketCount] = useRecoilState(basketCountState);
   const [basketItem, setBasketItem] = useRecoilState(basketItemState);
   const router = useRouter();
 
@@ -107,10 +107,10 @@ export default function UsedItemDetail() {
     }
   };
 
-  const onClickBasket = (el: any) => () => {
+  const onClickBasket = (el) => () => {
     const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
 
-    const temp = baskets.filter((basketEl: any) => basketEl._id === el._id);
+    const temp = baskets.filter((basketEl) => basketEl._id === el._id);
     if (temp.length === 1) {
       alert("이미 담으신 상품입니다");
       return;

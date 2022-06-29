@@ -5,21 +5,28 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Sidebar from "../../components/commons/layout/sidebar";
 import { FETCH_USER_LOGGED_IN } from "../login/Login.queries";
+import { device } from "../responsive/breakPoint";
 
 const Wrapper = styled.div`
-  width: 1290px;
-  min-height: 900px;
+  width: 129rem;
+  min-height: 90rem;
   display: flex;
-  font-size: 16px;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
 `;
 
 const Main = styled.div`
-  width: 1000px;
-  min-height: 900px;
+  width: 100rem;
+  min-height: 90rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-left: 20px;
+  align-items: center;
+  @media ${device.laptop} {
+    width: 50rem;
+  }
 `;
 
 const Title = styled.span`
@@ -27,7 +34,7 @@ const Title = styled.span`
 `;
 
 const Amount = styled.div`
-  width: 400px;
+  width: 40rem;
   height: 50px;
   display: flex;
   justify-content: flex-start;
@@ -39,7 +46,7 @@ const RadioInput = styled.input`
 `;
 
 const ChargeBtn = styled.button`
-  width: 190px;
+  width: 19rem;
   height: 50px;
   background-color: #fff;
   border: 1px solid #bebebe;

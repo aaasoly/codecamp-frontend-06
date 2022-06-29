@@ -8,7 +8,7 @@ export interface IUsedItemDetailUIProps {
   onClickMoveToUpdate: () => void;
   onClickBuying: () => Promise<void>;
   onClickDelete: () => Promise<void>;
-  onClickBasket: (el: any) => () => void;
+  // onClickBasket: (el: any) => () => void;
   sellerId: string;
   myId: string;
 }

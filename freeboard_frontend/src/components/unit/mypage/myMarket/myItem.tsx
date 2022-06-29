@@ -54,7 +54,7 @@ export default function MyItemPage() {
               />
               <MyItem.ItemInfo>
                 <MyItem.ItemName>{el.name}</MyItem.ItemName>
-                <MyItem.ItemPrice>{el.price}</MyItem.ItemPrice>
+                <MyItem.ItemPrice>{el.price} 원</MyItem.ItemPrice>
               </MyItem.ItemInfo>
               <MyItem.CreatedAt>{getDate(el.createdAt)}</MyItem.CreatedAt>
             </MyItem.ItemDiv>

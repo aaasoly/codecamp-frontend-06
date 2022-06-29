@@ -1,24 +1,31 @@
 import styled from "@emotion/styled";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 export const Wrapper = styled.div`
-  width: 1290px;
+  width: 129rem;
   min-height: 900px;
   display: flex;
-  font-size: 16px;
-  // background-color: #f9fbfc;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  @media ${device.laptop} {
+    width: 90rem;
+  }
 `;
 
 export const Main = styled.div`
-  width: 1000px;
+  width: 100rem;
   min-height: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${device.laptop} {
+    width: 50rem;
+  }
 `;
 
 export const ItemDiv = styled.div`
-  width: 900px;
-  height: 154px;
+  width: 90rem;
+  height: 15.4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,20 +34,36 @@ export const ItemDiv = styled.div`
   &:first-child {
     border-top: 1px solid #e5e5e5;
   }
+  @media ${device.laptop} {
+    width: 60rem;
+  }
 `;
 
 export const ItemPicture = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  height: 10rem;
+  margin-right: 20px;
 `;
 
 export const ItemInfo = styled.div`
+  width: 60rem;
   display: flex;
-  flex-direction: column;
+  @media ${device.laptop} {
+    width: 35rem;
+  }
 `;
 
-export const ItemName = styled.span``;
+export const ItemName = styled.span`
+  margin-right: 30rem;
+  @media ${device.laptop} {
+    margin-right: 15rem;
+  }
+`;
 
 export const ItemPrice = styled.span``;
 
-export const CreatedAt = styled.span``;
+export const CreatedAt = styled.span`
+  @media ${device.tablet} {
+    display: none;
+  }
+`;

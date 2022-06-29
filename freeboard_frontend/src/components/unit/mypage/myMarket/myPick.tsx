@@ -3,17 +3,22 @@ import { getDate } from "../../../../commons/libraries/utils";
 import Sidebar from "../../../commons/layout/sidebar";
 import { useRecoilState } from "recoil";
 import { basketItemState } from "../../../../commons/store";
-import { v4 as uuidv4 } from "uuid";
+import { useEffect } from "react";
 
 export default function MyPickPage() {
-  const [basketItem] = useRecoilState(basketItemState);
+  const [basketItem, setBasketItem] = useRecoilState(basketItemState);
+
+  useEffect(() => {
+    const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
+    setBasketItem(baskets);
+  }, []);
 
   return (
     <MyItem.Wrapper>
       <Sidebar />
       <MyItem.Main>
         {basketItem.map((el: any) => (
-          <MyItem.ItemDiv key={uuidv4()}>
+          <MyItem.ItemDiv key={el._id}>
             <MyItem.ItemPicture
               src={`https://storage.googleapis.com/${el.images[0]}`}
             />

@@ -3,19 +3,23 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 const SideBar = styled.div`
-  width: 290px;
+  width: 29rem;
   height: 900px;
   display: flex;
   flex-direction: column;
   background-color: #fff;
   box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
+  @media ${device.tablet} {
+    height: 500px;
+  }
 `;
 
 const UserDiv = styled.div`
-  width: 290px;
-  height: 300px;
+  width: 29rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,15 +30,18 @@ const MenuDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
+  padding-top: 2rem;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  font-size: 1.8rem;
+  /* @media ${device.laptop} {
+    padding-top: 10px;
+  } */
 `;
 
 const UserPicture = styled.img`
-  width: 140px;
-  height: 140px;
+  width: 14rem;
+  height: 14rem;
   border-radius: 50%;
   box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
   margin-bottom: 10px;
@@ -46,7 +53,7 @@ const UserName = styled.span`
 `;
 
 const UserPoint = styled.span`
-  font-size: 14px;
+  font-size: 1.4rem;
   padding: 3px 10px;
   border-radius: 30px;
   background-color: #31588a;
@@ -54,31 +61,37 @@ const UserPoint = styled.span`
   margin-bottom: 8px;
 `;
 
-const ChargePoint = styled.span`
-  font-size: 14px;
+const ChargePoint = styled.div`
+  font-size: 1.6rem;
+  > a:hover {
+    color: #bdbdbd;
+  }
 `;
 
 const MyPage = styled.span`
   font-weight: 700;
-  margin-bottom: 20px;
-  font-size: 20px;
+  margin-bottom: 2rem;
+  font-size: 2rem;
 `;
 
 const MenuList = styled.ul`
   list-style: none;
   padding: 0;
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
   margin-left: 10px;
 `;
 
 const MenuTitle = styled.span`
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 `;
 
 const MenuItem = styled.li`
   padding: 0;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  > a:hover {
+    color: #bdbdbd;
+  }
 `;
 
 const MyMarket = styled.div`
