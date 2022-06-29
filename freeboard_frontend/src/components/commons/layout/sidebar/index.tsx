@@ -49,8 +49,13 @@ const UserPoint = styled.span`
   font-size: 14px;
   padding: 3px 10px;
   border-radius: 30px;
-  background-color: #6b48ff;
-  color: #fff;
+  background-color: #31588a;
+  color: #feffe0;
+  margin-bottom: 8px;
+`;
+
+const ChargePoint = styled.span`
+  font-size: 14px;
 `;
 
 const MyPage = styled.span`
@@ -102,6 +107,11 @@ export default function Sidebar() {
         <UserPoint>
           보유 포인트 {data?.fetchUserLoggedIn.userPoint.amount} P
         </UserPoint>
+        <ChargePoint>
+          <Link href="/myPage/myPoint">
+            <a>포인트 충전</a>
+          </Link>
+        </ChargePoint>
       </UserDiv>
 
       <MenuDiv>
@@ -111,12 +121,12 @@ export default function Sidebar() {
           <MenuTitle>내 장터</MenuTitle>
           <MenuList>
             <MenuItem>
-              <Link href="/mypage/myitem">
+              <Link href="/myPage/myItem">
                 <a>내 상품 조회</a>
               </Link>
             </MenuItem>
             <MenuItem>
-              <Link href="/mypage/mypick">
+              <Link href="/myPage/myPick">
                 <a>장바구니</a>
               </Link>
             </MenuItem>
@@ -127,17 +137,17 @@ export default function Sidebar() {
           <MenuTitle>내 결제</MenuTitle>
           <MenuList>
             <MenuItem>
-              <Link href="/mypage/myPayment">
+              <Link href="/myPage/myPayment">
                 <a>포인트 조회</a>
               </Link>
             </MenuItem>
             <MenuItem>
-              <Link href="/mypage/myPayment/bought">
+              <Link href="/myPage/myPayment/bought">
                 <a>구매 내역</a>
               </Link>
             </MenuItem>
             <MenuItem>
-              <Link href="/mypage/myPayment/sold">
+              <Link href="/myPage/myPayment/sold">
                 <a>판매 내역</a>
               </Link>
             </MenuItem>
@@ -148,7 +158,7 @@ export default function Sidebar() {
           <MenuTitle>내 프로필</MenuTitle>
           <MenuList>
             <MenuItem>
-              <Link href="/mypage/myprofile">
+              <Link href="/myPage/myProfile">
                 <a>프로필 변경</a>
               </Link>
             </MenuItem>

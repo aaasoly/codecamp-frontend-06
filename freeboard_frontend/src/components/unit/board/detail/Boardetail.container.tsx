@@ -70,7 +70,7 @@ export default function BoardDetail() {
         variables: { boardId: String(router.query.boardId) },
       });
       Modal.success({
-        content: "게시물 등록에 성공하였습니다!",
+        content: "게시물이 삭제되였습니다",
       });
       router.push("/boards");
     } catch (error) {
