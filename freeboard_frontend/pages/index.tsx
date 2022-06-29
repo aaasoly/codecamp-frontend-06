@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { device } from "../src/commons/responsive/breakPoint";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -15,39 +17,9 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   position: relative;
-`;
-
-const BackSlider = styled(Slider)`
-  width: 80%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Wrapper__Header = styled.div`
-  width: 140rem;
-  height: 10rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const Header__Right = styled.div`
-  width: 15rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const Login = styled.div`
-  font-size: 16px;
-  color: #333;
-`;
-
-const MenuIcon = styled.div`
-  font-size: 16px;
-  color: #333;
+  @media ${device.laptop} {
+    width: 1200px;
+  }
 `;
 
 const BodyImg = styled.img`
@@ -59,6 +31,12 @@ const BodyImg = styled.img`
   border-radius: 3rem;
   object-fit: cover;
   z-index: 1;
+  @media ${device.laptop} {
+    left: 10px;
+    top: 35px;
+    width: 700px;
+    height: 650px;
+  }
 `;
 
 const BackBox = styled.div`
@@ -67,16 +45,25 @@ const BackBox = styled.div`
   height: 94.3rem;
   left: 69.6rem;
   background: #cbe1e8;
+  @media ${device.laptop} {
+    width: 820px;
+    height: 760px;
+    left: 500px;
+  }
 `;
 
 const GreetingKo = styled.span`
   display: inline-block;
   position: absolute;
   left: 39rem;
-  top: 23rem;
+  top: 230px;
   font-weight: 700;
   font-size: 5rem;
   color: #fff;
+  @media ${device.laptop} {
+    top: 150px;
+    left: 250px;
+  }
 `;
 
 const GreetingEng = styled.span`
@@ -87,6 +74,10 @@ const GreetingEng = styled.span`
   font-weight: 700;
   font-size: 5.2rem;
   color: #fff;
+  @media ${device.laptop} {
+    left: 250px;
+    top: 210px;
+  }
 `;
 
 const About = styled.p`
@@ -97,6 +88,10 @@ const About = styled.p`
   top: 40.8rem;
   font-size: 20px;
   color: #fff;
+  @media ${device.laptop} {
+    left: 250px;
+    top: 318px;
+  }
 `;
 
 const More = styled.span`
@@ -107,6 +102,23 @@ const More = styled.span`
   font-size: 23px;
   color: #fff;
   cursor: pointer;
+  @media ${device.laptop} {
+    left: 250px;
+    top: 600px;
+  }
+`;
+
+const Ball = styled.div`
+  position: absolute;
+  border-radius: 80%;
+  height: 100px;
+  width: 100px;
+  background: #fff;
+  left: ${(props) => props.left}px;
+  top: ${(props) => props.right}px;
+  mix-blend-mode: difference;
+  will-change: transform;
+  // transform: translate(-50%, -50%);
 `;
 
 export default function Home() {
@@ -119,6 +131,22 @@ export default function Home() {
     autoplaySpeed: 8000,
     pauseOnHover: true,
   };
+
+  const [left, setLeft] = useState(0);
+  const [right, setRight] = useState(0);
+
+  const drag = (e: MouseEventHandler<HTMLElement>) => {
+    setLeft(e.clientX);
+  };
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("mousemove", function (e) {
+      setLeft(e.clientX);
+      setRight(e.clientY);
+    });
+  }
+
+  console.log(left, right);
 
   const router = useRouter();
 
@@ -149,25 +177,6 @@ export default function Home() {
 
   return (
     <Wrapper>
-      {/* <Wrapper__Header>
-          <Header__Right>
-            <MenuIcon>
-              <Dropdown
-                overlay={menu}
-                // style={{ fontFamily: "DM Serif Display" }}
-              >
-                <a
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Menu <DownOutlined />
-                </a>
-              </Dropdown>
-            </MenuIcon>
-            <Login onClick={onClickLogin}>Login</Login>
-          </Header__Right>
-        </Wrapper__Header> */}
-
       <BodyImg src="/img/landing.jpg" />
       <BackBox>
         <GreetingKo>환영합니다!</GreetingKo>
@@ -178,6 +187,7 @@ export default function Home() {
         </About>
         <More onClick={onClickBoard}>More</More>
       </BackBox>
+      {/* <Ball left={left} right={right}></Ball> */}
     </Wrapper>
   );
 }
