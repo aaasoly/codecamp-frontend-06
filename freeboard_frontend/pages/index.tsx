@@ -11,15 +11,54 @@ import { device } from "../src/commons/responsive/breakPoint";
 import { MouseEventHandler, useEffect, useState } from "react";
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
-  @media ${device.laptop} {
+  // position: relative;
+  background-color: #31588a;
+  /* @media ${device.laptop} {
     width: 1200px;
+  } */
+  font-family: "Playfair Display", serif;
+`;
+
+const Title = styled.span`
+  position: absolute;
+  margin: 156px auto 0;
+  font-weight: 700;
+  font-size: 60px;
+  color: #feffe0;
+`;
+
+const MenuTest1 = styled.span`
+  position: absolute;
+  margin: 410px auto 0;
+  font-weight: 400;
+  font-size: 50px;
+  color: #feffe0;
+  cursor: pointer;
+  :hover {
+    color: #31588a;
+    z-index: 9999;
   }
+  padding: 20px;
+`;
+
+const MenuTest2 = styled.span`
+  position: absolute;
+  margin: 610px auto 0;
+  font-weight: 400;
+  font-size: 50px;
+  color: #feffe0;
+  cursor: pointer;
+  :hover {
+    color: #31588a;
+    z-index: 9999;
+  }
+  padding: 20px;
 `;
 
 const BodyImg = styled.img`
@@ -111,14 +150,13 @@ const More = styled.span`
 const Ball = styled.div`
   position: absolute;
   border-radius: 80%;
-  height: 100px;
-  width: 100px;
+  height: ${(props) => props.height}px;
+  width: ${(props) => props.width}px;
   background: #fff;
   left: ${(props) => props.left}px;
-  top: ${(props) => props.right}px;
-  mix-blend-mode: difference;
-  will-change: transform;
-  // transform: translate(-50%, -50%);
+  top: ${(props) => props.top}px;
+  transform: translate(-50%, -50%);
+  transition-duration: 0.1s;
 `;
 
 export default function Home() {
@@ -133,20 +171,26 @@ export default function Home() {
   };
 
   const [left, setLeft] = useState(0);
-  const [right, setRight] = useState(0);
+  const [top, setTop] = useState(0);
+  const [width, setWidth] = useState(20);
+  const [height, setHeight] = useState(20);
 
-  const drag = (e: MouseEventHandler<HTMLElement>) => {
-    setLeft(e.clientX);
-  };
-
-  if (typeof window !== "undefined") {
+  useEffect(() => {
     document.addEventListener("mousemove", function (e) {
       setLeft(e.clientX);
-      setRight(e.clientY);
+      setTop(e.clientY);
     });
-  }
+  }, []);
 
-  console.log(left, right);
+  const changeCircle = () => {
+    setWidth(110);
+    setHeight(110);
+  };
+
+  const originalCircle = () => {
+    setWidth(20);
+    setHeight(20);
+  };
 
   const router = useRouter();
 
@@ -177,7 +221,8 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <BodyImg src="/img/landing.jpg" />
+      <Title>Welcome</Title>
+      {/* <BodyImg src="/img/landing.jpg" />
       <BackBox>
         <GreetingKo>환영합니다!</GreetingKo>
         <GreetingEng>Welcome!</GreetingEng>
@@ -186,20 +231,22 @@ export default function Home() {
           Thank you for visiting!
         </About>
         <More onClick={onClickBoard}>More</More>
-      </BackBox>
-      {/* <Ball left={left} right={right}></Ball> */}
+      </BackBox> */}
+      <MenuTest1
+        onClick={onClickBoard}
+        onMouseEnter={changeCircle}
+        onMouseLeave={originalCircle}
+      >
+        More
+      </MenuTest1>
+      <MenuTest2
+        onClick={onClickLogin}
+        onMouseEnter={changeCircle}
+        onMouseLeave={originalCircle}
+      >
+        Login
+      </MenuTest2>
+      <Ball left={left} top={top} width={width} height={height}></Ball>
     </Wrapper>
   );
 }
-
-/* <StyledSlider {...settings}>
-              <ImgBox>
-                <BannerImg src="/img/1.jpeg" />
-              </ImgBox>
-              <ImgBox>
-                <BannerImg src="/img/2.jpeg" />
-              </ImgBox>
-              <ImgBox>
-                <BannerImg src="/img/3.jpeg" />
-              </ImgBox>
-            </StyledSlider> */
