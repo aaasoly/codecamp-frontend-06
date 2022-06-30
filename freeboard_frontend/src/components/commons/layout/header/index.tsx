@@ -137,7 +137,7 @@ export default function LayoutHeader() {
   };
 
   const onClickMyPage = () => {
-    router.push("/mypage/myitem");
+    router.push("/myPage/myItem");
   };
 
   const onClickLogOut = async () => {
