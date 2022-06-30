@@ -63,7 +63,7 @@ export const WrapperBody = styled.div`
   flex-wrap: wrap;
 `;
 
-export const BoradReview = styled.div`
+export const BoardList = styled.div`
   width: 90rem;
   height: 200px;
   display: flex;
@@ -74,12 +74,13 @@ export const BoradReview = styled.div`
   margin-bottom: 30px;
   background-color: #fff;
   padding: 0 15px;
+  cursor: pointer;
   @media ${device.tablet} {
     height: 100px;
   }
 `;
 
-export const ThumHeader = styled.div`
+export const BoardListImg = styled.div`
   width: 15rem;
   height: 15rem;
   border-radius: 50%;
@@ -91,7 +92,7 @@ export const ThumHeader = styled.div`
   cursor: pointer;
 `;
 
-export const ThumImg = styled.img`
+export const Img = styled.img`
   width: 20rem;
   height: 20rem;
   background-size: contain;
@@ -99,7 +100,7 @@ export const ThumImg = styled.img`
   background-repeat: no-repeat;
 `;
 
-export const ThumBody = styled.div`
+export const BoardListBody = styled.div`
   width: 60rem;
   height: 100%;
   cursor: pointer;
@@ -113,7 +114,7 @@ export const BodyTop = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.span`
+export const BoardTitle = styled.span`
   max-width: 50rem;
   font-weight: 700;
   white-space: nowrap;
@@ -122,7 +123,7 @@ export const Title = styled.span`
   margin-right: 20px;
 `;
 
-export const Writer = styled.span`
+export const BoardWriter = styled.span`
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
@@ -130,7 +131,7 @@ export const Writer = styled.span`
   text-overflow: ellipsis;
 `;
 
-export const Contents = styled.p`
+export const BoardContents = styled.p`
   width: 100%;
   height: 130px;
   word-wrap: break-word;
@@ -139,7 +140,7 @@ export const Contents = styled.p`
   margin: 0;
 `;
 
-export const ThumBottom = styled.div`
+export const BoardListBottom = styled.div`
   width: 50px;
   height: 100%;
   display: flex;
@@ -147,7 +148,7 @@ export const ThumBottom = styled.div`
   margin-bottom: 3rem;
 `;
 
-export const Like = styled.div``;
+export const BoardLike = styled.div``;
 
 export const LikeIcon = styled(HeartFilled)`
   margin-right: 5px;

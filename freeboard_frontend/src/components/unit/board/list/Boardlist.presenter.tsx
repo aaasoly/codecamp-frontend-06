@@ -27,23 +27,23 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
 
       <S.WrapperBody>
         {props.data?.fetchBoards.map((el: any, index: number) => (
-          <S.BoradReview
+          <S.BoardList
             key={el._id}
             id={el._id}
             onClick={props.onClickMoveToBoardDetail}
           >
-            <S.ThumHeader>
-              <S.ThumImg
+            <S.BoardListImg>
+              <S.Img
                 src={
                   el.images[0]
                     ? `https://storage.googleapis.com/${el.images?.[0]}`
                     : `/img/1.jpg`
                 }
               />
-            </S.ThumHeader>
-            <S.ThumBody>
+            </S.BoardListImg>
+            <S.BoardListBody>
               <S.BodyTop>
-                <S.Title>
+                <S.BoardTitle>
                   {el.title
                     .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
                     .split("#$%")
@@ -52,18 +52,18 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
                         {word}
                       </S.Token>
                     ))}
-                </S.Title>
-                <S.Writer>by. {el.writer}</S.Writer>
+                </S.BoardTitle>
+                <S.BoardWriter>by. {el.writer}</S.BoardWriter>
               </S.BodyTop>
-              <S.Contents>{el.contents}</S.Contents>
-            </S.ThumBody>
-            <S.ThumBottom>
-              <S.Like>
+              <S.BoardContents>{el.contents}</S.BoardContents>
+            </S.BoardListBody>
+            <S.BoardListBottom>
+              <S.BoardLike>
                 <S.LikeIcon />
                 {el.likeCount}
-              </S.Like>
-            </S.ThumBottom>
-          </S.BoradReview>
+              </S.BoardLike>
+            </S.BoardListBottom>
+          </S.BoardList>
         ))}
       </S.WrapperBody>
 
