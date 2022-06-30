@@ -16,7 +16,13 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
   return (
     <S.Wrapper>
       <S.WrapperHeader>
-        <S.SearchInput placeholder="Search" onChange={props.onChangeSearch} />
+        <S.WriteIcon onClick={props.onClickMoveToBoardNew}>
+          새 글 작성
+        </S.WriteIcon>
+        <S.SearchInput
+          placeholder="검색어를 입력하세요."
+          onChange={props.onChangeSearch}
+        />
       </S.WrapperHeader>
 
       <S.WrapperBody>
@@ -36,20 +42,22 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
               />
             </S.ThumHeader>
             <S.ThumBody>
-              <S.Title>
-                {el.title
-                  .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
-                  .split("#$%")
-                  .map((word: any) => (
-                    <S.Token key={uuid4()} isMatched={props.keyword === word}>
-                      {word}
-                    </S.Token>
-                  ))}
-              </S.Title>
+              <S.BodyTop>
+                <S.Title>
+                  {el.title
+                    .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
+                    .split("#$%")
+                    .map((word: any) => (
+                      <S.Token key={uuid4()} isMatched={props.keyword === word}>
+                        {word}
+                      </S.Token>
+                    ))}
+                </S.Title>
+                <S.Writer>by. {el.writer}</S.Writer>
+              </S.BodyTop>
               <S.Contents>{el.contents}</S.Contents>
             </S.ThumBody>
             <S.ThumBottom>
-              <S.Writer>{el.writer}</S.Writer>
               <S.Like>
                 <S.LikeIcon />
                 {el.likeCount}
@@ -61,9 +69,6 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
 
       <S.Footer>
         <Pagination refetch={props.refetch} count={props.count} />
-        <S.WriteIcon onClick={props.onClickMoveToBoardNew}>
-          새 글 작성
-        </S.WriteIcon>
       </S.Footer>
     </S.Wrapper>
   );

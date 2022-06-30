@@ -8,31 +8,37 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   font-size: 14px;
-  @media ${device.laptop} {
-    width: 900px;
-  }
   margin: 0 auto;
+  background-color: #f8f9fa;
+  @media ${device.laptop} {
+    width: 120rem;
+  }
 `;
 
 export const WrapperHeader = styled.div`
+  width: 90rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 50px;
 `;
 
-export const WrapperBody = styled.div`
-  width: 160rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: space-between;
-  flex-wrap: wrap;
-  gap: 1;
-  @media ${device.laptop} {
-    width: 900px;
-    justify-content: center;
+export const WriteIcon = styled.button`
+  width: 12.4rem;
+  height: 5.2rem;
+  font-size: 1.4rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  :hover {
+    background-color: #31588a;
+    color: #feffe0;
+    cursor: pointer;
   }
+  transition-duration: 0.3s;
 `;
 
 export const SearchInput = styled.input`
@@ -41,127 +47,124 @@ export const SearchInput = styled.input`
   height: 40px;
   padding: 5px 15px;
   border-radius: 30px;
-  background-color: #eee;
+  background-color: #fff;
+  border: none;
   &:focus {
     outline: none;
   }
 `;
 
-export const Row = styled.div`
+export const WrapperBody = styled.div`
+  width: 100%;
+  height: auto;
   display: flex;
-  align-items: center;
-  width: 1200px;
-  border-bottom: 1px solid #bdbdbd;
+  justify-content: center;
+  align-items: space-between;
+  flex-wrap: wrap;
 `;
 
 export const BoradReview = styled.div`
-  width: 300px;
-  height: 400px;
+  width: 90rem;
+  height: 200px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 20px;
-  border: 1px solid #bebebe;
+  border-radius: 25px;
   overflow: hidden;
-  @media ${device.laptop} {
-    width: 230px;
+  margin-bottom: 30px;
+  background-color: #fff;
+  padding: 0 15px;
+  @media ${device.tablet} {
+    height: 100px;
   }
 `;
 
 export const ThumHeader = styled.div`
-  width: 100%;
-  height: 200px;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
   cursor: pointer;
 `;
 
 export const ThumImg = styled.img`
-  width: 100%;
+  width: 20rem;
+  height: 20rem;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 `;
 
 export const ThumBody = styled.div`
-  width: 100%;
-  height: 170px;
+  width: 60rem;
+  height: 100%;
   cursor: pointer;
 `;
 
-export const ThumBottom = styled.div`
+export const BodyTop = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  border-top: 1px solid #bdbdbd;
-  padding: 8px;
 `;
 
-export const Title = styled.div`
-  width: 100%;
-  height: 40px;
-  padding: 8px;
+export const Title = styled.span`
+  max-width: 50rem;
   font-weight: 700;
-  border-bottom: 1px solid #bdbdbd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 20px;
+`;
+
+export const Writer = styled.span`
+  font-size: 12px;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 export const Contents = styled.p`
-  width: 300px;
-  height: 120px;
-  padding: 8px;
+  width: 100%;
+  height: 130px;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
 `;
 
-export const Writer = styled.div`
-  font-size: 12px;
-  font-weight: 700;
+export const ThumBottom = styled.div`
+  width: 50px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 3rem;
 `;
 
 export const Like = styled.div``;
 
 export const LikeIcon = styled(HeartFilled)`
-  margin-right: 10px;
+  margin-right: 5px;
   color: coral;
 `;
 
 export const Footer = styled.div`
-  width: 160rem;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   padding-top: 20px;
-  @media ${device.laptop} {
-    width: 1200px;
-  }
-`;
-export const WriteIcon = styled.button`
-  width: 12.4rem;
-  height: 5.2rem;
-  font-size: 1.4rem;
-  background-color: #fff;
-  border-radius: 30px;
-  border: 1px solid #bebebe;
-  cursor: pointer;
-  :hover {
-    background-color: #31588a;
-    color: #feffe0;
-    border: 1px solid #31588a;
-    cursor: pointer;
-  }
-  transition-duration: 0.3s;
+  margin-bottom: 30px;
 `;
 
 export const Token = styled.span`
-  color: ${(props: IPropsSearchMatched) => (props.isMatched ? "skyblue" : "")};
+  font-weight: ${(props: IPropsSearchMatched) =>
+    props.isMatched ? "800" : "400"};
 `;

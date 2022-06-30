@@ -7,7 +7,7 @@ import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./Boardlist.queries";
 
 export default function BoardListPage() {
   const [keyword, setKeyword] = useState("");
-  const { data, refetch } = useQuery(FETCH_BOARDS);
+  const { data, refetch, fetchMore } = useQuery(FETCH_BOARDS);
   const { data: dataBoardsCount, refetch: refetchBoardsCount } =
     useQuery(FETCH_BOARDS_COUNT);
 
