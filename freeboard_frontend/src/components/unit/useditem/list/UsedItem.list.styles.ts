@@ -2,60 +2,60 @@ import styled from "@emotion/styled";
 import { HeartFilled } from "@ant-design/icons";
 import { device } from "../../../../commons/responsive/breakPoint";
 
-export const Wrapper = styled.div`
-  width: 135rem;
-  display: flex;
-  @media ${device.laptop} {
-    width: 90rem;
-  }
-  @media ${device.tablet} {
-    width: 500px;
-  }
-`;
+// export const Wrapper = styled.div`
+//   width: 140rem;
+//   display: flex;
+//   flex-wrap: wrap;
+//   @media ${device.laptop} {
+//     width: 90rem;
+//   }
+//   @media ${device.tablet} {
+//     width: 500px;
+//   }
+// `;
 
-export const Row = styled.div`
-  width: 100%;
-  height: 20rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-top: 1px solid #bdbdbd;
-`;
-
-export const ColunmLeft = styled.div`
-  width: 16rem;
-  height: 16rem;
-`;
-
-export const ColumnCenter = styled.div`
-  width: 93rem;
-  height: 15rem;
+export const ItemList = styled.div`
+  width: 42rem;
+  height: 55rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  @media ${device.laptop} {
-    width: 700px;
-  }
+  align-items: center;
+  border-radius: 15px;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 20px;
+  overflow: hidden;
   @media ${device.tablet} {
-    width: 330px;
+    width: 300px;
+    height: 500px;
   }
 `;
 
-export const ColumnRight = styled.div`
-  width: 17rem;
-  height: 16rem;
-  padding: 6.2rem 0;
+export const Top = styled.div`
+  width: 100%;
+  height: 32rem;
+  overflow: hidden;
 `;
 
 export const Img = styled.img`
-  width: 16rem;
-  height: 16rem;
-  border-radius: 1rem;
+  width: 100%;
+  object-fit: fill;
+`;
+
+export const Center = styled.div`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  margin-bottom: 10px;
 `;
 
 export const Name = styled.span`
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media ${device.tablet} {
     font-size: 10px;
   }
@@ -63,11 +63,27 @@ export const Name = styled.span`
 
 export const Remarks = styled.span`
   font-size: 1.4rem;
+  color: #bebebe;
 `;
 
 export const Tags = styled.span`
   font-size: 1.6rem;
-  color: #bdbdbd;
+  height: 50px;
+`;
+
+export const Price = styled.span`
+  font-size: 2.2rem;
+  font-weight: 600;
+`;
+
+export const Bottom = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  border-top: 1px solid #bebebe;
 `;
 
 export const Seller = styled.span`
@@ -82,15 +98,4 @@ export const Picked = styled.div`
 export const PickedIcon = styled(HeartFilled)`
   margin-right: 5px;
   color: coral;
-`;
-
-export const Price = styled.span`
-  font-size: 2.2rem;
-  font-weight: 600;
-`;
-
-export const ColumnBottom = styled.div`
-  display: flex;
-  align-items: center;
-  height: 2.4rem;
 `;

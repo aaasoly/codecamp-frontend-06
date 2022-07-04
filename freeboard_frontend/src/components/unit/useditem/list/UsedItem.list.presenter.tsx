@@ -11,11 +11,14 @@ import { IUsedItemListUIProps } from "./Useditem.list.types";
 
 const Wrapper = styled.div`
   width: 160rem;
+  display: flex;
+  justify-content: space-between;
   @media ${device.laptop} {
     width: 120rem;
   }
   @media ${device.tablet} {
-    width: 500px;
+    width: 600px;
+    justify-content: center;
   }
 `;
 
@@ -24,13 +27,37 @@ const WrapperTop = styled.div`
   width: 135rem;
   height: 47.3rem;
 `;
+
 const WrapperBody = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Item = styled.div`
+  width: 135rem;
+  height: 150rem;
+  display: flex;
+  margin-bottom: 4rem;
+  overflow: auto;
+`;
+
+const FlexWrap = styled.div`
+  width: 135rem;
+  height: 150rem;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  @media ${device.laptop} {
+    width: 120rem;
+  }
+  @media ${device.tablet} {
+    width: 500px;
+    justify-content: center;
+  }
 `;
-const WrapperRight = styled.div``;
+const WrapperRight = styled.div`
+  width: 20rem;
+`;
 
 const WrapperBottom = styled.div`
   width: 100%;
@@ -109,44 +136,47 @@ export default function UsedItemListUI(props: IUsedItemListUIProps) {
         </Today>
       </Wrapper__Top> */}
       <WrapperBody>
-        <div style={{ height: "100.4rem", overflow: "auto" }}>
+        <Item>
           <InfiniteScroll
             pageStart={0}
             loadMore={props.onLoadMore}
             hasMore={true}
             useWindow={false}
           >
-            {props.data?.fetchUseditems.map((el) => (
-              <UsedItemListUIItem
-                key={uuidv4()}
-                el={el}
-                onClickMoveToDetail={props.onClickMoveToDetail(el)}
-              />
-            ))}
+            <FlexWrap>
+              {props.data?.fetchUseditems.map((el) => (
+                <UsedItemListUIItem
+                  key={uuidv4()}
+                  el={el}
+                  onClickMoveToDetail={props.onClickMoveToDetail(el)}
+                />
+              ))}
+            </FlexWrap>
           </InfiniteScroll>
-        </div>
+        </Item>
 
-        <WrapperRight>
-          <TodayView>
-            오늘 본 상품
-            {/* <Today> */}
-            {todayItem.map((el: any) => (
-              <TodayItem
-                key={el._id}
-                src={`https://storage.googleapis.com/${el.images?.[0]}`}
-                onClick={onClickMoveTodayDetail}
-                id={el._id}
-              />
-            ))}
-            {/* </Today> */}
-          </TodayView>
-        </WrapperRight>
+        <WrapperBottom>
+          <CreateButton onClick={props.onClickMoveToWrite}>
+            상품 등록
+          </CreateButton>
+        </WrapperBottom>
       </WrapperBody>
-      <WrapperBottom>
-        <CreateButton onClick={props.onClickMoveToWrite}>
-          상품 등록
-        </CreateButton>
-      </WrapperBottom>
+
+      <WrapperRight>
+        <TodayView>
+          오늘 본 상품
+          {/* <Today> */}
+          {todayItem.map((el: any) => (
+            <TodayItem
+              key={el._id}
+              src={`https://storage.googleapis.com/${el.images?.[0]}`}
+              onClick={onClickMoveTodayDetail}
+              id={el._id}
+            />
+          ))}
+          {/* </Today> */}
+        </TodayView>
+      </WrapperRight>
     </Wrapper>
   );
 }

@@ -4,42 +4,31 @@ import { useEffect, useState } from "react";
 // import nodeFetch from "node-fetch";
 
 export default function OpenapiWithUseEffectPage() {
-  const [dogUrl, setDogUrl] = useState("");
-
-  useEffect(() => {
-    const aaa = async () => {
-      // async - await 사용을 위해 새로운 함수 만들어 줌
-      const result = await axios.get("https://dog.ceo/api/breeds/image/random");
-      setDogUrl(result.data.message);
-    };
-    aaa();
-  }, []);
-
-  // const [photo, setPhoto] = useState("");
-
-  // const unsplash = createApi({
-  //   accessKey: "HZktArCXABK1NInMmUDD6JO2_WXQTPifCDCga0Fst1A",
-  //   fetch: nodeFetch,
-  // });
-
-  // useEffect(() => {
-  //   const aaa = async () => {
-  //     // async - await 사용을 위해 새로운 함수 만들어 줌
-  //     const result = await axios.get("https://api.unsplash.com/random", {
-  //       params: {
-  //         client_id: "HZktArCXABK1NInMmUDD6JO2_WXQTPifCDCga0Fst1A",
-  //         count: 30,
-  //       },
-  //     });
-  //     setPhoto(prev => [...prev, result.])
-  //   };
-  //   aaa();
-  // }, []);
+  const [photos, setPhotos] = useState([]);
+  const onClickCreateImage = () => {
+    axios
+      .get("https://api.unsplash.com/photos/random", {
+        params: {
+          client_id: "",
+          count: 9,
+        },
+      })
+      .then((res) => {
+        const result = res.data.map((el) => el.urls.regular);
+        setPhotos(result);
+      });
+  };
+  console.log(photos);
 
   return (
     <div>
       <div>오픈 API 연습</div>
-      <img src={dogUrl} />
+      <button onClick={onClickCreateImage}>랜덤생성</button>
+      {photos.map((el, idx) => (
+        <>
+          <img key={idx} src={el} />
+        </>
+      ))}
     </div>
   );
 }
