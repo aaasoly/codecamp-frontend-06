@@ -1,6 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
+import html2canvas from "html2canvas";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
 
 const Wrapper = styled.div`
   width: 1600px;
@@ -34,8 +37,8 @@ const ImageBox = styled.div`
 `;
 
 const Image = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 230px;
+  height: 230px;
   object-fit: cover;
 `;
 
@@ -49,7 +52,7 @@ const SelectedImg = styled.img`
   width: 500px;
   height: 500px;
   object-fit: cover;
-  opacity: 70%;
+  opacity: ${(props) => props.opacity}%;
 `;
 
 const PhraseInput = styled.input`
@@ -57,8 +60,11 @@ const PhraseInput = styled.input`
   height: 50px;
 `;
 
-const Thumnail = styled.div`
+export const Thumnail = styled.div`
   position: relative;
+  /* width: 500px;
+  height: 500px;
+  background-image: url(${(props) => props.select}); */
 `;
 
 const Phrase = styled.div`
@@ -67,10 +73,18 @@ const Phrase = styled.div`
   top: 50%;
 `;
 
+const OpacityBox = styled.div`
+  display: flex;
+  width: 200px;
+  justify-content: space-around;
+`;
+
 export default function OpenApiPage() {
   const [photos, setPhotos] = useState([]);
   const [select, setSelect] = useState("");
   const [phrase, setPhrase] = useState("");
+  const [opacity, setOpacity] = useState(100);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -99,7 +113,6 @@ export default function OpenApiPage() {
         setPhotos(result);
       });
   };
-  console.log(photos);
 
   const onClickSelectImage = (e) => {
     setSelect(e);
@@ -107,6 +120,40 @@ export default function OpenApiPage() {
 
   const onChangePhrase = (e) => {
     setPhrase(e.target.value);
+  };
+
+  const onChangeOpacity = (e) => {
+    setOpacity(e.target.value);
+  };
+
+  // const onClickImgSave = (e) => {
+  //   html2canvas(e.target).then(function (canvas) {
+  //     const aaa = canvas.toDataURL("image/jpg").split(",")[1];
+  //     console.log(aaa);
+  //   });
+  // };
+
+  // function handleDownload(e) {
+  //   console.log(e);
+  //   html2canvas(canvasRef.current).then((canvas) => {
+  //     handleCaptureCanvas(canvas.toDataURL("image/png"), "thumbnail.png");
+  //   });
+  // }
+
+  // function handleCaptureCanvas(uri, fileName) {
+  //   const link = document.createElement("a");
+  //   document.body.appendChild(link);
+  //   link.href = uri;
+  //   link.download = fileName;
+  //   link.click();
+  //   document.body.removeChild(link);
+  // }
+
+  const onDownloadBtn = () => {
+    const card = canvasRef.current;
+    domtoimage.toBlob(card).then((blob) => {
+      saveAs(blob, "card.png");
+    });
   };
 
   return (
@@ -128,18 +175,51 @@ export default function OpenApiPage() {
         </ImageBox>
       </WrapperLeft>
       <WrapperRight>
-        <Thumnail>
+        <Thumnail ref={canvasRef}>
+          {/* <SelectedImg src={select} opacity={opacity} /> */}
           {select ? (
-            <SelectedImg src={select} />
+            <SelectedImg id="capture" src={select} opacity={opacity} />
           ) : (
             <NoSelected>이미지를 선택</NoSelected>
           )}
+          {/* /<SelectedImg src="/img/1.jpg" /> */}
           <Phrase>{phrase}</Phrase>
         </Thumnail>
         <PhraseInput
           onChange={onChangePhrase}
           placeholder="사진에 넣을 문구를 입력하세요"
         />
+        <OpacityBox>
+          <input
+            type="radio"
+            name="opacity"
+            value="30"
+            onChange={onChangeOpacity}
+          />
+          30
+          <input
+            type="radio"
+            name="opacity"
+            value="50"
+            onChange={onChangeOpacity}
+          />
+          50
+          <input
+            type="radio"
+            name="opacity"
+            value="70"
+            onChange={onChangeOpacity}
+          />
+          70
+          <input
+            type="radio"
+            name="opacity"
+            value="100"
+            onChange={onChangeOpacity}
+          />
+          100
+        </OpacityBox>
+        <button onClick={onDownloadBtn}>이미지 저장</button>
       </WrapperRight>
     </Wrapper>
   );
