@@ -13,11 +13,12 @@ const Wrapper = styled.div`
   width: 160rem;
   display: flex;
   justify-content: space-between;
+  margin: 40px auto 0;
   @media ${device.laptop} {
-    width: 120rem;
+    width: 105rem;
   }
   @media ${device.tablet} {
-    width: 600px;
+    width: 60rem;
     justify-content: center;
   }
 `;
@@ -29,32 +30,33 @@ const WrapperTop = styled.div`
 `;
 
 const WrapperBody = styled.div`
+  width: 120rem;
   display: flex;
   flex-direction: column;
 `;
 
 const Item = styled.div`
-  width: 135rem;
+  width: 130rem;
   height: 150rem;
   display: flex;
   margin-bottom: 4rem;
   overflow: auto;
+  @media ${device.laptop} {
+    width: 80rem;
+  }
 `;
 
 const FlexWrap = styled.div`
-  width: 135rem;
+  width: 100%;
   height: 150rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  @media ${device.laptop} {
-    width: 120rem;
-  }
   @media ${device.tablet} {
-    width: 500px;
     justify-content: center;
   }
 `;
+
 const WrapperRight = styled.div`
   width: 20rem;
 `;
@@ -71,7 +73,6 @@ const TodayView = styled.div`
   font-size: 1.4rem;
   font-weight: 700;
   border: 1px solid #bdbdbd;
-  position: static;
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -92,9 +93,9 @@ const TodayItem = styled.img`
 `;
 
 const CreateButton = styled.button`
-  width: 12.4rem;
-  height: 5.2rem;
-  font-size: 1.4rem;
+  width: 124px;
+  height: 52px;
+  font-size: 14px;
   background-color: #fff;
   border-radius: 30px;
   border: 1px solid #bebebe;
