@@ -6,7 +6,7 @@ import { device } from "../../../../commons/responsive/breakPoint";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 50rem;
+  height: 30rem;
   display: flex;
   justify-content: center;
   align-items: center;
