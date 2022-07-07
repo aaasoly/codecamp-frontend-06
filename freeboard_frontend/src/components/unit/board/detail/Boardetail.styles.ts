@@ -38,17 +38,17 @@ export const PostWrapper = styled.div`
 
 export const PostHeader = styled.div`
   width: 99.6rem;
-  height: 160px;
+  height: 18rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-bottom: 1px solid #bdbdbd;
-  box-sizing: border-box;
   @media ${device.laptop} {
     width: 69.6rem;
   }
   @media ${device.tablet} {
     width: 400px;
+    height: 100px;
   }
 `;
 
@@ -56,7 +56,6 @@ export const PostHeader = styled.div`
 export const HeaderLeft = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -65,11 +64,9 @@ export const PostInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 16.67px;
+  margin-left: 2rem;
 `;
 export const PostUserIcon = styled.div`
-  width: 46px;
-  height: 46px;
   font-size: 18px;
   color: #bdbdbd;
   @media ${device.tablet} {
@@ -77,16 +74,16 @@ export const PostUserIcon = styled.div`
   }
 `;
 export const PostUser = styled.div`
-  font-size: 20px;
+  font-size: 2rem;
   @media ${device.tablet} {
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 export const PostDate = styled.div`
   color: #828282;
   font-size: 16px;
   @media ${device.tablet} {
-    font-size: 12px;
+    font-size: 10px;
   }
 `;
 
@@ -107,11 +104,10 @@ export const PostBody = styled.div`
 `;
 
 export const PostTitle = styled.span`
-  font-size: 24px;
-  margin-bottom: 20px;
-  @media ${device.tablet} {
-    font-size: 20px;
-  }
+  width: 100%;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  word-wrap: break-word;
 `;
 
 export const PostPicture = styled.img`

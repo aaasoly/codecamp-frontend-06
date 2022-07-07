@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   align-items: center;
   font-size: 14px;
   margin: 0 auto;
+  padding-top: 40px;
   background-color: #f8f9fa;
   @media ${device.laptop} {
     width: 120rem;
