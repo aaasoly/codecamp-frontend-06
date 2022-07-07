@@ -1,34 +1,53 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import html2canvas from "html2canvas";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import { v4 as uuidv4 } from "uuid";
+import { device } from "../../../src/commons/responsive/breakPoint";
 
 const Wrapper = styled.div`
-  width: 1600px;
-  height: 800px;
+  width: 160rem;
   display: flex;
   justify-content: space-around;
   font-size: 16px;
+  @media ${device.laptop} {
+    width: 90rem;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const WrapperLeft = styled.div`
-  width: 700px;
-  height: 800px;
+  width: 70rem;
+  height: 80rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  @media ${device.laptop} {
+    width: 40rem;
+    height: 55rem;
+    margin-bottom: 20px;
+  }
 `;
 
 const WrapperRight = styled.div`
-  width: 600px;
+  width: 60rem;
+  height: 80rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  @media ${device.laptop} {
+    width: 40rem;
+    height: 75rem;
+  }
+  @media ${device.tablet} {
+    height: 450px;
+  }
 `;
 
 const ImgCreateButton = styled.button`
@@ -40,43 +59,51 @@ const ImgCreateButton = styled.button`
 `;
 
 const ImageBox = styled.div`
-  width: 700px;
-  height: 700px;
+  width: 70rem;
+  height: 70rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  @media ${device.laptop} {
+    width: 50rem;
+    height: 50rem;
+  }
 `;
 
 const Image = styled.img`
-  width: 230px;
-  height: 230px;
+  width: 23rem;
+  height: 23rem;
   object-fit: cover;
+  @media ${device.laptop} {
+    width: 15rem;
+    height: 15rem;
+  }
 `;
 
 const NoSelected = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 50rem;
+  height: 50rem;
   background-color: #e5e5e5;
 `;
 
 const SelectedImg = styled.img`
-  width: 500px;
-  height: 500px;
+  width: 50rem;
+  height: 50rem;
   object-fit: cover;
   opacity: ${(props) => props.opacity}%;
   filter: ${(props) => (props.isGray ? "grayscale(100%)" : "none")};
 `;
 
 const PhraseInput = styled.textarea`
-  width: 500px;
-  height: 50px;
+  width: 50rem;
+  height: 5rem;
   resize: none;
 `;
 
 export const Thumnail = styled.div`
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 50rem;
+  height: 50rem;
 `;
 
 const Phrase = styled.span`
@@ -88,8 +115,8 @@ const Phrase = styled.span`
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 12px;
-  max-width: 430px;
-  max-height: 280px;
+  max-width: 43rem;
+  max-height: 28rem;
   word-wrap: break-word;
 `;
 
