@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { accessTokenState, restoreAccessTokenLoadable } from "../store";
 
-//@ts-ignore
+// @ts-ignore
+// eslint-disable-next-line react/display-name
 export const withAuth = (Component) => (props) => {
   const router = useRouter();
   const [accessToken] = useRecoilState(accessTokenState);

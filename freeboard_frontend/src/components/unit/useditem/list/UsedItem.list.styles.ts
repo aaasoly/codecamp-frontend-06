@@ -12,6 +12,7 @@ export const ItemList = styled.div`
   border: 1px solid #bdbdbd;
   margin-bottom: 40px;
   overflow: hidden;
+  cursor: pointer;
   @media ${device.laptop} {
     width: 35rem;
     height: 50rem;
