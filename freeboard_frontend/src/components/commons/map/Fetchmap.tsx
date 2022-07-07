@@ -77,7 +77,7 @@ export default function FetchMap(props) {
 
   return (
     <>
-      <div id="map" style={{ width: "792px", height: "360px" }} />
+      <div id="map" style={{ width: "100%", height: "100%" }} />
     </>
   );
 }

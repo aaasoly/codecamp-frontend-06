@@ -2,11 +2,12 @@ import styled from "@emotion/styled";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { device } from "../../../../commons/responsive/breakPoint";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  height: 1650px;
-  padding: 80px;
+  width: 120rem;
+  height: 165rem;
+  padding: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,17 +15,26 @@ export const Wrapper = styled.div`
   border: 1px solid #bebebe;
   border-radius: 30px;
   font-size: 14px;
+  margin-top: 40px;
+  @media ${device.tablet} {
+    height: auto;
+  }
 `;
 
 export const DetailTop = styled.div`
-  width: 1040px;
-  height: 635px;
+  width: 104rem;
+  height: 63.5rem;
   display: flex;
   justify-content: space-between;
+  @media ${device.tablet} {
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+  }
 `;
 
 export const DetailTopLeft = styled.div`
-  width: 580px;
+  width: 58rem;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -33,20 +43,26 @@ export const DetailTopLeft = styled.div`
 
 export const DetailTopRight = styled.div`
   display: flex;
-  width: 415px;
+  width: 41.5rem;
   height: 100%;
   flex-direction: column;
+  @media ${device.tablet} {
+    width: 510px;
+  }
 `;
 
 export const SellerInfo = styled.div`
-  width: 415px;
-  height: 105px;
+  width: 100%;
+  height: 10.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 15px;
   padding: 15px;
   border: 1px solid #bebebe;
+  @media ${device.tablet} {
+    height: 105px;
+  }
 `;
 
 export const SellerDiv = styled.div`
@@ -68,9 +84,13 @@ export const Seller = styled.div`
 `;
 
 export const DetailBottom = styled.div`
-  width: 1040px;
+  width: 104rem;
   display: flex;
   justify-content: space-between;
+  @media ${device.tablet} {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 export const Category = styled.span`
@@ -79,19 +99,27 @@ export const Category = styled.span`
 `;
 
 export const DetailBottomLeft = styled.div`
-  width: 580px;
-  height: 600px;
+  width: 58rem;
+  height: 60rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media ${device.tablet} {
+    width: 510px;
+    height: 450px;
+  }
 `;
 
 export const DetailBottomRight = styled.div`
-  width: 415px;
-  height: 650px;
+  width: 41.5rem;
+  height: 65rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media ${device.tablet} {
+    width: 510px;
+    height: 500px;
+  }
 `;
 
 export const BodyTop = styled.div`
@@ -104,11 +132,14 @@ export const BodyTop = styled.div`
 `;
 
 export const ProductInfo = styled.div`
-  width: 410px;
+  width: 41rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  @media ${device.tablet} {
+    width: 510px;
+  }
 `;
 
 export const Remarks = styled.span`
@@ -165,10 +196,14 @@ export const BodyCenter = styled.div`
 `;
 
 export const StyledSlider = styled(Slider)`
-  width: 580px;
-  height: 500px;
+  width: 58rem;
+  height: 50rem;
   border-radius: 30px;
   overflow: hidden;
+  @media ${device.tablet} {
+    width: 500px;
+    height: 400px;
+  }
   /* .slick-dots {
     margin-top: 30px;
     .slick-active {
@@ -183,30 +218,46 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const Images = styled.img`
-  width: 580px;
-  height: 500px;
+  width: 58rem;
+  height: 50rem;
   object-fit: cover;
+  @media ${device.tablet} {
+    width: 500px;
+    height: 400px;
+  }
 `;
 
 export const ThumSlider = styled(Slider)`
   margin: 0 auto;
-  width: 510px;
-  height: 100px;
+  width: 51rem;
+  height: 10rem;
+  @media ${device.tablet} {
+    width: 510px;
+    height: 100px;
+  }
 `;
 
 export const ThumImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  height: 10rem;
   border-radius: 15px;
+  @media ${device.tablet} {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 export const Contents = styled.div`
   width: 100%;
-  height: 363px;
+  height: 36.3rem;
   padding: 35px 10px;
   color: #4f4f4f;
   font-size: 18px;
   overflow: auto;
+  @media ${device.tablet} {
+    width: 510px;
+    height: 200px;
+  }
 `;
 
 export const TagDiv = styled.div`
@@ -228,14 +279,18 @@ export const Tags = styled.span`
 `;
 
 export const Map = styled.div`
-  width: 580px;
-  height: 370px;
-  border-radius: 30px;
+  width: 58rem;
+  height: 40rem;
+  border-radius: 20px;
   overflow: hidden;
+  @media ${device.tablet} {
+    width: 510px;
+    height: 400px;
+  }
 `;
 
 export const ButtonGroup = styled.div`
-  width: 580px;
+  width: 58rem;
   height: 40px;
   display: flex;
   justify-content: space-around;
@@ -247,24 +302,33 @@ export const ButtonGroup = styled.div`
     border: 1px solid #31588a;
     cursor: pointer;
   }
+  @media ${device.tablet} {
+    width: 510px;
+  }
 `;
 
 export const ListButton = styled.button`
-  width: 150px;
+  width: 15rem;
   height: 45px;
   padding: 11px 47px;
   border: 1px solid #bdbdbd;
   border-radius: 30px;
   background-color: #fff;
   transition-duration: 0.3s;
+  @media ${device.tablet} {
+    width: 150px;
+  }
 `;
 
 export const EditButton = styled.button`
-  width: 150px;
+  width: 15rem;
   height: 45px;
   padding: 11px 47px;
   border: 1px solid #bdbdbd;
   border-radius: 30px;
   background-color: #fff;
   transition-duration: 0.3s;
+  @media ${device.tablet} {
+    width: 150px;
+  }
 `;
