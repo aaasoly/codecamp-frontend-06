@@ -37,38 +37,45 @@ const LOG_OUT_USER = gql`
   }
 `;
 
-export default function ResponsiveNav() {
+export default function ResponsiveNav(props) {
   const router = useRouter();
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [logoutUser] = useMutation(LOG_OUT_USER);
 
   const onClickBoard = () => {
     router.push("/boards");
+    props.onClickToggle();
   };
 
   const onClickMarket = () => {
     router.push("/market");
+    props.onClickToggle();
   };
 
   const onClickAPI = () => {
     router.push("/boards/api");
+    props.onClickToggle();
   };
 
   const onClickFirebase = () => {
     router.push("/boards/firebase");
+    props.onClickToggle();
   };
 
   const onClickMyPage = () => {
     router.push("/mypage/myitem");
+    props.onClickToggle();
   };
 
   const onClickLogOut = async () => {
     await logoutUser();
     location.reload();
+    props.onClickToggle();
   };
 
   const onClickLogIn = () => {
     router.push("/login");
+    props.onClickToggle();
   };
 
   return (

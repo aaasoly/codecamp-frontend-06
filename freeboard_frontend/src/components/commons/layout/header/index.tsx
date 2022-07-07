@@ -11,7 +11,7 @@ interface IHeaderWrapperProps {
 }
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   height: 50px;
@@ -24,14 +24,17 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
-  width: 140rem;
+  width: 160rem;
   height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   @media ${device.laptop} {
-    width: 110rem;
+    width: 90rem;
+  }
+  @media ${device.tablet} {
+    width: 400px;
   }
 `;
 
@@ -109,11 +112,7 @@ export default function LayoutHeader() {
   }
 
   const onClickToggle = () => {
-    if (isToggle === false) {
-      setIsToggle(true);
-    } else {
-      setIsToggle(false);
-    }
+    setIsToggle(!isToggle);
   };
 
   const onClickLanding = () => {
@@ -170,7 +169,7 @@ export default function LayoutHeader() {
         <MenuLaptop>
           <ToggleBtn onClick={onClickToggle}>메뉴</ToggleBtn>
           <ToggleMenuDiv isToggle={isToggle}>
-            <ResponsiveNav />
+            <ResponsiveNav onClickToggle={onClickToggle} />
           </ToggleMenuDiv>
         </MenuLaptop>
       </Box>
