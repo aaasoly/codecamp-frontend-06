@@ -116,7 +116,7 @@ export const BodyTop = styled.div`
 `;
 
 export const BoardTitle = styled.span`
-  max-width: 50rem;
+  max-width: 45rem;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;

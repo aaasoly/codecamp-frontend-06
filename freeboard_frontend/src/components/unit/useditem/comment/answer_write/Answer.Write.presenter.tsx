@@ -9,17 +9,11 @@ export default function UseditemQuestionAnswerWriteUI(
       {props?.isEdit ? (
         <S.Contents
           type="text"
-          placeholder="개인정보웅애웅"
           onChange={props.onChangeReply}
           defaultValue={props.reply || props.AnswerEl?.contents || ""}
         ></S.Contents>
       ) : (
-        <S.Contents
-          type="text"
-          placeholder="개인정보웅애웅"
-          onChange={props.onChangeReply}
-          // defaultValue={props.reply || props.AnswerEl?.contents || ""}
-        ></S.Contents>
+        <S.Contents type="text" onChange={props.onChangeReply}></S.Contents>
       )}
 
       <S.WrapperBottom>

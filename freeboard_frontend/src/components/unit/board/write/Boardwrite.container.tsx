@@ -137,9 +137,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
     const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
     const isChangedFiles = currentFiles !== defaultFiles;
 
-    // 조건문은 있을 때 튕기는 것이 아니라 없을 때 튕기게 작성해야 한다
-    // early exit pattern
-
     if (!inputs.title && !inputs.contents && !youtubeUrl) {
       Modal.error({ content: "수정한 내용이 없습니다." });
       return;

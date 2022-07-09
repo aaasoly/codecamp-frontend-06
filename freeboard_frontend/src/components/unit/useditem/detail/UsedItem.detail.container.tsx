@@ -26,26 +26,8 @@ export default function UsedItemDetail() {
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
   );
 
-  // const [isLogin, setIsLogin] = useState(false);
-  // console.log(
-  //   data?.fetchUseditem.seller._id === logindata?.fetchUserLoggedIn._id
-  // );
-
-  // console.log(data);
-
-  // console.log(data?.fetchUseditem.seller._id);
-  // console.log(logindata?.fetchUserLoggedIn._id);
-
   const sellerId = data?.fetchUseditem.seller._id;
   const myId = logindata?.fetchUserLoggedIn._id;
-
-  // useEffect(() => {
-  //   if (sellerId !== myId) {
-  //     setIsLogin(false);
-  //   } else if (sellerId === myId) {
-  //     setIsLogin(true);
-  //   }
-  // }, []);
 
   const onClickMoveToList = () => {
     router.push("/market");
@@ -76,22 +58,6 @@ export default function UsedItemDetail() {
           variables: { useditemId: String(router.query.useditemId) },
         },
       ],
-      // optimisticResponse: {
-      //   toggleUseditemPick: (data?.fetchUseditem.pickedCount || 0) + 1,
-      // },
-      // update(cache, { data }) {
-      //   cache.writeQuery({
-      //     query: FETCH_USED_ITEM,
-      //     variables: { useditemId: String(router.query.useditemId) },
-      //     data: {
-      //       fetchUseditem: {
-      //         _id: String(router.query.useditemId),
-      //         __typename: "Useditem",
-      //         pickedCount: data.fetchUseditem,
-      //       },
-      //     },
-      //   });
-      // },
     });
   };
 
@@ -116,7 +82,6 @@ export default function UsedItemDetail() {
       return;
     }
 
-    // rest parameter
     const { __typename, ...newEl } = el;
     baskets.push(newEl);
     localStorage.setItem("baskets", JSON.stringify(baskets));

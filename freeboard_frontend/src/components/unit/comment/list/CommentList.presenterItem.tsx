@@ -87,7 +87,7 @@ export default function BoardCommentListUIItem(
         </Modal>
       )}
 
-      {!isEdit && ( // isEdit 가 아닐 때 (삼항연산자는 길어질 때 잘 쓰지 않는다)
+      {!isEdit && (
         <S.CommentBox key={props.el._id} id={String(props.el.writer)}>
           <S.CommentUserIcon>
             <FontAwesomeIcon icon={faCircleUser} size="2x" />

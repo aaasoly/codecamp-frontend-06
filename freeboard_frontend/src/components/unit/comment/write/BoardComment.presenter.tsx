@@ -10,7 +10,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
           댓글
         </S.CommentHeader>
       )}
-      {/* isEdit 가 아닐 때만 보여주기 */}
+
       <S.CreateComment>
         <S.CommentUser>
           <S.CommentWriter
@@ -18,7 +18,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
             readOnly={!!props.el?.writer}
             placeholder="작성자"
             onChange={props.onChangeWriter}
-            value={props.writer || props.el?.writer || ""} // props로 받아온 state 바인딩
+            value={props.writer || props.el?.writer || ""}
           ></S.CommentWriter>
           <S.CommentPassword
             type="password"

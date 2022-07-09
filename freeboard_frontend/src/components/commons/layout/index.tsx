@@ -5,10 +5,6 @@ import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
 
-// const BodyWrapper = styled.div`
-//   display: flex;
-// `;
-
 const Body = styled.div`
   display: flex;
   flex-direction: column;

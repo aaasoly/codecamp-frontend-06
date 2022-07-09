@@ -43,8 +43,6 @@ export default function Pagination(props) {
 
   return (
     <div>
-      {/* <PrevButton onClick={onClickPrevPage} isActive={isActive}/> */}
-      {/* <PrevButton disabled={startPage === 1 ? true : false} onClick={onClickPrevPage} isActive={isActive}>이전</PrevButton> */}
       <PrevButton
         onClick={onClickPrevPage}
         isActive={startPage !== 1 ? true : false}

@@ -56,32 +56,14 @@ export default function UsedItemList() {
     router.push(`/market/${event.currentTarget.id}`);
 
     const today = JSON.parse(localStorage.getItem(todayWatched) || "[]");
-    // const today = JSON.parse(localStorage.getItem("today") || "[]");
 
     const { __typename, ...newEl } = el;
     today.unshift(newEl);
     localStorage.setItem(todayWatched, JSON.stringify(today));
-    // localStorage.setItem("today", JSON.stringify(today));
     const threeRecent = today.slice(0, 3);
     setTodayItem(threeRecent);
-
-    // setTodayState((prev) => !prev);
-
-    // 오늘 본 아이템
-    // setIsSaw(true);
-
-    // const todaySaw = wasSaw();
-
-    // const baskets = JSON.parse(localStorage.getItem(todaySaw) || "[]");
-
-    // const { __typename, ...newEl } = event.currentTarget.value;
-    // baskets.push(newEl);
-    // localStorage.setItem(todaySaw, JSON.stringify(baskets));
-    // const a = JSON.parse(localStorage.getItem(todaySaw) || "[]");
-    // setToday(a);
   };
 
-  // 무한스크롤
   const onLoadMore = () => {
     if (!data) return;
 

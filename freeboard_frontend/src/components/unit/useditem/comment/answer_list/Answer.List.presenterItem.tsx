@@ -40,16 +40,6 @@ export default function UseditemQuestionAnswersListItem(
             variables: { useditemQuestionId: props.QuestionEl?._id },
           },
         ],
-
-        // update(cache, {data}){
-        //   cache.modify({
-        //     fields: {
-        //       fetchUseditemsQuestions: (prev, {readField}) => {
-        //         const filteredPrev = prev.filter((el) => readField("_id", el) !== )
-        //       }
-        //     }
-        //   })
-        // }
       });
       alert("삭제되었습니다");
     } catch (error) {

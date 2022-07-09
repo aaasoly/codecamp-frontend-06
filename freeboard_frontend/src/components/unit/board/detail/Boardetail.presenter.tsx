@@ -41,7 +41,7 @@ export default function BoardDetailUI(props: IMyPropsBoardDetailUI) {
               width="100%"
             />
           )}
-          {/* 좋아요 싫어요 버튼 */}
+
           <S.LikeIcons>
             <S.Like>
               <S.Likebutton onClick={props.onClickLike}></S.Likebutton>

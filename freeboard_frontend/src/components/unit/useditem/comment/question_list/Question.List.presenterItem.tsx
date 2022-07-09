@@ -40,16 +40,6 @@ export default function UseditemQuestionListItem(
             variables: { useditemId: router.query.useditemId },
           },
         ],
-
-        // update(cache, {data}){
-        //   cache.modify({
-        //     fields: {
-        //       fetchUseditemsQuestions: (prev, {readField}) => {
-        //         const filteredPrev = prev.filter((el) => readField("_id", el) !== )
-        //       }
-        //     }
-        //   })
-        // }
       });
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
@@ -86,7 +76,6 @@ export default function UseditemQuestionListItem(
                 >
                   삭제
                 </S.DeleteButton>
-                {/* <S.EditButton onClick={onClickCreateReply}>답글</S.EditButton> */}
               </S.MyQuestion>
             ) : (
               <S.EditButton onClick={onClickCreateReply}>답글</S.EditButton>
@@ -103,12 +92,10 @@ export default function UseditemQuestionListItem(
         />
       )}
       {/* 대댓글 작성 인풋 */}
-      {/* <div style={{ marginTop: "10px" }}> */}
       {isAnswer === true && (
         <UseditemAnswerWrite el={props.el} setIsAnswer={setIsAnswer} />
       )}
       <UseditemQuestionAnswerList el={props.el} />
-      {/* </div> */}
     </>
   );
 }

@@ -17,15 +17,12 @@ import {
 import { Modal } from "antd";
 
 export default function BoardDetail() {
-  // FETCH_BOARD
   const router = useRouter();
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
     { variables: { boardId: String(router.query.boardId) } }
-  ); // 백엔드에 데이터를 요청해서 받아온 것을 data 변수에 저장, 받아오기 전까지 data=undefined
-  console.log(data);
+  );
 
-  // LIKE_BOARD
   const [likeBoard] = useMutation<
     Pick<IMutation, "likeBoard">,
     IMutationLikeBoardArgs
@@ -44,7 +41,6 @@ export default function BoardDetail() {
     console.log(result);
   };
 
-  // DISLIKE_BOARD
   const [dislikeBoard] = useMutation<
     Pick<IMutation, "dislikeBoard">,
     IMutationDislikeBoardArgs
@@ -62,7 +58,6 @@ export default function BoardDetail() {
     });
   };
 
-  // DELETE_BOARD
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const onClickDelete = async () => {
     try {

@@ -1,7 +1,5 @@
-// import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./Boardlist.styles";
 import { IPropsBoardListPageUI } from "./Boardlist.types";
-import { FileTextOutlined } from "@ant-design/icons";
 import { v4 as uuid4 } from "uuid";
 import Pagination from "../../../commons/pagination/Pagination";
 import AOS from "aos";

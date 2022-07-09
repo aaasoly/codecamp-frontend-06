@@ -23,9 +23,6 @@ export default function UseditemQuestionAnswerList(
   // 로그인된 유저랑 같으면 수정 삭제 버튼 띄우기
   const { data: logindata } = useQuery(FETCH_USER_LOGGED_IN);
 
-  // console.log("밑에가 페치앤써 아이디");
-  // console.log(props.el._id);
-
   // 무한 스크롤
   const onLoadMore = () => {
     if (!data) return;

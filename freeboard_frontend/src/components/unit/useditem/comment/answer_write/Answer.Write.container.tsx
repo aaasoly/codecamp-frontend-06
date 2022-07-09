@@ -52,10 +52,6 @@ export default function UseditemAnswerWrite(props: IUseditemAnswerWriteProps) {
     try {
       if (!props.AnswerEl?._id) return;
 
-      // const updateUseditemQuestionAnswerInput = {};
-      // if (contents !== "")
-      //   updateUseditemQuestionAnswerInput.contents = contents;
-
       const result = await updateUseditemQuestionAnswer({
         variables: {
           updateUseditemQuestionAnswerInput: { contents: reply },

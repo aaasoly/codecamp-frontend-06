@@ -64,12 +64,6 @@ export default function LayoutBanner() {
         <ImgBox>
           <BannerImg src="/img/3.jpg" />
         </ImgBox>
-        {/* <ImgBox>
-          <BannerImg src="/img/4.jpeg" />
-        </ImgBox>
-        <ImgBox>
-          <BannerImg src="/img/5.jpeg" />
-        </ImgBox> */}
       </StyledSlider>
     </Wrapper>
   );

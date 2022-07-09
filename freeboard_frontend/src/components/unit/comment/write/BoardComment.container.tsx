@@ -45,9 +45,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const onChangeStar = (value: number) => {
     setRating(value);
   };
-  // const onChangeRating = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setValue(event.target.value);
-  // };
+
   // 댓글 등록 버튼
   const onClickCreateComment = async () => {
     try {
@@ -60,7 +58,6 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
             rating,
           },
           boardId: String(router.query.boardId),
-          // 게시글에 달린 댓글이기 때문에 boardId
         },
         refetchQueries: [
           {
@@ -70,12 +67,10 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
         ],
       });
       Modal.success({ content: "댓글이 등록되었습니다." });
-      // router.push(`${router.query.boardId}`);
       setWriter("");
       setPassword("");
       setContents("");
       setRating(0);
-      // state 이용해서 입력버튼 클릭 후 input 창 비워주기(state가 input창에 바인딩 된 상태)
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
@@ -95,7 +90,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
       if (!props.el?._id) return; // _id가 없으면 실행하지 않음, 여기 el 은 무한스크롤에서 왔음
 
       const updateBoardCommentInput: IUpdateBoardCommentInput = {};
-      if (rating) updateBoardCommentInput.rating = rating; // 바뀌어야 수정
+      if (rating) updateBoardCommentInput.rating = rating;
       if (contents !== "") updateBoardCommentInput.contents = contents;
 
       await updateBoardComment({
@@ -105,7 +100,6 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
           boardCommentId: props.el?._id,
         },
         refetchQueries: [
-          // 수정 완료후 refetch
           {
             query: FETCH_BOARD_COMMENTS,
             variables: { boardId: router.query.boardId },
@@ -119,22 +113,19 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   };
 
   return (
-    <div>
-      <BoardCommentWriteUI
-        onClickCreateComment={onClickCreateComment}
-        onChangeWriter={onChangeWriter}
-        onChangePassword={onChangePassword}
-        onChangeContents={onChangeContents}
-        onChangeStar={onChangeStar}
-        // state를 props로 넘겨주기 > 제어 컴포넌트 만들기
-        contents={contents}
-        writer={writer}
-        password={password}
-        onClickUpdate={onClickUpdate}
-        el={props.el}
-        isEdit={props.isEdit}
-        rating={rating}
-      />
-    </div>
+    <BoardCommentWriteUI
+      onClickCreateComment={onClickCreateComment}
+      onChangeWriter={onChangeWriter}
+      onChangePassword={onChangePassword}
+      onChangeContents={onChangeContents}
+      onChangeStar={onChangeStar}
+      contents={contents}
+      writer={writer}
+      password={password}
+      onClickUpdate={onClickUpdate}
+      el={props.el}
+      isEdit={props.isEdit}
+      rating={rating}
+    />
   );
 }
