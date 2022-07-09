@@ -17,8 +17,6 @@ export default function UseditemQuestionList() {
     variables: { useditemId: String(router.query.useditemId) },
   });
 
-  // 페치퀘스쳔에서 유저 이메일 받아오기
-  // 로그인된 유저랑 같으면 수정 삭제 버튼 띄우기
   const { data: logindata } = useQuery(FETCH_USER_LOGGED_IN);
 
   const onLoadMore = () => {

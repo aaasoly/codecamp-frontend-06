@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
+import { device } from "../../../../../commons/responsive/breakPoint";
 
 export const Wrapper = styled.div`
-  width: 415px;
+  width: 41.5rem;
   height: 160px;
   border: 1px solid #bebebe;
   border-radius: 15px;
@@ -10,6 +11,9 @@ export const Wrapper = styled.div`
   padding: 10px 18px;
   font-size: 14px;
   margin-bottom: 15px;
+  @media ${device.tablet} {
+    width: 510px;
+  }
 `;
 
 export const Contents = styled.textarea`

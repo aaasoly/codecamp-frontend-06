@@ -1,19 +1,27 @@
 import styled from "@emotion/styled";
+import { device } from "../../../../../commons/responsive/breakPoint";
 
 export const QuestionWrapper = styled.div`
-  width: 400px;
+  width: 40rem;
   height: auto;
   display: flex;
   border-bottom: 1px solid #bebebe;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding-bottom: 20px;
+  @media ${device.tablet} {
+    width: 430px;
+  }
 `;
 
 export const WrapperBody = styled.div`
-  width: 415px;
-  height: 130px;
+  width: 40rem;
+  height: auto;
   display: flex;
   flex-direction: column;
+  @media ${device.tablet} {
+    width: 400px;
+  }
 `;
 
 export const UserName = styled.span`
@@ -35,7 +43,7 @@ export const CreatedAt = styled.span`
 export const WrapperRight = styled.div`
   width: 64px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 `;
 
 export const MyQuestion = styled.div`
