@@ -39,6 +39,11 @@ export const DetailTopLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media ${device.tablet} {
+    width: 510px;
+    height: 550px;
+    border-bottom: 1px solid #bebebe;
+  }
 `;
 
 export const DetailTopRight = styled.div`
@@ -230,20 +235,29 @@ export const Images = styled.img`
 export const ThumSlider = styled(Slider)`
   margin: 0 auto;
   width: 51rem;
-  height: 10rem;
+  height: 11rem;
+  .slick-track > div > div {
+    width: 12rem;
+    height: 12rem;
+  }
   @media ${device.tablet} {
-    width: 510px;
+    width: 410px;
     height: 100px;
+    .slick-track > div > div {
+      width: 100px;
+      height: 100px;
+    }
   }
 `;
 
 export const ThumImg = styled.img`
-  width: 10rem;
-  height: 10rem;
+  width: 11rem;
+  height: 11rem;
   border-radius: 15px;
   @media ${device.tablet} {
     width: 100px;
     height: 100px;
+    margin: 0 auto;
   }
 `;
 
@@ -290,7 +304,7 @@ export const Map = styled.div`
 `;
 
 export const ButtonGroup = styled.div`
-  width: 58rem;
+  width: 580px;
   height: 40px;
   display: flex;
   justify-content: space-around;
@@ -308,7 +322,7 @@ export const ButtonGroup = styled.div`
 `;
 
 export const ListButton = styled.button`
-  width: 15rem;
+  width: 150px;
   height: 45px;
   padding: 11px 47px;
   border: 1px solid #bdbdbd;
@@ -321,7 +335,7 @@ export const ListButton = styled.button`
 `;
 
 export const EditButton = styled.button`
-  width: 15rem;
+  width: 150px;
   height: 45px;
   padding: 11px 47px;
   border: 1px solid #bdbdbd;

@@ -1,4 +1,3 @@
-import Slider from "react-slick";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IUsedItemDetailUIProps {
@@ -8,7 +7,7 @@ export interface IUsedItemDetailUIProps {
   onClickMoveToUpdate: () => void;
   onClickBuying: () => Promise<void>;
   onClickDelete: () => Promise<void>;
-  // onClickBasket: (el: any) => () => void;
+  onClickBasket: (el: any) => () => void;
   sellerId: string;
   myId: string;
 }
