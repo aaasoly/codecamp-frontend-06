@@ -2680,6 +2680,11 @@
   resolved "https://registry.yarnpkg.com/@types/content-type/-/content-type-1.1.5.tgz#aa02dca40864749a9e2bf0161a6216da57e3ede5"
   integrity sha512-dgMN+syt1xb7Hk8LU6AODOfPlvz5z1CbXpPuJE5ZrX9STfBOIXF09pEB8N7a97WT9dbngt3ksDCm6GW6yMrxfQ==
 
+"@types/dom-to-image@^2.6.4":
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@types/dom-to-image/-/dom-to-image-2.6.4.tgz#008411e23903cb0ee9e51a42ab8358c609541ee8"
+  integrity sha512-UddUdGF1qulrSDulkz3K2Ypq527MR6ixlgAzqLbxSiQ0icx0XDlIV+h4+edmjq/1dqn0KgN0xGSe1kI9t+vGuw==
+
 "@types/dompurify@^2.3.3":
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/@types/dompurify/-/dompurify-2.3.3.tgz#c24c92f698f77ed9cc9d9fa7888f90cf2bfaa23f"
@@ -2691,6 +2696,11 @@
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/@types/extract-files/-/extract-files-8.1.1.tgz#11b67e795ad2c8b483431e8d4f190db2fd22944b"
   integrity sha512-dMJJqBqyhsfJKuK7p7HyyNmki7qj1AlwhUKWx6KrU7i1K2T2SPsUsSUTWFmr/sEM1q8rfR8j5IyUmYrDbrhfjQ==
+
+"@types/file-saver@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.5.tgz#9ee342a5d1314bb0928375424a2f162f97c310c7"
+  integrity sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==
 
 "@types/hoist-non-react-statics@*":
   version "3.3.1"
