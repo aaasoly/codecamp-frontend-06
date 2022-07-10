@@ -35,7 +35,7 @@ export default function BoardListPageUI(props: IPropsBoardListPageUI) {
                 src={
                   el.images[0]
                     ? `https://storage.googleapis.com/${el.images?.[0]}`
-                    : `/img/1.jpg`
+                    : `/img/noimage.png`
                 }
               />
             </S.BoardListImg>

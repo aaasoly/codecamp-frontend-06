@@ -9,7 +9,7 @@ export default function UsedItemListUIItem(props: IUsedItemListUIItemProps) {
           src={
             props.el?.images?.[0]
               ? `https://storage.googleapis.com/${props.el.images?.[0]}`
-              : `/img/1.jpg`
+              : `/img/noimage.png`
           }
         />
       </S.Top>

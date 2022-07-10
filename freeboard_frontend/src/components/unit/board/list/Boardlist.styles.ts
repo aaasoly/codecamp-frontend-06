@@ -96,9 +96,7 @@ export const BoardListImg = styled.div`
 export const Img = styled.img`
   width: 20rem;
   height: 20rem;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  object-fit: cover;
 `;
 
 export const BoardListBody = styled.div`

@@ -42,7 +42,9 @@ export const ItemDiv = styled.div`
 export const ItemPicture = styled.img`
   width: 10rem;
   height: 10rem;
+  object-fit: cover;
   margin-right: 20px;
+  border-radius: 10px;
 `;
 
 export const ItemInfo = styled.div`

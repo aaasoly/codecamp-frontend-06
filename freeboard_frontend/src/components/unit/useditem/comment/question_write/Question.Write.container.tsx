@@ -58,7 +58,7 @@ export default function UseditemQuestionWrite(
       const updateUseditemQuestionInput: IUpdateUseditemQuestionInput = {};
       if (contents !== "") updateUseditemQuestionInput.contents = contents;
 
-      const result = await updateUseditemQuestion({
+      await updateUseditemQuestion({
         variables: {
           updateUseditemQuestionInput,
           useditemQuestionId: String(props.el?._id),
@@ -72,7 +72,6 @@ export default function UseditemQuestionWrite(
       });
       props.setIsEdit?.(false);
       alert("수정이 완료되었습니다.");
-      console.log(result);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

@@ -50,7 +50,11 @@ export default function MyItemPage() {
           {data?.fetchUseditemsISold.map((el) => (
             <MyItem.ItemDiv key={uuidv4()}>
               <MyItem.ItemPicture
-                src={`https://storage.googleapis.com/${el.images?.[0]}`}
+                src={
+                  el?.images?.[0]
+                    ? `https://storage.googleapis.com/${el.images?.[0]}`
+                    : `/img/noimage.png`
+                }
               />
               <MyItem.ItemInfo>
                 <MyItem.ItemName>{el.name}</MyItem.ItemName>

@@ -19,10 +19,14 @@ export default function MySoldPage() {
     <MyItem.Wrapper>
       <Sidebar />
       <MyItem.Main>
-        {data?.fetchPointTransactionsOfSelling.map((el, idx) => (
+        {data?.fetchPointTransactionsOfSelling.map((el) => (
           <MyItem.ItemDiv key={uuidv4()}>
             <MyItem.ItemPicture
-              src={`https://storage.googleapis.com/${el.useditem?.images?.[0]}`}
+              src={
+                el.useditem?.images?.[0]
+                  ? `https://storage.googleapis.com/${el.useditem?.images?.[0]}`
+                  : `/img/noimage.png`
+              }
             />
             <MyItem.ItemName>{el.useditem?.name}</MyItem.ItemName>
             <MyItem.ItemPrice>{el.amount}</MyItem.ItemPrice>

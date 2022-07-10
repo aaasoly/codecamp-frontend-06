@@ -20,7 +20,11 @@ export default function MyPickPage() {
         {basketItem.map((el: any) => (
           <MyItem.ItemDiv key={el._id}>
             <MyItem.ItemPicture
-              src={`https://storage.googleapis.com/${el.images[0]}`}
+              src={
+                el?.images?.[0]
+                  ? `https://storage.googleapis.com/${el.images?.[0]}`
+                  : `/img/noimage.png`
+              }
             />
             <MyItem.ItemInfo>
               <MyItem.ItemName>{el.name}</MyItem.ItemName>

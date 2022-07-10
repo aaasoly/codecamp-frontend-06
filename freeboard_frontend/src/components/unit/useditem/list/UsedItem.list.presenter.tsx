@@ -89,7 +89,7 @@ const TodayItem = styled.img`
   height: 16rem;
   object-fit: cover;
   margin-bottom: 1rem;
-  border: 1px solid #bebebe;
+  border-radius: 10px;
 `;
 
 const CreateButton = styled.button`
@@ -170,7 +170,11 @@ export default function UsedItemListUI(props: IUsedItemListUIProps) {
           {todayItem.map((el: any) => (
             <TodayItem
               key={el._id}
-              src={`https://storage.googleapis.com/${el.images?.[0]}`}
+              src={
+                el?.images?.[0]
+                  ? `https://storage.googleapis.com/${el.images?.[0]}`
+                  : `/img/noimage.png`
+              }
               onClick={onClickMoveTodayDetail}
               id={el._id}
             />
