@@ -6,8 +6,9 @@ import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 import { device } from "../../../../commons/responsive/breakPoint";
 import ResponsiveNav from "../navigation";
 
-interface IHeaderWrapperProps {
-  isVisible: boolean;
+interface IHeaderProps {
+  isVisible?: boolean;
+  isToggle?: boolean;
 }
 
 const Wrapper = styled.div`
@@ -19,8 +20,7 @@ const Wrapper = styled.div`
   background-color: #fff;
   color: #333;
   transition: display ease-in-out;
-  display: ${(props: IHeaderWrapperProps) =>
-    props.isVisible ? "block" : "none"};
+  display: ${(props: IHeaderProps) => (props.isVisible ? "block" : "none")};
 `;
 
 const Box = styled.div`
@@ -85,7 +85,7 @@ const ToggleMenuDiv = styled.div`
   position: absolute;
   top: 45px;
   right: 70px;
-  display: ${(props) => (props.isToggle ? "block" : "none")};
+  display: ${(props: IHeaderProps) => (props.isToggle ? "block" : "none")};
 `;
 
 const LOG_OUT_USER = gql`
@@ -151,11 +151,11 @@ export default function LayoutHeader() {
   return (
     <Wrapper isVisible={isVisible}>
       <Box>
-        <Logo onClick={onClickLanding}>Logo</Logo>
+        <Logo onClick={onClickLanding}>Main</Logo>
         <Menu>
           <MenuItem onClick={onClickBoard}>게시판</MenuItem>
           <MenuItem onClick={onClickMarket}>중고마켓</MenuItem>
-          <MenuItem onClick={onClickAPI}>API</MenuItem>
+          <MenuItem onClick={onClickAPI}>Unsplash</MenuItem>
           <MenuItem onClick={onClickFirebase}>방명록</MenuItem>
           {data?.fetchUserLoggedIn ? (
             <>

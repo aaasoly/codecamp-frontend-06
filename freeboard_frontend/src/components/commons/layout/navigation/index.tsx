@@ -3,6 +3,10 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { FETCH_USER_LOGGED_IN } from "../../../../commons/login/Login.queries";
 
+interface INavProps {
+  onClickToggle: () => void;
+}
+
 const Wrapper = styled.div`
   width: 160px;
   height: 300px;
@@ -37,7 +41,7 @@ const LOG_OUT_USER = gql`
   }
 `;
 
-export default function ResponsiveNav(props) {
+export default function ResponsiveNav(props: INavProps) {
   const router = useRouter();
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [logoutUser] = useMutation(LOG_OUT_USER);
@@ -83,7 +87,7 @@ export default function ResponsiveNav(props) {
       <Menu>
         <MenuItem onClick={onClickBoard}>게시판</MenuItem>
         <MenuItem onClick={onClickMarket}>중고마켓</MenuItem>
-        <MenuItem onClick={onClickAPI}>API</MenuItem>
+        <MenuItem onClick={onClickAPI}>Unsplash</MenuItem>
         <MenuItem onClick={onClickFirebase}>방명록</MenuItem>
         {data?.fetchUserLoggedIn ? (
           <>
